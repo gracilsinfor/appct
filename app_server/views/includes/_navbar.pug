@@ -1,0 +1,40 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+	.container-fluid
+		.navbar-header
+			button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+				span.sr-only Toggle navigation
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			a.navbar-brand(href='/') APPCT
+		#navbar.navbar-collapse.collapse
+			ul.nav.navbar-nav.navbar-right
+				li.dropdown
+					a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') 
+						| Dashboard
+						span.caret
+					ul.dropdown-menu(role='menu')
+						li
+							a(href='/') Início
+						li
+							a(href='#') Relatórios
+						li
+							a(href='#') Análise
+						li
+							a(href='#') Exportar
+						li.divider
+						li.dropdown-header App
+						li
+							a(href='/Drivers') Condutores
+						li
+							a(href='/Cars') Carros
+						li
+							a(href='/Shifts') Turnos 
+						li
+							a(href='/Fillings') Abastecimentos
+						li.divider
+						li
+							a(href='#') Configurações
+						li.divider 
+						li
+							a(href='#') Ajuda

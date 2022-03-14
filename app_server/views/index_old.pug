@@ -1,0 +1,44 @@
+extends layout
+block content
+  .container
+    .row.banner
+      .col-12
+        h2
+          pageHeader.title=title 
+        small &nbsp;Abastecimentos, quilómetros, condutores, carros!
+    .row
+      .col-12.col-md-8
+        .card
+          .card-block
+            h4
+              a(href="/Driver") Nome do motorista 1
+              small &nbsp;
+                span.badge.badge-pill.badge-default.float-right horas 
+            p.facilities
+              a(href="/Carro") Matrícula e Km do carro A 
+            p.address 
+              a(href="/Turno") Data e Hora de início do turno
+        .card
+          .card-block
+            h4
+              a(href="/Driver") Nome do motorista 2
+              small &nbsp;
+                span.badge.badge-pill.badge-default.float-right horas 
+            p.facilities
+              a(href="/Carro") Matrícula e Km do carro B
+            p.address 
+              a(href="/Turno") Data e Hora de início do turno
+        .card
+          .card-block
+            h4
+              a(href="/Driver") Nome do motorista 3
+              small &nbsp;
+                span.badge.badge-pill.badge-default.float-right horas 
+            p.facilities
+              a(href="/Carro") Matrícula e Km do carro C 
+            p.address 
+              a(href="/Turno") Data e Hora de início do turno
+      .col-12.col-md-4
+        p.lead Sumário da atividade
+        p.lead Kms 
+        p.lead Horas      

@@ -1,0 +1,36 @@
+.row
+    .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+        h2.page-header=title+" - "+sub_title
+        .row.placeholders
+            .col-sm-12.col-md-4.placeholder
+                .text-center
+                    h3 Nome
+                    img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
+                    h4 Label
+                    span.text-muted Something else
+            .col-sm-12.col-md-8.placeholder
+                +panel-default("Identificação")
+                    .row 
+                        .col-sm-12.col-md-12
+                            +input("text", "txt_nome", "Nome", "Nome:", "nome", )
+                            +input("text", "txt_morada", "Morada", "Morada:", "morada", )
+                    .row
+                        .col-sm-12.col-md-6 
+                            +input("text", "txt_cp", "Código Postal", "Código Postal:", "codigo_postal",)
+                        .col-sm-12.col-md-6 
+                            +input("text", "txt_nif", "NIF", "NIF:", "nif",)
+                    .row 
+                        .col-sm-12.col-md-6 
+                            +input("text", "txt_utilizador", "Utilizador", "Utilizador", "utilizador",)
+                        .col-sm-12.col-md-6
+                            +input("text", "txt_palavrapasse", "Palavra-passe", "Palavra-passe:", "palavra_passe",) 
+                            .text-right
+                                a(href='/upw') mudar palavra-passe     
+                                p
+                    .row
+                        .col-xs-6.col-sm-6.col-md-6
+                            .text-center
+                                a.btn.btn-danger(href='#', role='button') Salvar     
+                        .col-xs-6.col-sm-6.col-md-6
+                            .text-center
+                                a.btn.btn-success(href='/Driver', role='button') Cancelar  

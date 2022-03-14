@@ -1,0 +1,26 @@
+extends layout
+block content
+  .row.banner
+    .col-12
+      h1
+        pageHeader.title=title
+  .row
+    .col-12.col-md-8
+      form(action="/users/login" method="post" role="form")
+        #error
+          if error
+            p.text-danger Error!!!
+        .form-group.row 
+          label.col-10.col-sm-2.col.form-label(for="username") Nome
+          .col-12.col-sm-10
+            input#name.form-control(type="email" name="username" placeholder="Nome do utilizador" required autofocus)
+            p &nbsp;
+        .form-group.row 
+          label.col-10.col-sm-2.col-form-label(for="inputPassword") Password
+          .col-12.col-sm-10
+            input#name.form-control(type="password" name="inputPassword" placeholder="PIN ou palavra-passe" required)
+            p &nbsp;
+        div.col-12.col-sm-2
+          .float-left
+            button.btn.btn-primary Continuar
+    .col-12.col-md-4

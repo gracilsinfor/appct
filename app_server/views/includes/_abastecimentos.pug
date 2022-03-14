@@ -1,0 +1,21 @@
+-const arr_cabecalho = ['Data','Carro','Condutor','Tipo']
+-const arr_carros = ['Selecionar carro','xx 0x x0','xx 1x x1','xx 2x x2','xx 3x x3']
+-const arr_frontespicio = [['D1','D2','D3','D4'],['D1','D2','D3','D4'],['D1','D2','D3','D4'],['D1','D2','D3','D4'],['D1','D2','D3','D4'],]
+.container-fluid
+	.row
+		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+			.row 
+				.col-xs-12.col-md-6
+					h2.page-header=title+' - '+sub_title
+				.col-xs-12.col-md-6
+					.pull-right
+						a.btn.btn-success(href='/Filling/C', role='button') Novo »  
+			.row
+				.col-xs-12.col-sm-4.placeholder
+					+yadropdown('f1','escolha carro','filtro 1','matricula', arr_carros)
+				.col-xs-12.col-sm-4.placeholder
+					+yadropdown('f2','escolha carro','Filtro 2','matricula', arr_carros)
+				.col-xs-12.col-sm-4.placeholder
+					+yadropdown('f3','Escolha carro','Filtro 3','matricula', arr_carros)
+		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+			+yatable(arr_cabecalho, arr_frontespicio, "table-hover")

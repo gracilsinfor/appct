@@ -1,0 +1,47 @@
+- const arr_carros =['Selecionar carro','xx 0x x0','xx 1x x1','xx 2x x2','xx 3x x3']
+- const arr_condutores =['Selecionar condutor','Condutor 01 Condutor 01','Condutor 02 Condutor 02','Condutor 03 Condutor 03','Condutor 04 Condutor 04','Condutor 05 Condutor 05','Condutor 06 Condutor 06','Condutor 07 Condutor 07','Condutor 08 Condutor 08']
+.row
+    .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+        h2.page-header=title+' - '+sub_title
+        .row.placeholders
+            .col-sm-12.col-md-4.placeholder
+                .text-center
+                    h3 Nome
+                    img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
+                    h4 Label
+                    span.text-muted Something else
+                .row.placeholders
+                    .col-12 
+                .row.placeholders
+                    .col-12
+                .row.placeholders
+                    .col-12 
+            .col-sm-12.col-md-8.placeholder
+                +panel-default("Dados do turno")
+                    .container-fluid
+                        .row.align-items-end 
+                            .col-sm-4.col-md-3.placeholder
+                        .row
+                            .col-sm-12.col-md-4
+                                +input("text", "txt_inicio", "Inicio do turno", "Início do turno:", 'inicio_turno', )
+                            .col-sm-12.col-md-4.placeholder
+                                    +input("text", "txt_inicio", "Fim do turno", "Fim do turno:", 'fim_turno', )
+                            .col-sm-12.col-md-1.placeholder
+
+                        .row
+                            .col-sm-12.col-md-3.placeholder
+                                +yadropdown("carro", "Carro", "Carro:", "ddnw_carro", arr_carros, )
+                            .col-sm-12.col-md-9.placeholder 
+                                +input("text", "txt_carro", "Carro", "Carro:", 'carro', 'disabled')
+                        .row
+                            .col-sm-12.col-md-12
+                                +yadropdown("condutor", "Condutor", "Condutor:", 'ddnw_condutor', arr_condutores,)
+                        .row
+                            .col-12.placeholder
+                        .row
+                            .col-sm-6.col-md-6.placeholder
+                                .text-center
+                                    a.btn.btn-success(href='/Shifts', role='button') « Cancelar
+                            .col-sm-6.col-md-6.placeholder
+                                .text-center
+                                    a.btn.btn-danger(href='/Shift/U', role='button') Salvar »

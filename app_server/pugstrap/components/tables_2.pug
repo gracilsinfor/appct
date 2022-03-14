@@ -1,0 +1,33 @@
+//- table mixins
+
+//- turno,condutor,carro,posto,odom,bi,ai,hi,hf,bf,af,l
+
+mixin yatable(header,data,type)
+	table.table(class=type)
+		thead
+			tr
+				each head, i in header
+					th #{head}
+		tbody
+			+yarow(header, data)
+			
+mixin yarow(header, data)
+	each row,j in data 
+		tr.table-row
+			each col,k in row
+				td
+					each cabec, i in header
+						if i===k
+							a(href='/Filling') #{col}
+
+mixin table-striped(header,data)
+	+yatable(header,data,"table-striped")
+
+mixin table-bordered(header,data)
+	+yatable(header,data,"table-bordered")
+
+mixin table-hover(header,data)
+	+yatable(header,data,"table-hover")
+
+mixin table-condensed(header,data)
+	+yatable(header,data,"table-condensed")

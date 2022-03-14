@@ -1,0 +1,27 @@
+extends ../pugstrap/_bootstrap
+append styles
+    // Custom styles for this template
+    link(href='/stylesheets/dashboard.css', rel='stylesheet')
+    title=title
+block body
+block topo
+    include ../views/includes/_navbar
+block lado
+    include ../views/includes/_sidebar
+block content
+    if rota==="/Shifts"
+        include ../views/includes/_motoristas_de_turno
+        include ../views/includes/_carros_de_turno
+    else if rota==="/Shift/Driver"
+        include ../views/includes/_turno_r
+        include ../views/includes/_abastecimentos_de_turno
+    else if rota==="/Shift/Car"
+        include ../views/includes/_turno_r
+        include ../views/includes/_abastecimentos_de_turno
+    else if rota==="/Shift/C"
+        include ../views/includes/_turno_c
+    else if rota==="/Shift/U"
+        include ../views/includes/_turno_u
+        include ../views/includes/_abastecimentos_de_turno
+    else if rota==="/Shift/D"
+        include ../views/includes/_turno_r

@@ -1,0 +1,17 @@
+extends ../pugstrap/_bootstrap
+append styles
+    // Custom styles for this template
+    link(href='/stylesheets/dashboard.css', rel='stylesheet')
+    title=title
+block body
+block topo
+    include ../views/includes/_navbar
+block lado
+    include ../views/includes/_sidebar
+block content
+    if rota==="/Filling/C"
+        include ../views/includes/_abastecimento_c
+    else if rota==="/Filling"
+        include ../views/includes/_abastecimento_r
+    else if rota==="/Filling/U"
+        include ../views/includes/_abastecimento_u

@@ -1,0 +1,8 @@
+mixin yadropdown(id, placeholder, label, name, items, estado)
+    label.form-label(for = id) #{label}:&nbsp; 
+    if(estado==='disabled')
+        select.form-control(id = id name=name placeholder=placeholder disabled)
+    else 
+        select.form-control(id = id name=name placeholder=placeholder)
+            for coisa, j in items
+                option(value = coisa) #{coisa}
