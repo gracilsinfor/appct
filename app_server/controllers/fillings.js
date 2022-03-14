@@ -16,7 +16,7 @@ const filling_r = (req, res) => {
 
 // para carregar página com formulário abastecimento
 const filling_u = (req, res)=>{
-    res.render('abastecimento', {title: 'Abastecimento', sub_title: 'alterar'});
+    res.render('abastecimento', {title: 'Abastecimento', sub_title: 'alterar', rota: req.path});
 };
 
 const filling_d = (req, res) => {

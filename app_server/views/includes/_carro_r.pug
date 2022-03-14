@@ -33,9 +33,11 @@
                         .col-sm-12.col-md-6 
                             +input("text", "txt_odom_rev", "Revisão (Km)", "Revisão(km)", "revisao_km", "disabled")  
                         .col-sm-12.col-md-6
-                            +input("text", "txt_data_revisão", "Data", "Data da próxima revisão:", "data_revisão", "disabled") 
+                            +input("text", "txt_data_revisão", "Data", "Data da próxima revisão:", "data_revisão", "disabled")
                     .row
-                        .col-sm-12.col-md-12.placeholder
+                        .col-sm-6.col-md-6.placeholder
                             .text-center
-                                p
-                                a.btn.btn-primary(href='/Car/U', role='button') Alterar »
+                                a.btn.btn-success(href='/Cars', role='button') « Cancelar
+                        .col-sm-6.col-md-6.placeholder
+                            .text-center
+                                a.btn.btn-danger(href='/Car/U', role='button') Alterar »	
