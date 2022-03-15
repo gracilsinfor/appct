@@ -1,8 +1,8 @@
 /* GET Home page */
 
 const inicio = (req, res)=>{
-    if (res == '/' ){
-        res.render('home', {title: 'Sessão'});
+    if (req == '/Home' ){
+        res.render('home', {title: 'Home'});
     }
     else{
         res.render('index', {title: 'Dashboard'});
@@ -20,6 +20,7 @@ const go_home = (req, res) =>{
 };
 
 module.exports = {
+    inicio,
     start_session,
     go_home
 };

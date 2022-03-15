@@ -10,8 +10,8 @@ const { route } = require('express/lib/application');
 // const ctrl_main=require('../controllers/main');
 
 /* GET home page. */
-router.get('/', ctrl_home.go_home);
-router.get('/home', ctrl_home.start_session);
+router.get('/', ctrl_home.inicio);
+router.get('/Home', ctrl_home.inicio);
 
 // router.get('/', ctrl_main.index); // versão (m)vc, a callback está definida num módulo 
 
