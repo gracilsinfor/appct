@@ -26,6 +26,7 @@ include components/navs
 include components/labels
 //- Including Panel mixins
 include components/panels
+include components/panels_2
 //- Including Tab mixins
 include components/tabs
 //- Including Dropdown mixins
@@ -56,11 +57,12 @@ html(lang="en")
     meta(name="description",content="")
     meta(name="author",content="")
     link(rel="icon",href="../../favicon.ico")
-    // - title=title
+    //- title=title
 block styles
     link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css")
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
-    link(rel='stylesheet', href='../public/stylesheets/dashboard.css')
+    link(rel='stylesheet', href='/stylesheets/dashboard.css')
+      //-     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css")
     body(data-spy="scroll",data-target=".scrollspy")
 block body

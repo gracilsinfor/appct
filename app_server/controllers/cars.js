@@ -1,3 +1,5 @@
+const ctrl_testes = require('../controllers/testes');
+
 // para carregar formulário de criar carro
 const car_c = (req, res) =>{
     res.render('carro', {title: 'Carro', sub_title: 'Novo registo', rota: req.path})
@@ -5,12 +7,12 @@ const car_c = (req, res) =>{
 
 // para carregar página da ficha do carro
 const car_r = (req, res) =>{
-    res.render('carro', {title: 'Carro', sub_title: 'Ficha', rota: req.originalUrl});
+    res.render('carro', {title: 'Carro', sub_title: 'Ficha', rota: req.path});
 };
 
 // para carregar lista de carros
 const cars_r = (req, res) => {
-    res.render('carros', { title: 'Carros', sub_title: 'Lista', rota: req.path });
+    res.render('carros',{title:'Carros', sub_title:'Lista', dados:ctrl_testes.carros, rota:req.path});
 };
 
 // para carregar formulário de atualizar carro

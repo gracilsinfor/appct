@@ -5,13 +5,15 @@ append styles
     title=title
 block body
 block topo
-    include ../views/includes/_navbar
+    include ./includes/_navbar
 block lado
-    include ../views/includes/_sidebar
+    include ./includes/_sidebar
 block content
     if rota==="/Filling/C"
-        include ../views/includes/_abastecimento_c
+        include ./includes/_abastecimento_c
     else if rota==="/Filling"
-        include ../views/includes/_abastecimento_r
+        include ./includes/_abastecimento_r
     else if rota==="/Filling/U"
-        include ../views/includes/_abastecimento_u
+        include ./includes/_abastecimento_u
+    else if rota==="/Filling/D"
+        include ./includes/_abastecimento_r

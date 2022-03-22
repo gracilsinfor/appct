@@ -1,5 +1,4 @@
-- const arr_carros =['Selecionar carro','xx 0x x0','xx 1x x1','xx 2x x2','xx 3x x3']
-- const arr_condutores =['Selecionar condutor','Condutor 01 Condutor 01','Condutor 02 Condutor 02','Condutor 03 Condutor 03','Condutor 04 Condutor 04','Condutor 05 Condutor 05','Condutor 06 Condutor 06','Condutor 07 Condutor 07','Condutor 08 Condutor 08']
+.container-fluid
 .row
     .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
         h2.page-header=title+' - '+sub_title
@@ -30,12 +29,12 @@
 
                         .row
                             .col-sm-12.col-md-3.placeholder
-                                +yadropdown("carro", "Carro", "Carro:", "ddnw_carro", arr_carros, )
+                                +yadropdown("carro", "Carro", "Carro:", "ddnw_carro", dados.carros, )
                             .col-sm-12.col-md-9.placeholder 
                                 +input("text", "txt_carro", "Carro", "Carro:", 'carro', 'disabled')
                         .row
                             .col-sm-12.col-md-12
-                                +yadropdown("condutor", "Condutor", "Condutor:", 'ddnw_condutor', arr_condutores,)
+                                +yadropdown("condutor", "Condutor", "Condutor:", 'ddnw_condutor', dados.condutores,)
                         .row
                             .col-12.placeholder
                         .row

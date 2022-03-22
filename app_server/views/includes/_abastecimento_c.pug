@@ -1,44 +1,31 @@
--const arr_cabecalho = ['Tempo','Carro','Condutor','Tipo']
--const arr_carros = ['Carro 1','Carro 2','Carro 3','Carro 4']
--const arr_condutores = ['Condutor 1','Condutor 2','Condutor 3','Condutor 4']
--const arr_frontespicio = [['D1','D2','D3','D4'],['D1','D2','D3','D4'],['D1','D2','D3','D4'],['D1','D2','D3','D4'],['D1','D2','D3','D4'],]
--const arr_tipo=['Motor Elétrico','Motor Térmico']
-
 .container-fluid
 	.row
 		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
 			.row
-				h2.page-header=title + " - " + sub_title
-	.row
-		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-			.row.placeholders
-				.col-xs-6.col-md-2.placeholder
-					.text-center
-						+yadropdown('condutor', 'Condutor', 'Condutor:', 'ddwn_condutor', arr_condutores, )
-						h3 Condutor
-						img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-						h4 Label
-						span.text-muted Something else
-
-				.col-xs-6.col-md-2.placeholder
-					.text-center
-						+yadropdown('carro', 'Carro', 'Carro:', 'ddwn_carro', arr_carros, )
-						h3 Carro
-						img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-						h4 Label
-						span.text-muted Something else
+				.col
+					h2.page-header=title + " - " + sub_title
+			.row
+				.col-xs-12.col-lg-4.main
 					.row.placeholders
-						.col-12 
-					.row.placeholders
-						.col-12
-					.row.placeholders
-						.col-12 
-
-				.col-sm-12.col-md-8
+						.col-xs-6.col-lg-6.placeholder
+							.text-center
+								+yadropdown('condutor', 'Condutor', 'Condutor: ', 'ddwn_condutor', dados.condutores, )
+								h3 Condutor
+								img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
+								h4 Label
+								span.text-muted Something else
+						.col-xs-6.col-lg-6.placeholder
+							.text-center
+								+yadropdown('carro', 'Carro', 'Carro: ', 'ddwn_carro', dados.carros, )
+								h3 Carro
+								img.img-responsive(src='../images/dashboard_green.jpg', alt='Generic placeholder thumbnail')
+								h4 Label
+								span.text-muted Something else
+				.col-xs-12.col-lg-8
 					+panel-default("Dados do abastecimento")
 						.row
 							.col-sm-12.col-md-4.placeholder
-								+yadropdown('tipo','Tipo','Tipo:','ddwn_tipo', arr_tipo, )
+								+yadropdown('tipo','Tipo','Tipo:','ddwn_tipo', dados.tipos, )
 							.col-sm-12.col-md-4.placeholder
 								+input("text", "odometro", "Quilómetros", "Quilómetros:", 'txt_odometro', )
 							.col-sm-12.col-md-4.placeholder

@@ -5,7 +5,7 @@ const inicio = (req, res)=>{
         res.render('home', {title: 'Home'});
     }
     else{
-        res.render('index', {title: 'Dashboard'});
+        res.render('index', {title: 'Dashboard', sub_title:'Abastecimentos'});
     };
 };
 

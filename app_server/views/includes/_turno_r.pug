@@ -1,33 +1,23 @@
-.row
-    .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-        h2.page-header=title
-        .row.placeholders
-            .col-sm-12.col-md-4.placeholder
-                .text-center
-                    h3 Nome
-                    img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-                    h4 Label
-                    span.text-muted Something else
-                .row.placeholders
-                    .col-12 
-                .row.placeholders
-                    .col-12
-                .row.placeholders
-                    .col-12 
-            .col-sm-12.col-md-8.placeholder
-                +panel-default("Dados do turno")
-                    .container-fluid
+.container-fluid
+    .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+' - '+sub_title
+            .row
+                +yacard('default', 'Condutor','Carro',)
+                .col-xs-12.col-md-8.placeholder
+                    +panel-default("Dados do turno")
+                        //- .container-fluid
                         .row.align-items-end 
                             .col-sm-4.col-md-3.placeholder
                         .row
-                            .col-sm-12.col-md-4
+                            .col-sm-12.col-md-4.placeholder
                                 button.btn.btn-danger(type='button' disabled)
                                     span.fa.fa-solid.fa-hourglass-start
-                                    +input("text", "txt_inicio", "Inicio do turno", "Início do turno:", 'inicio_turno', 'disabled')
-                            .col-sm-2.col-md-4.placeholder
+                                        +input("text", "txt_inicio", "Inicio do turno", "Início do turno:", 'inicio_turno', 'disabled')
+                            .col-sm-12.col-md-4.placeholder
                                 button.btn.btn-danger(type='button' disabled)
                                     span.fa.fa-solid.fa-hourglass-start
-                                    +input("text", "txt_inicio", "Fim do turno", "Fim do turno:", 'fim_turno', 'disabled')
+                                        +input("text", "txt_inicio", "Fim do turno", "Fim do turno:", 'fim_turno', 'disabled')
                             .col-sm-2.col-md-1.placeholder
 
                         .row

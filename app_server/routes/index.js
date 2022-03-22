@@ -7,7 +7,6 @@ const ctrl_shifts = require('../controllers/shifts');
 const ctrl_fills = require('../controllers/fillings');
 const ctrl_home = require('../controllers/home');
 const { route } = require('express/lib/application');
-// const ctrl_main=require('../controllers/main');
 
 /* GET home page. */
 router.get('/', ctrl_home.inicio);
@@ -15,30 +14,31 @@ router.get('/Home', ctrl_home.inicio);
 
 // router.get('/', ctrl_main.index); // versão (m)vc, a callback está definida num módulo 
 
-/* Routes para operações crud em carros */
+// PARA TESTE
+router.get('/theme-template', ctrl_shifts.teste);
+
+/* Routes para crud carros */
 router.get('/Car/C', ctrl_cars.car_c);
 router.get('/Cars', ctrl_cars.cars_r);
 router.get('/Car', ctrl_cars.car_r);
 router.get('/Car/U', ctrl_cars.car_u);
 router.get('/Car/D', ctrl_cars.car_d);
 
-/* Routes para operações crud em condutores */
+/* Routes para crud condutores */
 router.get('/Driver/C', ctrl_drivers.driver_c);
 router.get('/Drivers', ctrl_drivers.drivers_r);
 router.get('/Driver', ctrl_drivers.driver_r);
 router.get('/Driver/U', ctrl_drivers.driver_u);
 router.get('/Driver/D', ctrl_drivers.driver_d);
 
-/* Routes para operações crud em turnos */
-router.get('/Shift/Driver', ctrl_shifts.shift_driver);
-router.get('/Shift/Car', ctrl_shifts.shift_car);
+/* Routes para crud turnos */
 router.get('/Shift/C', ctrl_shifts.shift_c);
 router.get('/Shifts', ctrl_shifts.shifts_r);
 router.get('/Shift', ctrl_shifts.shift_r);
 router.get('/Shift/U', ctrl_shifts.shift_u);
 router.get('/Shift/D', ctrl_shifts.shift_d);
 
-/* Routes para operações crud em abastecimentos */
+/* Routes para crud abastecimentos */
 router.get('/Filling/C', ctrl_fills.filling_c);
 router.get('/Fillings', ctrl_fills.fillings_r);
 router.get('/Filling', ctrl_fills.filling_r);  

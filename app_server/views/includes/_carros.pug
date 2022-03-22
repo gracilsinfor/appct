@@ -5,27 +5,10 @@
         .pull-right 
           a.btn.btn-success(href='/Car/C', role='button') Novo »  
       .row.placeholders
-        .col-xs-6.col-sm-3.placeholder
-          .text-center
-            a(href='/Car')
-              img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-            h4 Label
-            span.text-muted Something else
-        .col-xs-6.col-sm-3.placeholder
-          .text-center
-            a(href='/Car')
-              img.img-responsive(src='../images/dashboard_green.jpg', alt='Generic placeholder thumbnail')
-            h4 Label
-            span.text-muted Something else
-        .col-xs-6.col-sm-3.placeholder
-          .text-center
-            a(href='/Car')
-              img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-            h4 Label
-            span.text-muted Something else
-        .col-xs-6.col-sm-3.placeholder
-          .text-center
-            a(href='/Car')
-              img.img-responsive(src='../images/dashboard_green.jpg', alt='Generic placeholder thumbnail')
-            h4 Label
-            span.text-muted Something else
+        each carro in dados
+          .col-xs-6.col-sm-3.placeholder
+            .text-center
+              a(href='/Car')
+                img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
+              h4 '#{carro}'
+              span.text-muted Something else

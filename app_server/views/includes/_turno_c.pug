@@ -1,55 +1,55 @@
--const arr_cabecalho = ['Tempo','Carro','Condutor','Tipo']
--const arr_carros = ['Carro 1','Carro 2','Carro 3','Carro 4']
--const arr_condutores = ['Condutor 1','Condutor 2','Condutor 3','Condutor 4']
--const arr_frontespicio = [['D1','D2','D3','D4'],['D1','D2','D3','D4'],['D1','D2','D3','D4'],['D1','D2','D3','D4'],['D1','D2','D3','D4'],]
--const arr_tipo=['Motor Elétrico','Motor Térmico']
-
-.row
+.container-fluid
+  .row
     .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-        h2.page-header=title+' - '+sub_title
-        .row.placeholders
-            .col-sm-12.col-md-4.placeholder
-                .text-center
-                    h3 Nome
-                    img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-                    h4 Label
-                    span.text-muted Something else
-                .row.placeholders
-                    .col-12 
-                .row.placeholders
-                    .col-12
-                .row.placeholders
-                    .col-12 
-            .col-sm-12.col-md-8.placeholder
-                +panel-default("Dados do turno")
-                    .container-fluid
-                        .row.align-items-end 
-                            .col-sm-4.col-md-3.placeholder
-                        .row
-                            .col-sm-12.col-md-4
-                                button.btn.btn-danger(type='button')
-                                    span.fa.fa-solid.fa-hourglass-start
-                                    +input("text", "txt_inicio", "Inicio do turno", "Início do turno:", 'inicio_turno', )
-                            .col-sm-2.col-md-4.placeholder
-                                button.btn.btn-danger(type='button' disabled)
-                                    span.fa.fa-solid.fa-hourglass-start
-                                    +input("text", "txt_inicio", "Fim do turno", "Fim do turno:", 'fim_turno', )
-                            .col-sm-2.col-md-1.placeholder
-
-                        .row
-                            .col-sm-12.col-md-3.placeholder
-                                +yadropdown("carro", "Carro", "Carro:", "ddnw_carro", arr_carros, )
-                            .col-sm-12.col-md-9.placeholder 
-                                +input("text", "txt_carro", "Carro", "Carro:", 'carro', )
-                        .row
-                            .col-sm-12.col-md-12
-                                +yadropdown("condutor", "Condutor", "Condutor:", 'ddnw_condutor', arr_condutores,)
-                        .row
-                            .col-12.placeholder
-                        .row
-                            .col-sm-6.col-md-6.placeholder
-                                .text-center
-                                    a.btn.btn-success(href='/Shifts', role='button') « Cancelar
-                            .col-sm-6.col-md-6.placeholder
-                                .text-center
-                                    a.btn.btn-danger(href='/Shift/U', role='button') Atualizar »
+      .row
+        .col
+          h2.page-header=title + " - " + sub_title
+      .row
+        .col-xs-12.col-lg-4.main
+          .row.placeholders
+            .col-xs-6.col-lg-6.placeholder
+              .text-center
+                +yadropdown('condutor', 'Condutor', 'Condutor: ', 'ddwn_condutor', dados.condutores, '')
+                h3 Condutor
+                img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
+                h4 Label
+                span.text-muted Something else
+            .col-xs-6.col-lg-6.placeholder
+              .text-center
+                +yadropdown('carro', 'Carro', 'Carro: ', 'ddwn_carro', dados.carros, '')
+                h3 Carro
+                img.img-responsive(src='../images/dashboard_green.jpg', alt='Generic placeholder thumbnail')
+                h4 Label
+                span.text-muted Something else
+        .col-xs-12.col-lg-8
+              +panel-default("Dados do turno")
+                .row
+                  .col-sm-12.col-md-12.placeholder
+                    .row
+                      .col-xs-12.col-lg-6.placeholder
+                        .text-center
+                          a.btn.btn-danger(type='button')
+                            span.fa.fa-solid.fa-hourglass-start
+                              +input("text", "txt_inicio", "Inicio do turno", "Início do turno:", 'inicio_turno', )
+                      .col-xs-12.col-lg-6.placeholder
+                        .text-center
+                          a.btn.btn-danger(type='button' disabled)
+                            span.fa.fa-solid.fa-hourglass-end
+                              +input("text", "txt_inicio", "Fim do turno", "Fim do turno:", 'fim_turno', )
+                    .row
+                      .col-sm-12.col-md-3.placeholder
+                        +yadropdown("carro", "Carro", "Carro: ", "ddnw_carro", dados.carros, '')
+                      .col-sm-12.col-md-9.placeholder 
+                        +input("text", "txt_carro", "Carro", "Carro: ", 'carro', '' )
+                    .row
+                      .col-sm-12.col-md-12
+                        +yadropdown("condutor", "Condutor", "Condutor: ", 'ddnw_condutor', dados.condutores, '')
+                    .row
+                      .col-12.placeholder
+                    .row
+                      .col-sm-6.col-md-6.placeholder
+                        .text-center
+                          a.btn.btn-success(href='/Shifts', role='button') « Cancelar
+                      .col-sm-6.col-md-6.placeholder
+                        .text-center
+                          a.btn.btn-danger(href='/Shift/U', role='button') Salvar »
