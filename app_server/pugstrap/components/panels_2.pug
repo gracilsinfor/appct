@@ -1,0 +1,59 @@
+mixin yacard(tipo_painel, condutor, carro, referente)
+    .col-xs-12.col-sm-6.col-md-4.col-lg-3
+        if referente!==undefined
+            a(href=referente)
+                .panel(class='panel-' + tipo_painel)
+                    .panel-heading
+                        h4.panel-title="Par:"
+                    .panel-body
+                        .row
+                            .col-xs-6.col-md-6.col-lg-6
+                                .placeholder
+                                    .text-center
+                                        a(href='/Driver')
+                                            h5 #{condutor}
+                                            img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
+                            .col-xs-6.col-md-6.col-lg-6
+                                .placeholder 
+                                    .text-center
+                                        a(href='/Car')
+                                            h5 #{carro}
+                                            img.img-responsive(src='../images/dashboard_green.jpg', alt='Generic placeholder thumbnail')
+                        .row
+                            .col-xs-6.col-md-6.col-lg-6
+                                .text-left
+                                    h6 Início:
+                                    span.text-muted data-hora
+                            .col-xs-6.col-md-6.col-lg-6
+                                .text-left
+                                    h6 Fim:
+                                    span.text-muted data-hora
+        else
+            .panel(class='panel-' + tipo_painel)
+                .panel-heading
+                    h4.panel-title="Par:"
+                .panel-body
+                    .row
+                        .col-xs-6.col-md-6.col-lg-6
+                            .placeholder
+                                .text-center
+                                    a(href='/Driver')
+                                        h5 #{condutor}
+                                        img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
+                        .col-xs-6.col-md-6.col-lg-6
+                            .placeholder 
+                                .text-center
+                                    a(href='/Car')
+                                        h5 #{carro}
+                                        img.img-responsive(src='../images/dashboard_green.jpg', alt='Generic placeholder thumbnail')
+                    .row
+                        .col-xs-6.col-md-6.col-lg-6
+                            .text-left
+                                h6 Início:
+                                span.text-muted data-hora
+                        .col-xs-6.col-md-6.col-lg-6
+                            .text-left
+                                h6 Fim:
+                                span.text-muted data-hora
+
+
