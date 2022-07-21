@@ -1,46 +1,35 @@
 .container-fluid
-.row
-    .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-        h2.page-header=title+' - '+sub_title
-        .row.placeholders
-            .col-sm-12.col-md-4.placeholder
-                .text-center
-                    h3 Nome
-                    img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-                    h4 Label
-                    span.text-muted Something else
-                .row.placeholders
-                    .col-12 
-                .row.placeholders
-                    .col-12
-                .row.placeholders
-                    .col-12 
-            .col-sm-12.col-md-8.placeholder
-                +panel-default("Dados do turno")
-                    .container-fluid
-                        .row.align-items-end 
-                            .col-sm-4.col-md-3.placeholder
-                        .row
-                            .col-sm-12.col-md-4
-                                +input("text", "txt_inicio", "Inicio do turno", "Início do turno:", 'inicio_turno', )
-                            .col-sm-12.col-md-4.placeholder
-                                    +input("text", "txt_inicio", "Fim do turno", "Fim do turno:", 'fim_turno', )
-                            .col-sm-12.col-md-1.placeholder
-
-                        .row
-                            .col-sm-12.col-md-3.placeholder
-                                +yadropdown("carro", "Carro", "Carro:", "ddnw_carro", dados.carros, )
-                            .col-sm-12.col-md-9.placeholder 
-                                +input("text", "txt_carro", "Carro", "Carro:", 'carro', 'disabled')
-                        .row
-                            .col-sm-12.col-md-12
-                                +yadropdown("condutor", "Condutor", "Condutor:", 'ddnw_condutor', dados.condutores,)
-                        .row
-                            .col-12.placeholder
-                        .row
-                            .col-sm-6.col-md-6.placeholder
-                                .text-center
-                                    a.btn.btn-success(href='/Shifts', role='button') « Cancelar
-                            .col-sm-6.col-md-6.placeholder
-                                .text-center
-                                    a.btn.btn-danger(href='/Shift/U', role='button') Salvar »
+    .row 
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+' - '+sub_title    
+                .pull-right
+                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+            .row
+                .col-xs-12.col-sm-12.col-md-2.col-lg-2
+                    .row
+                        .col.placeholder
+                            +snipet_condutor(turno)
+                    .row
+                        .col.placeholder
+                            +snipet_viatura(turno)
+                .col-xs-12.col-sm-12.col-md-10.col-lg-10
+                    .row
+                        .col
+                            .container-fluid
+                                +ficha_turno_u(turno)
+                                a.btn.btn-danger.btn-block(href='/Turno/U/'+turno.id_turno, role='button') Atualizar ficha de turno »
+                                br
+                                a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+                                br
+                    .row
+                        .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                            +ficha_faturacao_turno(faturacao)
+                            br
+                        .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                            +ficha_gratificacao_turno(faturacao)
+            .row
+                .col
+                    if turno.ev
+                        +lista_abastecimentos_ev_turno(turno)
+                    else 
+                        +lista_abastecimentos_mt_turno(turno)

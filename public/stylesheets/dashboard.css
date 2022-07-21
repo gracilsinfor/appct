@@ -104,3 +104,8 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.table-wrap{
+  height: 360px;
+  overflow-y: auto;
+}

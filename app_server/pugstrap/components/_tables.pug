@@ -1,0 +1,29 @@
+//- table mixins
+
+mixin yabtable(arr_titulos, dados, type)
+	table.table(class=type)
+		thead
+			tr
+				each titulo in arr_titulos
+					th #{titulo}
+		tbody
+			+yabrow(dados)
+
+mixin yabrow(dados)
+	each item in dados 
+		tr.table-row
+			each titulo in item
+				td #{titulo}
+
+mixin table-striped(arr_titulos, dados)
+	+yabtable(arr_titulos, dados, "table-striped")
+
+mixin table-bordered(dados)
+	+yabtable(arr_titulos, dados,"table-bordered")
+
+mixin table-hover(dados)
+	+yabtable(arr_titulos, dados,"table-hover")
+
+mixin table-condensed(dados)
+	+yabtable(arr_titulos, dados,"table-condensed")
+

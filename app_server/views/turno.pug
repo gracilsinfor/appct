@@ -1,22 +1,22 @@
 extends ../pugstrap/_bootstrap
 append styles
-    // Custom styles for this template
+    //- Custom styles for this template
     title=title
 block body
 block topo
-    include ./includes/_navbar
+    include ../views/includes/_navbar
 block lado
-    include ./includes/_sidebar
+    include ../views/includes/_sidebar
 block content
-    if rota==="/Shifts"
-        include ./includes/_turnos
-    else if rota==="/Shift"
-        include ./includes/_turno_r
-        include ./includes/_abastecimentos_de_turno
-    else if rota==="/Shift/C"
-        include ./includes/_turno_c
-    else if rota==="/Shift/U"
-        include ./includes/_turno_u
-        include ./includes/_abastecimentos_de_turno
-    else if rota==="/Shift/D"
-        include ./includes/_turno_r
+    if rota==="/Turno/id"
+        include ../views/includes/_turno_r
+        //- include ./includes/_abastecimentos_de_turno
+    else if rota==="/Turno/C"
+        include ../views/includes/_turno_r
+    else if rota==="/Turno/U/id"
+        include ../views/includes/_turno_u
+    else if rota==="/Turno/id/U/A"
+        include ../views/includes/_turno_ua        
+        //- include ./includes/_abastecimentos_de_turno
+    else if rota==="/Turno/D"
+        include ../views/includes/_turno_r

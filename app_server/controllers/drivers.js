@@ -1,26 +1,86 @@
-// para carregar formulário de criar motorista
+const ctrl_condutores = require('./teste_condutores');
+const ctrl_turnos = require('./teste_turnos');
+
+const request = require('request');
+ 
+// para carregar formulário de criar condutor
 const driver_c = (req, res) =>{
-    res.render('motorista', {title: 'Condutor', sub_title: 'novo registo', rota: req.path});
+    const _condutor = ctrl_condutores.novo_condutor
+    res.render('condutor', {
+        title: 'Condutor', 
+        sub_title: 'novo registo', 
+        rota: req.path,
+        condutor: _condutor
+    });
 }
 
-// para carregar página da ficha de motorista
-const driver_r = (req, res) => {
-    res.render('motorista', {title: 'Condutor', sub_title: 'ficha', rota: req.originalUrl});
+const driver_r = async (req, res) => {
+    const condutor = await ctrl_condutores.ficha_condutor(req.params.id);
+    const faturacao_total = await ctrl_condutores.faturacao_total(req.params.id);
+    const turnos_condutor = await ctrl_turnos.turnos_condutor(req.params.id);
+    const turnos = await ctrl_condutores.faturacao_para_turnos(turnos_condutor);
+    
+    if(condutor){
+        res.render('condutor', {
+            title: 'Condutor', 
+            sub_title: 'ficha', 
+            condutor: await condutor,
+            faturacao_total: faturacao_total,
+            turnos: turnos,
+            rota: '/Condutor/id'});
+        }else{
+            res
+                .status(404)
+                .json({"message": "documento não encontrado"});            
+        }
 };
 
-// para carregar lista de motoristas
-const drivers_r = (req, res) =>{
-    res.render('motoristas', {title: 'Condutores', sub_title: 'lista'});
+const drivers_r = async (req, res) =>{
+    const lista_condutores = await ctrl_condutores.lista_condutores();
+    if(lista_condutores){
+        res.render('condutores', {
+            title: 'Condutores', 
+            sub_title: 'lista',
+            dados: lista_condutores,
+            rota: req.path
+        });
+    }else{
+        res
+            .status(400)
+            .json({"message": "não foi possível carregar documentos condutores"})
+    }
 };
 
-// para carregar formulário de atualizar motorista 
-const driver_u = (req, res)=>{
-    res.render('motorista', {title: 'Condutor', sub_title: 'atualização', rota: req.path});
+const driver_u = async (req, res)=>{
+    const condutor = await ctrl_condutores.ficha_condutor(req.params.id);
+    const faturacao_total = await ctrl_condutores.faturacao_total(req.params.id);
+    const turnos_condutor = await ctrl_turnos.turnos_condutor(req.params.id);
+    const turnos = await ctrl_condutores.faturacao_para_turnos(turnos_condutor);    
+    if(condutor){
+        res.render('condutor', {
+            title: 'Condutor', 
+            sub_title: 'atualização', 
+            condutor: await condutor,
+            faturacao_total: faturacao_total,
+            turnos:turnos,
+            rota: '/Condutor/id/U'});
+        }else{
+            res
+            .status(404)
+            .json({"message": "documento não encontrado"});            
+        }    
 };
 
-// para apagar motorista 
 const driver_d = (req, res) =>{
-    res.render('motorista', {title: 'Condutor', sub_title:'eliminação', rota: req.path});
+    res.render('condutor', {
+        title: 'Condutor', 
+        sub_title:'eliminação', 
+        rota: req.path
+    });
+};
+
+const lista_turnos = async () => {
+
 };
 
 module.exports = {

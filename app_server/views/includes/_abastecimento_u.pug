@@ -1,64 +1,37 @@
 .container-fluid
 	.row
 		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+			h2.page-header=title+" - "+sub_title
+				.pull-right
+					a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
 			.row
-				h2.page-header=title + " - " + sub_title
-	.row
-		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-			.row.placeholders
-				.col-xs-6.col-md-2.placeholder
-					.text-center
-						+yadropdown('condutor', 'Condutor', 'Condutor:', 'ddwn_condutor', dados.condutores, )
-						h3 Condutor
-						img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-						h4 Label
-						span.text-muted Something else
+				.col-xs-12.col-sm-4.col-md-2.col-lg-2
+					.row 
+						.col.placeholder
+							+snipet_viatura(turno)
+					.row
+						.col.placeholder
+							+snipet_condutor(turno)
+				.col-xs-12.col-sm-8.col-md-10.col-lg-10
+					if viatura.ev
+						+ficha_abastecimento_ev_u(abastecimento)
+					else 
+						+ficha_abastecimento_mt_u(abastecimento)
+				.col-xs-12.col-sm-8.col-md-10.col-lg-10
+					a.btn.btn-danger.btn-block(href='/Abastecimento/U/'+abastecimento.id_abastecimento, role='button') Atualizar ficha do abastecimento »
+					br
+					a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+					br
+				.col-xs-12.col-sm-12.col-md-10.col-lg-10
+					.row
+						.col
+							.container-fluid
+								+ficha_turno(turno)
+			.row
+				.col
+					//- .container-fluid
+					if viatura.ev
+						+lista_abastecimentos_ev_turno(turno)
+					else 
+						+lista_abastecimentos_mt_turno(turno)
 
-				.col-xs-6.col-md-2.placeholder
-					.text-center
-						+yadropdown('carro', 'Carro', 'Carro:', 'ddwn_carro', dados.carros, )
-						h3 Carro
-						img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-						h4 Label
-						span.text-muted Something else
-					.row.placeholders
-						.col-12 
-					.row.placeholders
-						.col-12
-					.row.placeholders
-						.col-12 
-
-				.col-sm-12.col-md-8
-					+panel-default("Dados do abastecimento")
-						.row
-							.col-sm-12.col-md-4.placeholder
-								+yadropdown('tipo','tipo','Tipo','tipo', dados.tipo)
-							.col-sm-12.col-md-4.placeholder
-								+input("text", "odometro", "Quilómetros", "Quilómetros:", 'txt_odometro', )
-							.col-sm-12.col-md-4.placeholder
-								+input("text", "abastecimento", "Abastecimento (L)", "Abastecimento (L):", "txt_abastecimento", )
-						.row
-							.col-sm-12.col-md-4.placeholder 
-								+input("text", "autonomia_i", "Autonomia Inicial", "Autonomia inicial:", "txt_autonomia_i", )
-							.col-sm-12.col-md-4.placeholder
-								+input("text", "bateria_i", "Bateria Inicial (%)", "Bateria Inicial (%):", "txt_bateria_inicial")
-							.col-sm-12.col-md-4.placeholder 
-								button.btn.btn-danger(type='button' )
-									span.fa.fa-solid.fa-hourglass-start
-										+input("text", "inicio_abastecimento", "Início do abastecimento", "Início do abastecimento:", "txt_inicio_abastecimento",)
-						.row
-							.col-sm-12.col-md-4.placeholder
-								+input("text", "autonomia_f", "Autonomia Final", "Autonomia Final:", "txt_autonomia_f", )
-							.col-sm-12.col-md-4.placeholder
-								+input("text", "bateria_f", "Bateria Final (%)","Bateria Final (%):", "txt_bateria_f",)
-							.col-sm-12.col-md-4.placeholder
-								button.btn.btn-danger(type='button' )
-									span.fa.fa-solid.fa-hourglass-end
-										+input("text", "final_abastecimento", "Final do abastecimento", "Final do abastecimento:", "txt_final_abastecimento",)
-						.row
-							.col-sm-6.col-md-6.placeholder
-								.text-center
-									a.btn.btn-success(href='/Filling', role='button') « Cancelar
-							.col-sm-6.col-md-6.placeholder
-								.text-center
-									a.btn.btn-danger(href='/Filling/C', role='button') Gravar »	

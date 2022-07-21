@@ -1,0 +1,44 @@
+mixin turnos_condutor(condutor, turnos)
+    .col-xs-12.col-lg-12
+        +panel-info("Lista de turnos do condutor id: "+ condutor.id_condutor)
+            div.table-responsive
+                table.table.table-striped
+                    thead
+                        tr
+                            th.small.text-right id
+                            th.small.text-right Viatura
+                            th.small.text-right Início 
+                            th.small.text-right Odóm Ini 
+                            th.small.text-right Fim 
+                            th.small.text-right Odóm Fin 
+                            th.small.text-right Kms 
+                            th.small.text-right Tempo
+                            th.small.text-right F U
+                            th.small.text-right F B
+                            th.small.text-right F F
+                            th.small.text-right G U
+                            th.small.text-right G B
+                            th.small.text-right G F
+                            th.small.text-right T F
+                            th.small.text-right T G
+                    tbody 
+                        each item in turnos
+                            tr.table-row
+                                td.small.text-right 
+                                    a.btn.btn-primary.btn-sm.btn-block(href="/Turno/"+item.id_turno) #{item.id_turno}
+                                td.small.text-right #{item.odometro}
+                                    a.btn.btn-primary.btn-sm.btn-block(href="/Viatura/"+item.id_viatura) #{item.id_viatura}
+                                td.small.text-right #{item.h_ini}
+                                td.small.text-right #{item.odom_ini}
+                                td.small.text-right #{item.h_fim}
+                                td.small.text-right #{item.odom_fim}
+                                td.small.text-right #{item.kms_percorridos}
+                                td.small.text-right #{item.horas_conducao}
+                                th.small.text-right #{item.faturacao.f.u}
+                                th.small.text-right #{item.faturacao.f.b}
+                                th.small.text-right #{item.faturacao.f.f}
+                                th.small.text-right #{item.faturacao.g.u}
+                                th.small.text-right #{item.faturacao.g.b}
+                                th.small.text-right #{item.faturacao.g.f}
+                                th.small.text-right #{item.faturacao.tf}
+                                th.small.text-right #{item.faturacao.tg}

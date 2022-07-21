@@ -1,0 +1,20 @@
+mixin teste(dados)
+    ul 
+        each item in dados 
+            li #{item.id} #{item.viatura}
+
+mixin ddown_filtros(id, placeholder, label, name, dados)
+    div.form-group
+        label(for=id) #{label} 
+        select.form-control.form-control-sm(id=id, placeholder=placeholder)
+            each item in dados 
+                option(value=Object.values(item)[0]) #{Object.values(item)[1]}
+
+mixin yadd_dropdown(id, placeholder, label, name, dados)
+    .btn-group
+        button.btn.btn-secondary.btn-sm.dropdown-toggle(type="button", id="dropdownviaturas", data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") #{placeholder}
+            | &nbsp;
+            span.caret
+        div.dropdown-menu(aria-labelledby="dropdownviaturas")
+            for item in dados
+                button.dropdown-item(type="button") #{item.viatura}

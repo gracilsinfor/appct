@@ -3,12 +3,7 @@
     .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2.main
       h2.page-header=title+" - "+sub_title
         .pull-right 
-          a.btn.btn-success(href='/Car/C', role='button') Novo »  
-      .row.placeholders
-        each carro in dados
-          .col-xs-6.col-sm-3.placeholder
-            .text-center
-              a(href='/Car')
-                img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-              h4 '#{carro}'
-              span.text-muted Something else
+          a.btn.btn-success(href='/Viatura/C', role='button') Nova »  
+      .row
+        each viatura in viaturas
+          +card_viatura(viatura)

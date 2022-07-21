@@ -1,0 +1,97 @@
+include icons
+//- Input control with form-group wrapper
+
+mixin input_file(id, nome, caption, estado)
+    +panel-info("Nova viatura")
+        .row
+            .col.placeholder
+                .text-center
+                    img.img-responsive.fa.fa-5x.fa-car(src='' alt=f1b9 placeholder="&#xf1b9")
+                    p 
+                    input.invisible(type="file" name=nome id=id)
+                    label.btn.btn-danger(for=id) Selecionar ficheiro 
+                .pull-right id: &nbsp;
+
+mixin input_datetime(id, label, value, start_end, estado)
+    label(for=id) #{label}
+    .input-group.mb-5
+        .input-group-addon
+            if start_end == "start"
+                .fa.fa-solid.fa-hourglass-start
+            else if start_end == "end"
+                .fa.fa-solid.fa-hourglass-end
+        input.form-control(type="datetime-local" id=id value=value disabled=estado)
+
+mixin yainput_date(type, id, placeholder, label, name, valor, estado)
+    //- a.btn.btn-danger(type='button', href='#', estado)
+    span.fa.fa-solid.fa-hourglass-end
+        label(for=id) #{label}
+            div.input-group.input-group-sm.mb-3
+                input(type=type, id=id, value=valor, estado)
+
+mixin yainput(type, id, placeholder, label, name, valor, estado)
+    .form-group
+        label(for=id) #{label}
+        if(estado==='disabled')
+            input.form-control(type=type, id=id, placeholder=placeholder, name=name, value=valor , disabled)
+        else
+            input.form-control(type=type,id=id,placeholder=placeholder,name=name, value=valor)
+
+//- Simple form input control without a form-group
+mixin yainput-simple(type,id,placeholder,name)
+    input.form-control(type=type,id=id,placeholder=placeholder,name=name)
+
+//- Checkbox - Block style
+mixin yacheckbox(text,name,id)
+    .checkbox
+        label
+            input(type="checkbox",name=name,id=id)
+            = text
+
+//- Checkbox - Inline style
+mixin yacheckbox-inline(id, label, name, valor, enabled)
+    .checkbox-inline
+        if (!enabled) 
+            input(type="checkbox", id=id, label=label, name=name, checked=valor, disabled)
+        else
+            input(type="checkbox", id=id, label=label, name=name, checked=valor)
+        = label
+
+//- Radio box
+mixin yaradio(text,name,id)
+    .radio
+        label
+            input(type="radio",name=name,id=id)
+            = text
+
+//- Radio box - Inline style
+mixin yaradio-inline(text,name,id)
+    .radio-inline
+        input(type="radio",name=name,id=id)
+        = text
+
+//- Submit button
+mixin yasubmit(text,name,id)
+    .form-group
+        button.btn.btn-default(type="submit",name=name,id=id)= text
+
+//- Input group - both prepend and append options available, and block is passed
+mixin yainput-group(prepend,append)
+    .form-group
+        .input-group
+            unless !prepend
+                .input-group-addon
+                    = prepend
+                block
+                unless !append
+                    .input-group-addon
+                        = append
+
+//- Icon button
+mixin yaicon-btn(icon)
+    button.btn.btn-default(type="button",aria-label=icon)
+        +icon(icon)
+
+//- Badges
+mixin yabadge(text)
+    span.badge= text

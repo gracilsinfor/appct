@@ -1,37 +1,40 @@
 .container-fluid
-    .row
+    .row 
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-            h2.page-header=title+' - '+sub_title
+            h2.page-header=title+' - '+sub_title    
+                .pull-right
+                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
             .row
-                +yacard('default', 'Condutor','Carro',)
-                .col-xs-12.col-md-8.placeholder
-                    +panel-default("Dados do turno")
-                        //- .container-fluid
-                        .row.align-items-end 
-                            .col-sm-4.col-md-3.placeholder
-                        .row
-                            .col-sm-12.col-md-4.placeholder
-                                button.btn.btn-danger(type='button' disabled)
-                                    span.fa.fa-solid.fa-hourglass-start
-                                        +input("text", "txt_inicio", "Inicio do turno", "Início do turno:", 'inicio_turno', 'disabled')
-                            .col-sm-12.col-md-4.placeholder
-                                button.btn.btn-danger(type='button' disabled)
-                                    span.fa.fa-solid.fa-hourglass-start
-                                        +input("text", "txt_inicio", "Fim do turno", "Fim do turno:", 'fim_turno', 'disabled')
-                            .col-sm-2.col-md-1.placeholder
+                .col-xs-12.col-sm-12.col-md-2.col-lg-2
+                    .row 
+                        .col.placeholder 
+                            +snipet_condutor(turno)
+                    .row
+                        .col.placeholder
+                            +snipet_viatura(turno)
+                .col-xs-12.col-sm-12.col-md-10.col-lg-10
+                    .row 
+                        .col
+                            .container-fluid
+                                +ficha_turno(turno)
+                                a.btn.btn-warning.btn-block(href='/Turno/U/'+turno.id_turno, role='button') Atualizar ficha de turno »
+                                br
+                    .row
+                        .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                            +ficha_faturacao_turno(faturacao)
+                            a.btn.btn-warning.btn-block(href='/Faturacao/U/'+turno.id_turno, role='button') Atualizar ficha de faturação do turno »    
+                            br
+                        .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                            +ficha_gratificacao_turno(faturacao)
+                            a.btn.btn-warning.btn-block(href='/Faturacao/U/'+turno.id_turno, role='button') Atualizar ficha de gratificações do turno »
+                            br  
+            .row
+                .col
+                    if turno.ev
+                        +lista_abastecimentos_ev_turno(turno)
+                    else 
+                        +lista_abastecimentos_mt_turno(turno)
+            .row
+                .col 
+                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
 
-                        .row
-                            .col-sm-12.col-md-3.placeholder
-                                +input("text", "txt_matricula", "Matrícula", "Matrícula:", 'matricula', 'disabled')
-                            .col-sm-12.col-md-9.placeholder 
-                                +input("text", "txt_carro", "Carro", "Carro:", 'carro', 'disabled')
-                        .row
-                            .col-sm-12.col-md-12
-                                +input("text", "txt_condutor", "Condutor", "Condutor:", 'condutor', 'disabled')
-                        .row
-                            .col-sm-6.col-md-6.placeholder
-                                .text-center
-                                    a.btn.btn-success(href='/Shifts', role='button') « Cancelar
-                            .col-sm-6.col-md-6.placeholder
-                                .text-center
-                                    a.btn.btn-danger(href='/Shift/U', role='button') Atualizar »

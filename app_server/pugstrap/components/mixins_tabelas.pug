@@ -1,0 +1,29 @@
+//- table mixins
+
+mixin yabtable(headers_list, objecto, type)
+	table.table(class=type)
+		thead
+			tr
+				each atributo in headers_list
+					th #{atributo}
+		tbody
+			+yabrow(objecto)
+
+mixin yabrow(objecto)
+	each doc in objecto 
+		tr.table-row
+			each atributo in doc
+				td #{atributo}
+
+mixin table-striped(headers_list, objecto)
+	+yabtable(headers_list, objecto, "table-striped")
+
+mixin table-bordered(dados)
+	+yabtable(headers_list, objecto,"table-bordered")
+
+mixin table-hover(dados)
+	+yabtable(headers_list, objecto,"table-hover")
+
+mixin table-condensed(dados)
+	+yabtable(headers_list, objecto,"table-condensed")
+

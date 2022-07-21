@@ -1,11 +1,10 @@
-h3.page-header=title+" - "+sub_title
-	.pull-right
-		a.btn.btn-success(href='/Shift/C', role='button') Novo »
-.row
-	+yacard("primary","Condutor 1", "Carro A", "/Shift")
-	+yacard("primary","Condutor 2", "Carro B", "/Shift")
-	+yacard("primary","Condutor 3", "Carro C", "/Shift")
-	+yacard("primary","Condutor 4", "Carro D", "/Shift")
-	+yacard("primary","Condutor 5", "Carro E", "/Shift")
-	+yacard("primary","Condutor 6", "Carro F", "/Shift")
-	+yacard("primary","Condutor 7", "Carro G", "/Shift")
+.container-fluid
+	.row
+		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2.main
+			h2.page-header.title=title+" - "+sub_title
+				.pull-right
+					.btn.btn-success(href='/Shift/C', role='button') Novo »
+			.row
+				each item in dados
+					+par_turno(item) 
+					//- in _fichas.pug

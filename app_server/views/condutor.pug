@@ -1,0 +1,16 @@
+extends ../pugstrap/_bootstrap
+append styles
+    //-Custom styles for this template
+    title=title 
+block body
+block topo
+    include ../views/includes/_navbar
+block lado
+    include ../views/includes/_sidebar
+block content
+    if rota==="/Condutor/id"
+        include ../views/includes/_condutor_r
+    else if rota==="/Condutor/C"
+        include ../views/includes/_condutor_r
+    else if rota==="/Condutor/id/U"
+        include ../views/includes/_condutor_u

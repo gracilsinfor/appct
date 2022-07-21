@@ -1,36 +1,41 @@
-.row
-    .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-        h2.page-header=title+" - "+sub_title
-        .row.placeholders
-            .col-sm-12.col-md-4.placeholder
-                .text-center
-                    h3 Nome
-                    img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-                    h4 Label
-                    span.text-muted Something else
-            .col-sm-12.col-md-8.placeholder
-                +panel-default("Identificação")
-                    .row 
-                        .col-sm-12.col-md-3 
-                            +input("text", "txt_matricula", "xx xx xx", "Matrícula:")
-                        .col-sm-12.col-md-9 
-                            +input("text", "txt_descricao", "Marca, Modelo, Versão", "Descrição:")
-                    .row
-                        .col-sm-12.col-md-4
-                            +input("text", "txt_data_ini_serv", "01-01-2022", "Entrada em serviço a:")
-                        .col-sm-12.col-md-4 
-                            +input("text", "txt_odom_ini_serv", "000 001", "Odómetro à entrada em serviço:")
-                        .col-sm-12.col-md-4 
-                            +input("text", "txt_odom_ultima", "xxx xxx", "Odómetro última leitura:")
-                    .row 
-                        .col-sm-12.col-md-6 
-                            +input("text", "txt_odom_rev", "xxx xxx", "Próxima revisão")
-                        .col-sm-12.col-md-6
-                            +input("text", "txt_data_revisão", "01-01-2022", "Data da próxima revisão") 
-                    .row
-                        .col-xs-6.col-sm-6.col-md-6
-                            .text-center
-                                a.btn.btn-success(href='/Car', role='button') « Cancelar  
-                        .col-xs-6.col-sm-6.col-md-6
-                            .text-center
-                                a.btn.btn-danger(href='/Car/C', role='button') Salvar »     
+.container-fluid 
+    .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+" - "+sub_title
+                .pull-right
+                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+            .row
+                .col-xs-12.col-sm-12.col-md-4.col-lg-3
+                    +panel-danger("Viatura: " + viatura.matricula)
+                        .row
+                            .col.placeholder 
+                                .text-center
+                                    img.img-responsive(src=viatura.imagem_viatura, alt=viatura.descricao_viatura)
+                                    p 
+                                    a.btn.btn-danger(href='/Viatura/U/'+viatura.id_viatura, role='button') Carregar imagem
+                                .pull-right id: #{viatura.id_viatura} &nbsp;
+                .col-xs-12.col-sm-12.col-md-8.col-lg-9.placeholder
+                    +ficha_viatura_u(viatura)
+                    .container-fluid
+                        .row
+                            .col
+                                a.btn.btn-danger.btn-block(href='/Viatura/' + viatura.id_viatura + '/U', role='button') Atualizar »
+                                p
+                            .col
+                                a.btn.btn-success.btn-block(onclick = 'history.back()', role='button') « Voltar
+            .row 
+                .col-xs-12.col-lg-6
+                    +lista_de_manutencoes_viatura(viatura, manutencoes)
+                .col-xs-12.col-lg-6
+                    +lista_de_abastecimentos_viatura(titulos, viatura, abastecimentos)
+            .row 
+                .col-xs-12.col-lg-12
+
+            .row.placeholders
+                .col-sm-12.col-md-4.placeholder
+                    .text-center
+                        //- include ./_tabela_odometragens
+
+                .col-sm-12.col-md-8.placeholder
+                    .text-center
+                        //- include ./_tabela_revisoes

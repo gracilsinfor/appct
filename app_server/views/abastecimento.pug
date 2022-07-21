@@ -7,13 +7,13 @@ block body
 block topo
     include ./includes/_navbar
 block lado
-    include ./includes/_sidebar
+    include ../views/includes/_sidebar
 block content
-    if rota==="/Filling/C"
+    if rota==="/Abastecimento/C"
         include ./includes/_abastecimento_c
-    else if rota==="/Filling"
+    else if rota==="/Abastecimento/idv/id"
         include ./includes/_abastecimento_r
-    else if rota==="/Filling/U"
+    else if rota==="/Abastecimento/U/idv/id"
         include ./includes/_abastecimento_u
     else if rota==="/Filling/D"
         include ./includes/_abastecimento_r

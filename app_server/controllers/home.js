@@ -1,11 +1,28 @@
+const controlador_turnos = require('./teste_turnos');
+const request = require('request');
+
 /* GET Home page */
 
-const inicio = (req, res)=>{
+const inicio = async (req, res)=>{
     if (req == '/Home' ){
         res.render('home', {title: 'Home'});
     }
     else{
-        res.render('index', {title: 'Dashboard', sub_title:'Abastecimentos'});
+        const dados = await controlador_turnos.turnos_ativos();
+        if(dados){
+            // console.log(dados);
+            res.render('index', 
+            {
+                title: 'Dashboard', 
+                sub_title:'turnos ativos',
+                dados: dados,
+                rota: req.path
+            });
+        }else{
+            res
+                .status(404)
+                .json({"message": "documento não encontrado"});     
+        }
     };
 };
 
@@ -16,7 +33,10 @@ const start_session = (req, res) =>{
 
 // para carregar a página inicial pós login
 const go_home = (req, res) =>{
-    res.render('index', {pagina: 'Dashboard', title: 'Condutores de turno', sub_title:'Reabastecimentos'});
+    res.render('index', {
+        title: 'Condutores de turno', 
+        sub_title:'Reabastecimentos'
+    });
 };
 
 module.exports = {

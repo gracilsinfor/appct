@@ -1,0 +1,99 @@
+[
+    {
+        "_id": 1,
+        "_id_viatura": 1,
+        "_id_turno": 1,
+        "_id_condutor": 1,
+        "_kms": 100300,
+        "_h_ini": "11:30 2021-03-01",
+        "_carga_ini": 33,
+        "_h_fim": "11:59 2021-03-01",
+        "_carga_fim": 91,
+        "_euros": 15.21
+    },
+    {
+        "_id": 2,
+        "_id_viatura": 2,
+        "_id_turno": 2,
+        "_id_condutor": 2,
+        "_kms": 100500,
+        "_h_ini": "23:30 2021-03-01",
+        "_carga_ini": 35,
+        "_h_fim": "23:59 2021-03-01",
+        "_carga_fim": 90,
+        "_euros": 9.75
+    },
+    {
+        "_id": 3,
+        "_id_viatura": 1,
+        "_id_turno": 5,
+        "_id_condutor": 5,
+        "_kms": 101700,
+        "_h_ini": "11:35 2021-03-03",
+        "_carga_ini": 49,
+        "_h_fim": "11:55 2021-03-03",
+        "_carga_fim": 89,
+        "_euros": 10.5
+    },
+    {
+        "_id": 4,
+        "_id_viatura": 2,
+        "_id_turno": 6,
+        "_id_condutor": 6,
+        "_kms": 102100,
+        "_h_ini": "23:30 2021-03-03",
+        "_carga_ini": 45,
+        "_h_fim": "23:50 2021-03-03",
+        "_carga_fim": 90,
+        "_euros": 9
+    },
+    
+    {
+        "_id": 5,
+        "_id_viatura": 1,
+        "_id_turno": 9,
+        "_id_condutor": 1,
+        "_kms": 103300,
+        "_h_ini": "11:35 2021-03-05",
+        "_carga_ini": 42,
+        "_h_fim": "11:57 2021-03-05",
+        "_carga_fim": 89,
+        "_euros": 15
+    },
+    {
+        "_id": 6,
+        "_id_viatura": 2,
+        "_id_turno": 10,
+        "_id_condutor": 2,
+        "_kms": 103700,
+        "_h_ini": "23:30 2021-03-05",
+        "_carga_ini": 69,
+        "_h_fim": "23:45 2021-03-05",
+        "_carga_fim": 91,
+        "_euros": 7
+    },
+    {
+        "_id": 7,
+        "_id_viatura": 1,
+        "_id_turno": 13,
+        "_id_condutor": 5,
+        "_kms": 104900,
+        "_h_ini": "11:30 2021-03-08",
+        "_carga_ini": 59,
+        "_h_fim": "12:50 2021-03-08",
+        "_carga_fim": 90,
+        "_euros": 11
+    },
+    {
+        "_id": 8,
+        "_id_viatura": 2,
+        "_id_turno": 14,
+        "_id_condutor": 6,
+        "_kms": 105300,
+        "_h_ini": "23:30 2021-03-08",
+        "_carga_ini": 43,
+        "_h_fim": "23:50 2021-03-08",
+        "_carga_fim": 82,
+        "_euros": 9
+    }
+]

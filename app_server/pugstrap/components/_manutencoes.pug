@@ -1,0 +1,18 @@
+mixin lista_de_manutencoes_viatura(viatura, manutencoes)
+    +panel-info("Histórico de manutenção: viatura id " + viatura.id_viatura)
+        .table-responsive 
+            table.table.table-striped.table-hover
+                thead 
+                    tr 
+                        th.small.text-right id 
+                        th.small.text-right Data 
+                        th.small.text-right Kms 
+                        th.small.text-right Custo
+                tbody 
+                    each linha in manutencoes 
+                        tr.table-row 
+                            td.small.text-right 
+                                a.btn.btn-primary.btn-sm.btn-block(href="/Manutencao/"+viatura.id_viatura+"/"+linha.id_manutencao) #{linha.id_manutencao}
+                            td.small.text-right #{linha.data}
+                            td.small.text-right #{linha.kms}
+                            td.small.text-right #{linha.euros}

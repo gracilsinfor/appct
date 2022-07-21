@@ -1,0 +1,335 @@
+mixin par_turno(dados)
+    .col-xs-12.col-sm-6.col-md-4.col-lg-3
+        .panel.panel-primary
+            .panel-heading
+                h3.panel-title 
+                    a(href='/Turno/'+ dados.id_turno) Turno: #{dados.id_turno}
+            .panel-body
+                .row
+                    .col-xs-6.col-md-6.col-lg-6
+                        .placeholder
+                            .text-center 
+                                a(href='/Condutor/'+ dados.id_condutor)
+                                    h5 #{dados.nome_condutor}
+                                    img.img-responsive(src=dados.imagem_condutor, alt=dados.nome_condutor)
+                    .col-xs-6.col-md-6.col-lg-6
+                        .placeholder 
+                            .text-center
+                                a(href='/Viatura/'+ dados.id_viatura)
+                                    h5 #{dados.matricula}
+                                    img.img-responsive(src=dados.imagem_viatura, alt=dados.matricula)
+                .row
+                    .col-xs-6.col-md-6.col-lg-6
+                        .text-left
+                            h6 Início:
+                            span.text-muted.small #{dados.h_ini}
+                    .col-xs-6.col-md-6.col-lg-6
+                        .text-left
+                            h6 Fim:
+                            span.text-muted.small #{dados.h_fim}
+
+mixin card_viatura(dados)
+    .col-xs-12.col-sm-6.col-md-4.col-lg-3
+        .panel.panel-primary
+            .panel-heading
+                h4.panel-title 
+                    a(href='/Viatura/'+ dados.id_viatura) Viatura: #{dados.id_viatura}
+            .panel-body
+                .row.placeholders
+                    .col-xs-6.col-md6.col-lg-6
+                        .placeholder
+                            .text-center 
+                                a(href=`/Viatura/${dados.id_viatura}`)
+                                    h5 #{dados.matricula}
+                                    img.img-responsive(src=dados.imagem_viatura, alt=dados.matricula)
+                                    h5 #{dados.descricao_viatura}
+                    .col-xs-6.col-md-6.col-lg-6
+                        .placeholder 
+                            h5 Kms: #{dados.odometro}
+                            h5 Manutenções: 
+                            if dados.kms_ultima_manutencao != null
+                                h6 Última: #{dados.kms_ultima_manutencao} km
+                                h6 Em: #{dados.data_ultima_manutencao}
+                            else
+                                h6 Última: n/d 
+                            if dados.kms_proxima_manutencao != null
+                                h6 Próxima: #{dados.kms_proxima_manutencao} km
+                                h6 Em: #{dados.data_proxima_manutencao} 
+                            else
+                                h6 Próxima: n/d 
+                            +yacheckbox-inline("chk_ev", "Elétrico", "ev", dados.ev, false)
+                            +yacheckbox-inline("chk_ativa", "Ativa", "ativa", dados.ativa, false)
+
+mixin card_condutor(dados)
+    .col-xs-12.col-sm-6.col-md-4.col-lg-3
+        .panel.panel-primary
+            .panel-heading 
+                h3.panel-title 
+                    a(href='/Condutor/' + dados.id_condutor ) Condutor id: #{dados.id_condutor} 
+            .panel-body
+                .row
+                    .col.placeholder
+                        a(href='/Condutor/'+ dados.id_condutor)
+                            .text-center 
+                                h4.strong #{dados.nome_condutor}
+                                p
+                                    img.img-responsive(src=dados.imagem_condutor, alt=dados.nome_condutor)
+                                p 
+                                    +yacheckbox-inline("chk_condutor_ativo", "Ativo", "ativo", dados.ativo, false)
+                                p 
+                                p kms feitos: #{dados.kms_feitos}
+                .row
+                    .col
+                        table.table-default(align="center")
+                            tr 
+                                td.text-left.strong Telefone: 
+                                td.text-right #{dados.telefone_condutor}
+                            tr
+                                td.text-left.strong Email:
+                                td.text-right.strong
+                                    a(href='mailto:'+dados.email_condutor) #{dados.email_condutor}
+                            tr
+                                td.text-left.strong NIF:
+                                td.text-right #{dados.nif_condutor}
+                    
+mixin ficha_abastecimento_mt(abastecimento)
+    +panel-info("Ficha do Abastecimento combustível id: "+ abastecimento.id_abastecimento) 
+        .row
+            .col-xs-4.col-md-3.col-lg-2
+                +yainput("text", "id_turno", "id_turno", "Turno:", "txt_turno", abastecimento.id_turno, "disabled")
+            .col-xs-4.col-md-3.col-lg-2
+                +yainput("text", "odometro", "odometro", "Odómetro:", "txt_odometro", abastecimento.odometro, "disabled")
+            .col-xs-4.col-md-2.col-lg-2
+                +yainput("date-time", "date_data", "data", "Data:", "data", abastecimento.data, "disabled")             
+            .col-xs-4.col-md-3.col-lg-2
+                +yainput("text", "litros", "litros", "Litros:", "txt_litros", abastecimento.litros, "disabled")
+            .col-xs-4.col-md-3.col-lg-2
+                +yainput("text", "custo", "custo", "Custo:", "txt_custo", abastecimento.custo, "disabled")
+            .col-xs-4.col-md-2.col-lg-2
+                span.align-middle
+                    br
+                    a.btn.btn-warning.btn-block(href='/Abastecimento/U/'+abastecimento.id_viatura+ "/" +abastecimento.id_abastecimento, role='button') Atualizar ficha do abastecimento »	
+
+mixin ficha_abastecimento_ev(abastecimento)
+    +panel-info("Ficha do abastecimento elétrico id: "+ abastecimento.id_abastecimento) 
+        .row
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_id_turno", "id_turno", "Turno:", "turno", abastecimento.id_turno, "disabled")
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_odometro", "odometro", "Odómetro:", "odometro", abastecimento.odometro, "disabled")
+            .col-xs-12.col-lg-4
+                +input_datetime("date_time_hora_ini", "Início:", abastecimento.h_ini, "start", true) 
+                br
+            .col-xs-12.col-lg-4
+                +input_datetime("date_time_hora_fim", "Fim:", abastecimento.h_fim, "end", true)
+                br           
+        .row
+            .col-xs-4.col-lg-2
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_custo", "custo", "Custo:", "custo", abastecimento.custo, "disabled")
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_carga_ini", "carga_ini", "Q Inicial:", "carga_ini", abastecimento.q_ini, "disabled")
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_carga_fim", "carga_fim", "Q Final:", "carga_fim", abastecimento.q_fim, "disabled")
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_tempo_carga", "tempo_carga", "T Carga:", "tempo_carga", abastecimento.tempo_de_carga, "disabled")
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_carga_total", "carga_total", "Q Total:", "carga_total", abastecimento.total_carga, "disabled")         
+
+mixin ficha_abastecimento_mt_u(abastecimento)
+    +panel-danger("Ficha do Abastecimento combustível id: "+ abastecimento.id_abastecimento) 
+        .row
+            .col-xs-4.col-md-3.col-lg-2
+                +yainput("text", "id_turno", "id_turno", "Turno:", "txt_turno", abastecimento.id_turno, "disabled")
+            .col-xs-4.col-md-3.col-lg-2
+                +yainput("text", "odometro", "odometro", "Odómetro:", "txt_odometro", abastecimento.odometro, "enabled")
+            .col-xs-4.col-md-2.col-lg-2
+                +yainput("date-time", "date_data", "data", "Data:", "data", abastecimento.data, "enabled")             
+            .col-xs-4.col-md-3.col-lg-2
+                +yainput("text", "litros", "litros", "Litros:", "txt_litros", abastecimento.litros, "enabled")
+            .col-xs-4.col-md-3.col-lg-2
+                +yainput("text", "custo", "custo", "Custo:", "txt_custo", abastecimento.custo, "enabled")
+            //- .col-xs-4.col-md-2.col-lg-2
+            //-     span.align-middle
+            //-         br
+            //-         a.btn.btn-danger.btn-block(href='/Abastecimento/U/'+abastecimento.id_viatura+ "/" +abastecimento.id_abastecimento, role='button') Atualizar ficha do abastecimento »	
+
+mixin ficha_abastecimento_ev_u(abastecimento)
+    +panel-danger("Ficha do abastecimento elétrico id: "+ abastecimento.id_abastecimento) 
+        .row
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_id_turno", "id_turno", "Turno:", "turno", abastecimento.id_turno, "disabled")
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_odometro", "odometro", "Odómetro:", "odometro", abastecimento.odometro, "enabled")
+            .col-xs-12.col-lg-4
+                +input_datetime("date_time_hora_ini", "Início:", abastecimento.h_ini, "start", false) 
+                br
+            .col-xs-12.col-lg-4
+                +input_datetime("date_time_hora_fim", "Fim:", abastecimento.h_fim, "end", false)
+                br           
+        .row
+            .col-xs-4.col-lg-2
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_custo", "custo", "Custo:", "custo", abastecimento.custo, "enabled")
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_carga_ini", "carga_ini", "Q Inicial:", "carga_ini", abastecimento.q_ini, "enabled")
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_carga_fim", "carga_fim", "Q Final:", "carga_fim", abastecimento.q_fim, "enabled")
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_tempo_carga", "tempo_carga", "T Carga:", "tempo_carga", abastecimento.tempo_de_carga, "disabled")
+            .col-xs-4.col-lg-2
+                +yainput("text", "txt_carga_total", "carga_total", "Q Total:", "carga_total", abastecimento.total_carga, "disabled")                
+
+mixin ficha_viatura_u(dados)
+    +panel-danger("Ficha da viatura id: " + dados.id_viatura)
+        .row
+            .col-xs-4.col-lg-3.container-fluid
+                +yainput("text", "txt_matricula", "matricula", "Matrícula:", "matricula", dados.matricula, "enabled")
+
+            .col-xs-4.col-lg-6.container-fluid
+                br
+                +yacheckbox-inline("chk_estado_viatura", "Ativa", "ativa", dados.ativa, false)
+                br
+                +yacheckbox-inline("chk_ev", "Elétrico", "ev", dados.ev, false)
+
+            if dados.ev
+                .col-xs-4.col-lg-3.container-fluid
+                    +yainput("text", "txt_q_bateria", "q_bateria", "Bat(KWH):", "q_bateria", dados.q_bateria, "enabled")
+        .row 
+            .col-sm-8.col-lg-8
+                +yainput("text", "txt_descricao", "descricao", "Descrição:", "descrição", dados.descricao_viatura, "enabled")
+            .col-sm-4.col-lg-4.container-fluid
+                +yainput("text", "txt_odometro", "odometro", "Odometro:", "odometro", dados.odometro, "enabled")
+        .row
+            .col-sm-6.col-lg-6
+                +yainput("text", "txt_ultima_manutencao", "ultima_manutencao", "Última manutenção:", "ultima_manutencao", dados.kms_ultima_manutencao + ' - ' + dados.data_ultima_manutencao, "enabled")  
+            .col-sm-6.col-lg-6
+                +yainput("text", "txt_proxima_manutencao", "proxima_manutencao", "Próxima manutenção:", "proxima_manutencao", dados.kms_proxima_manutencao + ' - ' + dados.data_proxima_manutencao, "enabled")
+
+mixin ficha_viatura_c()
+    +panel-danger("Ficha da nova viatura")
+        .row
+            .col-xs-4.col-lg-3.container-fluid
+                +yainput("text", "txt_matricula", "matricula", "Matrícula:", "matricula", '', "enabled")
+
+            .col-xs-4.col-lg-6.container-fluid
+                br
+                +yacheckbox-inline("chk_estado_viatura", "Ativa", "ativa", true, true)
+                br
+                +yacheckbox-inline("chk_ev", "Elétrico", "ev", false, true)
+
+            .col-xs-4.col-lg-3.container-fluid
+                +yainput("text", "txt_q_bateria", "q_bateria", "Bat(KWH):", "q_bateria", '', "enabled")
+        .row 
+            .col-sm-8.col-lg-8
+                +yainput("text", "txt_descricao", "descricao", "Descrição:", "descrição", '', "enabled")
+            .col-sm-4.col-lg-4.container-fluid
+                +yainput("text", "txt_odometro", "odometro", "Odometro:", "odometro", '', "enabled")
+        .row
+            .col-sm-6.col-lg-6
+                +yainput("text", "txt_ultima_manutencao", "ultima_manutencao", "Última manutenção:", "ultima_manutencao", '', "disabled")  
+            .col-sm-6.col-lg-6
+                +yainput("text", "txt_proxima_manutencao", "proxima_manutencao", "Próxima manutenção:", "proxima_manutencao", '', "disabled")
+
+mixin ficha_viatura(dados)
+    +panel-info("Ficha da viatura id: " + dados.id_viatura)
+        .row
+            .col-xs-4.col-lg-3.container-fluid
+                +yainput("text", "txt_matricula", "matricula", "Matrícula:", "matricula", dados.matricula, "disabled")
+
+            .col-xs-4.col-lg-6.container-fluid
+                br
+                +yacheckbox-inline("chk_estado_viatura", "Ativa", "ativa", dados.ativa, false)
+                br
+                +yacheckbox-inline("chk_ev", "Elétrico", "ev", dados.ev, false)
+
+            if dados.ev
+                .col-xs-4.col-lg-3.container-fluid
+                    +yainput("text", "txt_q_bateria", "q_bateria", "Bat(KWH):", "q_bateria", dados.q_bateria, "disabled")
+        .row 
+            .col-sm-8.col-lg-8
+                +yainput("text", "txt_descricao", "descricao", "Descrição:", "descrição", dados.descricao_viatura, "disabled")
+            .col-sm-4.col-lg-4.container-fluid
+                +yainput("text", "txt_odometro", "odometro", "Odometro:", "odometro", dados.odometro, "disabled")
+        .row
+            .col-sm-6.col-lg-6
+                +yainput("text", "txt_ultima_manutencao", "ultima_manutencao", "Última manutenção:", "ultima_manutencao", dados.kms_ultima_manutencao + ' - ' + dados.data_ultima_manutencao, "disabled")  
+            .col-sm-6.col-lg-6
+                +yainput("text", "txt_proxima_manutencao", "proxima_manutencao", "Próxima manutenção:", "proxima_manutencao", dados.kms_proxima_manutencao + ' - ' + dados.data_proxima_manutencao, "disabled")
+
+mixin ficha_turno(turno)
+    +panel-info("Ficha do turno id: " + turno.id_turno)  
+        .row
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                +input_datetime("date_time_h_ini", "Início: ", turno.h_ini, "start", true)      
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                +yainput("text", "txt_km_ini", "km_ini", "Odómetro inicial:", 'km_ini', turno.odom_ini, "disabled")
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                +input_datetime("date_time_h_fim", "Fim: ", turno.h_fim, "end", true)      
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                +yainput("text", "txt_km_fim", "km_ini", "Odómetro final:", 'km_fim', turno.odom_fim, "disabled")
+        .row 
+            .col-xs-12.col-lg-4
+                +yainput("text", "txt_nome_condutor", "nome_condutor", "Condutor:", 'nome_condutor', turno.nome_condutor, "disabled")
+            .col-xs-12.col-lg-4
+                +yainput("text", "txt_descricao_viatura", "descricao_viatura", "Viatura:", 'descricao_viatura', turno.descricao_viatura, "disabled")
+            .col-xs-12.col-lg-2
+                +yainput("text", "txt_kms_percorridos", "kms_percorridos", "Kms percorridos:", 'kms_percorridos', turno.kms_percorridos, "disabled")
+            .col-xs-12.col-lg-2
+                +yainput("text", "txt_horas_conducao", "horas_conducao", "Tempo a conduzir:", 'horas_conducao', turno.horas_conducao, "disabled")
+
+mixin ficha_turno_u(turno)
+    +panel-danger("Ficha do turno id: " + turno.id_turno)  
+        .row
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                button.btn.btn-danger(type='button' enabled)
+                    span.fa.fa-solid.fa-hourglass-start
+                        +yainput("text", "txt_h_ini", "h_ini", "Início do turno:", 'h_ini', turno.h_ini, "enabled")
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                p
+                p &nbsp;
+                +yainput("text", "txt_km_ini", "km_ini", "Odómetro inicial:", 'km_ini', turno.odom_ini, "enabled")
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                button.btn.btn-danger(type='button' enabled)
+                    span.fa.fa-solid.fa-hourglass-start
+                        if turno.h_fim != ''
+                            +yainput("text", "txt_h_fim", "h_fim", "Fim do turno:", 'h_fim', turno.h_fim, "enabled")
+                        else 
+                            +yainput("text", "txt_h_fim", "h_fim", "Fim do turno:", 'h_fim', "N/D", "enabled")
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                p
+                p &nbsp;
+                +yainput("text", "txt_km_fim", "km_ini", "Odómetro final:", 'km_fim', turno.odom_fim, "enabled")
+        .row 
+            .col-xs-12.col-lg-4
+                +yainput("text", "txt_nome_condutor", "nome_condutor", "Condutor:", 'nome_condutor', turno.nome_condutor, "disabled")
+            .col-xs-12.col-lg-4
+                +yainput("text", "txt_descricao_viatura", "descricao_viatura", "Viatura:", 'descricao_viatura', turno.descricao_viatura, "disabled")
+            .col-xs-12.col-lg-2
+                +yainput("text", "txt_kms_percorridos", "kms_percorridos", "Kms percorridos:", 'kms_percorridos', turno.kms_percorridos, "disabled")
+            .col-xs-12.col-lg-2
+                +yainput("text", "txt_horas_conducao", "horas_conducao", "Tempo a conduzir:", 'horas_conducao', turno.horas_conducao, "disabled")
+
+mixin ficha_faturacao_turno(dados)
+    +panel-info("Ficha de faturação do turno id: " + dados.id_turno)  
+        .row
+            .col-xs-6.col-sm-6.col-md-3.col-lg-3
+                +yainput("text", "txt_f_u", "f_u", "Uber:", 'faturacao_uber', dados.f.u, "disabled")
+            .col-xs-6.col-sm-6.col-md-3.col-lg-3
+                +yainput("text", "txt_f_b", "f_b", "Bolt:", 'faturacao_bolt', dados.f.b, "disabled")
+            .col-xs-6.col-sm-6.col-md-3.col-lg-3
+                +yainput("text", "txt_f_f", "f_f", "Freenow:", 'faturacao_freenow', dados.f.f, "disabled")
+            .col-xs-6.col-sm-6.col-md-3.col-lg-3 
+                +yainput("text", "txt_total_faturacao", "total_faturacao", "Total:", 'total_faturacao', dados.tf, "disabled")
+
+mixin ficha_gratificacao_turno(dados)
+    +panel-info("Ficha de gratificação do turno id: " + dados.id_turno)  
+        .row
+            .col-xs-6.col-sm-6.col-md-3.col-lg-3
+                +yainput("text", "txt_g_u", "g_u", "Uber:", 'gratificacao_uber', dados.g.u, "disabled")
+            .col-xs-6.col-sm-6.col-md-3.col-lg-3
+                +yainput("text", "txt_g_b", "g_b", "Bolt:", 'gratificacao_bolt', dados.g.b, "disabled")
+            .col-xs-6.col-sm-6.col-md-3.col-lg-3
+                +yainput("text", "txt_g_f", "g_f", "Freenow:", 'gratificacao_freenow', dados.g.f, "disabled")
+            .col-xs-6.col-sm-6.col-md-3.col-lg-3
+                +yainput("text", "txt_total_gratificacao", "total_gratificacao", "Total:", 'total_gratificacao', dados.tg, "disabled")

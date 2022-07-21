@@ -1,0 +1,86 @@
+.container-fluid
+    .row 
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+' - '+sub_title    
+                .pull-right
+                    a.btn.btn-success(href='/Turnos', role='button') « Turnos
+            .row
+                .col-xs-12.col-md-2.col-lg-2
+                    .row 
+                        .col
+                            .panel(class = 'panel-info')
+                                .panel-heading
+                                    h4.panel-title 
+                                        Condutor: a(href='/Condutor/'+ turno.id_condutor) #{turno.nome_condutor}   
+                                .panel-body
+                                    .row
+                                        .col-xs-12
+                                            .placeholder
+                                                .text-center 
+                                                    a(href="/Condutor/"+turno.id_condutor)
+                                                        img.img-responsive(src=turno.imagem_condutor, alt=turno.nome_condutor)
+                                                .pull-right id: #{turno.id_condutor}
+                    .row 
+                        .col
+                            .panel(class = 'panel-info')
+                                .panel-heading
+                                    h4.panel-title 
+                                        Viatura: a(href='/Viatura/'+ turno.id_viatura) #{turno.matricula}   
+                                .panel-body
+                                    .row
+                                        .col-xs-12
+                                            .placeholder
+                                                .text-center 
+                                                    a(href="/Viatura/"+turno.id_viatura)
+                                                        img.img-responsive(src=turno.imagem_viatura, alt=turno.matricula)
+                                                .pull-right id: #{turno.id_viatura}
+
+                .col-xs-12.col-md-10.col-lg-10
+                    .panel(class = 'panel-info')
+                        .panel-heading
+                            h4.panel-title 
+                            | Dados do turno id #{turno.id_turno}  
+                        .panel-body
+                            .row
+                                .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                                    button.btn.btn-danger(type='button' disabled)
+                                        span.fa.fa-solid.fa-hourglass-start
+                                            +input("text", "txt_h_ini", "h_ini", "Início do turno:", 'h_ini', turno.h_ini)
+                                .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                                    p
+                                    p &nbsp;
+                                    +input("text", "txt_km_ini", "km_ini", "Odómetro inicial:", 'km_ini', turno.odom_ini, "disabled")
+                                .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                                    button.btn.btn-danger(type='button' disabled)
+                                        span.fa.fa-solid.fa-hourglass-start
+                                            if turno.h_fim != ''
+                                                +input("text", "txt_h_fim", "h_fim", "Fim do turno:", 'h_fim', turno.h_fim)
+                                            else 
+                                                +input("text", "txt_h_fim", "h_fim", "Fim do turno:", 'h_fim', "N/D")
+                                .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                                    p
+                                    p &nbsp;
+                                    +input("text", "txt_km_fim", "km_ini", "Odómetro final:", 'km_fim', turno.odom_fim, "disabled")
+                            .row 
+                                .col-xs-12.col-lg-4
+                                    +input("text", "txt_nome_condutor", "nome_condutor", "Condutor:", 'nome_condutor', turno.nome_condutor, "disabled")
+                                .col-xs-12.col-lg-4
+                                    +input("text", "txt_descricao_viatura", "descricao_viatura", "Viatura:", 'descricao_viatura', turno.descricao_viatura, "disabled")
+                                .col-xs-12.col-lg-2
+                                    +input("text", "txt_kms_percorridos", "kms_percorridos", "Kms percorridos:", 'kms_percorridos', turno.kms_turno, "disabled")
+                                .col-xs-12.col-lg-2
+                                    +input("text", "txt_horas_conducao", "horas_conducao", "Tempo a conduzir:", 'horas_conducao', turno.horas_conducao, "disabled")
+                            .row 
+                                .col-xs-12.col-lg-3 
+                                    .text-center
+                                        a.btn.btn-success.btn-block(href='/Turno/'+turno.id_turno , role='button') « Cancelar
+                                .col-xs-12.col-lg-3 
+                                    .text-center
+                                .col-xs-12.col-lg-3 
+                                    .text-center
+                                .col-xs-12.col-lg-3 
+                                    .text-center
+                                        a.btn.btn-warning.btn-block(href='/Turno/U/'+turno.id_turno, role='button') Alterar ficha »
+                    .row
+                        .div(class = "sub_abastecimentos")
+                            +sub_abastecimentos_turno_u(turno, arr_titulos)

@@ -1,0 +1,37 @@
+mixin resumo_faturacao(dados, faturacao_total)
+    .container-fluid
+        +panel-info("Resumo da faturação do condutor")
+            .col-xs-6.col-lg-6
+                .table-responsive
+                    table.table.table-bordered
+                        caption.text-center 
+                            .strong Faturação
+                        thead.thead-light
+                            tr.table-info 
+                                th.small.text-right uber 
+                                th.small.text-right bolt 
+                                th.small.text-right fnow
+                                th.small.text-right Total
+                        tbody 
+                            tr.table-row 
+                                td.small.text-right #{faturacao_total.f.u}   
+                                td.small.text-right #{faturacao_total.f.b}   
+                                td.small.text-right #{faturacao_total.f.f}  
+                                td.small.text-right #{faturacao_total.tf}  
+            .col-xs-6.col-lg-6
+                .table-responsive 
+                    table.table.table-bordered
+                        caption.text-center 
+                            .strong Gratificação
+                        thead.thead-light
+                            tr 
+                                th.small.text-right uber 
+                                th.small.text-right bolt 
+                                th.small.text-right fnow
+                                th.small.text-right Total
+                        tbody 
+                            tr.table-row 
+                                td.small.text-right #{faturacao_total.g.u}   
+                                td.small.text-right #{faturacao_total.g.b}   
+                                td.small.text-right #{faturacao_total.g.f}   
+                                td.small.text-right #{faturacao_total.tg}

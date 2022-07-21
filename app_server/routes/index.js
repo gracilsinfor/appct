@@ -7,43 +7,41 @@ const ctrl_shifts = require('../controllers/shifts');
 const ctrl_fills = require('../controllers/fillings');
 const ctrl_home = require('../controllers/home');
 const { route } = require('express/lib/application');
+const req = require('express/lib/request');
 
 /* GET home page. */
 router.get('/', ctrl_home.inicio);
-router.get('/Home', ctrl_home.inicio);
+// router.get('/Home', ctrl_home.inicio);
 
-// router.get('/', ctrl_main.index); // versão (m)vc, a callback está definida num módulo 
+/* Routes crud viaturas */
+router.get('/Viatura/C', ctrl_cars.car_c);
+router.get('/Viaturas', ctrl_cars.cars_r);
+router.get('/Viatura/:id', ctrl_cars.car_r);
+router.get('/Viatura/U/:id', ctrl_cars.car_u);
+router.get('/Viatura/D/:id', ctrl_cars.car_d);
 
-// PARA TESTE
-router.get('/theme-template', ctrl_shifts.teste);
+/* Routes crud condutores */
+router.get('/Condutor/C', ctrl_drivers.driver_c);
+router.get('/Condutores', ctrl_drivers.drivers_r);
+router.get('/Condutor/:id', ctrl_drivers.driver_r);
+router.get('/Condutor/U/:id', ctrl_drivers.driver_u);
+router.get('/Condutor/D/:id', ctrl_drivers.driver_d);
+// router.get('/Condutor/:id/Credenciais/U', ctrl_drivers.driver_credenciais);
 
-/* Routes para crud carros */
-router.get('/Car/C', ctrl_cars.car_c);
-router.get('/Cars', ctrl_cars.cars_r);
-router.get('/Car', ctrl_cars.car_r);
-router.get('/Car/U', ctrl_cars.car_u);
-router.get('/Car/D', ctrl_cars.car_d);
+/* Routes crud turnos */
+router.get('/Turno/C', ctrl_shifts.shift_c);
+router.get('/Turnos', ctrl_shifts.shifts_r);
+router.get('/Turno/:id', ctrl_shifts.shift_r);
+router.get('/Turno/U/:id', ctrl_shifts.shift_u);
+router.get('/Turno/U/A/:id', ctrl_shifts.shift_ua);
+router.get('/Turno/D', ctrl_shifts.shift_d);
 
-/* Routes para crud condutores */
-router.get('/Driver/C', ctrl_drivers.driver_c);
-router.get('/Drivers', ctrl_drivers.drivers_r);
-router.get('/Driver', ctrl_drivers.driver_r);
-router.get('/Driver/U', ctrl_drivers.driver_u);
-router.get('/Driver/D', ctrl_drivers.driver_d);
-
-/* Routes para crud turnos */
-router.get('/Shift/C', ctrl_shifts.shift_c);
-router.get('/Shifts', ctrl_shifts.shifts_r);
-router.get('/Shift', ctrl_shifts.shift_r);
-router.get('/Shift/U', ctrl_shifts.shift_u);
-router.get('/Shift/D', ctrl_shifts.shift_d);
-
-/* Routes para crud abastecimentos */
-router.get('/Filling/C', ctrl_fills.filling_c);
-router.get('/Fillings', ctrl_fills.fillings_r);
-router.get('/Filling', ctrl_fills.filling_r);  
-router.get('/Filling/U', ctrl_fills.filling_u);
-router.get('/Filling/D', ctrl_fills.filling_d);
+/* Routes crud abastecimentos */
+router.get('/Abastecimento/C', ctrl_fills.filling_c);
+router.get('/Abastecimentos', ctrl_fills.fillings_r);
+router.get('/Abastecimento/:idv/:id', ctrl_fills.filling_r);  
+router.get('/Abastecimento/U/:idv/:id', ctrl_fills.filling_u);
+router.get('/Abastecimento/D', ctrl_fills.filling_d);
 
 // função    callback evocada na versão 2
 // const homepage_controller = (req, res) =>{

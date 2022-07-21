@@ -1,43 +1,36 @@
-.row
-    .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-        h2.page-header=title+" - "+sub_title
-        .row.placeholders
-            .col-sm-12.col-md-4.placeholder
-                .text-center
-                    h3 Matrícula
-                    img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-                    h4 Marca
-                    span.text-muted Modelo
-                .row.placeholders
-                    .col-12 
-                .row.placeholders
-                    .col-12
-                .row.placeholders
-                    .col-12 
-                        a.btn.btn-danger(href='/Carro/D', role='button') Apagar
-            .col-sm-12.col-md-8.placeholder
-                +panel-default("Identificação")
-                    .row 
-                        .col-sm-12.col-md-3 
-                            +input("text", "txt_matricula", "Matricula", "Matrícula:", "matricula", "disabled")
-                        .col-sm-12.col-md-9 
-                            +input("text", "txt_descricao", "Descrição", "Descrição:", "descrição", "disabled")
-                    .row
-                        .col-sm-12.col-md-4
-                            +input("text", "txt_data_ini_serv", "Entrada em Serviço", "Entrada em Serviço:", "entrada_em_serviço", "disabled")
-                        .col-sm-12.col-md-4 
-                            +input("text", "txt_odom_ini_serv", "Km à entrada em serviço", "Km à entrada em serviço:", "entrada_em_servico", "disabled")
-                        .col-sm-12.col-md-4 
-                            +input("text", "txt_odom_ultima", "Km atuais", "Km atuais:", "km_atuais", "disabled")
-                    .row 
-                        .col-sm-12.col-md-6 
-                            +input("text", "txt_odom_rev", "Revisão (Km)", "Revisão(km)", "revisao_km", "disabled")  
-                        .col-sm-12.col-md-6
-                            +input("text", "txt_data_revisão", "Data", "Data da próxima revisão:", "data_revisão", "disabled")
-                    .row
-                        .col-sm-6.col-md-6.placeholder
-                            .text-center
-                                a.btn.btn-success(href='/Cars', role='button') « Cancelar
-                        .col-sm-6.col-md-6.placeholder
-                            .text-center
-                                a.btn.btn-danger(href='/Car/U', role='button') Alterar »	
+.container-fluid
+    .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+" - "+sub_title
+                .pull-right
+                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+            .row
+                .col-xs-12.col-sm-12.col-md-4.col-lg-3.placeholder
+                    +snipet_viatura(viatura)
+                .col-xs-12.col-sm-12.col-md-8.col-lg-9.placeholder
+                    +ficha_viatura(viatura)
+                    .container-fluid
+                        .row
+                            .col
+                                a.btn.btn-warning.btn-block(href='/Viatura/U/' + viatura.id_viatura, role='button') Alterar ficha da viatura »
+                                p
+                            .col 
+            .row 
+                .col-xs-12.col-lg-6
+                    +lista_de_manutencoes_viatura(viatura, manutencoes)
+                    a.btn.btn-warning.btn-block(href='/Manutencao/' + viatura.id_viatura, role='button') Marcar manutenção »
+                .col-xs-12.col-lg-6
+                    +lista_de_abastecimentos_viatura(titulos, viatura, abastecimentos)
+            .row 
+                .col-xs-12.col-lg-12
+                    a.btn.btn-success.btn-block(onclick = 'history.back()', role='button') « Voltar
+                    p
+
+            .row.placeholders
+                .col-sm-12.col-md-4.placeholder
+                    .text-center
+                        //- include ./_tabela_odometragens
+
+                .col-sm-12.col-md-8.placeholder
+                    .text-center
+                        //- include ./_tabela_revisoes

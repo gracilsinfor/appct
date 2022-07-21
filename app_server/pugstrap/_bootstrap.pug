@@ -26,15 +26,12 @@ include components/navs
 include components/labels
 //- Including Panel mixins
 include components/panels
-include components/panels_2
 //- Including Tab mixins
 include components/tabs
 //- Including Dropdown mixins
 include components/dropdowns
-include components/dropdowns_2
 //- Including Form control mixins
 include components/forms
-include components/forms_2
 //- Including Modal dialog mixins
 include components/modal
 //- Including List group mixins
@@ -47,6 +44,16 @@ include components/buttons
 include components/images
 //- Including Bootswatch theme mixins
 include components/bootswatch
+
+include components/_forms
+include components/_dropdowns
+include components/_tables
+include components/_abastecimentos
+include components/_fichas
+include components/_snipets
+include components/_faturacao
+include components/_turnos
+include components/_manutencoes
 
 doctype html
 html(lang="en")
@@ -64,7 +71,7 @@ block styles
     link(rel='stylesheet', href='/stylesheets/dashboard.css')
       //-     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css")
-    body(data-spy="scroll",data-target=".scrollspy")
+    body(data-spy="scroll", data-target=".scrollspy")
 block body
       .container-fluid
 block topo
@@ -77,3 +84,4 @@ block content
 block scripts
       script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
       script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+      script(src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous")

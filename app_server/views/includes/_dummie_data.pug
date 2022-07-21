@@ -4,13 +4,13 @@
 .container-fluid
 	.row
 		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-			h1.page-header=title
+			h1.page-header = title
 			.row
-				+yacard("primary","Condutor 1", "Carro A", "/Shift")
-				+yacard("primary","Condutor 3", "Carro A", "/Shift")
-				+yacard("primary","Condutor 5", "Carro A", "/Shift")
-				+yacard("primary","Condutor 2", "Carro B", "/Shift")
-				+yacard("primary","Condutor 4", "Carro B", "/Shift")
+				+yabcard("primary","Condutor 1", "Carro A", "/Shift")
+				+yabcard("primary","Condutor 3", "Carro A", "/Shift")
+				+yabcard("primary","Condutor 5", "Carro A", "/Shift")
+				+yabcard("primary","Condutor 2", "Carro B", "/Shift")
+				+yabcard("primary","Condutor 4", "Carro B", "/Shift")
 
-			h2.sub-header=sub_title
+			h2.sub-header = sub_title
 			+yatable(arr_cabecalho, arr_frontespicio, "table-hover")

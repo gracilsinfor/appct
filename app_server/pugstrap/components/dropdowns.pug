@@ -1,5 +1,5 @@
 //- Dropdown
-mixin dropdown(caption,items)
+mixin dropdown(caption, items)
 	.dropdown
 		button.btn.btn-default.dropdown-toggle(type="button",data-toggle="dropdown")
 			= caption
@@ -9,7 +9,7 @@ mixin dropdown(caption,items)
 			- var args = Array.prototype.slice.call(arguments);
 			for item in args[1]
 				li(role="presentation")
-					a(role="menuitem",tabindex="-1",href="#{item.url}")= item.text
+					a(role="menuitem",tabindex="-1",href="#{item.id}")= item.viatura
 
 //- Dropup
 mixin dropup(caption,items)

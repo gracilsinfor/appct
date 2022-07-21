@@ -1,0 +1,55 @@
+.container-fluid
+    .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+" - "+sub_title
+                .pull-right
+                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar            
+            .row
+                .col-xs-12.col-sm-12.col-md-4.col-lg-3
+                    +panel-danger(condutor.nome_condutor)
+                        .row
+                            .col-xs-12.placeholder 
+                                .text-center
+                                    img.img-responsive(src=condutor.imagem_condutor, alt=condutor.nome_condutor)
+                                    p 
+                                    a.btn.btn-danger(href='/Condutor/U/'+condutor.id_condutor, role='button') Carregar imagem
+                                .pull-right id: #{condutor.id_condutor}
+                .col-xs-12.col-sm-12.col-md-8.col-lg-9.placeholder
+                    .row 
+                        +panel-danger("Ficha do condutor id: " + condutor.id_condutor)
+                            .row
+                                .col-xs-12.col-sm-12.col-md-6.col-lg-8
+                                    +yainput("text", "txt_nome", "nome", "Nome:", "nome", condutor.nome_condutor, "enabled")
+                                .col-xs-6.col-sm-6.col-md-3.col-lg-2
+                                    .text-center
+                                        p
+                                        br
+                                        +yacheckbox-inline("chk_ativo", "Ativo", "ativo", condutor.ativo, false)
+                                .col-xs-6.col-sm-6.col-md-3.col-lg-2 
+                                    +yainput("text", "txt_nif", "NIF", "NIF:", "nif", condutor.nif_condutor, "enabled")
+                            .row 
+                                .col-xs-12.col-sm-12.col-md-4.col-lg-5
+                                    +yainput("text", "txt_email", "email", "@mail:", "email", condutor.email_condutor, "enabled")
+                                .col-xs-12.col-sm-12.col-md-4.col-lg-3
+                                    +yainput("text", "txt_telefone_condutor", "telefone_condutor", "Telefone: ", "telefone_condutor", condutor.telefone_condutor, "enabled") 
+                                .col-xs-12.col-sm-12.col-md-4.col-lg-2
+                                    +yainput("text", "txt_entrada_servico", "entrada_servico", "Entrada em: ", "entrada_servico", condutor.data_entrada, "enabled") 
+                                .col-xs-12.col-sm-12.col-md-4.col-lg-2
+                                    +yainput("text", "txt_kms_feito", "kms_feito", "Kms feitos:", "kms_feito", condutor.kms_feitos, "enabled")
+                        .row
+                            .col
+                                .container-fluid
+                                    a.btn.btn-danger.btn-block(href='/Condutor/U/'+condutor.id_condutor, role='button') Atualizar ficha do condutor »
+                                    p 
+                                    a.btn.btn-success.btn-block(onclick = 'history.back()', role='button') « Voltar  
+                                    p
+                        .row 
+                            .col 
+                                +resumo_faturacao(condutor, faturacao_total)
+            .row
+                .col
+                    +turnos_condutor(condutor, turnos)
+            .row
+                .col
+                    .container-fluid
+                        a.btn.btn-success.btn-block(onclick = 'history.back()', role='button') « Voltar  

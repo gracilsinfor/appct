@@ -1,0 +1,168 @@
+mixin lista_abastecimentos_ev_turno(turno)
+    +panel-info("Lista de Abastecimentos do turno id: "+ turno.id_turno)
+        div.table-responsive
+            table.table.table-striped
+                thead
+                    tr
+                        th.small.text-right id
+                        th.d-none.d-sm-table-cell.small.text-right Odómetro
+                        th.small.text-right Inicio
+                        th.d-none.d-md-table-cell.small.text-right Q Ini
+                        th.d-none.d-md-table-cell.small.text-right Fim
+                        th.d-none.d-md-table-cell.small.text-right Q Fim
+                        th.small.text-right Q Total
+                        th.d-none.d-md-table-cell.small.text-right T Q
+                        th.small.text-right Custo 
+                        th.small.text-right Kms
+                        th.small.text-right €/Km
+                        th.small.text-right KWh/Kms
+                tbody 
+                    each linha in turno.abastecimentos
+                        tr.table-row
+                            td.small.text-right 
+                                a.btn.btn-primary.btn-sm.btn-block(href="/Abastecimento/"+turno.id_viatura+"/"+linha.id_abastecimento) #{linha.id_abastecimento}
+                            td.d-none.d-sm-table-cell.small.text-right #{linha.odometro}
+                            td.small.text-right #{linha.h_ini}
+                            td.small.text-right #{linha.q_ini}
+                            td.small.text-right #{linha.h_fim}
+                            td.small.text-right #{linha.q_fim}
+                            td.small.text-right #{linha.carga}
+                            td.small.text-right #{linha.t_carga}
+                            td.small.text-right #{linha.custo}
+                            td.small.text-right #{linha.kms_percorridos}
+                            td.small.text-right #{linha.custo_km}
+                            td.small.text-right #{linha.consumo_km}
+                    tr.table-row
+                        td.small.text-right &nbsp;
+                        td.small.text-right &nbsp;
+                        td.small.text-right &nbsp;
+                        td.small.text-right &nbsp;
+                        td.small.text-right &nbsp;
+                        td.small.text-right &nbsp;
+                        td.small.text-right &nbsp;
+                        td.small.text-right #{turno.tempo_total_q}
+                        td.small.text-right #{turno.custo_total}
+                        td.small.text-right &nbsp;
+                        td.small.text-right &nbsp;
+                        td.small.text-right &nbsp;
+
+mixin lista_abastecimentos_mt_turno(turno)
+    .col-xs-12.col-lg-12
+        +panel-info("Lista de Abastecimentos do turno id: "+ turno.id_turno)
+            div.table-responsive
+                table.table.table-striped
+                    thead
+                        tr
+                            th.small.text-right id
+                            th.small.text-right Data
+                            th.d-none.d-sm-table-cell.small.text-right Odómetro
+                            th.small.text-right Litros
+                            th.small.text-right Custo 
+                            th.small.text-right Kms
+                            th.small.text-right €/Km
+                            th.small.text-right L/Kms
+                    tbody 
+                        each linha in turno.abastecimentos
+                            tr.table-row
+                                td.small.text-right
+                                    a.btn.btn-primary.btn-sm.btn-block(href="/Abastecimento/"+turno.id_viatura+"/"+linha.id_abastecimento) #{linha.id_abastecimento}
+                                //-#{linha.id_abastecimento}
+                                td.small.text-right #{linha.data}
+                                td.d-none.d-sm-table-cell.small.text-right #{linha.odometro}
+                                td.small.text-right #{linha.litros}
+                                td.small.text-right #{linha.custo}
+                                td.small.text-right #{linha.kms_percorridos}
+                                td.small.text-right #{linha.custo_km}
+                                td.small.text-right #{linha.consumo_km}
+                        tr.table-row
+                            td.small.text-right &nbsp;
+                            td.small.text-right &nbsp;
+                            td.small.text-right &nbsp;
+                            td.small.text-right &nbsp;
+                            td.small.text-right #{turno.total}
+                            td.small.text-right &nbsp;
+                            td.small.text-right &nbsp;
+                            td.small.text-right &nbsp;
+
+mixin lista_abastecimentos_mt(titulos, dados)
+    .table-responsive
+        .table-wrap
+            table.table.table-striped.table-hover
+                thead 
+                    tr 
+                        each titulo in titulos 
+                            th.text-right #{titulo}
+                tbody 
+                    each item in dados 
+                        tr.table-row
+                            td.text-right 
+                                a.btn.btn-primary.btn-sm.btn-block(href="/Abastecimento/"+item.id_viatura+"/"+item.id_abastecimento) #{item.id_abastecimento}
+                            td.text-right
+                                a.btn.btn-primary.btn-sm.btn-block(href="/Viatura/"+item.id_viatura) #{item.id_viatura}                
+                            td.text-right 
+                                a.btn.btn-primary.btn-sm.btn-block(href="/Turno/"+item.id_turno) #{item.id_turno}
+                            td.text-right #{item.data}
+                            td.text-right #{item.litros}
+                            td.text-right #{item.custo}
+
+mixin lista_abastecimentos_ev(titulos, dados)
+    .table-responsive 
+        .table-wrap
+            table.table.table-striped.table-hover
+                thead 
+                    tr 
+                        each titulo in titulos 
+                            th.text-right #{titulo}
+                tbody 
+                    each item in dados 
+                        tr.table-row
+                            td.text-right 
+                                a.btn.btn-primary.btn-sm.btn-block(href="/Abastecimento/"+item.id_viatura+"/"+item.id_abastecimento) #{item.id_abastecimento}
+                            td.text-right
+                                a.btn.btn-primary.btn-sm.btn-block(href="/Viatura/"+item.id_viatura) #{item.id_viatura}                
+                            td.text-right
+                                a.btn.btn-primary.btn-sm.btn-block(href="/Turno/"+item.id_turno) #{item.id_turno}
+                            td.text-right #{item.h_ini}
+                            td.text-right #{item.t_carga}
+                            td.text-right #{item.carga}
+                            td.text-right #{item.custo}
+
+mixin lista_de_abastecimentos_viatura(titulos, viatura, abastecimentos)
+    +panel-info("Histórico de abastecimentos: viatura id " + viatura.id_viatura)
+        if viatura.ev 
+            .table-responsive 
+                .table-wrap
+                    table.table.table-striped.table-hover
+                        thead 
+                            tr 
+                                each titulo in titulos 
+                                    th.text-right #{titulo}
+                        tbody 
+                            each item in abastecimentos 
+                                tr.table-row
+                                    td.text-right 
+                                        a.btn.btn-primary.btn-sm.btn-block(href="/Abastecimento/"+item.id_viatura+"/"+item.id_abastecimento) #{item.id_abastecimento}
+                                    td.text-right
+                                        a.btn.btn-primary.btn-sm.btn-block(href="/Turno/"+item.id_turno) #{item.id_turno}
+                                    td.text-right #{item.h_ini}
+                                    td.text-right #{item.t_carga}
+                                    td.text-right #{item.carga}
+                                    td.text-right #{item.custo}
+        else 
+            .table-responsive
+                .table-wrap
+                    table.table.table-striped.table-hover
+                        thead 
+                            tr 
+                                each titulo in titulos 
+                                    th.text-right #{titulo}
+                        tbody 
+                            each item in abastecimentos 
+                                tr.table-row
+                                    td.text-right 
+                                        a.btn.btn-primary.btn-sm.btn-block(href="/Abastecimento/"+item.id_viatura+"/"+item.id_abastecimento) #{item.id_abastecimento}
+                                    td.text-right 
+                                        a.btn.btn-primary.btn-sm.btn-block(href="/Turno/"+item.id_turno) #{item.id_turno}
+                                    td.text-right #{item.data}
+                                    td.text-right #{item.litros}
+                                    td.text-right #{item.custo}            
