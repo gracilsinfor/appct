@@ -1,0 +1,19 @@
+.container-fluid
+    .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+" - "+sub_title
+                .pull-right
+                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar            
+            .row
+                .col-xs-12.col-sm-12.col-md-4.col-lg-3
+                    +input_file(rota, "input_file_img_condutor", "carregar imagem", "Procurar imagem", true)
+                .col-xs-12.col-sm-12.col-md-8.col-lg-9.placeholder
+                    .row 
+                        +ficha_condutor_c()
+                        .container-fluid
+                            .row 
+                                .col
+                                    a.btn.btn-danger.btn-block(href='/Condutor/C', role='button') Registar novo condutor »
+                                    p
+                                .col
+                                    a.btn.btn-success.btn-block(onclick = 'history.back()', role='button') « Voltar  
