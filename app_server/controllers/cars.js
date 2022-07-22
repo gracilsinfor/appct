@@ -27,7 +27,7 @@ const car_c = (req, res) =>{
     res.render('carro', {
         title: 'Viatura', 
         sub_title: 'nova', 
-        rota: '/Viatura/C',
+        rota: "/Viatura/C",
     });
 }
 

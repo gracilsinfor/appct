@@ -207,7 +207,7 @@ mixin ficha_viatura_u(dados)
                 +yainput("text", "txt_proxima_manutencao", "proxima_manutencao", "Próxima manutenção:", "proxima_manutencao", dados.kms_proxima_manutencao + ' - ' + dados.data_proxima_manutencao, "enabled")
 
 mixin ficha_viatura_c()
-    +panel-danger("Ficha da nova viatura")
+    +panel-danger("Registo de nova viatura")
         .row
             .col-xs-4.col-lg-3.container-fluid
                 +yainput("text", "txt_matricula", "matricula", "Matrícula:", "matricula", '', "enabled")
@@ -256,6 +256,50 @@ mixin ficha_viatura(dados)
                 +yainput("text", "txt_ultima_manutencao", "ultima_manutencao", "Última manutenção:", "ultima_manutencao", dados.kms_ultima_manutencao + ' - ' + dados.data_ultima_manutencao, "disabled")  
             .col-sm-6.col-lg-6
                 +yainput("text", "txt_proxima_manutencao", "proxima_manutencao", "Próxima manutenção:", "proxima_manutencao", dados.kms_proxima_manutencao + ' - ' + dados.data_proxima_manutencao, "disabled")
+ 
+mixin ficha_condutor_c()
+    +panel-info("Registo de novo condutor")
+        .row 
+            .col-xs-12.col-sm-12.col-md-6.col-lg-8
+                +yainput("text", "txt_nome", "nome", "Nome:", "nome", "", "enabled")
+            .col-xs-6.col-sm-6.col-md-3.col-lg-2
+                .text-center
+                    p
+                    br
+                    +yacheckbox-inline("chk_ativo", "Ativo", "ativo", false, true)
+            .col-xs-6.col-sm-6.col-md-3.col-lg-2 
+                +yainput("text", "txt_nif", "NIF", "NIF:", "nif", "", "enabled")
+        .row 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-5
+                +yainput("text", "txt_email", "email", "@mail:", "email", "", "enabled")
+            .col-xs-12.col-sm-12.col-md-4.col-lg-3
+                +yainput("text", "txt_telefone_condutor", "telefone_condutor", "Telefone: ", "telefone_condutor", "", "enabled") 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-2
+                +yainput("text", "txt_entrada_servico", "entrada_servico", "Entrada em: ", "entrada_servico", "" , "enabled") 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-2
+                +yainput("text", "txt_kms_feito", "kms_feito", "Kms feitos:", "kms_feito", "", "enabled")
+
+mixin ficha_condutor(dados)
+    +panel-info("Ficha do condutor id: " + dados.id_condutor)
+        .row 
+            .col-xs-12.col-sm-12.col-md-6.col-lg-8
+                +yainput("text", "txt_nome", "nome", "Nome:", "nome", dados.nome_condutor, "disabled")
+            .col-xs-6.col-sm-6.col-md-3.col-lg-2
+                .text-center
+                    p
+                    br
+                    +yacheckbox-inline("chk_ativo", "Ativo", "ativo", dados.ativo, false)
+            .col-xs-6.col-sm-6.col-md-3.col-lg-2 
+                +yainput("text", "txt_nif", "NIF", "NIF:", "nif", dados.nif_condutor, "disabled")
+        .row 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-5
+                +yainput("text", "txt_email", "email", "@mail:", "email", dados.email_condutor, "disabled")
+            .col-xs-12.col-sm-12.col-md-4.col-lg-3
+                +yainput("text", "txt_telefone_condutor", "telefone_condutor", "Telefone: ", "telefone_condutor", dados.telefone_condutor, "disabled") 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-2
+                +yainput("text", "txt_entrada_servico", "entrada_servico", "Entrada em: ", "entrada_servico", dados.data_entrada, "disabled") 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-2
+                +yainput("text", "txt_kms_feito", "kms_feito", "Kms feitos:", "kms_feito", dados.kms_feitos, "disabled")
 
 mixin ficha_turno(turno)
     +panel-info("Ficha do turno id: " + turno.id_turno)  

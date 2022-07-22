@@ -2,29 +2,52 @@
 	.row
 		.col-sm-3.col-md-2.col-lg-2.sidebar
 			ul.nav.nav-sidebar
+				//- li.nav-item
+				//- 	a.nav-link(href='/') Início 
 				li.nav-item
-					a.nav-link(href='/') Início 
+					a.nav-link(href='#') 
+						.fa.fa-chart-pie.fa-fw 
+						|&nbsp;Relatórios
 				li.nav-item
-					a.nav-link(href='#') Relatórios
+					a.nav-link(href='#') 
+						.fa.fa-chart-bar.fa-fw 
+						|&nbsp;Análise
 				li.nav-item
-					a.nav-link(href='#') Análise
+					a.nav-link(href='#') 
+						.fa.fa-file-export.fa-fw 
+						|&nbsp;Exportar
 				li.nav-item
-					a.nav-link(href='#') Exportar
+					a.nav-link(href='#') 
+						.fa.fa-file-import.fa-fw 
+						|&nbsp;Importar
+				li.nav-item.divider 
+					
 				li.nav-item
-					a.nav-link(href='#') Importar
+					a.nav-link(href='/Condutores')
+						.fa.fa-id-card.fa-fw 
+						|&nbsp;Condutores
+				li.nav-item
+					a.nav-link(href='/Viaturas') 
+						.fa.fa-car.fa-fw 
+						|&nbsp;Viaturas
+				li.nav-item
+					a.nav-link(href='/Turnos') 
+						.fa.fa-people-arrows.fa-fw 
+						|&nbsp;Turnos 
+				li.nav-item
+					a.nav-link(href='/Abastecimentos') 
+						.fa.fa-gas-pump.fa-fw 
+						|&nbsp; Abastecimentos
+				li.nav-item
+					a.nav-link(href='/Manutencoes') 
+						.fa.fa-tools.fa-fw 
+						|&nbsp; Manutenções						
 			ul.nav.nav-sidebar
 				li.nav-item
-					APP
+					a.nav-link(href='#') 
+						.fa.fa-cogs.fa-fw 
+						|&nbsp; Configurações
 				li.nav-item
-					a.nav-link(href='/Condutores') Condutores
-				li.nav-item
-					a.nav-link(href='/Viaturas') Viaturas
-				li.nav-item
-					a.nav-link(href='/Turnos') Turnos
-				li.nav-item
-					a.nav-link(href='/Abastecimentos') Abastecimentos
-			ul.nav.nav-sidebar
-				li.nav-item
-					a.nav-link(href='') Configurações
-				li.nav-item
-					a.nav-link(href='') Ajuda
+					a.nav-link(href='#') 
+						.fa.fa-question.fa-fw 
+						|&nbsp; Ajuda
