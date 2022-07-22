@@ -104,12 +104,7 @@ dist
 .tern-port
 
 # Testes PUG
-<<<<<<< Updated upstream
 app_server/pugstrap/test/
 app_server/pugstrap/layouts/
 
 *.xlsx
-=======
-pugstrap/test/
-pugstrap/layouts/
->>>>>>> Stashed changes
