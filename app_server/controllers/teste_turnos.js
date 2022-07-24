@@ -23,12 +23,6 @@ fs.readFile('./app_server/turnos.json', async function(err, data) {
         const h_ini = await (hora_ini==undefined ? 'n/d' : hora_ini);
         const d_fim = await (dia_fim==undefined || dia_fim=='' ? '' : dia_fim);
         const h_fim = await (hora_fim==undefined || hora_fim =='' ? '' : hora_fim);
-        console.log({
-            d_ini,
-            h_ini,
-            d_fim,
-            h_fim,
-        })
         turnos.novo([ t._id, t._id_condutor, t._id_viatura, t._km_ini, d_ini, h_ini, t._km_fim, d_fim, h_fim]);
     }
     fs.close;

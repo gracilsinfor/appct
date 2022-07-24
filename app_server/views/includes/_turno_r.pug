@@ -13,23 +13,22 @@
                         .col.placeholder
                             +snipet_viatura(turno)
                 .col-xs-12.col-sm-12.col-md-10.col-lg-10
-                    .row 
-                        .col
-                            .container-fluid
-                                +ficha_turno(turno)
-                                a.btn.btn-warning.btn-block(href='/Turno/U/'+turno.id_turno, role='button') Atualizar ficha de turno »
-                                br
-                    .row
+                    .row.placeholder-10
+                        .col-xs-12.col-sm-12.col-md-12.col-lg-12
+                            +ficha_turno(turno)
+                            a.btn.btn-warning.btn-block(href='/Turno/U/'+turno.id_turno, role='button') Atualizar ficha de turno »
+                    .row.placeholder-10
                         .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                            p
                             +ficha_faturacao_turno(faturacao)
                             a.btn.btn-warning.btn-block(href='/Faturacao/U/'+turno.id_turno, role='button') Atualizar ficha de faturação do turno »    
-                            br
                         .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                            p
                             +ficha_gratificacao_turno(faturacao)
                             a.btn.btn-warning.btn-block(href='/Faturacao/U/'+turno.id_turno, role='button') Atualizar ficha de gratificações do turno »
-                            br  
             .row
                 .col
+                    p
                     if turno.ev
                         +lista_abastecimentos_ev_turno(turno)
                     else 

@@ -8,10 +8,10 @@
                 .col-xs-12.col-sm-12.col-md-2.col-lg-2
                     .row
                         .col.placeholder
-                          h1 Condutor
+                          +placeholder_condutor()
                     .row
                         .col.placeholder
-                          h1 Viatura
+                          +placeholder_viatura()
                 .col-xs-12.col-sm-12.col-md-10.col-lg-10
                     .row
                         .col
@@ -19,7 +19,7 @@
                                 //- h5 #{dia_now}
                                 //- h5 #{hora_now}
                                 +ficha_turno_c(dia_now, hora_now)
-                                a.btn.btn-danger.btn-block(href='/Turno/C/', role='button') Registar novo turno »
+                                a.btn.btn-danger.btn-block(href='/Turno/C/', role='button') Registar início de turno »
                                 br
                                 a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
                                 br

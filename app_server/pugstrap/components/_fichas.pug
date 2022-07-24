@@ -183,17 +183,22 @@ mixin ficha_abastecimento_ev_u(abastecimento)
 mixin ficha_viatura_u(dados)
     +panel-danger("Ficha da viatura id: " + dados.id_viatura)
         .row
-            .col-xs-4.col-lg-3.container-fluid
-                +yainput("text", "txt_matricula", "matricula", "Matrícula:", "matricula", dados.matricula, true)
-
-            .col-xs-4.col-lg-6.container-fluid
-                br
-                +yacheckbox-inline("chk_estado_viatura", "Ativa", "ativa", dados.ativa, true)
-                br
-                +yacheckbox-inline("chk_ev", "Elétrico", "ev", dados.ev, true)
-
-            if dados.ev
-                .col-xs-4.col-lg-3.container-fluid
+            .col-xs-12.col-lg-12
+                +yacheckbox("estado", "Ativa", "chk_estado", dados.ativa, true)
+        .row
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +yacheckbox("ev", "Elétrica", "chk_ev", dados.ev, true)
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                if dados.ev
+                    +awsme_input("text", "q_bateria", "txt_qbateria", "Bat (KWH)", "q_bateria", dados.q_bateria, true, "battery")
+        .row
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "matricula", "txt_matricula", "Matrícula", "matricula", dados.matricula, true, "car")
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "odometro", "txt_odometro", "Odometro:", "odometro", dados.odometro, true, "tachometer") 
+        .row       
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12
+                +awsme_input("text", "descricao", "txt_descricao", "Descrição da viatura", "descrição", dados.descricao_viatura, true, "clipboard")
                     +yainput("text", "txt_q_bateria", "q_bateria", "Bat(KWH):", "q_bateria", dados.q_bateria, true)
         .row 
             .col-sm-8.col-lg-8
@@ -202,150 +207,164 @@ mixin ficha_viatura_u(dados)
                 +yainput("text", "txt_odometro", "odometro", "Odometro:", "odometro", dados.odometro, true)
         .row
             .col-sm-6.col-lg-6
-                +yainput("text", "txt_ultima_manutencao", "ultima_manutencao", "Última manutenção:", "ultima_manutencao", dados.kms_ultima_manutencao + ' - ' + dados.data_ultima_manutencao, "enabled")  
+                +awsme_input("text", "ultima_manutencao", "txt_ultimamanutencao", "Última manutenção", "última manutenção", '', false, "tools")  
             .col-sm-6.col-lg-6
-                +yainput("text", "txt_proxima_manutencao", "proxima_manutencao", "Próxima manutenção:", "proxima_manutencao", dados.kms_proxima_manutencao + ' - ' + dados.data_proxima_manutencao, "enabled")
+                +awsme_input("text", "proxima_manutencao", "txt_proximamanutencao", "Próxima manutenção", "próxima manutenção", '', false, "tools")
 
 mixin ficha_viatura_c()
     +panel-danger("Registo de nova viatura")
         .row
-            .col-xs-4.col-lg-3.container-fluid
-                +yainput("text", "txt_matricula", "matricula", "Matrícula:", "matricula", '', true)
-
-            .col-xs-4.col-lg-6.container-fluid
-                br
-                +yacheckbox-inline("chk_estado_viatura", "Ativa", "ativa", true, true)
-                br
-                +yacheckbox-inline("chk_ev", "Elétrico", "ev", false, true)
-
-            .col-xs-4.col-lg-3.container-fluid
-                +yainput("text", "txt_q_bateria", "q_bateria", "Bat(KWH):", "q_bateria", '', true)
+            .col-xs-12.col-lg-12
+                +yacheckbox("estado", "Ativa", "chk_estado", true, true)
+        .row  
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +yacheckbox("ev", "Elétrica", "chk_ev", false, true)
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "q_bateria", "txt_qbateria", "Bat (KWH)", "q_bateria", '', false, "battery")
+        .row
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "matricula", "txt_matricula", "Matrícula", "matricula", '', true, "car")
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "odometro", "txt_odometro", "Odometro:", "odometro", '', true, "tachometer")
         .row 
-            .col-sm-8.col-lg-8
-                +yainput("text", "txt_descricao", "descricao", "Descrição:", "descrição", '', true)
-            .col-sm-4.col-lg-4.container-fluid
-                +yainput("text", "txt_odometro", "odometro", "Odometro:", "odometro", '', true)
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12
+                +awsme_input("text", "descricao", "txt_descricao", "Descrição", "descrição", '', true, "clipboard")
         .row
             .col-sm-6.col-lg-6
-                +yainput("text", "ultima_manutencao", "txt_ultimamanutencao", "Última manutenção", "última manutenção", '', false)  
+                +awsme_input("text", "ultima_manutencao", "txt_ultimamanutencao", "Última manutenção", "última manutenção", '', false, "tools")  
             .col-sm-6.col-lg-6
-                +yainput("text", "proxima_manutencao", "txt_proximamanutencao", "Próxima manutenção", "próxima manutenção", '', false)
+                +awsme_input("text", "proxima_manutencao", "txt_proximamanutencao", "Próxima manutenção", "próxima manutenção", '', false, "tools")
 
 mixin ficha_viatura(dados)
     +panel-info("Ficha da viatura id: " + dados.id_viatura)
         .row
-            .col-xs-4.col-lg-3.container-fluid
-                +yainput("text", "txt_matricula", "matricula", "Matrícula:", "matricula", dados.matricula, "disabled")
-
-            .col-xs-4.col-lg-6.container-fluid
-                br
-                +yacheckbox-inline("chk_estado_viatura", "Ativa", "ativa", dados.ativa, false)
-                br
-                +yacheckbox-inline("chk_ev", "Elétrico", "ev", dados.ev, false)
-
-            if dados.ev
-                .col-xs-4.col-lg-3.container-fluid
-                    +yainput("text", "txt_q_bateria", "q_bateria", "Bat(KWH):", "q_bateria", dados.q_bateria, "disabled")
-        .row 
-            .col-sm-8.col-lg-8
-                +yainput("text", "txt_descricao", "descricao", "Descrição:", "descrição", dados.descricao_viatura, "disabled")
-            .col-sm-4.col-lg-4.container-fluid
-                +yainput("text", "txt_odometro", "odometro", "Odometro:", "odometro", dados.odometro, "disabled")
+            .col-xs-12.col-lg-12
+                +yacheckbox("estado", "Ativa", "chk_estado", dados.ativa, false)
+        .row
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +yacheckbox("ev", "Elétrica", "chk_ev", dados.ev, false)
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                if dados.ev
+                    +awsme_input("text", "q_bateria", "txt_qbateria", "Bat (KWH)", "q_bateria", dados.q_bateria, false, "battery")
+        .row
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "matricula", "txt_matricula", "Matrícula", "matricula", dados.matricula, false, "car")
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "odometro", "txt_odometro", "Odometro:", "odometro", dados.odometro, false, "tachometer") 
+        .row       
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12
+                +awsme_input("text", "descricao", "txt_descricao", "Descrição da viatura", "descrição", dados.descricao_viatura, false, "clipboard")
         .row
             .col-sm-6.col-lg-6
-                +yainput("text", "txt_ultima_manutencao", "ultima_manutencao", "Última manutenção:", "ultima_manutencao", dados.kms_ultima_manutencao + ' - ' + dados.data_ultima_manutencao, "disabled")  
+                +awsme_input("text", "ultima_manutencao", "txt_ultimamanutencao", "Última manutenção", "última manutenção", '', false, "tools")  
             .col-sm-6.col-lg-6
-                +yainput("text", "txt_proxima_manutencao", "proxima_manutencao", "Próxima manutenção:", "proxima_manutencao", dados.kms_proxima_manutencao + ' - ' + dados.data_proxima_manutencao, "disabled")
+                +awsme_input("text", "proxima_manutencao", "txt_proximamanutencao", "Próxima manutenção", "próxima manutenção", '', false, "tools")
  
 mixin ficha_condutor_c()
-    +panel-info("Registo de novo condutor")
+    - let d = new Date(Date.now())
+    - let dn = d.toISOString().substring(0,10)
+    +panel-danger("Registo de novo condutor")
         .row 
-            .col-xs-12.col-sm-12.col-md-6.col-lg-8
-                +yainput("text", "txt_nome", "nome", "Nome:", "nome", "", "enabled")
-            .col-xs-6.col-sm-6.col-md-3.col-lg-2
-                .text-center
-                    p
-                    br
-                    +yacheckbox-inline("chk_ativo", "Ativo", "ativo", false, true)
-            .col-xs-6.col-sm-6.col-md-3.col-lg-2 
-                +yainput("text", "txt_nif", "NIF", "NIF:", "nif", "", "enabled")
+            .col-xs-12.col-lg-12.placeholder-10
+                +yacheckbox("estado", "Ativo", "chk_estado", true, true)
         .row 
-            .col-xs-12.col-sm-12.col-md-4.col-lg-5
-                +yainput("text", "txt_email", "email", "@mail:", "email", "", "enabled")
-            .col-xs-12.col-sm-12.col-md-4.col-lg-3
-                +yainput("text", "txt_telefone_condutor", "telefone_condutor", "Telefone: ", "telefone_condutor", "", "enabled") 
-            .col-xs-12.col-sm-12.col-md-4.col-lg-2
-                +yainput("text", "txt_entrada_servico", "entrada_servico", "Entrada em: ", "entrada_servico", "" , "enabled") 
-            .col-xs-12.col-sm-12.col-md-4.col-lg-2
-                +yainput("text", "txt_kms_feito", "kms_feito", "Kms feitos:", "kms_feito", "", "enabled")
+            .col-xs-12.col-sm-12.col-md-12.col-lg-6
+                +awsme_input("text", "nome", "txt_nome", "Nome", "nome do condutor", "", true, "signature")
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                +awsme_input("text", "nif", "txt_nif", "NIF", "123456789", "", true, "excel")
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                +awsme_input("text", "telefone", "txt_telefone", "Telefone", "999999999", "", true, "phone") 
+        .row 
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("text", "email", "txt_email", "@mail", "@email", "", true, "at")
+            .col-xs-6.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("date", "entrada", "date_entrada", "Entrada em", "", dn , true, "calendar") 
+            .col-xs-6.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("text", "kmsfeitos", "txt_kmsfeitos", "Kms feitos", "9999 kms", "", true, "road")
 
 mixin ficha_condutor(dados)
     +panel-info("Ficha do condutor id: " + dados.id_condutor)
         .row 
-            .col-xs-12.col-sm-12.col-md-6.col-lg-8
-                +yainput("text", "txt_nome", "nome", "Nome:", "nome", dados.nome_condutor, "disabled")
-            .col-xs-6.col-sm-6.col-md-3.col-lg-2
-                .text-center
-                    p
-                    br
-                    +yacheckbox-inline("chk_ativo", "Ativo", "ativo", dados.ativo, false)
-            .col-xs-6.col-sm-6.col-md-3.col-lg-2 
-                +yainput("text", "txt_nif", "NIF", "NIF:", "nif", dados.nif_condutor, "disabled")
+            .col-xs-12.col-lg-12.placeholder-10
+                +yacheckbox("estado", "Ativo", "chk_estado", dados.ativo, false)
         .row 
-            .col-xs-12.col-sm-12.col-md-4.col-lg-5
-                +yainput("text", "txt_email", "email", "@mail:", "email", dados.email_condutor, "disabled")
-            .col-xs-12.col-sm-12.col-md-4.col-lg-3
-                +yainput("text", "txt_telefone_condutor", "telefone_condutor", "Telefone: ", "telefone_condutor", dados.telefone_condutor, "disabled") 
-            .col-xs-12.col-sm-12.col-md-4.col-lg-2
-                +yainput("text", "txt_entrada_servico", "entrada_servico", "Entrada em: ", "entrada_servico", dados.data_entrada, "disabled") 
-            .col-xs-12.col-sm-12.col-md-4.col-lg-2
-                +yainput("text", "txt_kms_feito", "kms_feito", "Kms feitos:", "kms_feito", dados.kms_feitos, "disabled")
+            .col-xs-12.col-sm-12.col-md-12.col-lg-6
+                +awsme_input("text", "nome", "txt_nome", "Nome", "nome do condutor", dados.nome_condutor, false, "signature")
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                +awsme_input("text", "nif", "txt_nif", "NIF", "123456789", dados.nif, false, "excel")
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                +awsme_input("text", "telefone", "txt_telefone", "Telefone", "999999999", dados.telefone_condutor, false, "phone") 
+        .row 
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("text", "email", "txt_email", "@mail", "@email", dados.email_condutor, false, "at")
+            .col-xs-6.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("date", "entrada", "date_entrada", "Entrada em", "", dados.data_entrada , false, "calendar") 
+            .col-xs-6.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("text", "kmsfeitos", "txt_kmsfeitos", "Kms feitos", "9999 kms", dados.kms_feitos, false, "road")
+
+mixin ficha_condutor_u(dados)
+    +panel-danger("Ficha do condutor id: " + dados.id_condutor)
+        .row 
+            .col-xs-12.col-lg-12.placeholder-10
+                +yacheckbox("estado", "Ativo", "chk_estado", dados.ativo, true)
+        .row 
+            .col-xs-12.col-sm-12.col-md-12.col-lg-6
+                +awsme_input("text", "nome", "txt_nome", "Nome", "nome do condutor", dados.nome_condutor, true, "signature")
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                +awsme_input("text", "nif", "txt_nif", "NIF", "123456789", dados.nif, true, "excel")
+            .col-xs-6.col-sm-6.col-md-6.col-lg-3
+                +awsme_input("text", "telefone", "txt_telefone", "Telefone", "999999999", dados.telefone_condutor, true, "phone") 
+        .row 
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("text", "email", "txt_email", "@mail", "@email", dados.email_condutor, true, "at")
+            .col-xs-6.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("date", "entrada", "date_entrada", "Entrada em", "", dados.data_entrada , true, "calendar") 
+            .col-xs-6.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("text", "kmsfeitos", "txt_kmsfeitos", "Kms feitos", "9999 kms", dados.kms_feitos, false, "road")
 
 mixin ficha_turno(turno)
-    +panel-info("Ficha do turno id: " + turno.id_turno)  
-        .row.placeholder
+    +panel-info("Ficha do turno id: " + turno.id_turno)
+        .row.placeholder-10.bg-success
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                +awsme_input("date", "dataini", "data_ini", "Início", "", turno.d_ini, false, "calendar_day_reg")
+                +awsme_input("date", "dataini", "data_ini", "Início", "", turno.d_ini, false, "calendar_day_sol")
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 +awsme_input("time", "horaini", "hora_ini", "Hora", "", turno.h_ini, false, "hourglass_start")
             .col-xs-12.col-sm-12.col-md-4.col-lg-4
                 +awsme_input("text", "txtodoini", "txt_odoini", "Odo ini", "", turno.odom_ini, false, "tachometer")
-        .row.placeholder
+        .row.placeholder-10.bg-success
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                +awsme_input("date", "datafim", "data_fim", "Fim", "", turno.d_fim, false, "calendar_day_sol")
+                +awsme_input("date", "datafim", "data_fim", "Fim", "", turno.d_fim, false, "calendar")
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 +awsme_input("time", "horafim", "hora_fim", "Hora", "", turno.h_fim, false, "hourglass_end")
             .col-xs-12.col-sm-12.col-md-4.col-lg-4
                 +awsme_input("text", "txtodofim", "txt_odofim", "Odo fim", "", turno.odom_final, false, "tachometer")
-
-        .row 
+        .row.placeholder-10.bg-success
             .col-xs-12.col-lg-4
-                +yainput("text", "txt_condutor", "condutor", "Condutor", 'condutor', turno.nome_condutor, "disabled")
+                +yainput("text", "condutor", "txt_condutor", "Condutor", 'condutor', turno.nome_condutor, "disabled")
             .col-xs-12.col-lg-4
-                +yainput("text", "txt_viatura", "viatura", "Viatura", 'descricao_viatura', turno.descricao_viatura, "disabled")
+                +yainput("text", "viatura", "txt_viatura", "Viatura", 'descricao_viatura', turno.descricao_viatura, "disabled")
             .col-xs-12.col-lg-2
-                +yainput("text", "txt_kms", "kms", "Kms", 'kms', turno.kms_percorridos, "disabled")
+                +yainput("text", "kms", "txt_kms", "Kms", 'kms', turno.kms_percorridos, "disabled")
             .col-xs-12.col-lg-2
-                +yainput("text", "txt_horasconducao", "horas_conducao", "Tempo", 'horas_conducao', turno.horas_conducao, "disabled")
+                +yainput("text", "horas_conducao", "txt_horasconducao", "Tempo", 'horas_conducao', turno.horas_conducao, "disabled")
 
 mixin ficha_turno_u(turno)
     +panel-danger("Ficha do turno id: " + turno.id_turno)  
-        .row.placeholder
+        .row.placeholder-10.bg-danger
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 +awsme_input("date", "dataini", "data_ini", "Início", "", turno.d_ini, true, "calendar")
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 +awsme_input("time", "horaini", "hora_ini", "Hora", "", turno.h_ini, true, "hourglass_start")
             .col-xs-12.col-sm-12.col-md-4.col-lg-4
                 +awsme_input("text", "txtodoini", "txt_odoini", "Odo ini", "", turno.odom_ini, true, "tachometer")
-        .row.placeholder
+        .row.placeholder-10.bg-danger
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 +awsme_input("date", "datafim", "data_fim", "Fim", "", turno.d_fim, true, "calendar")
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 +awsme_input("time", "horafim", "hora_fim", "Hora", "", turno.h_fim, true, "hourglass_end")
             .col-xs-12.col-sm-12.col-md-4.col-lg-4
                 +awsme_input("text", "txtodofim", "txt_odofim", "Odo fim", "", turno.odom_final, true, "tachometer")
-
-        .row 
+        .row.placeholder-10.bg-success 
             .col-xs-12.col-lg-4
                 +yainput("text", "txt_condutor", "condutor", "Condutor", 'condutor', turno.nome_condutor, "disabled")
             .col-xs-12.col-lg-4
@@ -358,23 +377,22 @@ mixin ficha_turno_u(turno)
 mixin ficha_turno_c(dia_now, hora_now)
     +panel-danger("Ficha do registo de novo turno")  
         .row
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4.placeholders
-                button.btn.btn-danger(type='button' id="btdataini" name="bt_dataini")
-                    +awsme_input("date", "btdataini", "bt_dataini", "Início", "", dia_now, false, "calendar")
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4.placeholders
-                button.btn.btn-danger(type='button' id="bthoraini" name="bt_horaini")
-                    +awsme_input("time", "bthoraini", "bt_horaini", "Hora", "", hora_now, false, "hourglass_start")
-            .col-xs-12.col-sm-12.col-md-4.col-lg-4.placeholders
-                +awsme_input("text", "txtodoini", "txt_odoini", "Odo ini", "", "", true, "tachometer")
+            .col-xs-12.col-lg-12.placeholder-10.bg-success
+                +awsme_input("text", "condutor", "txt_condutor", "Condutor", "utilizador com sessão", "", false, "user")
+        .row
+            .col-xs-12.col-lg-6.placeholder-10.bg-danger
+                +awsme_input("date", "btdataini", "bt_dataini", "Início", "", dia_now, true, "calendar")
+            .col-xs-12.col-lg-6.placeholder-10.bg-danger
+                +awsme_input("time", "bthoraini", "bt_horaini", "Hora", "", hora_now, true, "hourglass_start")
         .row 
-            .col-xs-12.col-lg-6
-                +yainput("text", "txt_nome_condutor", "nome_condutor", "Condutor:", 'nome_condutor', "nome do condutor", "disabled")
-            .col-xs-12.col-lg-6
-                +ddown_filtros("ddviatura","selecionar viatura","Viatura","dd_viatura", viaturas)
+            .col-xs-12.col-lg-6.placeholder-10.bg-danger
+                +awsme_dropdown("ddviatura","dd_viatura","Viatura", viaturas, true, "car")
+            .col-xs-12.col-lg-6.placeholder-10.bg-danger
+                +awsme_input("text", "txtodoini", "txt_odoini", "Odo ini", "", "", true, "tachometer")
 
 mixin ficha_faturacao_turno(dados)
     +panel-info("Ficha de faturação do turno id: " + dados.id_turno)  
-        .row
+        .row.placeholder-10.bg-success
             .col-xs-6.col-sm-6.col-md-3.col-lg-3
                 +yainput("text", "txt_f_u", "f_u", "Uber:", 'faturacao_uber', dados.f.u, "disabled")
             .col-xs-6.col-sm-6.col-md-3.col-lg-3
@@ -386,7 +404,7 @@ mixin ficha_faturacao_turno(dados)
 
 mixin ficha_gratificacao_turno(dados)
     +panel-info("Ficha de gratificação do turno id: " + dados.id_turno)  
-        .row
+        .row.placeholder-10.bg-success
             .col-xs-6.col-sm-6.col-md-3.col-lg-3
                 +yainput("text", "txt_g_u", "g_u", "Uber:", 'gratificacao_uber', dados.g.u, "disabled")
             .col-xs-6.col-sm-6.col-md-3.col-lg-3

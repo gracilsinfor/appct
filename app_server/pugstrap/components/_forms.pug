@@ -1,8 +1,8 @@
 include icons
 //- Input control with form-group wrapper
 
-mixin input_file(rota, id, nome, caption, estado)
-    +panel-info("Carregar imagem")
+mixin input_file(rota, id, nome, label, titulo, estado)
+    +panel-danger(titulo)
         .row
             .col.placeholder
                 .text-center
@@ -12,7 +12,7 @@ mixin input_file(rota, id, nome, caption, estado)
                         img.img-responsive.fa.fa-8x.fa-solid.fa-user(id="img_condutor" src='' alt=e1b8 placeholder="&#xe1b8")
                     p 
                     input.invisible(type="file" name=nome id=id)
-                    label.btn.btn-danger(for=id) #{caption} 
+                    label.btn.btn-danger(for=id) #{label} 
                 .pull-right id: &nbsp;
 
 mixin input_data(id, name, label, valor, estado )
@@ -46,14 +46,15 @@ mixin input_datetime(id, label, valor, start_end, nome, estado)
 //-                 input(type=type, id=id, value=valor, estado)
 
 mixin awsme_input(tipo, id, nome, label, placeholder, valor, estado, awsme)
-    label(for=id) #{label}
-    .input-group.mb-5
-        .input-group-addon
-            +awsme(awsme)
-        if(estado)
-            input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor)
-        else
-            input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor, disabled)
+    .form-group
+        label(for=id) #{label}
+        .input-group
+            .input-group-addon
+                +awsme(awsme)
+            if(estado)
+                input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor)
+            else
+                input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor, disabled)
 
 mixin yainput(tipo, id, nome, label, placeholder, valor, estado)
     .form-group
@@ -68,11 +69,25 @@ mixin yainput-simple(type,id,placeholder,name)
     input.form-control(type=type,id=id,placeholder=placeholder,name=name)
 
 //- Checkbox - Block style
-mixin yacheckbox(text,name,id)
-    .checkbox
-        label
-            input(type="checkbox",name=name,id=id)
-            = text
+mixin yacheckbox(id, label, name, valor, enabled)
+    .form-group
+        //- .form-check.form-switch 
+        //-     input.form-check-input(type="checkbox" id=id name=nome checked=valor)
+        //-     label.form-check-label(for=id)
+        //-     = label
+        //- .form-check
+        //-     input.form-check-input(type="checkbox", value=valor, id=id, name=nome, checked=valor)
+        //-     .label.form-check-label(for=id)
+        //-     .span.checkmark
+        //-     = label 
+
+        label.container_chk
+            if (!enabled) 
+                input(type="checkbox", id=id, label=label, name=name, checked=valor, disabled)
+            else
+                input(type="checkbox", id=id, label=label, name=name, checked=valor)
+            span.checkmark
+            = label
 
 //- Checkbox - Inline style
 mixin yacheckbox-inline(id, label, name, valor, enabled)

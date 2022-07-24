@@ -8,7 +8,7 @@ const driver_c = (req, res) =>{
     // const _condutor = ctrl_condutores.novo_condutor
     res.render('condutor', {
         title: 'Condutor', 
-        sub_title: 'novo registo', 
+        sub_title: 'novo', 
         // condutor: _condutor,
         rota: "/Condutor/C",
     });

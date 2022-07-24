@@ -3,6 +3,19 @@ mixin teste(dados)
         each item in dados 
             li #{item.id} #{item.viatura}
 
+mixin awsme_dropdown(id, nome, label, dados, estado, awsme)
+    .form-group 
+        label(for=id) #{label}
+        .input-group
+            .input-group-addon 
+                +awsme(awsme)
+            if(estado)
+                select.form-control(id=id, name=nome)
+                    each item in dados 
+                        option(value=Object.values(item)[0]) #{Object.values(item)[1]}
+            else
+                select.form-control(id=id, name=nome, disabled)
+
 mixin ddown_filtros(id, placeholder, label, name, dados)
     div.form-group
         label(for=id) #{label} 

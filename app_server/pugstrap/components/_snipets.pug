@@ -1,3 +1,16 @@
+mixin placeholder_viatura()
+    +panel-info("Viatura")
+        .row
+            .col.placeholder
+                .text-center
+                    img.img-responsive.fa.fa-8x.fa-solid.fa-car(id="img_viatura" src='' alt=f1b9 placeholder="&#xf1b9")
+                .pull-right id: &nbsp;
+mixin placeholder_condutor()
+    +panel-info('"Nome do codutor"')
+        .text-center 
+            img.img-responsive(src="/images/dashboard_blue.jpg", alt="nome do utilizador")
+        .pull-right id: &nbsp;
+
 mixin snipet_condutor(condutor)
     a(href="/Condutor/"+condutor.id_condutor)
         +panel-info(condutor.nome_condutor)

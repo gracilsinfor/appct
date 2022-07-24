@@ -14,7 +14,7 @@ const shift_c = async (req, res) =>{
     console.log(hora_now);
     res.render('turno', {
         title: 'Turno', 
-        sub_title: 'novo registo',
+        sub_title: 'novo',
         dia_now: dia_now, 
         hora_now: hora_now,
         viaturas: viaturas,
