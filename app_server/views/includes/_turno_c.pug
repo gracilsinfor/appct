@@ -1,55 +1,25 @@
 .container-fluid
-  .row
-    .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-      .row
-        .col
-          h2.page-header=title + " - " + sub_title
-      .row
-        .col-xs-12.col-lg-4.main
-          .row.placeholders
-            .col-xs-6.col-lg-6.placeholder
-              .text-center
-                +yadropdown('condutor', 'Condutor', 'Condutor: ', 'ddwn_condutor', dados.condutores, '')
-                h3 Condutor
-                img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-                h4 Label
-                span.text-muted Something else
-            .col-xs-6.col-lg-6.placeholder
-              .text-center
-                +yadropdown('carro', 'Carro', 'Carro: ', 'ddwn_carro', dados.carros, '')
-                h3 Carro
-                img.img-responsive(src='../images/dashboard_green.jpg', alt='Generic placeholder thumbnail')
-                h4 Label
-                span.text-muted Something else
-        .col-xs-12.col-lg-8
-              +panel-default("Dados do turno")
-                .row
-                  .col-sm-12.col-md-12.placeholder
+    .row 
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+' - '+sub_title    
+                .pull-right
+                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+            .row
+                .col-xs-12.col-sm-12.col-md-2.col-lg-2
                     .row
-                      .col-xs-12.col-lg-6.placeholder
-                        .text-center
-                          a.btn.btn-danger(type='button')
-                            span.fa.fa-solid.fa-hourglass-start
-                              +input("text", "txt_inicio", "Inicio do turno", "Início do turno:", 'inicio_turno', )
-                      .col-xs-12.col-lg-6.placeholder
-                        .text-center
-                          a.btn.btn-danger(type='button' disabled)
-                            span.fa.fa-solid.fa-hourglass-end
-                              +input("text", "txt_inicio", "Fim do turno", "Fim do turno:", 'fim_turno', )
+                        .col.placeholder
+                          h1 Condutor
                     .row
-                      .col-sm-12.col-md-3.placeholder
-                        +yadropdown("carro", "Carro", "Carro: ", "ddnw_carro", dados.carros, '')
-                      .col-sm-12.col-md-9.placeholder 
-                        +input("text", "txt_carro", "Carro", "Carro: ", 'carro', '' )
+                        .col.placeholder
+                          h1 Viatura
+                .col-xs-12.col-sm-12.col-md-10.col-lg-10
                     .row
-                      .col-sm-12.col-md-12
-                        +yadropdown("condutor", "Condutor", "Condutor: ", 'ddnw_condutor', dados.condutores, '')
-                    .row
-                      .col-12.placeholder
-                    .row
-                      .col-sm-6.col-md-6.placeholder
-                        .text-center
-                          a.btn.btn-success(href='/Shifts', role='button') « Cancelar
-                      .col-sm-6.col-md-6.placeholder
-                        .text-center
-                          a.btn.btn-danger(href='/Shift/U', role='button') Salvar »
+                        .col
+                            .container-fluid
+                                //- h5 #{dia_now}
+                                //- h5 #{hora_now}
+                                +ficha_turno_c(dia_now, hora_now)
+                                a.btn.btn-danger.btn-block(href='/Turno/C/', role='button') Registar novo turno »
+                                br
+                                a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+                                br

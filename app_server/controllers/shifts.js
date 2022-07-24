@@ -1,14 +1,24 @@
 const ctrl_turnos = require('./teste_turnos');
 const ctrl_condutores = require('./teste_condutores');
+const ctrl_viaturas = require('./teste_viaturas');
 const request = require('request');
 
 // para carregar um novo subdocumento turno
-const shift_c = (req, res) =>{
+const shift_c = async (req, res) =>{
+    const viaturas = await ctrl_viaturas.lista_matriculas();
+    const data_now = new Date(Date.now());
+    const dia_now = data_now.toISOString().substring(0,10);
+    const hora_now =data_now.toISOString().substring(11,16);
+    // dia_now = dia_now.replace(',','').substring(0, 16);
+    // console.log(dia_now);
+    console.log(hora_now);
     res.render('turno', {
         title: 'Turno', 
-        sub_title: 'novo registo', 
-        rota: req.path, 
-        dados: teste_.dados_teste
+        sub_title: 'novo registo',
+        dia_now: dia_now, 
+        hora_now: hora_now,
+        viaturas: viaturas,
+        rota: '/Turno/C', 
     });
 };
 

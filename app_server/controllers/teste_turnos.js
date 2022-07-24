@@ -17,7 +17,19 @@ fs.readFile('./app_server/turnos.json', async function(err, data) {
     }
     const array_t = await JSON.parse(data);
     for await(const t of array_t){
-        turnos.novo([ t._id, t._id_condutor, t._id_viatura, t._km_ini, t._h_ini, t._km_fim, t._h_fim]);
+        const [dia_ini, hora_ini] = await t._h_ini.split(' ');
+        const [dia_fim, hora_fim] = await t._h_fim.split(' ');
+        const d_ini = await (dia_ini==undefined ? 'n/d' : dia_ini);
+        const h_ini = await (hora_ini==undefined ? 'n/d' : hora_ini);
+        const d_fim = await (dia_fim==undefined || dia_fim=='' ? '' : dia_fim);
+        const h_fim = await (hora_fim==undefined || hora_fim =='' ? '' : hora_fim);
+        console.log({
+            d_ini,
+            h_ini,
+            d_fim,
+            h_fim,
+        })
+        turnos.novo([ t._id, t._id_condutor, t._id_viatura, t._km_ini, d_ini, h_ini, t._km_fim, d_fim, h_fim]);
     }
     fs.close;
   });
@@ -29,11 +41,11 @@ const heads_turno_sum = ['Turno', 'Carro', 'Ini', 'Fim', 'Grat U', 'Grat B', 'Gr
 async function turnos_ativos () {
     const arr_obj_turno = [];
     for await(const t of turnos){
-        if(t.h_fim == ''){
+        if(t.h_fim === ''){
             const obj_condutor = await ctrl_condutor.condutor_por_id(t.id_condutor);
             const obj_viatura = await ctrl_viatura.viatura_por_id(t.id_viatura);
             const obj = {
-                ...t.as_object,
+                ...t.as_object_0,
                 ...obj_condutor.as_object_0,
                 ...obj_viatura.as_object_0,
             }
@@ -49,7 +61,7 @@ async function lista_turnos () {
         const obj_condutor = await ctrl_condutor.condutor_por_id(t.id_condutor);
         const obj_viatura = await ctrl_viatura.viatura_por_id(t.id_viatura);
         const obj = {
-            ...t.as_object,
+            ...t.as_object_0,
             ...obj_condutor.as_object_0,
             ...obj_viatura.as_object_0,
         }

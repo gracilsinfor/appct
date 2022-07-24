@@ -15,7 +15,21 @@ mixin input_file(rota, id, nome, caption, estado)
                     label.btn.btn-danger(for=id) #{caption} 
                 .pull-right id: &nbsp;
 
-mixin input_datetime(id, label, value, start_end, estado)
+mixin input_data(id, name, label, valor, estado )
+    label(for=id) #{label}
+    .input-group.mb-5
+        .input-group-addon
+            .fa.fa-solid.fa-calendar-check
+        input.form-control(type="date", id=id, name=name, value=valor, disabled=estado)
+
+mixin input_hora(id, name, label, valor, estado )
+    label(for=id) #{label}
+    .input-group.mb-5
+        .input-group-addon
+            .fa.fa-solid.fa-hourglass-start
+        input.form-control(type="time", id=id, name=name, value=valor, disabled=estado)
+
+mixin input_datetime(id, label, valor, start_end, nome, estado)
     label(for=id) #{label}
     .input-group.mb-5
         .input-group-addon
@@ -23,22 +37,31 @@ mixin input_datetime(id, label, value, start_end, estado)
                 .fa.fa-solid.fa-hourglass-start
             else if start_end == "end"
                 .fa.fa-solid.fa-hourglass-end
-        input.form-control(type="datetime-local" id=id value=value disabled=estado)
+        input.form-control(type="datetime-local", id=id, value=valor, name=nome, disabled=estado)
 
-mixin yainput_date(type, id, placeholder, label, name, valor, estado)
-    //- a.btn.btn-danger(type='button', href='#', estado)
-    span.fa.fa-solid.fa-hourglass-end
-        label(for=id) #{label}
-            div.input-group.input-group-sm.mb-3
-                input(type=type, id=id, value=valor, estado)
+//- mixin yainput_date(type, id, placeholder, label, name, valor, estado)
+//-     span.fa.fa-solid.fa-hourglass-end
+//-         label(for=id) #{label}
+//-             div.input-group.input-group-sm.mb-3
+//-                 input(type=type, id=id, value=valor, estado)
 
-mixin yainput(type, id, placeholder, label, name, valor, estado)
+mixin awsme_input(tipo, id, nome, label, placeholder, valor, estado, awsme)
+    label(for=id) #{label}
+    .input-group.mb-5
+        .input-group-addon
+            +awsme(awsme)
+        if(estado)
+            input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor)
+        else
+            input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor, disabled)
+
+mixin yainput(tipo, id, nome, label, placeholder, valor, estado)
     .form-group
         label(for=id) #{label}
-        if(estado==='disabled')
-            input.form-control(type=type, id=id, placeholder=placeholder, name=name, value=valor , disabled)
+        if(estado==true)
+            input.form-control(type=tipo, id=id, name=nome, placeholder=placeholder, value=valor)
         else
-            input.form-control(type=type,id=id,placeholder=placeholder,name=name, value=valor)
+            input.form-control(type=tipo, id=id, name=nome, placeholder=placeholder, value=valor, disabled)
 
 //- Simple form input control without a form-group
 mixin yainput-simple(type,id,placeholder,name)

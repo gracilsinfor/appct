@@ -3,7 +3,7 @@
 		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2.main
 			h2.page-header.title=title+" - "+sub_title
 				.pull-right
-					.btn.btn-success(href='/Shift/C', role='button') Novo »
+					a.btn.btn-warning(href='/Turno/C', role='button') Novo »
 			.row
 				each item in dados
 					+par_turno(item) 
