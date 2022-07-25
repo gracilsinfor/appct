@@ -3,7 +3,7 @@
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
             h2.page-header=title+" - "+sub_title
                 .pull-right
-                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+                    +a-btn-back()
             .row
                 .col-xs-12.col-sm-12.col-md-4.col-lg-3.placeholder
                     +snipet_viatura(viatura)
@@ -12,19 +12,17 @@
                     .container-fluid
                         .row
                             .col
-                                a.btn.btn-warning.btn-block(href='/Viatura/U/' + viatura.id_viatura, role='button') Alterar ficha da viatura »
-                                p
+                                +a-btn-block(`/Viatura/U/${viatura.id_viatura}`, "Atualizar ficha da viatura", "edit", "warning")
                             .col 
             .row 
                 .col-xs-12.col-lg-6
                     +lista_de_manutencoes_viatura(viatura, manutencoes)
-                    a.btn.btn-warning.btn-block(href='/Manutencao/' + viatura.id_viatura, role='button') Marcar manutenção »
+                    +a-btn-block(`/Manutencao/C/${viatura.id_viatura}`, "Marcar manuteção", "file-new", "warning")
                 .col-xs-12.col-lg-6
                     +lista_de_abastecimentos_viatura(titulos, viatura, abastecimentos)
             .row 
                 .col-xs-12.col-lg-12
-                    a.btn.btn-success.btn-block(onclick = 'history.back()', role='button') « Voltar
-                    p
+                    +a-btn-block-back()
 
             .row.placeholders
                 .col-sm-12.col-md-4.placeholder

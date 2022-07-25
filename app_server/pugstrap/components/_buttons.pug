@@ -1,0 +1,178 @@
+//- button mixins
+//- anchor buttons
+mixin a-btn-block(url,texto,awsme, estilo)
+	a.btn(class=`btn-${estilo} btn-large btn-block`, href=url, role='button')
+		+awsme(awsme)
+		| &nbsp; #{texto}
+
+mixin a-btn-block-back()
+	a.btn.btn-block.btn-success(onclick = "history.back()", role='button') 
+		+awsme("back")
+		| &nbsp; retroceder
+
+mixin a-btn-back()
+	a.btn.btn-success(onclick = "history.back()", role='button') 
+		+awsme("back")
+		| &nbsp; retroceder
+
+mixin a-btn(url,awsme,texto,style)
+	- var type = (typeof style === 'undefined') ? "default" : style
+	a.btn(class=`btn-${type}`,href=url,role="button")
+		+awsme(awsme)
+		| &nbsp; #{texto}
+		block
+
+mixin a-btn-primary(url,awsme,texto)
+	+a-btn(url,awsme,texto,"primary")
+		block
+	
+mixin a-btn-info(url,awsme,texto)
+	+a-btn(url,awsme,texto,"info")
+		block
+	
+mixin a-btn-warning(url,awsme,texto)
+	+a-btn(url,awsme,texto,"warning")
+		block
+	
+mixin a-btn-danger(url,awsme,texto)
+	+a-btn(url,awsme,texto,"danger")
+		block
+	
+mixin a-btn-success(url,awsme,texto)
+	+a-btn(url,awsme,texto,"success")
+		block
+
+//- buttons
+mixin btn(caption,awsme,style,size)
+	- var type = (typeof style === 'undefined') ? "default" : style
+	unless size
+		button.btn(class=`btn-${type}`,type="button")
+			i
+				+awsme(awsme)
+					#{caption}
+	else
+		button.btn(class=`btn-${type} btn-${size}`,type="button")
+			i
+				+awsme(awsme)
+					#{caption}
+
+
+mixin btn-primary(caption,awsme)
+	+btn(caption,"primary",awsme)
+	
+mixin btn-info(caption,awsme)
+	+btn(caption,awsme,"info")
+	
+mixin btn-warning(caption,awsme)
+	+btn(caption,awsme,"warning")
+	
+mixin btn-danger(caption,awsme)
+	+btn(caption,awsme,"danger")
+	
+mixin btn-success(caption,awsme)
+	+btn(caption,awsme,"success")
+
+//- Large buttons	
+mixin btn-lg(caption,awsme)
+	- var type = (typeof style === 'undefined') ? 'default' : style
+	+btn(caption,awsme,type,"lg")
+	
+mixin btn-lg-primary(caption,awsme)
+	+btn(caption,awsme,"primary","lg")
+	
+mixin btn-lg-info(caption,awsme)
+	+btn(caption,awsme,"info","lg")
+	
+mixin btn-lg-success(caption,awsme)
+	+btn(caption,awsme,"success","lg")
+	
+mixin btn-lg-warning(caption,awsme)
+	+btn(caption,awsme,"warning","lg")
+	
+mixin btn-lg-danger(caption,awsme)
+	+btn(caption,awsme,"danger","lg")
+	
+//- Small buttons	
+mixin btn-sm(caption,awsme)
+	- var type = (typeof style === 'undefined') ? 'default' : style
+	+btn(caption,awsme,type,"sm")
+	
+mixin btn-sm-primary(caption,awsme)
+	+btn(caption,awsme,"primary","sm")
+	
+mixin btn-sm-info(caption,awsme)
+	+btn(caption,awsme,"info","sm")
+	
+mixin btn-sm-success(caption,awsme)
+	+btn(caption,awsme,"success","sm")
+	
+mixin btn-sm-warning(caption,awsme)
+	+btn(caption,awsme,"warning","sm")
+	
+mixin btn-sm-danger(caption,awsme)
+	+btn(caption,awsme,"danger","sm")
+	
+//- Extra Small buttons	
+mixin btn-xs(caption,awsme)
+	- var type = (typeof style === 'undefined') ? 'default' : style
+	+btn(caption,awsme,type,"xs")
+	
+mixin btn-xs-primary(caption,awsme)
+	+btn(caption,awsme,"primary","xs")
+	
+mixin btn-xs-info(caption,awsme)
+	+btn(caption,awsme,"info","xs")
+	
+mixin btn-xs-success(caption,awsme)
+	+btn(caption,awsme,"success","xs")
+	
+mixin btn-xs-warning(caption,awsme)
+	+btn(caption,awsme,"warning","xs")
+	
+mixin btn-xs-danger(caption,awsme)
+	+btn(caption,awsme,"danger","xs")
+		
+//- input buttons
+mixin input-btn(caption,awsme,style)
+	- var type = (typeof style === 'undefined') ? "default" : style
+	i
+		+awsme(awsme)
+	input.btn(class=`btn-${type}`,type="button",value=caption)
+
+mixin input-btn-primary(caption,awsme)
+	+input-btn(caption,awsme,"primary")
+	
+mixin input-btn-info(caption,awsme)
+	+input-btn(caption,awsme,"info")
+	
+mixin input-btn-warning(caption,awsme)
+	+input-btn(caption,awsme,"warning")
+	
+mixin input-btn-danger(caption,awsme)
+	+input-btn(caption,awsme,"danger")
+	
+mixin input-btn-success(caption,awsme)
+	+input-btn(caption,awsme,"success")
+	
+//- submit buttons
+mixin submit(caption,awsme,style)
+	- var type = (typeof style === 'undefined') ? "default" : style
+	i
+		+awsme(awsme)
+	input.btn(class=`btn-${type}`,type="submit",value=caption)
+	
+mixin submit-primary(caption,awsme)
+	+submit(caption,awsme,"primary")
+	
+mixin submit-info(caption,awsme)
+	+submit(caption,awsme,"info")
+	
+mixin submit-warning(caption,awsme)
+	+submit(caption,awsme,"warning")
+	
+mixin submit-danger(caption,awsme)
+	+submit(caption,awsme,"danger")
+	
+mixin submit-success(caption,awsme)
+	+submit(caption,awsme,"success")
+	

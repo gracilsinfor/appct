@@ -3,7 +3,7 @@
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
             h2.page-header=title+' - '+sub_title    
                 .pull-right
-                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+                    +a-btn-back()
             .row
                 .col-xs-12.col-sm-12.col-md-2.col-lg-2
                     .row 
@@ -16,16 +16,16 @@
                     .row.placeholder-10
                         .col-xs-12.col-sm-12.col-md-12.col-lg-12
                             +ficha_turno(turno)
-                            a.btn.btn-warning.btn-block(href='/Turno/U/'+turno.id_turno, role='button') Atualizar ficha de turno »
+                            +a-btn-block(`/Turno/U/${turno.id_turno}`, "Atualizar ficha de turno", "edit", "warning")
                     .row.placeholder-10
                         .col-xs-12.col-sm-12.col-md-6.col-lg-6
                             p
                             +ficha_faturacao_turno(faturacao)
-                            a.btn.btn-warning.btn-block(href='/Faturacao/U/'+turno.id_turno, role='button') Atualizar ficha de faturação do turno »    
+                            +a-btn-block(`/Faturacao/U/${turno.id_turno}`, "Atualizar faturações do turno", "edit", "warning")
                         .col-xs-12.col-sm-12.col-md-6.col-lg-6
                             p
                             +ficha_gratificacao_turno(faturacao)
-                            a.btn.btn-warning.btn-block(href='/Faturacao/U/'+turno.id_turno, role='button') Atualizar ficha de gratificações do turno »
+                            +a-btn-block(`/Gratificacao/U/${turno.id_turno}`, "Atualizar gratificações do turno", "edit", "warning")
             .row
                 .col
                     p
@@ -35,5 +35,5 @@
                         +lista_abastecimentos_mt_turno(turno)
             .row
                 .col 
-                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+                    +a-btn-block-back()
 

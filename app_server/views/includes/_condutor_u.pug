@@ -3,7 +3,7 @@
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
             h2.page-header=title+" - "+sub_title
                 .pull-right
-                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar            
+                    +a-btn-back()
             .row
                 .col-xs-12.col-sm-12.col-md-4.col-lg-3
                     +panel-danger(condutor.nome_condutor)
@@ -18,19 +18,13 @@
                     .row 
                         +ficha_condutor_u(condutor)
                         .row
-                            .col
+                            .col.placeholder-10
                                 .container-fluid
-                                    a.btn.btn-danger.btn-block(href='/Condutor/U/'+condutor.id_condutor, role='button') Atualizar ficha do condutor »
-                                    p 
-                                    a.btn.btn-success.btn-block(onclick = 'history.back()', role='button') « Voltar  
-                                    p
+                                    +a-btn-block(`/Condutor/U${condutor.id_condutor}`, "Registar atualização da ficha do condutor", "save", "danger")
+                                    +a-btn-block-back()  
                         .row 
                             .col 
                                 +resumo_faturacao(condutor, faturacao_total)
             .row
                 .col
                     +turnos_condutor(condutor, turnos)
-            .row
-                .col
-                    .container-fluid
-                        a.btn.btn-success.btn-block(onclick = 'history.back()', role='button') « Voltar  

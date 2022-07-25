@@ -3,7 +3,7 @@
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
             h2.page-header=title+" - "+sub_title
                 .pull-right
-                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar            
+                    +a-btn-back()
             .row
                 .col-xs-12.col-sm-12.col-md-4.col-lg-3
                     +input_file(rota, "inputfilefoto", "inputfile_foto", "Procurar ficheiro", "Carregar foto do condutor", true)
@@ -12,8 +12,6 @@
                         +ficha_condutor_c()
                         .container-fluid
                             .row 
-                                .col
-                                    a.btn.btn-danger.btn-block(href='/Condutor/C', role='button') Registar novo condutor »
-                                    p
-                                .col
-                                    a.btn.btn-success.btn-block(onclick = 'history.back()', role='button') « Voltar  
+                                .col.placeholder-10
+                                    +a-btn-block("/Condutor/C", "Registar novo condutor", "save", "danger")
+                                    +a-btn-block-back()

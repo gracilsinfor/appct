@@ -3,7 +3,8 @@
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
             h2.page-header=title+' - '+sub_title    
                 .pull-right
-                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+                    +a-btn-back()
+                    //- a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
             .row
                 .col-xs-12.col-sm-12.col-md-2.col-lg-2
                     .row
@@ -16,8 +17,7 @@
                     .row
                         .col
                             .container-fluid
-                                //- h5 #{dia_now}
-                                //- h5 #{hora_now}
+
                                 +ficha_turno_c(dia_now, hora_now)
                                 a.btn.btn-danger.btn-block(href='/Turno/C/', role='button') Registar início de turno »
                                 br

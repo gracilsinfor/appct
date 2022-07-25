@@ -3,7 +3,7 @@
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
             h2.page-header=title+' - '+sub_title    
                 .pull-right
-                    a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+                    +a-btn-back()
             .row
                 .col-xs-12.col-sm-12.col-md-2.col-lg-2
                     .row
@@ -17,9 +17,11 @@
                         .col
                             .container-fluid
                                 +ficha_turno_u(turno)
-                                a.btn.btn-danger.btn-block(href='/Turno/U/'+turno.id_turno, role='button') Atualizar ficha de turno »
+                                +a-btn-block(`/Turno/U/${turno.id_turno}`, "Atualizar ficha de turno", "save", "danger")
                                 br
-                                a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+                                .btn-block 
+                                    +a-btn-block-back()
+                                //- a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
                                 br
                     .row
                         .col-xs-12.col-sm-12.col-md-6.col-lg-6

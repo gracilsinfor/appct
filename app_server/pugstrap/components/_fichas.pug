@@ -428,7 +428,7 @@ mixin ficha_turno(turno)
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 +awsme_input("time", "horafim", "hora_fim", "hora", "", turno.h_fim, false, "hourglass_end")
             .col-xs-12.col-sm-12.col-md-4.col-lg-4
-                +awsme_input("text", "odofim", "txt_odofim", "odómetro", "", turno.odom_final, false, "tachometer")
+                +awsme_input("text", "odofim", "txt_odofim", "odómetro", "", turno.odom_fim, false, "tachometer")
 
 mixin ficha_turno_u(turno)
     +panel-danger("Ficha do turno id: " + turno.id_turno)  
@@ -460,7 +460,7 @@ mixin ficha_turno_u(turno)
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 +awsme_input("time", "horafim", "hora_fim", "hora", "", turno.h_fim, true, "hourglass_end")
             .col-xs-12.col-sm-12.col-md-4.col-lg-4
-                +awsme_input("text", "txtodofim", "txt_odofim", "odo fim", "", turno.odom_final, true, "tachometer")
+                +awsme_input("text", "txtodofim", "txt_odofim", "odo fim", "", turno.odom_fim, true, "tachometer")
 
 mixin ficha_turno_c(dia_now, hora_now)
     +awsme-panel-danger("Ficha de novo turno", "people-arrows")  
@@ -480,7 +480,7 @@ mixin ficha_turno_c(dia_now, hora_now)
 
 mixin ficha_faturacao_turno(dados)
     +panel-info("Ficha de faturação do turno id: " + dados.id_turno)  
-        .row.placeholder-10.bg-success
+        .row
             .col-xs-6.col-sm-6.col-md-3.col-lg-3
                 +yainput("text", "txt_f_u", "f_u", "Uber:", 'faturacao_uber', dados.f.u, "disabled")
             .col-xs-6.col-sm-6.col-md-3.col-lg-3
@@ -492,7 +492,7 @@ mixin ficha_faturacao_turno(dados)
 
 mixin ficha_gratificacao_turno(dados)
     +panel-info("Ficha de gratificação do turno id: " + dados.id_turno)  
-        .row.placeholder-10.bg-success
+        .row
             .col-xs-6.col-sm-6.col-md-3.col-lg-3
                 +yainput("text", "txt_g_u", "g_u", "Uber:", 'gratificacao_uber', dados.g.u, "disabled")
             .col-xs-6.col-sm-6.col-md-3.col-lg-3
