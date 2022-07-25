@@ -39,12 +39,6 @@ mixin input_datetime(id, label, valor, start_end, nome, estado)
                 .fa.fa-solid.fa-hourglass-end
         input.form-control(type="datetime-local", id=id, value=valor, name=nome, disabled=estado)
 
-//- mixin yainput_date(type, id, placeholder, label, name, valor, estado)
-//-     span.fa.fa-solid.fa-hourglass-end
-//-         label(for=id) #{label}
-//-             div.input-group.input-group-sm.mb-3
-//-                 input(type=type, id=id, value=valor, estado)
-
 mixin awsme_input(tipo, id, nome, label, placeholder, valor, estado, awsme)
     .form-group
         label(for=id) #{label}
@@ -70,17 +64,6 @@ mixin yainput-simple(type,id,placeholder,name)
 
 //- Checkbox - Block style
 mixin yacheckbox(id, label, name, valor, enabled)
-    .form-group
-        //- .form-check.form-switch 
-        //-     input.form-check-input(type="checkbox" id=id name=nome checked=valor)
-        //-     label.form-check-label(for=id)
-        //-     = label
-        //- .form-check
-        //-     input.form-check-input(type="checkbox", value=valor, id=id, name=nome, checked=valor)
-        //-     .label.form-check-label(for=id)
-        //-     .span.checkmark
-        //-     = label 
-
         label.container_chk
             if (!enabled) 
                 input(type="checkbox", id=id, label=label, name=name, checked=valor, disabled)

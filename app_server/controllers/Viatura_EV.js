@@ -67,8 +67,9 @@ class Viatura_EV extends Viatura{
         for await(const abastecimento of this.abastecimentos){
             if(abastecimento.id_turno == id_turno){
                 // abastecimentos_turno.push(await abastecimento);
-                horas += Math.floor( (Date.parse(await abastecimento.h_fim) - Date.parse(await abastecimento.h_ini) )/1000/60/60); 
-                minutos += ( (Date.parse(await abastecimento.h_fim) - Date.parse(await abastecimento.h_ini))/1000/60) % 60;
+                horas += Math.floor( 
+                    (Date.parse(await abastecimento.d_fim + " " + await abastecimento.h_fim) - Date.parse(await abastecimento.d_ini + " " + await abastecimento.h_ini) )/1000/60/60); 
+                minutos += ( (Date.parse(await abastecimento.d_fim + " " + await abastecimento.h_fim) - Date.parse(await abastecimento.d_ini + " " + await abastecimento.h_ini))/1000/60) % 60;
             }
         }
 

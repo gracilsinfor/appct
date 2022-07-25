@@ -86,7 +86,7 @@ async function ficha_turno (id_turno) {
         ...totais,
     }
 
-    // console.log(await obj);
+    console.log(await obj);
     return await obj;
 }
 

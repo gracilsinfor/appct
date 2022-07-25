@@ -1,58 +1,33 @@
 .container-fluid
 	.row
 		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+			h2.page-header=title+" - "+sub_title
+				.pull-right
+					a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
 			.row
-				.col
-					h2.page-header=title + " - " + sub_title
+				.col-xs-12.col-sm-d-none.col-md-3.col-lg-2
+					.row 
+						.col.placeholder
+							+snipet_viatura(turno)
+					.row
+						.col.placeholder
+							+snipet_condutor(turno)
+				.col-xs-12.col-sm-8.col-md-10.col-lg-10
+					if viatura.ev
+						+ficha_abastecimento_ev_c(turno)
+					else 
+						+ficha_abastecimento_mt_c(turno)
+						a.btn.btn-danger.btn-block(href='/Abastecimento/C/', role='button') Registar novo abastecimento »
+						br
+						a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+						br
+					.row
+						.col-xs-12.col-sm-12.col-md-12.col-lg-12
+							+ficha_turno(turno)
 			.row
-				.col-xs-12.col-lg-4.main
-					.row.placeholders
-						.col-xs-6.col-lg-6.placeholder
-							.text-center
-								+yadropdown('condutor', 'Condutor', 'Condutor: ', 'ddwn_condutor', dados.condutores, )
-								h3 Condutor
-								img.img-responsive(src='../images/dashboard_blue.jpg', alt='Generic placeholder thumbnail')
-								h4 Label
-								span.text-muted Something else
-						.col-xs-6.col-lg-6.placeholder
-							.text-center
-								+yadropdown('carro', 'Carro', 'Carro: ', 'ddwn_carro', dados.carros, )
-								h3 Carro
-								img.img-responsive(src='../images/dashboard_green.jpg', alt='Generic placeholder thumbnail')
-								h4 Label
-								span.text-muted Something else
-				.col-xs-12.col-lg-8
-					+panel-default("Dados do abastecimento")
-						.row
-							.col-sm-12.col-md-4.placeholder
-								+yadropdown('tipo','Tipo','Tipo:','ddwn_tipo', dados.tipos, )
-							.col-sm-12.col-md-4.placeholder
-								+input("text", "odometro", "Quilómetros", "Quilómetros:", 'txt_odometro', )
-							.col-sm-12.col-md-4.placeholder
-								+input("text", "abastecimento", "Abastecimento (L)", "Abastecimento (L):", "txt_abastecimento", )
-						.row
-							.col-sm-12.col-md-4.placeholder 
-								+input("text", "autonomia_i", "Autonomia Inicial", "Autonomia inicial:", "txt_autonomia_i", )
-							.col-sm-12.col-md-4.placeholder
-								+input("text", "bateria_i", "Bateria Inicial (%)", "Bateria Inicial (%):", "txt_bateria_inicial")
-							.col-sm-12.col-md-4.placeholder 
-								a.btn.btn-danger(type='button' href="/")
-									span.fa.fa-solid.fa-hourglass-start
-										+input("text", "inicio_abastecimento", "Início do abastecimento", "Início do abastecimento:", "txt_inicio_abastecimento",)
-						.row
-							.col-sm-12.col-md-4.placeholder
-								+input("text", "autonomia_f", "Autonomia Final", "Autonomia Final:", "txt_autonomia_f", )
-							.col-sm-12.col-md-4.placeholder
-								+input("text", "bateria_f", "Bateria Final (%)","Bateria Final (%):", "txt_bateria_f",)
-							.col-sm-12.col-md-4.placeholder
-								a.btn.btn-danger(type='button' href='/' disabled)
-									span.fa.fa-solid.fa-hourglass-end
-										+input("text", "final_abastecimento", "Final do abastecimento", "Final do abastecimento:", "txt_final_abastecimento",)
-						.row
-							.col-sm-12.col-md-4.placeholder
-								.text-center
-									a.btn.btn-success(href='/Fillings', role='button') « Cancelar
-							.col-sm-12.col-md-4.placeholder
-							.col-sm-12.col-md-4.placeholder
-								.text-center
-									a.btn.btn-danger(href='/Fillings/C', role='button') Gravar »	
+				.col-xs-12.col-sm-12.col-md-12.col-lg-12
+					if viatura.ev
+						+lista_abastecimentos_ev_turno(turno)
+					else 
+						+lista_abastecimentos_mt_turno(turno)
+

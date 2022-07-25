@@ -1,18 +1,18 @@
 mixin lista_abastecimentos_ev_turno(turno)
-    +panel-info("Lista de Abastecimentos do turno id: "+ turno.id_turno)
+    +awsme-panel-primary("Abastecimentos do turno "+ turno.id_turno, "charging-station")
         div.table-responsive
             table.table.table-striped
                 thead
                     tr
                         th.small.text-right id
-                        th.d-none.d-sm-table-cell.small.text-right Odómetro
+                        th.d-none.d-md-table-cell.small.text-right odómetro
                         th.small.text-right Inicio
-                        th.d-none.d-md-table-cell.small.text-right Q Ini
-                        th.d-none.d-md-table-cell.small.text-right Fim
-                        th.d-none.d-md-table-cell.small.text-right Q Fim
-                        th.small.text-right Q Total
+                        th.d-none.d-md-table-cell.small.text-right Q ini
+                        th.d-none.d-md-table-cell.small.text-right fim
+                        th.d-none.d-md-table-cell.small.text-right Q fim
+                        th.small.text-right Q total
                         th.d-none.d-md-table-cell.small.text-right T Q
-                        th.small.text-right Custo 
+                        th.small.text-right custo 
                         th.small.text-right Kms
                         th.small.text-right €/Km
                         th.small.text-right KWh/Kms
@@ -20,11 +20,11 @@ mixin lista_abastecimentos_ev_turno(turno)
                     each linha in turno.abastecimentos
                         tr.table-row
                             td.small.text-right 
-                                a.btn.btn-primary.btn-sm.btn-block(href="/Abastecimento/"+turno.id_viatura+"/"+linha.id_abastecimento) #{linha.id_abastecimento}
+                                a.fa.fa-charging-station.btn.btn-primary.btn-sm.btn-block(href="/Abastecimento/"+turno.id_viatura+"/"+linha.id_abastecimento) &nbsp; #{linha.id_abastecimento}
                             td.d-none.d-sm-table-cell.small.text-right #{linha.odometro}
-                            td.small.text-right #{linha.h_ini}
+                            td.small.text-right #{linha.d_ini} #{linha.h_ini}
                             td.small.text-right #{linha.q_ini}
-                            td.small.text-right #{linha.h_fim}
+                            td.small.text-right #{linha.d_fim} #{linha.h_fim}
                             td.small.text-right #{linha.q_fim}
                             td.small.text-right #{linha.carga}
                             td.small.text-right #{linha.t_carga}
@@ -47,42 +47,33 @@ mixin lista_abastecimentos_ev_turno(turno)
                         td.small.text-right &nbsp;
 
 mixin lista_abastecimentos_mt_turno(turno)
-    .col-xs-12.col-lg-12
-        +panel-info("Lista de Abastecimentos do turno id: "+ turno.id_turno)
-            div.table-responsive
-                table.table.table-striped
-                    thead
-                        tr
-                            th.small.text-right id
-                            th.small.text-right Data
-                            th.d-none.d-sm-table-cell.small.text-right Odómetro
-                            th.small.text-right Litros
-                            th.small.text-right Custo 
-                            th.small.text-right Kms
-                            th.small.text-right €/Km
-                            th.small.text-right L/Kms
-                    tbody 
-                        each linha in turno.abastecimentos
-                            tr.table-row
-                                td.small.text-right
-                                    a.btn.btn-primary.btn-sm.btn-block(href="/Abastecimento/"+turno.id_viatura+"/"+linha.id_abastecimento) #{linha.id_abastecimento}
-                                //-#{linha.id_abastecimento}
-                                td.small.text-right #{linha.data}
-                                td.d-none.d-sm-table-cell.small.text-right #{linha.odometro}
-                                td.small.text-right #{linha.litros}
-                                td.small.text-right #{linha.custo}
-                                td.small.text-right #{linha.kms_percorridos}
-                                td.small.text-right #{linha.custo_km}
-                                td.small.text-right #{linha.consumo_km}
+    +awsme-panel-primary("Abastecimentos do turno "+ turno.id_turno, "gas-pump")
+        div.table-responsive
+            table.table.table-striped
+                thead
+                    tr
+                        th.small.text-right id
+                        th.small.text-right dia
+                        th.d-none.d-sm-table-cell.small.text-right Odómetro
+                        th.small.text-right litros
+                        th.small.text-right custo 
+                        th.small.text-right Kms
+                        th.small.text-right €/Km
+                        th.small.text-right L/Kms
+                tbody 
+                    each linha in turno.abastecimentos
                         tr.table-row
-                            td.small.text-right &nbsp;
-                            td.small.text-right &nbsp;
-                            td.small.text-right &nbsp;
-                            td.small.text-right &nbsp;
-                            td.small.text-right #{turno.total}
-                            td.small.text-right &nbsp;
-                            td.small.text-right &nbsp;
-                            td.small.text-right &nbsp;
+                            td.small.text-right
+                                a.fa.fa-gas-pump.btn.btn-primary.btn-sm.btn-block(href="/Abastecimento/"+turno.id_viatura+"/"+linha.id_abastecimento) &nbsp; #{linha.id_abastecimento}
+                            //-#{linha.id_abastecimento}
+                            td.small.text-right #{linha.dia}
+                            td.d-none.d-sm-table-cell.small.text-right #{linha.odometro}
+                            td.small.text-right #{linha.litros}
+                            td.small.text-right #{linha.custo}
+                            td.small.text-right #{linha.kms_percorridos}
+                            td.small.text-right #{linha.custo_km}
+                            td.small.text-right #{linha.consumo_km}
+
 
 mixin lista_abastecimentos_mt(titulos, dados)
     .table-responsive

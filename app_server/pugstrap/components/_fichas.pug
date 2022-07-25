@@ -95,92 +95,166 @@ mixin card_condutor(dados)
                                 td.text-right #{dados.nif_condutor}
                     
 mixin ficha_abastecimento_mt(abastecimento)
-    +panel-info("Ficha do Abastecimento combustível id: "+ abastecimento.id_abastecimento) 
+    +awsme-panel-primary("Ficha de abastecimento  "+ abastecimento.id_abastecimento, "gas-pump") 
         .row
-            .col-xs-4.col-md-3.col-lg-2
-                +yainput("text", "id_turno", "id_turno", "Turno:", "txt_turno", abastecimento.id_turno, "disabled")
-            .col-xs-4.col-md-3.col-lg-2
-                +yainput("text", "odometro", "odometro", "Odómetro:", "txt_odometro", abastecimento.odometro, "disabled")
-            .col-xs-4.col-md-2.col-lg-2
-                +yainput("date-time", "date_data", "data", "Data:", "data", abastecimento.data, "disabled")             
-            .col-xs-4.col-md-3.col-lg-2
-                +yainput("text", "litros", "litros", "Litros:", "txt_litros", abastecimento.litros, "disabled")
-            .col-xs-4.col-md-3.col-lg-2
-                +yainput("text", "custo", "custo", "Custo:", "txt_custo", abastecimento.custo, "disabled")
-            .col-xs-4.col-md-2.col-lg-2
-                span.align-middle
-                    br
-                    a.btn.btn-warning.btn-block(href='/Abastecimento/U/'+abastecimento.id_viatura+ "/" +abastecimento.id_abastecimento, role='button') Atualizar ficha do abastecimento »	
-
+            .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                +awsme_input("text", "idturno", "id_turno", "turno", "", abastecimento.id_turno, false, "people-arrows")
+        .row
+            .col-xs-12.col-sm-12.col-md-7.col-lg-6
+                +awsme_input("date", "datedata", "date_data", "dia", "", abastecimento.dia, false, "calendar")             
+            .col-xs-12.col-sm-12.col-md-5.col-lg-6
+                +awsme_input("time", "timehora", "time_hora", "hora", "", abastecimento.hora, false, "clock")
+        .row
+            .col-xs-12.col-sm-12.col-md-5.col-lg-6
+                +awsme_input("text", "odometro", "txt_odometro", "odómetro", "", abastecimento.odometro, false, "tachometer")
+ 
+        .row
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "litros", "txt_litros", "quantidade (L)", "", abastecimento.litros, false, "gas-pump")
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "custo", "txt_custo", "custo (€)", "", abastecimento.custo, false, "coins")
+            
 mixin ficha_abastecimento_ev(abastecimento)
-    +panel-info("Ficha do abastecimento elétrico id: "+ abastecimento.id_abastecimento) 
+    +awsme-panel-primary("Ficha de abastecimento  "+ abastecimento.id_abastecimento, "charging-station") 
         .row
-            .col-xs-4.col-lg-2
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
                 +awsme_input("text", "idturno", "txt_idturno", "Turno", "", abastecimento.id_turno, false, "people-arrows")
-            .col-xs-4.col-lg-2
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "tempo", "txt_tempo", "Tempo Q", "", abastecimento.t_carga, false, "hourglass-full")
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "qtotal", "txt_qtotal", "Q Total (%)", "", abastecimento.carga, false, "battery-full")         
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "custo", "txt_custo", "Custo", "", abastecimento.custo, false, "coins")
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
                 +awsme_input("text", "odometro", "txt_odometro", "Odómetro", "", abastecimento.odometro, false, "tachometer")
-            .col-xs-12.col-lg-4
-                +input_datetime("date_time_hora_ini", "Início:", abastecimento.h_ini, "start", true) 
-                br
-            .col-xs-12.col-lg-4
-                +input_datetime("date_time_hora_fim", "Fim:", abastecimento.h_fim, "end", true)
-                br           
         .row
-            .col-xs-4.col-lg-2
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_custo", "custo", "Custo:", "custo", abastecimento.custo, "disabled")
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_carga_ini", "carga_ini", "Q Inicial:", "carga_ini", abastecimento.q_ini, "disabled")
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_carga_fim", "carga_fim", "Q Final:", "carga_fim", abastecimento.q_fim, "disabled")
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_tempo_carga", "tempo_carga", "T Carga:", "tempo_carga", abastecimento.tempo_de_carga, "disabled")
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_carga_total", "carga_total", "Q Total:", "carga_total", abastecimento.total_carga, "disabled")         
+            .col-12.bg-black.bg-primary
+                h4.panel-heading.text-center Início do abastecimento
+        .row
+            .col-xs-12.col-sm-12.col-md-5.col-lg-4
+                +awsme_input("date", "dini", "date_dini", "dia", "", abastecimento.d_ini, false, "calendar") 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                +awsme_input("time", "hini", "time_hini", "hora", "", abastecimento.h_ini, false, "clock") 
+            .col-xs-12.col-sm-12.col-md-3.col-lg-4
+                +awsme_input("text", "txtqini", "txt_qini", "Q (%) ", "", abastecimento.q_ini, false, "bolt")
+        .row
+            .col-12.bg-primary
+                    h4.panel-heading.text-center Fim do abastecimento
+        .row
+            .col-xs-12.col-sm-12.col-md-5.col-lg-4
+                +awsme_input("date", "dfim", "date_dfim", "dia", "", abastecimento.d_fim, false, "calendar") 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                +awsme_input("time", "hfim", "time_hfim", "hora", "", abastecimento.h_fim, false, "clock") 
+            .col-xs-12.col-sm-12.col-md-3.col-lg-4
+                +awsme_input("text", "qfim", "txt_qfim", "Q (%)", "", abastecimento.q_fim, false, "bolt")
 
 mixin ficha_abastecimento_mt_u(abastecimento)
-    +panel-danger("Ficha do Abastecimento combustível id: "+ abastecimento.id_abastecimento) 
+    +awsme-panel-danger("Ficha de abastecimento  "+ abastecimento.id_abastecimento, "gas-pump") 
         .row
-            .col-xs-4.col-md-3.col-lg-2
-                +yainput("text", "id_turno", "id_turno", "Turno:", "txt_turno", abastecimento.id_turno, "disabled")
-            .col-xs-4.col-md-3.col-lg-2
-                +yainput("text", "odometro", "odometro", "Odómetro:", "txt_odometro", abastecimento.odometro, "enabled")
-            .col-xs-4.col-md-2.col-lg-2
-                +yainput("date-time", "date_data", "data", "Data:", "data", abastecimento.data, "enabled")             
-            .col-xs-4.col-md-3.col-lg-2
-                +yainput("text", "litros", "litros", "Litros:", "txt_litros", abastecimento.litros, "enabled")
-            .col-xs-4.col-md-3.col-lg-2
-                +yainput("text", "custo", "custo", "Custo:", "txt_custo", abastecimento.custo, "enabled")
-            //- .col-xs-4.col-md-2.col-lg-2
-            //-     span.align-middle
-            //-         br
-            //-         a.btn.btn-danger.btn-block(href='/Abastecimento/U/'+abastecimento.id_viatura+ "/" +abastecimento.id_abastecimento, role='button') Atualizar ficha do abastecimento »	
+            .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                +awsme_input("text", "idturno", "id_turno", "turno", "", abastecimento.id_turno, false, "people-arrows")
+        .row
+            .col-xs-12.col-sm-12.col-md-7.col-lg-6
+                +awsme_input("date", "datedata", "date_data", "dia", "", abastecimento.dia, true, "calendar")             
+            .col-xs-12.col-sm-12.col-md-5.col-lg-6
+                +awsme_input("time", "timehora", "time_hora", "hora", "", abastecimento.hora, true, "clock")
+        .row
+            .col-xs-12.col-sm-12.col-md-5.col-lg-6
+                +awsme_input("text", "odometro", "txt_odometro", "odómetro", "", abastecimento.odometro, true, "tachometer")
+ 
+        .row
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "litros", "txt_litros", "quantidade (L)", "", abastecimento.litros, true, "gas-pump")
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "custo", "txt_custo", "custo (€)", "", abastecimento.custo, true, "coins")
 
 mixin ficha_abastecimento_ev_u(abastecimento)
-    +panel-danger("Ficha do abastecimento elétrico id: "+ abastecimento.id_abastecimento) 
+    +awsme-panel-danger("Ficha id "+ abastecimento.id_abastecimento, "charging-station") 
         .row
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_id_turno", "id_turno", "Turno:", "turno", abastecimento.id_turno, "disabled")
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_odometro", "odometro", "Odómetro:", "odometro", abastecimento.odometro, "enabled")
-            .col-xs-12.col-lg-4
-                +input_datetime("date_time_hora_ini", "Início:", abastecimento.h_ini, "start", false) 
-                br
-            .col-xs-12.col-lg-4
-                +input_datetime("date_time_hora_fim", "Fim:", abastecimento.h_fim, "end", false)
-                br           
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "idturno", "txt_idturno", "Turno", "", abastecimento.id_turno, false, "people-arrows")
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "tempo", "txt_tempo", "Tempo Q", "", abastecimento.t_carga, false, "hourglass-full")
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "qtotal", "txt_qtotal", "Q Total (%)", "", abastecimento.carga, false, "battery-full")         
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "custo", "txt_custo", "Custo", "", abastecimento.custo, true, "coins")
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "odometro", "txt_odometro", "Odómetro", "", abastecimento.odometro, true, "tachometer")
         .row
-            .col-xs-4.col-lg-2
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_custo", "custo", "Custo:", "custo", abastecimento.custo, "enabled")
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_carga_ini", "carga_ini", "Q Inicial:", "carga_ini", abastecimento.q_ini, "enabled")
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_carga_fim", "carga_fim", "Q Final:", "carga_fim", abastecimento.q_fim, "enabled")
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_tempo_carga", "tempo_carga", "T Carga:", "tempo_carga", abastecimento.tempo_de_carga, "disabled")
-            .col-xs-4.col-lg-2
-                +yainput("text", "txt_carga_total", "carga_total", "Q Total:", "carga_total", abastecimento.total_carga, "disabled")                
+            .col-12.bg-black.bg-danger
+                h4.panel-heading.text-center Início do abastecimento
+        .row
+            .col-xs-12.col-sm-12.col-md-5.col-lg-4
+                +awsme_input("date", "dini", "date_dini", "dia", "", abastecimento.d_ini, true, "calendar") 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                +awsme_input("time", "hini", "time_hini", "hora", "", abastecimento.h_ini, true, "clock") 
+            .col-xs-12.col-sm-12.col-md-3.col-lg-4
+                +awsme_input("text", "txtqini", "txt_qini", "Q (%) ", "", abastecimento.q_ini, true, "bolt")
+        .row
+            .col-12.bg-danger
+                    h4.panel-heading.text-center Fim do abastecimento
+        .row
+            .col-xs-12.col-sm-12.col-md-5.col-lg-4
+                +awsme_input("date", "dfim", "date_dfim", "dia", "", abastecimento.d_fim, true, "calendar") 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                +awsme_input("time", "hfim", "time_hfim", "hora", "", abastecimento.h_fim, true, "clock") 
+            .col-xs-12.col-sm-12.col-md-3.col-lg-4
+                +awsme_input("text", "qfim", "txt_qfim", "Q (%)", "", abastecimento.q_fim, true, "bolt")
+
+mixin ficha_abastecimento_ev_c(turno)
+    +awsme-panel-danger("Ficha de novo abastecimento", "charging-station") 
+        .row
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "idturno", "txt_idturno", "Turno", "", abastecimento.id_turno, false, "people-arrows")
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "tempo", "txt_tempo", "Tempo Q", "tempo de carga", "", false, "hourglass-full")
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "qtotal", "txt_qtotal", "Q Total (%)", "carregamento", "", false, "battery-full")         
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+                +awsme_input("text", "custo", "txt_custo", "Custo", "custo do carregamento", "" , true, "coins")
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "odometro", "txt_odometro", "Odómetro", "leitura do odómetro", "", true, "tachometer")
+        .row
+            .col-12.bg-black.bg-danger
+                h4.panel-heading.text-center Início do abastecimento
+        .row
+            .col-xs-12.col-sm-12.col-md-5.col-lg-4
+                +awsme_input("date", "dini", "date_dini", "dia", "dia", "", true, "calendar") 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                +awsme_input("time", "hini", "time_hini", "hora", "hora", "", true, "clock") 
+            .col-xs-12.col-sm-12.col-md-3.col-lg-4
+                +awsme_input("text", "txtqini", "txt_qini", "Q (%) ", "% carga inicial", "", true, "bolt")
+        .row
+            .col-12.bg-danger
+                h4.panel-heading.text-center Fim do abastecimento
+        .row
+            .col-xs-12.col-sm-12.col-md-5.col-lg-4
+                +awsme_input("date", "dfim", "date_dfim", "dia", "dia", "", false, "calendar") 
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                +awsme_input("time", "hfim", "time_hfim", "hora", "hora", "", false, "clock") 
+            .col-xs-12.col-sm-12.col-md-3.col-lg-4
+                +awsme_input("text", "qfim", "txt_qfim", "Q (%)", "% carga final", "", false, "bolt")
+
+mixin ficha_abastecimento_mt_c(turno)
+    +awsme-panel-danger("Ficha de abastecimento  ", "gas-pump") 
+        .row
+            .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                +awsme_input("text", "idturno", "id_turno", "turno", "", turno.id_turno, false, "people-arrows")
+        .row
+            .col-xs-12.col-sm-12.col-md-7.col-lg-6
+                +awsme_input("date", "datedata", "date_data", "dia", "dia", "", true, "calendar")             
+            .col-xs-12.col-sm-12.col-md-5.col-lg-6
+                +awsme_input("time", "timehora", "time_hora", "hora", "hora", "", true, "clock")
+        .row
+            .col-xs-12.col-sm-12.col-md-5.col-lg-6
+                +awsme_input("text", "odometro", "txt_odometro", "odómetro", "odómetro", "", true, "tachometer")
+ 
+        .row
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "litros", "txt_litros", "quantidade (L)", "quantidade abastecida", "", true, "gas-pump")
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "custo", "txt_custo", "custo (€)", "custo do abastecimento", "", true, "coins")
 
 mixin ficha_viatura_u(dados)
     +panel-danger("Ficha da viatura id: " + dados.id_viatura)
@@ -325,22 +399,8 @@ mixin ficha_condutor_u(dados)
                 +awsme_input("text", "kmsfeitos", "txt_kmsfeitos", "Kms feitos", "9999 kms", dados.kms_feitos, false, "road")
 
 mixin ficha_turno(turno)
-    +panel-info("Ficha do turno id: " + turno.id_turno)
-        .row.placeholder-10.bg-success
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                +awsme_input("date", "dataini", "data_ini", "Início", "", turno.d_ini, false, "calendar_day_sol")
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                +awsme_input("time", "horaini", "hora_ini", "Hora", "", turno.h_ini, false, "hourglass_start")
-            .col-xs-12.col-sm-12.col-md-4.col-lg-4
-                +awsme_input("text", "txtodoini", "txt_odoini", "Odo ini", "", turno.odom_ini, false, "tachometer")
-        .row.placeholder-10.bg-success
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                +awsme_input("date", "datafim", "data_fim", "Fim", "", turno.d_fim, false, "calendar")
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                +awsme_input("time", "horafim", "hora_fim", "Hora", "", turno.h_fim, false, "hourglass_end")
-            .col-xs-12.col-sm-12.col-md-4.col-lg-4
-                +awsme_input("text", "odofim", "txt_odofim", "Odo fim", "", turno.odom_final, false, "tachometer")
-        .row.placeholder-10.bg-success
+    +awsme-panel-primary("Ficha de turno " + turno.id_turno, "people-arrows")
+        .row
             .col-xs-12.col-lg-4
                 +awsme_input("text", "condutor", "txt_condutor", "Condutor", "", turno.nome_condutor, false, "user")
             .col-xs-12.col-lg-4
@@ -349,48 +409,74 @@ mixin ficha_turno(turno)
                 +awsme_input("text", "kms", "txt_kms", "Kms", 'kms', turno.kms_percorridos, false, "tachometer")
             .col-xs-12.col-lg-2
                 +awsme_input("text", "horas_conducao", "txt_horasconducao", "Tempo", "", turno.horas_conducao, false, "clock")
+        .row
+            .col-12.bg-black.bg-primary
+                h4.panel-heading.text-center Início do turno
+        .row
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("date", "dataini", "data_ini", "dia", "", turno.d_ini, false, "calendar_day_sol")
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("time", "horaini", "hora_ini", "hora", "", turno.h_ini, false, "hourglass_start")
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                +awsme_input("text", "txtodoini", "txt_odoini", "odómetro", "", turno.odom_ini, false, "tachometer")
+        .row
+            .col-12.bg-black.bg-primary
+                h4.panel-heading.text-center Fim do turno
+        .row
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("date", "datafim", "data_fim", "dia", "", turno.d_fim, false, "calendar")
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("time", "horafim", "hora_fim", "hora", "", turno.h_fim, false, "hourglass_end")
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                +awsme_input("text", "odofim", "txt_odofim", "odómetro", "", turno.odom_final, false, "tachometer")
 
 mixin ficha_turno_u(turno)
     +panel-danger("Ficha do turno id: " + turno.id_turno)  
-        .row.placeholder-10.bg-danger
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                +awsme_input("date", "dataini", "data_ini", "Início", "", turno.d_ini, true, "calendar")
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                +awsme_input("time", "horaini", "hora_ini", "Hora", "", turno.h_ini, true, "hourglass_start")
-            .col-xs-12.col-sm-12.col-md-4.col-lg-4
-                +awsme_input("text", "txtodoini", "txt_odoini", "Odo ini", "", turno.odom_ini, true, "tachometer")
-        .row.placeholder-10.bg-danger
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                +awsme_input("date", "datafim", "data_fim", "Fim", "", turno.d_fim, true, "calendar")
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                +awsme_input("time", "horafim", "hora_fim", "Hora", "", turno.h_fim, true, "hourglass_end")
-            .col-xs-12.col-sm-12.col-md-4.col-lg-4
-                +awsme_input("text", "txtodofim", "txt_odofim", "Odo fim", "", turno.odom_final, true, "tachometer")
-        .row.placeholder-10.bg-success 
+        .row
             .col-xs-12.col-lg-4
-                +awsme_input("text", "condutor", "txt_condutor", "Condutor", "", turno.nome_condutor, false, "user")
+                +awsme_input("text", "condutor", "txt_condutor", "condutor", "", turno.nome_condutor, false, "user")
             .col-xs-12.col-lg-4
-                +awsme_input("text", "viatura", "txt_viatura", "Viatura", "", turno.descricao_viatura, false, "car")
+                +awsme_input("text", "viatura", "txt_viatura", "viatura", "", turno.descricao_viatura, false, "car")
             .col-xs-12.col-lg-2
                 +awsme_input("text", "kms", "txt_kms", "Kms", 'kms', turno.kms_percorridos, false, "tachometer")
             .col-xs-12.col-lg-2
-                +awsme_input("text", "horas_conducao", "txt_horasconducao", "Tempo", "", turno.horas_conducao, false, "clock")
+                +awsme_input("text", "horas_conducao", "txt_horasconducao", "tempo", "", turno.horas_conducao, false, "clock")
+        .row
+            .col-12.bg-black.bg-danger
+                h4.panel-heading.text-center Início do turno
+        .row
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("date", "dataini", "data_ini", "início", "", turno.d_ini, true, "calendar")
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("time", "horaini", "hora_ini", "hora", "", turno.h_ini, true, "hourglass_start")
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                +awsme_input("text", "txtodoini", "txt_odoini", "odo ini", "", turno.odom_ini, true, "tachometer")
+        .row
+            .col-12.bg-black.bg-danger
+                h4.panel-heading.text-center Início do turno
+        .row
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("date", "datafim", "data_fim", "fim", "", turno.d_fim, true, "calendar")
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                +awsme_input("time", "horafim", "hora_fim", "hora", "", turno.h_fim, true, "hourglass_end")
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                +awsme_input("text", "txtodofim", "txt_odofim", "odo fim", "", turno.odom_final, true, "tachometer")
 
 mixin ficha_turno_c(dia_now, hora_now)
-    +panel-danger("Ficha do registo de novo turno")  
+    +awsme-panel-danger("Ficha de novo turno", "people-arrows")  
         .row
-            .col-xs-12.col-lg-12.placeholder-10.bg-success
-                +awsme_input("text", "condutor", "txt_condutor", "Condutor", "utilizador com sessão", "", false, "user")
+            .col-xs-12.col-lg-12
+                +awsme_input("text", "condutor", "txt_condutor", "condutor", "utilizador com sessão", "", false, "user")
         .row
-            .col-xs-12.col-lg-6.placeholder-10.bg-danger
-                +awsme_input("date", "btdataini", "bt_dataini", "Início", "", dia_now, true, "calendar")
-            .col-xs-12.col-lg-6.placeholder-10.bg-danger
-                +awsme_input("time", "bthoraini", "bt_horaini", "Hora", "", hora_now, true, "hourglass_start")
+            .col-xs-12.col-lg-6
+                +awsme_input("date", "btdataini", "bt_dataini", "início", "", dia_now, true, "calendar")
+            .col-xs-12.col-lg-6
+                +awsme_input("time", "bthoraini", "bt_horaini", "hora", "", hora_now, true, "hourglass_start")
         .row 
-            .col-xs-12.col-lg-6.placeholder-10.bg-danger
-                +awsme_dropdown("ddviatura","dd_viatura","Viatura", viaturas, true, "car")
-            .col-xs-12.col-lg-6.placeholder-10.bg-danger
-                +awsme_input("text", "txtodoini", "txt_odoini", "Odo ini", "", "", true, "tachometer")
+            .col-xs-12.col-lg-6
+                +awsme_dropdown("ddviatura","dd_viatura","viatura", viaturas, true, "car")
+            .col-xs-12.col-lg-6
+                +awsme_input("text", "txtodoini", "txt_odoini", "odo ini", "", "", true, "tachometer")
 
 mixin ficha_faturacao_turno(dados)
     +panel-info("Ficha de faturação do turno id: " + dados.id_turno)  

@@ -6,23 +6,25 @@
 					h2.page-header=title+" - "+sub_title
 				.col-xs-12.col-md-6
 					.pull-right
-						a.btn.btn-success(href="/Filling/C", role="button") Novo »  
+						a.btn.btn-warning(href="/Abastecimento/C", role="button") Novo »  
 			.row
 				.col-xs-12.col-sm-4.col-lg-4.placeholder
-					+ddown_filtros("drop_down_viaturas","filtro por viatura","Filtrar por viatura","viaturas", viaturas)
+					+awsme_dropdown("ddviaturas","dd_viaturas","filtro por viatura", viaturas, true, "car")
 				.col-xs-12.col-sm-4.col-lg-4.placeholder
-					+ddown_filtros("drop_down_condutor","filtro por condutor","Filtrar por condutor","condutores", condutores)
+					+awsme_dropdown("ddcondutores","dd_condutores","filtro por condutor", condutores, true, "user")
 				.col-xs-12.col-sm-4.col-lg-4.placeholder
-					+ddown_filtros("drop_down_tipo","filtro por tipo","Filtrar por tipo","tipos", tipos)
+					+awsme_dropdown("ddtipos","dd_tipos","filtro por tipo", tipos, true, "type")
 			.row
 				.col-xs-12.col-sm-6.col-lg-4.placeholder
-					+input_datetime("data_inicio", "Início: ", Date.now(), "start")
+					+input_datetime("data_inicio", "início ", Date.now(), "start")
 				.col-xs-12.col-sm-6.col-lg-4.placeholder
-					+input_datetime("data_fim", "Fim: ", Date.now(), "end")
+					+input_datetime("data_fim", "fim ", Date.now(), "end")
 			.row
 				.col-lg-6
-					h3 Abastecimentos Combustíveis
+					h3 Abastecimentos &nbsp;
+						.i.fa.fa-solid.fa-gas-pump
 					+lista_abastecimentos_mt(titulos_mt, abastecimentos.mt)
 				.col-lg-6
-					h3 Abastecimentos elétricos
+					h3 Abastecimentos &nbsp;
+						.i.fa.fa-solid.fa-charging-station
 					+lista_abastecimentos_ev(titulos_ev, abastecimentos.ev)

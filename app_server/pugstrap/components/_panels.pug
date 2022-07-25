@@ -1,0 +1,46 @@
+//- panel
+mixin awsme-panel(type,title,awsme)
+	.panel(class=`panel-${type}`)
+		if title !== undefined
+			.panel-heading
+				h3.panel-title
+					+awsme(awsme) 
+					| &nbsp;
+					| #{title}
+
+			.panel-body
+				block
+		else
+			.panel-body
+				block
+
+
+//- panel-default
+mixin awsme-panel-default(title,awsme)
+	+awsme-panel("default",title,awsme)
+		block
+
+//- panel-primary
+mixin awsme-panel-primary(title,awsme)
+	+awsme-panel("primary",title,awsme)
+		block
+		
+//- panel-success
+mixin awsme-panel-success(title,awsme)
+	+awsme-panel("success",title,awsme)
+		block
+		
+//- panel-info
+mixin awsme-panel-info(title,awsme)
+	+awsme-panel("info",title,awsme)
+		block
+
+//- panel-warning
+mixin awsme-panel-warning(title,awsme)
+	+awsme-panel("warning",title,awsme)
+		block
+		
+//- panel-danger
+mixin awsme-panel-danger(title,awsme)
+	+awsme-panel("danger",title,awsme)
+		block
