@@ -3,9 +3,9 @@ const Abastecimento = require('./Abastecimento');
 class Abastecimento_MT extends Abastecimento{
     #_litros;
 
-    constructor(id, id_viatura, id_turno, id_condutor, data, kms, litros, euros = 0){
+    constructor(id, id_viatura, id_turno, id_condutor, dia, hora, kms, litros, euros = 0){
 
-        super(id, id_viatura, id_turno, id_condutor, data, kms, euros);
+        super(id, id_viatura, id_turno, id_condutor, dia, hora, kms, euros);
 
         this.#_litros = litros;
     }
@@ -20,7 +20,8 @@ class Abastecimento_MT extends Abastecimento{
             "id_viatura": super.id_viatura,
             "id_turno": super.id_turno,
             // "id_condutor": super.id_condutor,
-            "data": super.data,
+            "dia": super.dia,
+            "hora": super.hora,
             // "odometro": super.odometro,
             "litros": this.litros,
             "custo": super.custo,

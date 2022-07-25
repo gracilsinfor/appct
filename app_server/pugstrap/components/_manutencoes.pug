@@ -12,7 +12,7 @@ mixin lista_de_manutencoes_viatura(viatura, manutencoes)
                     each linha in manutencoes 
                         tr.table-row 
                             td.small.text-right 
-                                a.btn.btn-primary.btn-sm.btn-block(href="/Manutencao/"+viatura.id_viatura+"/"+linha.id_manutencao) #{linha.id_manutencao}
+                                a.fa.fa-tools.btn.btn-info.btn-sm.btn-block(href="/Manutencao/"+viatura.id_viatura+"/"+linha.id_manutencao) &nbsp; #{linha.id_manutencao}
                             td.small.text-right #{linha.data}
                             td.small.text-right #{linha.kms}
                             td.small.text-right #{linha.euros}

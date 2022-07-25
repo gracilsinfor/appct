@@ -33,9 +33,22 @@ fs.readFile('./app_server/abastecimentos.json', async function(err, data) {
 			if(viatura.id_viatura == a._id_viatura){
 
 				if(viatura.ev){
-					await viatura.abastecimentos.novo_ev([a._id, a._id_viatura, a._id_turno, a._id_condutor, a._kms, a._h_ini, a._carga_ini, a._h_fim, a._carga_fim, a._euros ]);
+					const [dia_ini, hora_ini] = await a._h_ini.split(' ');
+					const [dia_fim, hora_fim] = await a._h_fim.split(' ');
+					const d_ini = await (dia_ini==undefined ? 'n/d' : dia_ini);
+					const h_ini = await (hora_ini==undefined ? 'n/d' : hora_ini);
+					const d_fim = await (dia_fim==undefined || dia_fim=='' ? '' : dia_fim);
+					const h_fim = await (hora_fim==undefined || hora_fim =='' ? '' : hora_fim);
+			
+					await viatura.abastecimentos.novo_ev([a._id, a._id_viatura, a._id_turno, a._id_condutor, 
+						a._kms, d_ini, h_ini, a._carga_ini, d_fim, h_fim, a._carga_fim, a._euros ]);
 				}else{
-					await viatura.abastecimentos.novo_mt([a._id, a._id_viatura, a._id_turno, a._id_condutor, a._data, a._kms, a._litros, a._euros]);
+					const [dia, hora] = await a._data.split(' ');
+					const d = await (dia==undefined ? 'n/d' : dia);
+					const h = await (hora==undefined ? 'n/d' : hora);
+
+					await viatura.abastecimentos.novo_mt([a._id, a._id_viatura, a._id_turno, a._id_condutor, 
+						d, h, a._kms, a._litros, a._euros]);
 				}
 
  				viatura.odometro = await a._kms;

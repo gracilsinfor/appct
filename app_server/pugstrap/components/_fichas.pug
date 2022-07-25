@@ -2,21 +2,23 @@ mixin par_turno(dados)
     .col-xs-12.col-sm-6.col-md-4.col-lg-3
         .panel.panel-primary
             .panel-heading
-                h3.panel-title 
-                    a(href='/Turno/'+ dados.id_turno) Turno: #{dados.id_turno}
+                .panel-title 
+                    a.fa.fa-people-arrows(href='/Turno/'+ dados.id_turno) &nbsp; #{dados.id_turno}
             .panel-body
                 .row
                     .col-xs-6.col-md-6.col-lg-6
                         .placeholder
-                            .text-center 
+                            .text-center
                                 a(href='/Condutor/'+ dados.id_condutor)
-                                    h5 #{dados.nome_condutor}
+                                    h5.i.fa.fa-user 
+                                    | &nbsp; #{dados.nome_condutor}
                                     img.img-responsive(src=dados.imagem_condutor, alt=dados.nome_condutor)
                     .col-xs-6.col-md-6.col-lg-6
                         .placeholder 
                             .text-center
                                 a(href='/Viatura/'+ dados.id_viatura)
-                                    h5 #{dados.matricula}
+                                    h5.i.fa.fa-car
+                                    | &nbsp; #{dados.matricula}
                                     img.img-responsive(src=dados.imagem_viatura, alt=dados.matricula)
                 .row
                     .col-xs-6.col-md-6.col-lg-6
@@ -33,7 +35,7 @@ mixin card_viatura(dados)
         .panel.panel-primary
             .panel-heading
                 h4.panel-title 
-                    a(href='/Viatura/'+ dados.id_viatura) Viatura: #{dados.id_viatura}
+                    a.fa.fa-car(href='/Viatura/'+ dados.id_viatura) &nbsp; #{dados.id_viatura}
             .panel-body
                 .row.placeholders
                     .col-xs-6.col-md6.col-lg-6
@@ -65,7 +67,7 @@ mixin card_condutor(dados)
         .panel.panel-primary
             .panel-heading 
                 h3.panel-title 
-                    a(href='/Condutor/' + dados.id_condutor ) Condutor id: #{dados.id_condutor} 
+                    a.fa.fa-user(href='/Condutor/' + dados.id_condutor ) &nbsp; #{dados.id_condutor} 
             .panel-body
                 .row
                     .col.placeholder
@@ -114,9 +116,9 @@ mixin ficha_abastecimento_ev(abastecimento)
     +panel-info("Ficha do abastecimento elétrico id: "+ abastecimento.id_abastecimento) 
         .row
             .col-xs-4.col-lg-2
-                +yainput("text", "txt_id_turno", "id_turno", "Turno:", "turno", abastecimento.id_turno, "disabled")
+                +awsme_input("text", "idturno", "txt_idturno", "Turno", "", abastecimento.id_turno, false, "people-arrows")
             .col-xs-4.col-lg-2
-                +yainput("text", "txt_odometro", "odometro", "Odómetro:", "odometro", abastecimento.odometro, "disabled")
+                +awsme_input("text", "odometro", "txt_odometro", "Odómetro", "", abastecimento.odometro, false, "tachometer")
             .col-xs-12.col-lg-4
                 +input_datetime("date_time_hora_ini", "Início:", abastecimento.h_ini, "start", true) 
                 br
@@ -337,16 +339,16 @@ mixin ficha_turno(turno)
             .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 +awsme_input("time", "horafim", "hora_fim", "Hora", "", turno.h_fim, false, "hourglass_end")
             .col-xs-12.col-sm-12.col-md-4.col-lg-4
-                +awsme_input("text", "txtodofim", "txt_odofim", "Odo fim", "", turno.odom_final, false, "tachometer")
+                +awsme_input("text", "odofim", "txt_odofim", "Odo fim", "", turno.odom_final, false, "tachometer")
         .row.placeholder-10.bg-success
             .col-xs-12.col-lg-4
-                +yainput("text", "condutor", "txt_condutor", "Condutor", 'condutor', turno.nome_condutor, "disabled")
+                +awsme_input("text", "condutor", "txt_condutor", "Condutor", "", turno.nome_condutor, false, "user")
             .col-xs-12.col-lg-4
-                +yainput("text", "viatura", "txt_viatura", "Viatura", 'descricao_viatura', turno.descricao_viatura, "disabled")
+                +awsme_input("text", "viatura", "txt_viatura", "Viatura", "", turno.descricao_viatura, false, "car")
             .col-xs-12.col-lg-2
-                +yainput("text", "kms", "txt_kms", "Kms", 'kms', turno.kms_percorridos, "disabled")
+                +awsme_input("text", "kms", "txt_kms", "Kms", 'kms', turno.kms_percorridos, false, "tachometer")
             .col-xs-12.col-lg-2
-                +yainput("text", "horas_conducao", "txt_horasconducao", "Tempo", 'horas_conducao', turno.horas_conducao, "disabled")
+                +awsme_input("text", "horas_conducao", "txt_horasconducao", "Tempo", "", turno.horas_conducao, false, "clock")
 
 mixin ficha_turno_u(turno)
     +panel-danger("Ficha do turno id: " + turno.id_turno)  
@@ -366,13 +368,13 @@ mixin ficha_turno_u(turno)
                 +awsme_input("text", "txtodofim", "txt_odofim", "Odo fim", "", turno.odom_final, true, "tachometer")
         .row.placeholder-10.bg-success 
             .col-xs-12.col-lg-4
-                +yainput("text", "txt_condutor", "condutor", "Condutor", 'condutor', turno.nome_condutor, "disabled")
+                +awsme_input("text", "condutor", "txt_condutor", "Condutor", "", turno.nome_condutor, false, "user")
             .col-xs-12.col-lg-4
-                +yainput("text", "txt_viatura", "viatura", "Viatura", 'descricao_viatura', turno.descricao_viatura, "disabled")
+                +awsme_input("text", "viatura", "txt_viatura", "Viatura", "", turno.descricao_viatura, false, "car")
             .col-xs-12.col-lg-2
-                +yainput("text", "txt_kms", "kms", "Kms", 'kms', turno.kms_percorridos, "disabled")
+                +awsme_input("text", "kms", "txt_kms", "Kms", 'kms', turno.kms_percorridos, false, "tachometer")
             .col-xs-12.col-lg-2
-                +yainput("text", "txt_horasconducao", "horas_conducao", "Tempo", 'horas_conducao', turno.horas_conducao, "disabled")
+                +awsme_input("text", "horas_conducao", "txt_horasconducao", "Tempo", "", turno.horas_conducao, false, "clock")
 
 mixin ficha_turno_c(dia_now, hora_now)
     +panel-danger("Ficha do registo de novo turno")  

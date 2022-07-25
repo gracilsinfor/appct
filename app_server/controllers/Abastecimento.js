@@ -3,16 +3,18 @@ class Abastecimento {
     #_id_viatura;
     #_id_turno;
     #_id_condutor;
-    #_data;
+    #_dia;
+    #_hora;
     #_odometro;
     #_custo;
 
-    constructor(id, id_viatura, id_turno, id_condutor, data, kms, euros = 0){
+    constructor(id, id_viatura, id_turno, id_condutor, dia, hora, kms, euros = 0){
         this.#_id_abastecimento = id;
         this.#_id_viatura = id_viatura;
         this.#_id_turno = id_turno;
         this.#_id_condutor = id_condutor;
-        this.#_data = data;
+        this.#_dia = dia;
+        this.#_hora = hora;
         this.#_odometro = kms;
         this.#_custo = euros;
     }
@@ -21,7 +23,8 @@ class Abastecimento {
     set id_viatura (idv) {this.#_id_viatura = idv; }
     set id_turno (idt) {this.#_id_turno = idt; }
     set id_condutor (idc) {this.#_id_condutor = idc; }
-    set data (data) {this.#_data = data; }
+    set dia (dia) {this.#_dia = dia; }
+    set hora (hora) {this.#_hora = hora; }
     set odometro (kms) {this.#_odometro = kms; }
     set custo (euros) {this.#_custo = euros; }
 
@@ -31,7 +34,8 @@ class Abastecimento {
     get id_viatura () {return this.#_id_viatura;}
     get id_turno () {return this.#_id_turno;}
     get id_condutor () {return this.#_id_condutor;}
-    get data () {return this.#_data;}
+    get dia () {return this.#_dia;}
+    get hora () {return this.#_hora;}
     get odometro () {return this.#_odometro;}
     get custo () {return this.#_custo;}
 
@@ -41,7 +45,8 @@ class Abastecimento {
             // "id_viatura": this.id_viatura,
             // "id_turno": this.id_turno,
             // "id_condutor": this.id_condutor,
-            "data": this.data,
+            "dia": this.dia,
+            "hora": this.hora,
             "odometro": this.odometro,
             "custo": this.custo,
         }
@@ -54,7 +59,8 @@ class Abastecimento {
             "id_viatura": this.id_viatura,
             "id_turno": this.id_turno,
             "id_condutor": this.id_condutor,
-            "data": this.data,
+            "dia": this.dia,
+            "hora": this.hora,
             "odometro": this.odometro,
             "custo": this.custo,
         }
