@@ -1,0 +1,39 @@
+.container-fluid
+    .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+" - "+sub_title
+                .pull-right
+                    +a-btn-back()
+            .row
+                .col-xs-12.col-sm-4.col-md-3.col-lg-3.placeholder
+                    +snipet_viatura(viatura)
+                .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
+                    +ficha_manutencao(manutencao)
+                    .container-fluid
+                        .row
+                            .col
+                                +a-btn-block(`/Manutencao/U/${viatura.id_viatura}/${manutencao.id_manutencao}`, "Atualizar ficha da manutenção", "edit", "warning")
+            .row        
+                .col-xs-d-none.col-sm-4.col-md-3.col-lg-3.placeholder
+                .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
+                    +ficha_viatura(viatura)
+                    .container-fluid
+                        .row
+                            .col
+                                +a-btn-block(`/Manutencao/C/${viatura.id_viatura}`, "Marcar manutenção", "file-new", "warning")
+            .row 
+                .col-xs-d-none.col-sm-4.col-md-3.col-lg-3.placeholder
+                .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
+                    +lista_de_manutencoes_viatura(viatura,manutencoes)
+            .row 
+                .col-xs-12.col-lg-12
+                    +a-btn-block-back()
+
+            .row.placeholders
+                .col-sm-12.col-md-4.placeholder
+                    .text-center
+                        //- include ./_tabela_odometragens
+
+                .col-sm-12.col-md-8.placeholder
+                    .text-center
+                        //- include ./_tabela_revisoes

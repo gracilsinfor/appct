@@ -501,3 +501,23 @@ mixin ficha_gratificacao_turno(dados)
                 +yainput("text", "txt_g_f", "g_f", "Freenow:", 'gratificacao_freenow', dados.g.f, "disabled")
             .col-xs-6.col-sm-6.col-md-3.col-lg-3
                 +yainput("text", "txt_total_gratificacao", "total_gratificacao", "Total:", 'total_gratificacao', dados.tg, "disabled")
+
+mixin ficha_manutencao(manutencao)
+    +awsme-panel-primary("Ficha de manutencao  "+ manutencao.id_manutencao, "tools") 
+        .row
+            .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                +awsme_input("text", "idmanutencao", "txt_idmanutencao", "manutencao", "", manutencao.id_manutencao, false, "wrench")
+        .row
+            .col-xs-12.col-sm-12.col-md-7.col-lg-6
+                +awsme_input("date", "datedata", "date_data", "dia", "", manutencao.data, false, "calendar")             
+            .col-xs-12.col-sm-12.col-md-5.col-lg-6
+                +awsme_input("txt", "txtkms", "txt_kms", "kms", "", manutencao.kms, false, "tachometer")
+        .row
+            .col-xs-12.col-sm-12.col-md-5.col-lg-6
+                +awsme_input("text", "txtoficina", "txt_oficina", "oficina", "", manutencao.oficina, false, "garage")
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                +awsme_input("text", "custo", "txt_custo", "custo (€)", "", manutencao.custo, false, "coins") 
+        .row
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12
+                +awsme_textarea("txtareadescricao", "txtarea_descricao", "descricao", "5", "descrição dos principais trabalhos realizados", manutencao.descricao, false, "text")
+

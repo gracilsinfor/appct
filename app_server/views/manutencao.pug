@@ -1,0 +1,19 @@
+extends ../pugstrap/_bootstrap
+append styles
+    // Custom styles for this template
+    link(href='/stylesheets/dashboard.css', rel='stylesheet')
+    title=title
+block body
+block topo
+    include ./includes/_navbar
+block lado
+    include ../views/includes/_sidebar
+block content
+    if rota==="/Manutencao/C"
+        include ./includes/_manutencao_r
+    else if rota==="/Manutencao/idv/id" 
+        include ./includes/_manutencao_r
+    else if rota==="/Manutencao/U/idv/id"
+        include ./includes/_manutencao_r
+    else if rota==="/Filling/D"
+        include ./includes/_manutencao_r

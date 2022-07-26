@@ -12,7 +12,6 @@ const filling_c = async (req, res)=>{
     }else{
         arr_titulos_abastecimento.push("id", "sata", "odometro", "quant (L)", "custo", "Kms", "€/km", "L/km");
     }
-    console.log(await viatura.as_object_0);
     res.render(
         'abastecimento', {
             title: 'Abastecimento', 
@@ -55,7 +54,6 @@ async function filling_r (req, res) {
     }else{
         arr_titulos_abastecimento.push("id", "data", "odometro", "quant (L)", "custo", "Kms", "€/km", "L/km");
     }
-    // console.log(abastecimento.as_object);
     res.render('abastecimento', {
         title: 'Abastecimento', 
         sub_title:'ficha', 

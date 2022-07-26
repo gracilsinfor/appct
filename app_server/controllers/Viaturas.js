@@ -56,6 +56,15 @@ class Viaturas extends Array{
         }
         return matriculas;
     }
+    async lista_manutencoes(){
+        const arr_viaturas = [];
+        for await(const viatura of this){
+            const obj_viatura = await viatura.as_object_0;
+            obj_viatura.manutencoes = await viatura.manutencoes_da_viatura();
+            arr_viaturas.push(await obj_viatura);
+        }
+        return arr_viaturas;
+    }
 }
 
 module.exports = Viaturas

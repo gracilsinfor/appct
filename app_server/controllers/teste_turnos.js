@@ -1,7 +1,4 @@
 const Turnos = require('./Turnos');
-// const Turno = require('./Turno');
-// const Condutor = require('./Condutor');
-// const Viatura = require('./Viatura');
 
 const ctrl_condutor = require('./teste_condutores');
 const ctrl_viatura = require('./teste_viaturas');
@@ -28,10 +25,6 @@ fs.readFile('./app_server/turnos.json', async function(err, data) {
     fs.close;
   });
   
-const heads_turno = ['Turno', 'Carro', 'Ini', 'Fim', 'Grats'];
-const heads_turno_sum = ['Turno', 'Carro', 'Ini', 'Fim', 'Grat U', 'Grat B', 'Grat F', 'Total Grat'];
-
-
 async function turnos_ativos () {
     const arr_obj_turno = [];
     for await(const t of turnos){
@@ -85,8 +78,6 @@ async function ficha_turno (id_turno) {
         "abastecimentos": abastecimentos_turno,
         ...totais,
     }
-
-    console.log(await obj);
     return await obj;
 }
 

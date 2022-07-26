@@ -72,7 +72,10 @@ fs.readFile('./app_server/manutencoes.json', async function(err, data) {
 		for await (const viatura of viaturas){
 
 			if(viatura.id_viatura == m._id_viatura){
-				await viatura.manutencoes.nova([m._id, m._id_viatura, m._data, m._kms, m._oficina, m._descricao, m._euros]);
+				const data = (function(str){
+					return str.split('-').reverse().join('-') ;
+				}(m._data));
+				await viatura.manutencoes.nova([m._id, m._id_viatura, data, m._kms, m._oficina, m._descricao, m._euros]);
 				break;
 			}
 		}
@@ -105,11 +108,12 @@ async function lista_matriculas(){
 }
 
 async function lista_abastecimentos(){
+
 	const arr_objs_ev = [];
 	const arr_objs_mt = [];
 	for await(const viatura of viaturas){
 		for await(const abastecimento of viatura.abastecimentos){
-			let obj = await abastecimento.as_object_0;
+			const obj = await abastecimento.as_object_0;
 			if(viatura.ev){
 				arr_objs_ev.push(await obj);
 			}
@@ -125,7 +129,21 @@ async function lista_abastecimentos(){
 	return obj_ret;
 }
 
+async function lista_manutencoes(){
+	const arr_manutencoes = await viaturas.lista_manutencoes();
+	return arr_manutencoes;
+}
+
+async function manutencao_por_id(id_viatura, id_manutencao){
+	const viatura = await viaturas.viatura_por_id(id_viatura);
+	const manutencao = await viatura.manutencao_por_id(id_manutencao);
+	return manutencao;
+}
+
+
 module.exports = {
+	manutencao_por_id,
+	lista_manutencoes,
 	lista_matriculas,
 	lista_abastecimentos,
 	abastecimentos_por_turno,

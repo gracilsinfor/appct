@@ -23,20 +23,21 @@ class Manutencoes extends Array {
     async todas_as_object (){
         const ret_arr = [];
         for await(const manutencao of this){
-            const item = await manutencao.as_object;
-            ret_arr.push(item);
+            const obj = await manutencao.as_object;
+            ret_arr.push(obj);
         }
+        // ret_arr.sort((a, b) => b.id_manutencao - a.id_manutencao);
         return ret_arr;
     } 
 
-    manutencao_por_id = async function (id) {
+    async manutencao_por_id (id_manutencao) {
         for await(const manutencao of this){
-            if(manutencao.id_manutencao == id){
-                return manutencao.as_object;
-            }else{
-                return -1;
+            console.log("merda" + id_manutencao);
+            if(manutencao.id_manutencao == id_manutencao){
+                return await manutencao;
             }
         }
+        return -1;
     }
 
 }

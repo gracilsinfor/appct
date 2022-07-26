@@ -1,3 +1,31 @@
+mixin lista_de_manutencoes(viaturas)
+    h3.text-center Manutenções &nbsp;
+        .i.fa.fa-solid.fa-tools
+    .table-responsive 
+        table.table.table-striped.table-hover
+            thead 
+                tr 
+                        th.small.text-right id 
+                        th.small.text-right viatura 
+                        th.small.text-right data 
+                        th.small.text-right kms
+                        th.small.text-right custo
+                        th.small.text-right descrição
+                        th.small.text-right oficina
+            tbody 
+                each viatura in viaturas
+                    each manutencao in viatura.manutencoes  
+                        tr.table-row 
+                            td.small.text-right 
+                                +a-btn-block(`/Manutencao/${viatura.id_viatura}/${manutencao.id_manutencao}`, manutencao.id_manutencao,"tools","info","xs")
+                            td.small.text-right 
+                                +a-btn-block(`/Viatura/${viatura.id_viatura}`, viatura.matricula,"car","primary","xs")
+                            td.small.text-right #{manutencao.data}
+                            td.small.text-right #{manutencao.kms}
+                            td.small.text-right #{manutencao.custo}
+                            td.small.text-right #{manutencao.descricao}
+                            td.small.text-right #{manutencao.oficina}
+
 mixin lista_de_manutencoes_viatura(viatura, manutencoes)
     +panel-info("Histórico de manutenções da viatura " + viatura.id_viatura)
         .table-responsive 
@@ -6,13 +34,18 @@ mixin lista_de_manutencoes_viatura(viatura, manutencoes)
                     tr 
                         th.small.text-right id 
                         th.small.text-right data 
-                        th.small.text-right Kms 
+                        th.small.text-right kms
                         th.small.text-right custo
+                        th.small.text-right descrição
+                        th.small.text-right oficina
                 tbody 
-                    each linha in manutencoes 
+                    each manutencao in manutencoes 
                         tr.table-row 
                             td.small.text-right 
-                                +a-btn-block(`/Manutencao/${viatura.id_viatura}/${linha.id_manutencao}`,linha.id_manutencao,"tools","info","xs")
-                            td.small.text-right #{linha.data}
-                            td.small.text-right #{linha.kms}
-                            td.small.text-right #{linha.euros}
+                                +a-btn-block(`/Manutencao/${viatura.id_viatura}/${manutencao.id_manutencao}`, manutencao.id_manutencao,"tools","info","xs")
+                            td.small.text-right #{manutencao.data}
+                            td.small.text-right #{manutencao.kms}
+                            td.small.text-right #{manutencao.custo}
+                            td.small.text-right #{manutencao.descricao}
+                            td.small.text-right #{manutencao.oficina}
+

@@ -128,9 +128,14 @@ class Viatura {
         return abastecimento;
     }
 
-    custo_total_turno (id_turno) {
+    async abastecimentos_da_viatura(){
+        const arr_objs_abastecimento = await this.abastecimentos.todos_as_object()
+        return arr_objs_abastecimento;
+    }
+
+    async custo_total_turno (id_turno) {
         let total = 0;
-        for (const abastecimento of this.abastecimentos){
+        for await (const abastecimento of this.abastecimentos){
             if(abastecimento.id_turno == id_turno){
                 total += abastecimento.custo;
             } 
@@ -138,16 +143,18 @@ class Viatura {
         return total;
     }
 
+    async manutencao_por_id(id_manutencao){
+        console.log("merda" + id_manutencao);
+        const manutencao = await this.manutencoes.manutencao_por_id(id_manutencao);
+        // console.log(await manutencao.as_object);
+        return await manutencao;
+    }
+
     async manutencoes_da_viatura() { 
         const arr_objs_manutencao = await this.manutencoes.todas_as_object();
-        arr_objs_manutencao.sort((a, b) => b.id_manutencao - a.id_manutencao);
         return arr_objs_manutencao;
     }
 
-    async abastecimentos_da_viatura(){
-        const arr_objs_abastecimento = await this.abastecimentos.todos_as_object()
-        return arr_objs_abastecimento;
-    }
 }
 
 module.exports = Viatura

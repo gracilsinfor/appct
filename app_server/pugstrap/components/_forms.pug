@@ -50,6 +50,18 @@ mixin awsme_input(tipo, id, nome, label, placeholder, valor, estado, awsme)
             else
                 input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor, disabled)
 
+mixin awsme_textarea(id, nome, label, linhas, placeholder, valor, estado, awsme)
+    .form-group
+        label(for=id) #{label}
+        .input-group
+            .input-group-addon
+                +awsme(awsme)
+            if(estado)
+                textarea.form-control(id=id, placeholder=placeholder, name=nome, rows= linhas) = #{valor}
+            else
+                textarea.form-control(type="textarea", id=id, placeholder=placeholder, name=nome, rows= linhas, disabled) #{valor}
+
+
 mixin yainput(tipo, id, nome, label, placeholder, valor, estado)
     .form-group
         label(for=id) #{label}

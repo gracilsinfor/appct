@@ -5,6 +5,8 @@ const ctrl_drivers = require('../controllers/drivers');
 const ctrl_cars = require('../controllers/cars');
 const ctrl_shifts = require('../controllers/shifts');
 const ctrl_fills = require('../controllers/fillings');
+const ctrl_repairs = require('../controllers/repairs');
+
 const ctrl_home = require('../controllers/home');
 const { route } = require('express/lib/application');
 const req = require('express/lib/request');
@@ -42,6 +44,13 @@ router.get('/Abastecimentos', ctrl_fills.fillings_r);
 router.get('/Abastecimento/:idv/:id', ctrl_fills.filling_r);  
 router.get('/Abastecimento/U/:idv/:id', ctrl_fills.filling_u);
 router.get('/Abastecimento/D', ctrl_fills.filling_d);
+
+/* Routes crud manutenções */
+router.get('/Manutencao/C', ctrl_repairs.repair_c);
+router.get('/Manutencoes', ctrl_repairs.repairs_r);
+router.get('/Manutencao/:idv/:id', ctrl_repairs.repair_r);  
+router.get('/Manutencao/U/:idv/:id', ctrl_repairs.repair_u);
+router.get('/Manutencao/D', ctrl_repairs.repair_d);
 
 // função    callback evocada na versão 2
 // const homepage_controller = (req, res) =>{
