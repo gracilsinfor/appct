@@ -206,7 +206,7 @@ mixin ficha_abastecimento_ev_c(turno)
     +awsme-panel-danger("Ficha de novo abastecimento", "charging-station") 
         .row
             .col-xs-12.col-sm-6.col-md-4.col-lg-3
-                +awsme_input("text", "idturno", "txt_idturno", "Turno", "", abastecimento.id_turno, false, "people-arrows")
+                +awsme_input("text", "idturno", "txt_idturno", "Turno", "", turno.id_turno, false, "people-arrows")
             .col-xs-12.col-sm-6.col-md-4.col-lg-3
                 +awsme_input("text", "tempo", "txt_tempo", "Tempo Q", "tempo de carga", "", false, "hourglass-full")
             .col-xs-12.col-sm-6.col-md-4.col-lg-3

@@ -1,9 +1,15 @@
 //- button mixins
 //- anchor buttons
-mixin a-btn-block(url,texto,awsme, estilo)
-	a.btn(class=`btn-${estilo} btn-large btn-block`, href=url, role='button')
-		+awsme(awsme)
-		| &nbsp; #{texto}
+mixin a-btn-block(url,texto,awsme, estilo, size)
+	- const tamanho = (typeof size === 'undefined') ? "" : size
+	unless size
+		a.btn(class=`btn-${estilo} btn-block`, href=url, role='button')
+			+awsme(awsme)
+			| &nbsp; #{texto}
+	else 
+		a.btn(class=`btn-${estilo} btn-${size} btn-block`, href=url, role='button')
+			+awsme(awsme)
+			| &nbsp; #{texto}
 
 mixin a-btn-block-back()
 	a.btn.btn-block.btn-success(onclick = "history.back()", role='button') 

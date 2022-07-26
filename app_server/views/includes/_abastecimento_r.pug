@@ -3,7 +3,7 @@
 		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
 			h2.page-header=title + " - " + sub_title
 				.pull-right 
-					a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+					+a-btn-back()
 			.row
 				.col-xs-12.col-sm-d-none.col-md-3.col-lg-2
 					.row 
@@ -17,8 +17,8 @@
 						+ficha_abastecimento_ev(abastecimento)
 					else 
 						+ficha_abastecimento_mt(abastecimento)
-						a.btn.btn-warning.btn-block(href='/Abastecimento/U/'+abastecimento.id_viatura+ "/" +abastecimento.id_abastecimento, role='button') Atualizar ficha do abastecimento »	
-						br
+					+a-btn-block(`/Abastecimento/U/${abastecimento.id_viatura}/${abastecimento.id_abastecimento}`,"Atualizar ficha do abastecimento","edit","warning")
+					br
 					.row
 						.col-xs-12.col-sm-12.col-md-12.col-lg-12
 							+ficha_turno(turno)
@@ -28,4 +28,4 @@
 						+lista_abastecimentos_ev_turno(turno)
 					else 
 						+lista_abastecimentos_mt_turno(turno)
-			a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+			+a-btn-block-back()

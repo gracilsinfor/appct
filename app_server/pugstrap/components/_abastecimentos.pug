@@ -107,19 +107,19 @@ mixin lista_abastecimentos_ev(titulos, dados)
                 tbody 
                     each item in dados 
                         tr.table-row
-                            td.text-right 
+                            td.small.text-right 
                                 a.fa.fa-charging-station.btn.btn-info.btn-sm.btn-block(href="/Abastecimento/"+item.id_viatura+"/"+item.id_abastecimento) &nbsp; #{item.id_abastecimento}
                             td.text-right
                                 a.fa.fa-car.btn.btn-primary.btn.btn-primary.btn-sm.btn-block(href="/Viatura/"+item.id_viatura) #{item.id_viatura}                
                             td.text-right
                                 a.fa.fa-people-arrows.btn.btn-primary.btn-sm.btn-block(href="/Turno/"+item.id_turno) #{item.id_turno}
-                            td.text-right #{item.d_ini}
-                            td.text-right #{item.t_carga}m
-                            td.text-right #{item.carga}
-                            td.text-right #{item.custo}€
+                            td.small.text-right #{item.d_ini}
+                            td.small.text-right #{item.t_carga}m
+                            td.small.text-right #{item.carga}
+                            td.small.text-right #{item.custo}€
 
 mixin lista_de_abastecimentos_viatura(titulos, viatura, abastecimentos)
-    +panel-info("Histórico de abastecimentos: viatura id " + viatura.id_viatura)
+    +panel-info("Histórico de abastecimentos da viatura " + viatura.id_viatura)
         if viatura.ev 
             .table-responsive 
                 .table-wrap
@@ -131,14 +131,14 @@ mixin lista_de_abastecimentos_viatura(titulos, viatura, abastecimentos)
                         tbody 
                             each item in abastecimentos 
                                 tr.table-row
-                                    td.text-right 
-                                        a.fa.fa-charging-station.btn.btn-info.btn-sm.btn-block(href="/Abastecimento/"+item.id_viatura+"/"+item.id_abastecimento) &nbsp; #{item.id_abastecimento}
-                                    td.text-right
-                                        a.fa.fa-people-arrows.btn.btn-primary.btn-sm.btn-block(href="/Turno/"+item.id_turno) &nbsp; #{item.id_turno}
-                                    td.text-right #{item.h_ini}
-                                    td.text-right #{item.t_carga}
-                                    td.text-right #{item.carga}
-                                    td.text-right #{item.custo}
+                                    td.small.text-right 
+                                        +a-btn-block(`/Abastecimento/${viatura.id_viatura}/${item.id_abastecimento}`,item.id_abastecimento,"charging-station","info", "xs")
+                                    td.small.text-right
+                                        +a-btn-block(`/Turno/${item.id_tuno}`,item.id_turno,"people-arrows","primary", "xs")
+                                    td.small.text-right #{item.d_ini} #{item.h_ini}
+                                    td.small.text-right #{item.t_carga}
+                                    td.small.text-right #{item.carga}
+                                    td.small.text-right #{item.custo}
         else 
             .table-responsive
                 .table-wrap
@@ -151,9 +151,9 @@ mixin lista_de_abastecimentos_viatura(titulos, viatura, abastecimentos)
                             each item in abastecimentos 
                                 tr.table-row
                                     td.text-right 
-                                        a.fa.fa-gas-pump.btn.btn-info.btn-sm.btn-block(href="/Abastecimento/"+item.id_viatura+"/"+item.id_abastecimento) &nbsp; #{item.id_abastecimento}
+                                        +a-btn-block(`/Abastecimento/${viatura.id_viatura}/${item.id_abastecimento}`,item.id_abastecimento,"charging-station","info", "xs")
                                     td.text-right 
-                                        a.btn.btn-primary.btn-sm.btn-block(href="/Turno/"+item.id_turno) &nbsp; #{item.id_turno}
-                                    td.text-right #{item.data}
+                                        +a-btn-block(`/Turno/${item.id_tuno}`,item.id_turno,"people-arrows","primary", "xs")
+                                    td.text-right #{item.dia}
                                     td.text-right #{item.litros}
                                     td.text-right #{item.custo}            

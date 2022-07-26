@@ -3,7 +3,7 @@
 		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
 			h2.page-header=title+" - "+sub_title
 				.pull-right
-					a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+					+a-btn-back()
 			.row
 				.col-xs-12.col-sm-d-none.col-md-3.col-lg-2
 					.row 
@@ -17,10 +17,10 @@
 						+ficha_abastecimento_ev_c(turno)
 					else 
 						+ficha_abastecimento_mt_c(turno)
-						a.btn.btn-danger.btn-block(href='/Abastecimento/C/', role='button') Registar novo abastecimento »
-						br
-						a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
-						br
+
+					+a-btn-block("/Abastecimento/C", "Registar novo abastecimento", "save", "danger")
+					+a-btn-block-back()
+					br
 					.row
 						.col-xs-12.col-sm-12.col-md-12.col-lg-12
 							+ficha_turno(turno)

@@ -6,7 +6,7 @@
 					h2.page-header=title+" - "+sub_title
 				.col-xs-12.col-md-6
 					.pull-right
-						a.btn.btn-warning(href="/Abastecimento/C", role="button") Novo »  
+						+a-btn("/Abastecimento/C", "file-new", "Novo abastecimento", "warning")  
 			.row
 				.col-xs-12.col-sm-4.col-lg-4.placeholder
 					+awsme_dropdown("ddviaturas","dd_viaturas","filtro por viatura", viaturas, true, "car")

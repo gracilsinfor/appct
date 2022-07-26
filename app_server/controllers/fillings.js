@@ -8,7 +8,7 @@ const filling_c = async (req, res)=>{
     const turno = await ctrl_turnos.ficha_turno(Math.floor(Math.random()*17));
     const viatura = await ctrl_viaturas.viatura_por_id(turno.id_viatura);
     if(viatura.ev){
-        arr_titulos_abastecimento.push("id", "odometro", "inicio", "Q ini", "fim", "Q fim", "Q total", "T Q", "Custo", "Kms", "€/km", "KWh/Km");
+        arr_titulos_abastecimento.push("id", "odometro", "inicio", "Q ini", "fim", "Q fim", "Q total", "T Q", "custo", "Kms", "€/km", "KWh/Km");
     }else{
         arr_titulos_abastecimento.push("id", "sata", "odometro", "quant (L)", "custo", "Kms", "€/km", "L/km");
     }
@@ -51,9 +51,9 @@ async function filling_r (req, res) {
     const abastecimento = await viatura.abastecimento_por_id(await req.params.id);
     const turno = await ctrl_turnos.ficha_turno(await abastecimento.id_turno);
     if(viatura.ev){
-        arr_titulos_abastecimento.push("id", "odometro", "inicio", "Q ini", "fim", "Q fim", "Q total", "T Q", "Custo", "Kms", "€/km", "KWh/Km");
+        arr_titulos_abastecimento.push("id", "odometro", "inicio", "Q ini", "fim", "Q fim", "Q total", "T Q", "custo", "Kms", "€/km", "KWh/Km");
     }else{
-        arr_titulos_abastecimento.push("id", "sata", "odometro", "quant (L)", "custo", "Kms", "€/km", "L/km");
+        arr_titulos_abastecimento.push("id", "data", "odometro", "quant (L)", "custo", "Kms", "€/km", "L/km");
     }
     // console.log(abastecimento.as_object);
     res.render('abastecimento', {
@@ -74,9 +74,9 @@ async function filling_u (req, res){
     const abastecimento = await viatura.abastecimento_por_id(await req.params.id);
     const turno = await ctrl_turnos.ficha_turno(await abastecimento.id_turno);
     if(viatura.ev){
-        arr_titulos_abastecimento.push("id", "Odometro", "Inicio", "Q Ini", "Fim", "Q Fim", "Q Total", "T Q", "Custo", "Kms", "€/km", "KWh/Km");
+        arr_titulos_abastecimento.push("id", "odómetro", "inicio", "Q ini", "fim", "Q fim", "Q total", "t Q", "custo", "Kms", "€/km", "KWh/Km");
     }else{
-        arr_titulos_abastecimento.push("id", "Data", "Odometro", "Quant (L)", "Custo", "Kms", "€/km", "L/km");
+        arr_titulos_abastecimento.push("id", "data", "odómetro", "quant (L)", "custo", "Kms", "€/km", "L/km");
     }
     const id = req.params.id;
     res.render('abastecimento', {

@@ -44,19 +44,19 @@ const car_r = async (req, res) => {
     const abastecimentos = await viatura.abastecimentos_da_viatura();
     const arr_titulos_abastecimento = [];
     if(viatura.ev){
-        arr_titulos_abastecimento.push("id", "Turno", "Inicio", "t Q", "Q Total", "Custo");
+        arr_titulos_abastecimento.push("id", "turno", "inicio", "t Q", "Q total", "custo");
     }else{
-        arr_titulos_abastecimento.push("id", "Turno", "Data", "Quant (L)", "Custo");
+        arr_titulos_abastecimento.push("id", "turno", "data", "quant (L)", "custo");
     }
 
     if (viatura){
         res.render('carro', {
             title: 'Viatura', 
             sub_title: 'Ficha', 
-            viatura: viatura.as_object,
-            manutencoes: manutencoes,
+            viatura: await viatura.as_object,
+            manutencoes: await manutencoes,
             titulos: arr_titulos_abastecimento,
-            abastecimentos: abastecimentos,
+            abastecimentos: await abastecimentos,
             rota: '/Viatura/id',
         });
     }else{
