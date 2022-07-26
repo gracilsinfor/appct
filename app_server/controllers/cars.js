@@ -31,12 +31,6 @@ const car_c = (req, res) =>{
     });
 }
 
-// function get_heads(obj){
-//     const arr = Object.getOwnPropertyNames(obj[0]);
-//     // console.log(arr);
-//     return arr;
-// };
-
 /** para ver um documento carro */
 const car_r = async (req, res) => {
     const viatura = await ctrl_viaturas.viatura_por_id(req.params.id);

@@ -34,7 +34,6 @@ class Abastecimento_EV extends Abastecimento{
         if(this.h_ini && this.h_fim){
             const horas = Math.floor((Date.parse(this.d_fim + " "+ this.h_fim) - Date.parse(this.d_ini + " " + this.h_ini))/1000/60/60); 
             const minutos = ((Date.parse(this.d_fim + " " + this.h_fim) - Date.parse(this.d_ini +" "+ this.h_ini))/1000/60) % 60;
-            // console.log(this.#_h_fim);
             return (minutos < 10 ? horas + ":0" + minutos : horas + ":" + minutos);
         }else{
             return "00:00"; 

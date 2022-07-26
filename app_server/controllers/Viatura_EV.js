@@ -39,7 +39,6 @@ class Viatura_EV extends Viatura{
     }
     
     async abastecimentos_por_turno (turno) {
-        // console.log(this.as_object);
         const arr_abastecimentos = await this.abastecimentos.abastecimentos_por_turno(await turno.id_turno);
         const arr_objs = [];
         let odom_anterior = await turno.odom_ini;

@@ -82,7 +82,6 @@ async function ficha_turno (id_turno) {
 }
 
 async function abastecimentos_por_turno(turno){
-    // console.log(turno);
     const abastecimentos = await ctrl_viatura.abastecimentos_por_turno(await turno);
     return abastecimentos;
 }

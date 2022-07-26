@@ -10,7 +10,6 @@ const inicio = async (req, res)=>{
     else{
         const dados = await controlador_turnos.turnos_ativos();
         if(dados){
-            // console.log(dados);
             res.render('index', 
             {
                 title: 'Dashboard', 

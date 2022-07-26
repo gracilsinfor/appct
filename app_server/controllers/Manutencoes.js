@@ -32,7 +32,6 @@ class Manutencoes extends Array {
 
     async manutencao_por_id (id_manutencao) {
         for await(const manutencao of this){
-            console.log("merda" + id_manutencao);
             if(manutencao.id_manutencao == id_manutencao){
                 return await manutencao;
             }

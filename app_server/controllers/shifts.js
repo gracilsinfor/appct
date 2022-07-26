@@ -10,8 +10,6 @@ const shift_c = async (req, res) =>{
     const dia_now = data_now.toISOString().substring(0,10);
     const hora_now =data_now.toISOString().substring(11,16);
     // dia_now = dia_now.replace(',','').substring(0, 16);
-    // console.log(dia_now);
-    console.log(hora_now);
     res.render('turno', {
         title: 'Turno', 
         sub_title: 'novo',

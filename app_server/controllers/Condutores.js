@@ -37,7 +37,6 @@ class Condutores extends Array {
         const nomes = [];
         for await (const condutor of this){
             const obj = {"id": condutor.id_condutor, "nome": condutor.nome_condutor,};
-            // console.log(obj);
             nomes.push(obj);
         }
         return nomes;

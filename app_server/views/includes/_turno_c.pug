@@ -19,7 +19,9 @@
                             .container-fluid
 
                                 +ficha_turno_c(dia_now, hora_now)
-                                a.btn.btn-danger.btn-block(href='/Turno/C/', role='button') Registar início de turno »
+                                +a-btn-block(`/Turno/C/`, "Registar início de turno", "save", "danger")
+                                //- a.btn.btn-danger.btn-block(href='/Turno/C/', role='button') Registar início de turno »
                                 br
-                                a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
+                                +a-btn-block-back()
+                                //- a.btn.btn-success.btn-block(onclick = "history.back()", role='button') « Voltar
                                 br

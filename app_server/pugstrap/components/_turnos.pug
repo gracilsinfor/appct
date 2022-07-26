@@ -26,10 +26,8 @@ mixin turnos_condutor(condutor, turnos)
                             tr.table-row
                                 td.small.text-right 
                                     +a-btn-block(`/Turno/${item.id_turno}`, item.id_turno, "people-arrows", "info", "xs" )
-                                    //- a.btn.btn-primary.btn-sm.btn-block(href=) #{item.id_turno}
                                 td.small.text-right #{item.odometro}
                                     +a-btn-block(`/Viatura/${item.id_viatura}`, item.id_viatura, "car", "primary", "xs" )
-                                    //- a.btn.btn-primary.btn-sm.btn-block(href="/Viatura/"+item.id_viatura) #{item.id_viatura}
                                 td.small.text-right #{item.h_ini}
                                 td.small.text-right #{item.odom_ini}
                                 td.small.text-right #{item.h_fim}

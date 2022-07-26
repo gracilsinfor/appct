@@ -66,7 +66,6 @@ class Faturacao {
             "fb": this.f_b,
             "ff": this.f_f,
         };
-        // console.log(obj);
         return obj;
     }
     
@@ -76,7 +75,6 @@ class Faturacao {
             "gb": this.g_b,
             "gf": this.g_f,
         };
-        // console.log(obj);
         return obj;
     }
 

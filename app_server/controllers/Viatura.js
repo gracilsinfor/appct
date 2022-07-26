@@ -144,9 +144,7 @@ class Viatura {
     }
 
     async manutencao_por_id(id_manutencao){
-        console.log("merda" + id_manutencao);
         const manutencao = await this.manutencoes.manutencao_por_id(id_manutencao);
-        // console.log(await manutencao.as_object);
         return await manutencao;
     }
 

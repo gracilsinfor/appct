@@ -21,11 +21,13 @@
                         .col-xs-12.col-sm-12.col-md-6.col-lg-6
                             p
                             +ficha_faturacao_turno(faturacao)
-                            +a-btn-block(`/Faturacao/U/${turno.id_turno}`, "Atualizar faturações do turno", "edit", "warning")
+                            +a-btn-block(`#`, "Atualizar faturações do turno", "edit", "warning")
+                            //- +a-btn-block(`/Faturacao/U/${turno.id_turno}`, "Atualizar faturações do turno", "edit", "warning")
                         .col-xs-12.col-sm-12.col-md-6.col-lg-6
                             p
                             +ficha_gratificacao_turno(faturacao)
-                            +a-btn-block(`/Gratificacao/U/${turno.id_turno}`, "Atualizar gratificações do turno", "edit", "warning")
+                            +a-btn-block(`#`, "Atualizar gratificações do turno", "edit", "warning")
+                            //- +a-btn-block(`/Gratificacao/U/${turno.id_turno}`, "Atualizar gratificações do turno", "edit", "warning")
             .row
                 .col
                     p
