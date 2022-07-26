@@ -2,14 +2,16 @@ const ctrl_viaturas = require('./teste_viaturas');
 const request = require('request');
 
 const repair_c = async (req, res)=>{
-    const viatura = await ctrl_viaturas.viatura_por_id(turno.id_viatura);
-    res.render(
-        'manutencao', {
-            title: 'Manutenção', 
-            sub_title: 'nova', 
-            viatura: await viatura.as_object_0,
-            rota: "/Manutencao/C", 
-        });
+    const viatura = await ctrl_viaturas.viatura_por_id(req.params.idv);
+    const manutencoes = await viatura.manutencoes_da_viatura();
+
+    res.render('manutencao', {
+        title: 'Manutenção', 
+        sub_title:'ficha', 
+        viatura: await viatura.as_object,
+        manutencoes: await manutencoes,
+        rota: "/Manutencao/C/idv", 
+    });
 };
 
 const repairs_r = async (req, res) => {
@@ -27,17 +29,9 @@ const repairs_r = async (req, res) => {
 };
 
 async function repair_r (req, res) {
-    console.log(req.params.idv);
-    console.log(req.params.id);
-    
     const viatura = await ctrl_viaturas.viatura_por_id(req.params.idv);
     const manutencao = await viatura.manutencao_por_id(req.params.id);
-    // const manutencao = await ctrl_viaturas.manutencao_por_id(req.params.idv, req.params.id);
     const manutencoes = await viatura.manutencoes_da_viatura();
-
-    console.log(await viatura.as_object);
-    console.log(await manutencao.as_object);
-    console.log(await manutencoes);
 
     res.render('manutencao', {
         title: 'Manutenção', 
@@ -50,12 +44,16 @@ async function repair_r (req, res) {
 }
 
 async function repair_u (req, res){
-    const viatura = await ctrl_viaturas.viatura_por_id(await req.params.idv);
-    const id = req.params.id;
+    const viatura = await ctrl_viaturas.viatura_por_id(req.params.idv);
+    const manutencao = await viatura.manutencao_por_id(req.params.id);
+    const manutencoes = await viatura.manutencoes_da_viatura();
+
     res.render('manutencao', {
         title: 'Manutenção', 
-        sub_title: 'atualização', 
-        viatura: await viatura.as_object_0,
+        sub_title:'ficha', 
+        viatura: await viatura.as_object,
+        manutencao: await manutencao.as_object,
+        manutencoes: await manutencoes,
         rota: "/Manutencao/U/idv/id", 
     });
 }

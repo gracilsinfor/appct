@@ -8,12 +8,11 @@
                 .col-xs-12.col-sm-4.col-md-3.col-lg-3.placeholder
                     +snipet_viatura(viatura)
                 .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
-                    +ficha_manutencao(manutencao)
+                    +ficha_manutencao_u(manutencao)
                     .container-fluid
                         .row
                             .col.placeholder-10
-                                +a-btn-block(`/Manutencao/U/${viatura.id_viatura}/${manutencao.id_manutencao}`, "Atualizar ficha da manutenção", "edit", "warning")
-                    .container-fluid
+                                +a-btn-block(`/Manutencao/C/${viatura.id_viatura}/${manutencao.id_manutencao}`, "Registar atualização da ficha da manutenção", "save", "danger")
                         .row
                             .col
                                 +a-btn-block-back()
@@ -25,8 +24,8 @@
                         .row
                             .col
                                 +a-btn-block(`/Manutencao/C/${viatura.id_viatura}`, "Marcar manutenção", "file-new", "warning")
+
             .row 
                 .col-xs-d-none.col-sm-4.col-md-3.col-lg-3.placeholder
                 .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
                     +lista_de_manutencoes_viatura(viatura,manutencoes)
-

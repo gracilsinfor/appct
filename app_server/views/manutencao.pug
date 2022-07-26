@@ -9,11 +9,11 @@ block topo
 block lado
     include ../views/includes/_sidebar
 block content
-    if rota==="/Manutencao/C"
-        include ./includes/_manutencao_r
+    if rota==="/Manutencao/C/idv"
+        include ./includes/_manutencao_c
     else if rota==="/Manutencao/idv/id" 
         include ./includes/_manutencao_r
     else if rota==="/Manutencao/U/idv/id"
-        include ./includes/_manutencao_r
+        include ./includes/_manutencao_u
     else if rota==="/Filling/D"
         include ./includes/_manutencao_r

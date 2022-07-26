@@ -57,7 +57,7 @@ mixin awsme_textarea(id, nome, label, linhas, placeholder, valor, estado, awsme)
             .input-group-addon
                 +awsme(awsme)
             if(estado)
-                textarea.form-control(id=id, placeholder=placeholder, name=nome, rows= linhas) = #{valor}
+                textarea.form-control(id=id, placeholder=placeholder, name=nome, rows= linhas) #{valor}
             else
                 textarea.form-control(type="textarea", id=id, placeholder=placeholder, name=nome, rows= linhas, disabled) #{valor}
 

@@ -46,7 +46,7 @@ router.get('/Abastecimento/U/:idv/:id', ctrl_fills.filling_u);
 router.get('/Abastecimento/D', ctrl_fills.filling_d);
 
 /* Routes crud manutenções */
-router.get('/Manutencao/C', ctrl_repairs.repair_c);
+router.get('/Manutencao/C/:idv', ctrl_repairs.repair_c);
 router.get('/Manutencoes', ctrl_repairs.repairs_r);
 router.get('/Manutencao/:idv/:id', ctrl_repairs.repair_r);  
 router.get('/Manutencao/U/:idv/:id', ctrl_repairs.repair_u);
