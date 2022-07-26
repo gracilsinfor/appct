@@ -1,7 +1,7 @@
 mixin resumo_faturacao(dados, faturacao_total)
     .container-fluid
         +panel-info("Resumo da faturação do condutor")
-            .col-xs-6.col-lg-6
+            .col-xs-12.col-sm-12.col-md-6.col-lg-6
                 .table-responsive
                     table.table.table-bordered
                         caption.text-center 
@@ -18,7 +18,7 @@ mixin resumo_faturacao(dados, faturacao_total)
                                 td.small.text-right #{faturacao_total.f.b}   
                                 td.small.text-right #{faturacao_total.f.f}  
                                 td.small.text-right #{faturacao_total.tf}  
-            .col-xs-6.col-lg-6
+            .col-xs-12.col-sm-12.col-md-6.col-lg-6
                 .table-responsive 
                     table.table.table-bordered
                         caption.text-center 
