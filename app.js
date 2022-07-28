@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 
 // require('./app_api/models/db');
+require('./app_server/models/db');
 
 
 // para definir os routers da aplicação

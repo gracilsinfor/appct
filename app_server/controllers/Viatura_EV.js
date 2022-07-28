@@ -1,26 +1,26 @@
 const Viatura = require('./Viatura');
 
 class Viatura_EV extends Viatura{
-    #_q_bateria;
+    #_q_b;
 
     constructor(id, ev, matricula, descricao, imagem, ativa, odometro, q_bateria=0){
         
         super(id, ev, matricula, descricao, imagem, ativa, odometro);
         
-        this.#_q_bateria = q_bateria;
+        this.#_q_b = q_bateria;
     }
 
-    set q_bateria (qb) { this.#_q_bateria = qb; }
-    get q_bateria () {return this.#_q_bateria;}
+    set q_bateria (qb) { this.#_q_b = qb; }
+    get q_bateria () {return this.#_q_b;}
 
     get as_object_0(){
         const obj = {
-            "id_viatura": super.id_viatura,
+            "id_viatura": super.id,
             "ev": super.ev,
-            "descricao_viatura": super.descricao_viatura,
+            "descricao_viatura": super.descricao,
             "matricula": super.matricula,
             "odometro": super.odometro,
-            "imagem_viatura": super.imagem_viatura,
+            "imagem_viatura": super.imagem,
             "ativa": super.ativa,  
             "q_bateria": this.q_bateria,
         }

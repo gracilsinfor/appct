@@ -2,51 +2,51 @@ const Manutencoes = require('./Manutencoes');
 const Abastecimentos = require('./Abastecimentos');
 
 class Viatura {
-    #_id_viatura;
+    #_id;
     #_ev;
-    #_matricula;
-    #_descricao_viatura;
-    #_imagem_viatura;
+    #_n_r;
+    #_desc;
+    #_foto;
     #_ativa;
-    #_odometro;
+    #_odo;
     #_proxima_manutencao;
     #_ultima_manutencao;
     #_manutencoes;
     #_abastecimentos;
 
     constructor(id, ev, matricula, descricao, imagem, ativa = true, odometro = 0){
-        this.#_id_viatura = id;
+        this.#_id = id;
         this.#_ev = ev;
-        this.#_matricula = matricula;
-        this.#_descricao_viatura = descricao;
-        this.#_imagem_viatura = imagem;
+        this.#_n_r = matricula;
+        this.#_desc = descricao;
+        this.#_foto = imagem;
         this.#_ativa = ativa;
-        this.#_odometro = odometro;
+        this.#_odo = odometro;
         this.#_proxima_manutencao = {};
         this.#_ultima_manutencao = {};
         this.#_manutencoes = new Manutencoes;
         this.#_abastecimentos = new Abastecimentos;
     }
 
-    set id_viatura (idv) { this.#_id_viatura = idv;}
+    set id (idv) { this.#_id = idv;}
     set ev (vl) { this.#_ev = vl;}
-    set matricula (str) { this.#_matricula = str;}
-    set descricao_viatura (str) { this.#_descricao_viatura = str;}
-    set imagem_viatura (str) { this.#_imagem_viatura = str;}
+    set matricula (str) { this.#_n_r = str;}
+    set descricao (str) { this.#_desc = str;}
+    set imagem (str) { this.#_foto = str;}
     set ativa (vl) { this.#_ativa = vl;}
-    set odometro (kms) { this.#_odometro = kms;}
+    set odo (kms) { this.#_odo = kms;}
     set ultima_manutencao(um){ this.#_ultima_manutencao = um;}
     set proxima_manutencao (pm) { this.#_proxima_manutencao = pm;}
 
     get viatura() { return this;}
 
-    get id_viatura () { return this.#_id_viatura;}
+    get id () { return this.#_id;}
     get ev () { return this.#_ev;}
-    get matricula () { return this.#_matricula;}
-    get descricao_viatura () { return this.#_descricao_viatura;}
-    get imagem_viatura () { return this.#_imagem_viatura;}
+    get matricula () { return this.#_n_r;}
+    get descricao () { return this.#_desc;}
+    get imagem () { return this.#_foto;}
     get ativa () { return this.#_ativa;}
-    get odometro () { return this.#_odometro;}
+    get odo () { return this.#_odo;}
     get ultima_manutencao () { return this.#_ultima_manutencao;}
     get proxima_manutencao () { return this.#_proxima_manutencao;}
 
@@ -101,12 +101,12 @@ class Viatura {
 
     get as_object_0(){
         const obj = {
-            "id_viatura": this.id_viatura,
+            "id_viatura": this.id,
             "ev": this.ev,
-            "descricao_viatura": this.descricao_viatura,
-            "matricula": this.matricula,
-            "odometro": this.odometro,
-            "imagem_viatura": this.imagem_viatura,
+            "descricao_viatura": this.desc,
+            "matricula": this.#_n_r,
+            "odometro": this.odo,
+            "imagem_viatura": this.imagem,
             "ativa": this.ativa,  
         }
         return obj;

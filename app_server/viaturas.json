@@ -1,59 +1,255 @@
 [
     {
-        "_id": 1,
-        "_ev": true,
-        "_q_bateria": 50,
-        "_matricula": "EV01X1",
-        "_descricao": "Carro elétrico 1",
-        "_imagem": "/images/dashboard_green.jpg",
-        "_proxima_manutencao": {},
-        "_manutencoes": [{}],
-        "_abastecimentos": [{}],
-        "_ativa": true
+        "ev": true,
+        "q_b": 50,
+        "n_r": "EV01X1",
+        "desc": "Carro elétrico 1",
+        "foto": "/images/dashboard_green.jpg",
+        "ativa": true,
+        "manut": {},
+        "manuts": [    
+            {
+                "_id": "62e2a11728bdefda3b33f438",
+                "d": "27-02-2021",
+                "odo": 100100,
+                "oficina": "Oficina xpto",
+                "desc": "Manutenção preventiva",
+                "d_f": "",
+                "custo": 90.20
+            },
+            {
+                "_id": "62e2a15328bdefda3b33f439",
+                "d": "03-03-2021",
+                "odo": 101100,
+                "oficina": "Oficina xpto",
+                "desc": "Manutenção preventiva",
+                "d_f": "",
+                "custo": 110.55
+            }            
+        
+        ],
+        "abasts": [
+            {
+                "id_t": "62e2a19e28bdefda3b33f43a",
+                "d": "2021-03-01 11:30",
+                "odo": 100300,
+                "q_i": 33,
+                "d_f": "2021-03-01 11:59",
+                "q_f": 91,
+                "custo": 15.21
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f43b",
+                "d": "2021-03-03 11:35",
+                "odo": 101700,
+                "q_i": 49,
+                "d_f": "2021-03-03 11:55",
+                "q_f": 89,
+                "custo": 10.50
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f43c",
+                "d": "2021-03-05 11:35",
+                "odo": 103300,
+                "q_i": 42,
+                "d_f": "2021-03-05 11:57",
+                "q_f": 89,
+                "custo": 15.00
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f43e",
+                "d": "2021-03-08 11:30",
+                "odo": 104900,
+                "q_i": 59,
+                "d_f": "2021-03-08 11:50",
+                "q_f": 90,
+                "custo": 11.00
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f43f",
+                "d": "2021-03-01 15:25",
+                "odo": 100450,
+                "q_i": 33,
+                "d_f": "2021-03-01 15:59",
+                "q_f": 91,
+                "custo": 15.21
+            }
+        ]
     },
     {
-        "_id": 2,
-        "_ev": true,
-        "_q_bateria": 50,
-        "_matricula": "EV02X2",
-        "_descricao": "Carro elétrico 2",
-        "_imagem": "/images/dashboard_blue.jpg",
-        "_proxima_manutencao": {},
-        "_manutencoes": [{}],
-        "_abastecimentos": [{}],
-        "_ativa": true
+        "ev": true,
+        "q_b": 50,
+        "n_r": "EV02X2",
+        "desc": "Carro elétrico 2",
+        "foto": "/images/dashboard_blue.jpg",
+        "ativa": true,
+        "manut": {},
+        "manuts": [
+            {
+                "_id": "62e2a19e28bdefda3b33f440",
+                "d": "28-02-2021",
+                "odo": 100200,
+                "oficina": "Oficina xpto",
+                "desc": "Manutenção preventiva",
+                "d_f": "",
+                "custo": 110.23
+            },
+            {
+                "_id": "62e2a19e28bdefda3b33f441",
+                "d": "04-03-2021",
+                "odo": 102200,
+                "oficina": "Oficina xpto",
+                "desc": "Manutenção reativa",
+                "d_f": "",
+                "custo": 245.55
+            }
+        ],
+        "abasts": [
+            {
+                "id_t": "62e2a19e28bdefda3b33f442",
+                "d": "2021-03-01 23:30",
+                "odo": 100500,
+                "q_i": 35,
+                "d_f": "2021-03-01 23:59",
+                "q_f": 90,
+                "custo": 9.75
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f443",
+                "d": "2021-03-03 23:30",
+                "odo": 102100,
+                "q_i": 45,
+                "d_f": "2021-03-03 23:50",
+                "q_f": 90,
+                "custo": 9.00
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f444",
+                "d": "2021-03-05 23:30",
+                "odo": 103700,
+                "q_i": 69,
+                "d_f": "2021-03-05 23:45",
+                "q_f": 91,
+                "custo": 7.00
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f445",
+                "d": "2021-03-08 23:30",
+                "odo": 105300,
+                "q_i": 43,
+                "d_f": "2021-03-08 23:50",
+                "q_f": 82,
+                "custo": 9.00
+            }
+        ]
     },
     {
-        "_id": 3,
-        "_ev": false,
-        "_matricula": "MT03X3",
-        "_descricao": "Carro térmico 3",
-        "_imagem": "/images/dashboard_green.jpg",
-        "_proxima_manutencao": {},
-        "_manutencoes": [{}],
-        "_abastecimentos": [{}],
-        "_ativa": true
+        "ev": false,
+        "n_r": "MT03X3",
+        "desc": "Carro térmico 3",
+        "foto": "/images/dashboard_green.jpg",
+        "ativa": true,
+        "manut": {},
+        "manuts": [
+            {
+                "_id": "62e2a19e28bdefda3b33f446",
+                "d": "2021-03-01",
+                "odo": 100300,
+                "oficina": "Oficina xpto",
+                "desc": "Manutenção preventiva",
+                "d_f": "2021-03-01",
+                "custo": 183.32
+            }
+        ],
+        "abasts": [
+            {
+                "id_t": "62e2a19e28bdefda3b33f447",
+                "d": "2021-03-02 11:55",
+                "odo": 100900,
+                "litros": 12.00,
+                "custo": 22.92
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f448",
+                "d": "2021-03-04 11:55",
+                "odo": 102500,
+                "litros": 15.78,
+                "custo": 30.14
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f449",
+                "d": "2021-03-06 11:53",
+                "odo": 104100,
+                "litros": 12.23,
+                "custo": 23.36
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f44a",
+                "d": "2021-03-08 11:45",
+                "odo": 105700,
+                "litros": 11.98,
+                "custo": 22.88
+            }
+        ]
+
     },
     {
-        "_id": 4,
-        "_ev": false,
-        "_matricula": "MT04X4",
-        "_descricao": "Carro térmico 4",
-        "_imagem": "/images/dashboard_blue.jpg",
-        "_proxima_manutencao": {},
-        "_manutencoes": [{}],
-        "_abastecimentos": [{}],
-        "_ativa": true
+        "ev": false,
+        "n_r": "MT04X4",
+        "desc": "Carro térmico 4",
+        "foto": "/images/dashboard_blue.jpg",
+        "ativa": true,
+        "manut": {},
+        "manuts": [
+            {
+                "_id": "62e2a19e28bdefda3b33f44b",
+                "d": "02-03-2021",
+                "odo": 100400,
+                "oficina": "Oficina xpto",
+                "desc": "Manutenção preventiva",
+                "d_f": "",
+                "custo": 127.12
+            }
+        ],
+        "abasts": [
+            {
+                "id_t": "62e2a19e28bdefda3b33f44c",
+                "d": "2021-03-02 23:55",
+                "odo": 101300,
+                "litros": 11.98,
+                "custo": 22.88
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f44d",
+                "d": "2021-03-04 23:55",
+                "odo": 102900,
+                "litros": 13.15,
+                "custo": 25.12
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f44e",
+                "d": "2021-03-06 23:50",
+                "odo": 104500,
+                "litros": 12.35,
+                "custo": 23.59
+            },
+            {
+                "id_t": "62e2a19e28bdefda3b33f44f",
+                "d": "2021-03-08 23:50",
+                "odo": 106100,
+                "litros": 12.23,
+                "custo": 23.36
+            }
+        ]
     },
     { 
-        "_id": 5,
-        "_ev": false,
-        "_matricula": "MT05X5",
-        "_descricao": "Carro térmico 5",
-        "_imagem": "/images/dashboard_green.jpg",
-        "_proxima_manutencao": {},
-        "_manutencoes": [{}],
-        "_abastecimentos": [{}],
-        "_ativa": false
+        "ev": false,
+        "n_r": "MT05X5",
+        "desc": "Carro térmico 5",
+        "foto": "/images/dashboard_green.jpg",
+        "ativa": false,
+        "manut": {},
+        "manuts": [{}],
+        "abasts": [{}]
     }
 ]
