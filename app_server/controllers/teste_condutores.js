@@ -21,29 +21,6 @@ fs.readFile('./app_server/condutores.json', async function(err, data) {
     fs.close;
 });
   
-/** para carregar faturações  */
-fs.readFile('./app_server/faturacoes.json', async function(err, data) {
-    if(err){
-        return console.log(err);
-    }
-    const array_f = await JSON.parse(data);
-
-    for await(const f of array_f){
-        
-        const nova_f = [f._id, f._id_turno, f._id_condutor, 
-            f._f_u, f._f_b, f._f_f, f._g_u, f._g_b, f._g_f];
-
-        for await (const condutor of condutores){
-            if(condutor.id_condutor == f._id_condutor){
-                const faturacoes = await condutor.faturacoes;
-                faturacoes.nova(nova_f);
-                break;
-            }
-        }
-    }
-    fs.close;
-});
-
 async function condutor_por_id (id_condutor) {
     const condutor = await condutores.condutor_por_id(id_condutor);
     return condutor;

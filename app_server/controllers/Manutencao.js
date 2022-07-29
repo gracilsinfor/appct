@@ -1,33 +1,32 @@
 class Manutencao{
     #_id;
-    #_id_viatura;
-    #_data;
+    #_d_i;
     #_kms;
     #_oficina;
     #_descricao;
+    #_d_f;
     #_custo;
 
-    constructor(id, id_viatura, data, kms, oficina, descricao, custo){
+    constructor(id, data_i, kms, oficina="", descricao="", data_f=0, custo=0){
         this.#_id = id;
-        this.#_id_viatura = id_viatura;
-        this.#_data = data;
+        this.#_d_i = data_i;
         this.#_kms = kms;
         this.#_oficina = oficina;
         this.#_descricao = descricao;
+        this.#_d_f = data_f,
         this.#_custo = custo;
     }
 
     set id (id) { this.#_id = id; }
-    set id_viatura (idc) { this.#_id_viatura = idc; }
-    set data (data) { this.#_data = data; }
+    set d_i (data) { this.#_d_i = data; }
     set kms (kms) { this.#_kms = kms; }
     set oficina (oficina) { this.#_oficina = oficina; }
     set descricao (descricao) { this.#_descricao = descricao; }
+    set d_f (data) { this.#_d_f = data; }
     set custo (custo) { this.#_custo = custo; }
 
     get id () { return this.#_id; }
-    get id_viatura () { return this.#_id_viatura; }
-    get data () { return this.#_data; }
+    get data () { return this.#_d_i; }
     get kms () { return this.#_kms; }
     get oficina () { return this.#_oficina; }
     get descricao () { return this.#_descricao; }
@@ -36,8 +35,7 @@ class Manutencao{
     get as_object (){
         const obj = {
             "id_manutencao": this.#_id,
-            "id_viatura": this.#_id_viatura,
-            "data": this.#_data,
+            "data": this.#_d_i,
             "kms": this.#_kms,
             "oficina": this.#_oficina,
             "descricao": this.#_descricao,

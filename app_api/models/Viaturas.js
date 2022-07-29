@@ -7,9 +7,10 @@ const manutencao_schema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     d: Date,                                      // data de entrada
     odo: Number,
-    oficina: String,
-    descricao: String,
-    d_s: Date,                                      // data de saída
+    ofic: String,
+    desc: String,
+    d_f: Date,                                      // data de saída
+    custo: Number,
 });
 
 /** para compilar o esquema Manutencao */

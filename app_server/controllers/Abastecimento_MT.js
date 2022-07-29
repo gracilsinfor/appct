@@ -3,9 +3,9 @@ const Abastecimento = require('./Abastecimento');
 class Abastecimento_MT extends Abastecimento{
     #_litros;
 
-    constructor(id, id_viatura, id_turno, id_condutor, dia, hora, kms, litros, euros = 0){
+    constructor(id, id_turno, dia, kms, litros, euros = 0){
 
-        super(id, id_viatura, id_turno, id_condutor, dia, hora, kms, euros);
+        super(id, id_turno, dia, kms, euros);
 
         this.#_litros = litros;
     }
@@ -16,13 +16,10 @@ class Abastecimento_MT extends Abastecimento{
 
     get as_object_0 (){
         const obj = {
-            "id_abastecimento": super.id_abastecimento,
-            "id_viatura": super.id_viatura,
-            "id_turno": super.id_turno,
-            // "id_condutor": super.id_condutor,
+            "id_abastecimento": super.id,
+            "id_t": super.id_t,
             "dia": super.dia,
-            "hora": super.hora,
-            // "odometro": super.odometro,
+            "odometro": super.odo,
             "litros": this.litros,
             "custo": super.custo,
         }
@@ -31,13 +28,10 @@ class Abastecimento_MT extends Abastecimento{
 
     get as_object (){
         const obj = {
-            "id_abastecimento": super.id_abastecimento,
-            "id_viatura": super.id_viatura,
-            "id_turno": super.id_turno,
-            "id_condutor": super.id_condutor,
+            "id_abastecimento": super.id,
+            "id_turno": super.id_t,
             "dia": super.dia,
-            "hora": super.hora,
-            "odometro": super.odometro,
+            "odometro": super.odo,
             "litros": this.litros,
             "custo": super.custo,
         }
@@ -45,7 +39,7 @@ class Abastecimento_MT extends Abastecimento{
     }
 
     async consumo_km (leitura_anterior) {
-        const litros_km = this.litros / (super.odometro - leitura_anterior);
+        const litros_km = this.litros / (super.odo - leitura_anterior);
         return litros_km.toFixed(2);
     }
 };

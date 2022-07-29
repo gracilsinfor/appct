@@ -71,15 +71,7 @@ class Condutor{
         return obj;
     }
 
-    async faturacao_total(){
-        const faturacao = this.faturacoes.faturacao_total();
-        return faturacao;
-    }
 
-    async faturacao_do_turno(id_turno){
-        const faturacao = await this.faturacoes.faturacao_do_turno(id_turno);
-        return faturacao;
-    }
 }
 
 module.exports = Condutor

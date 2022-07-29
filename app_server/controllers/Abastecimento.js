@@ -1,52 +1,37 @@
 class Abastecimento {
-    #_id_abastecimento;
-    #_id_viatura;
-    #_id_turno;
-    #_id_condutor;
-    #_dia;
-    #_hora;
-    #_odometro;
+    #_id;
+    #_id_t;
+    #_d;
+    #_odo;
     #_custo;
 
-    constructor(id, id_viatura, id_turno, id_condutor, dia, hora, kms, euros = 0){
-        this.#_id_abastecimento = id;
-        this.#_id_viatura = id_viatura;
-        this.#_id_turno = id_turno;
-        this.#_id_condutor = id_condutor;
-        this.#_dia = dia;
-        this.#_hora = hora;
-        this.#_odometro = kms;
+    constructor(id, id_turno, dia, kms, euros = 0){
+        this.#_id = id;
+        this.#_id_t = id_turno;
+        this.#_d = dia;
+        this.#_odo = kms;
         this.#_custo = euros;
     }
 
-    set id_abastecimento (id){this.#_id_abastecimento = id; }
-    set id_viatura (idv) {this.#_id_viatura = idv; }
-    set id_turno (idt) {this.#_id_turno = idt; }
-    set id_condutor (idc) {this.#_id_condutor = idc; }
-    set dia (dia) {this.#_dia = dia; }
-    set hora (hora) {this.#_hora = hora; }
-    set odometro (kms) {this.#_odometro = kms; }
+    set id (id){this.#_id = id; }
+    set id_t (idt) {this.#_id_t = idt; }
+    set dia (dia) {this.#_d = dia; }
+    set odo (kms) {this.#_odo = kms; }
     set custo (euros) {this.#_custo = euros; }
 
     get abastecimento() { return this; }
 
-    get id_abastecimento () {return this.#_id_abastecimento;}
-    get id_viatura () {return this.#_id_viatura;}
-    get id_turno () {return this.#_id_turno;}
-    get id_condutor () {return this.#_id_condutor;}
-    get dia () {return this.#_dia;}
-    get hora () {return this.#_hora;}
-    get odometro () {return this.#_odometro;}
+    get id () {return this.#_id;}
+    get id_t () {return this.#_id_t;}
+    get dia () {return this.#_d;}
+    get odo () {return this.#_odo;}
     get custo () {return this.#_custo;}
 
     get as_object_0 (){
         const obj = {
-            "id_abastecimento": this.id_abastecimento,
-            // "id_viatura": this.id_viatura,
-            // "id_turno": this.id_turno,
-            // "id_condutor": this.id_condutor,
+            "id_abastecimento": this.id,
+            "id_turno": this.id_t,
             "dia": this.dia,
-            "hora": this.hora,
             "odometro": this.odometro,
             "custo": this.custo,
         }
@@ -55,12 +40,9 @@ class Abastecimento {
 
     get as_object (){
         const obj = {
-            "id_abastecimento": this.id_abastecimento,
-            "id_viatura": this.id_viatura,
-            "id_turno": this.id_turno,
-            "id_condutor": this.id_condutor,
+            "id_abastecimento": this.id,
+            "id_turno": this.id_t,
             "dia": this.dia,
-            "hora": this.hora,
             "odometro": this.odometro,
             "custo": this.custo,
         }
@@ -68,11 +50,11 @@ class Abastecimento {
     }
 
     async conta_kms(leitura_anterior){
-        return await this.odometro - leitura_anterior;
+        return await this.odo - leitura_anterior;
     }
 
     custo_km (leitura_anterior){
-        const custo = this.custo / ( this.odometro - leitura_anterior );
+        const custo = this.custo / ( this.odo - leitura_anterior );
         return custo.toFixed(2)
     }
 

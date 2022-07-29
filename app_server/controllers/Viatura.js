@@ -9,93 +9,72 @@ class Viatura {
     #_foto;
     #_ativa;
     #_odo;
-    #_proxima_manutencao;
-    #_ultima_manutencao;
-    #_manutencoes;
-    #_abastecimentos;
+    #_manut;
+    #_manuts;
+    #_abasts;
 
-    constructor(id, ev, matricula, descricao, imagem, ativa = true, odometro = 0){
+    constructor(id, ev, n_r, desc, foto, ativa = true, odometro = 0){
         this.#_id = id;
         this.#_ev = ev;
-        this.#_n_r = matricula;
-        this.#_desc = descricao;
-        this.#_foto = imagem;
+        this.#_n_r = n_r;
+        this.#_desc = desc;
+        this.#_foto = foto;
         this.#_ativa = ativa;
         this.#_odo = odometro;
-        this.#_proxima_manutencao = {};
-        this.#_ultima_manutencao = {};
-        this.#_manutencoes = new Manutencoes;
-        this.#_abastecimentos = new Abastecimentos;
     }
 
     set id (idv) { this.#_id = idv;}
     set ev (vl) { this.#_ev = vl;}
-    set matricula (str) { this.#_n_r = str;}
-    set descricao (str) { this.#_desc = str;}
-    set imagem (str) { this.#_foto = str;}
+    set n_r (str) { this.#_n_r = str;}
+    set desc (str) { this.#_desc = str;}
+    set foto (str) { this.#_foto = str;}
     set ativa (vl) { this.#_ativa = vl;}
     set odo (kms) { this.#_odo = kms;}
-    set ultima_manutencao(um){ this.#_ultima_manutencao = um;}
-    set proxima_manutencao (pm) { this.#_proxima_manutencao = pm;}
+    set manut (man) { this.#_manut = man;}
 
     get viatura() { return this;}
 
     get id () { return this.#_id;}
     get ev () { return this.#_ev;}
-    get matricula () { return this.#_n_r;}
-    get descricao () { return this.#_desc;}
-    get imagem () { return this.#_foto;}
+    get n_r () { return this.#_n_r;}
+    get desc () { return this.#_desc;}
+    get foto () { return this.#_foto;}
     get ativa () { return this.#_ativa;}
     get odo () { return this.#_odo;}
-    get ultima_manutencao () { return this.#_ultima_manutencao;}
-    get proxima_manutencao () { return this.#_proxima_manutencao;}
+    get manut () { return this.#_manut;}
 
-    get abastecimentos() { return this.#_abastecimentos;}
-    get manutencoes() {return this.#_manutencoes;}
+    get abastecimentos() { return this.#_abasts;}
+    get manuts() {return this.#_manuts;}
 
     get data_ultima_manutencao() { 
-        if(this.ultima_manutencao != null){
-            return {
-                data: this.ultima_manutencao.data,
-            };
+        if(this.manuts.length){
+            return this.manuts[this.manuts.length-1].data;
         }else {
-            return {
-                data: "nd"
-            };
+            return "nd";
         }
     }
 
     get kms_ultima_manutencao(){
-        if(this.ultima_manutencao != null){
-            return{
-                kms: this.ultima_manutencao.kms,
-            }; 
-        }else {
-            return{
-                kms: "nd", 
-            };
+        if(this.manuts.length){
+            return this.manuts[this.manuts.length-1].kms; 
+        }else { 
+            return "nd";
         }
     }
 
-    get data_proxima_manutencao() { 
-        if(this.proxima_manutencao != null){
-            return{
-                data: this.proxima_manutencao.data,
-            };
+    get data_manutencao() { 
+        if(this.manut.data){
+            return this.manut.data;
         }else {
-            return{data: "nd",};
+            return "nd";
         }
     }
 
     get kms_proxima_manutencao(){
-        if(this.proxima_manutencao != null ){
-            return{
-                kms: this.proxima_manutencao.kms,
-            };
+        if(this.manut.kms ){
+            return this.manut.kms;
         }else {
-            return{
-                kms: "nd",
-            };
+            return "nd";
         }
     }
 
@@ -104,9 +83,9 @@ class Viatura {
             "id_viatura": this.id,
             "ev": this.ev,
             "descricao_viatura": this.desc,
-            "matricula": this.#_n_r,
+            "n_r": this.#_n_r,
             "odometro": this.odo,
-            "imagem_viatura": this.imagem,
+            "imagem_viatura": this.foto,
             "ativa": this.ativa,  
         }
         return obj;

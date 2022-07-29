@@ -17,10 +17,10 @@ class Viatura_EV extends Viatura{
         const obj = {
             "id_viatura": super.id,
             "ev": super.ev,
-            "descricao_viatura": super.descricao,
-            "matricula": super.matricula,
-            "odometro": super.odometro,
-            "imagem_viatura": super.imagem,
+            "descricao_viatura": super.desc,
+            "matricula": super.n_r,
+            "odometro": super.odom,
+            "imagem_viatura": super.foto,
             "ativa": super.ativa,  
             "q_bateria": this.q_bateria,
         }

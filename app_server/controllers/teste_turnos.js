@@ -14,17 +14,34 @@ fs.readFile('./app_server/turnos.json', async function(err, data) {
     }
     const array_t = await JSON.parse(data);
     for await(const t of array_t){
-        const [dia_ini, hora_ini] = await t._h_ini.split(' ');
-        const [dia_fim, hora_fim] = await t._h_fim.split(' ');
-        const d_ini = await (dia_ini==undefined ? 'n/d' : dia_ini);
-        const h_ini = await (hora_ini==undefined ? 'n/d' : hora_ini);
-        const d_fim = await (dia_fim==undefined || dia_fim=='' ? '' : dia_fim);
-        const h_fim = await (hora_fim==undefined || hora_fim =='' ? '' : hora_fim);
-        turnos.novo([ t._id, t._id_condutor, t._id_viatura, t._km_ini, d_ini, h_ini, t._km_fim, d_fim, h_fim]);
+        const d_ini = await (t.d_ini=="" ? 'n/d' : d_ini);
+        const d_fim = await (t.d_fim=="" || 'n/d' ? '' : t.d_fim);
     }
     fs.close;
   });
   
+/** para carregar faturações  */
+fs.readFile('./app_server/faturacoes.json', async function(err, data) {
+    if(err){
+        return console.log(err);
+    }
+    const array_f = await JSON.parse(data);
+
+    for await(const f of array_f){
+        
+        const nova_f = [f._id, f._id_turno, 
+            f._f_u, f._f_b, f._f_f, f._g_u, f._g_b, f._g_f];
+
+        for await (const turno of turnos){
+            if(turno.id_turno == f._id_turno){
+                turno.fatur(nova_f);
+                break;
+            }
+        }
+    }
+    fs.close;
+});
+
 async function turnos_ativos () {
     const arr_obj_turno = [];
     for await(const t of turnos){
