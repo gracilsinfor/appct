@@ -8,7 +8,7 @@
         "_data_entrada": "2021-01-01",
         "_ativo": true,
         "_kms_feitos": 1001,
-        "_imagem": "/images/dashboard_blue.jpg",
+        "_imagem": "/images/dashboard_blue.jpg"
     },
     {
         "_id": 2,
@@ -19,7 +19,7 @@
         "_data_entrada": "2021-01-02",
         "_ativo": true,
         "_kms_feitos": 1002,
-        "_imagem": "/images/dashboard_green.jpg",
+        "_imagem": "/images/dashboard_green.jpg"
     },
     {
         "_id": 3,
@@ -30,7 +30,7 @@
         "_data_entrada": "2021-01-03",
         "_ativo": true,
         "_kms_feitos": 1003,
-        "_imagem": "/images/dashboard_blue.jpg",
+        "_imagem": "/images/dashboard_blue.jpg"
     },
     {
         "_id": 4,
@@ -41,7 +41,7 @@
         "_data_entrada": "2021-01-04",
         "_ativo": true,
         "_kms_feitos": 1004,
-        "_imagem": "/images/dashboard_green.jpg",
+        "_imagem": "/images/dashboard_green.jpg"
     },
     {
         "_id": 5,
@@ -52,7 +52,7 @@
         "_data_entrada": "2021-01-05",
         "_ativo": true,
         "_kms_feitos": 1005,
-        "_imagem": "/images/dashboard_blue.jpg",
+        "_imagem": "/images/dashboard_blue.jpg"
     },
     {
         "_id": 6,
@@ -63,7 +63,7 @@
         "_data_entrada": "2021-01-06",
         "_ativo": true,
         "_kms_feitos": 1006,
-        "_imagem": "/images/dashboard_green.jpg",
+        "_imagem": "/images/dashboard_green.jpg"
     },    
     {
         "_id": 7,
@@ -74,7 +74,7 @@
         "_data_entrada": "2021-01-07",
         "_ativo": true,
         "_kms_feitos": 1007,
-        "_imagem": "/images/dashboard_blue.jpg",
+        "_imagem": "/images/dashboard_blue.jpg"
     },
     {
         "_id": 8,
@@ -85,6 +85,6 @@
         "_data_entrada": "2021-01-08",
         "_ativo": true,
         "_kms_feitos": 1008,
-        "_imagem": "/images/dashboard_green.jpg",
+        "_imagem": "/images/dashboard_green.jpg"
     }
 ]

@@ -65,7 +65,7 @@ fs.readFile('./app_server/manutencoes.json', async function(err, data) {
 				const data = (function(str){
 					return str.split('-').reverse().join('-') ;
 				}(m._data));
-				await viatura.manutencoes.nova([m._id, m._id_viatura, data, m._kms, m._oficina, m._descricao, m._euros]);
+				await viatura.manutencoes.nova([m._id, data, m._kms, m._oficina, m._descricao, data, m._euros]);
 				break;
 			}
 		}

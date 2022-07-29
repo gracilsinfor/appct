@@ -14,8 +14,8 @@ fs.readFile('./app_server/turnos.json', async function(err, data) {
     }
     const array_t = await JSON.parse(data);
     for await(const t of array_t){
-        const d_ini = await (t.d_ini=="" ? 'n/d' : d_ini);
-        const d_fim = await (t.d_fim=="" || 'n/d' ? '' : t.d_fim);
+        const d_ini = await (t._h_ini=="" ? 'n/d' : t._h_ini);
+        const d_fim = await (t._h_fim=="" ? 'n/d' : t._h_fim);
     }
     fs.close;
   });

@@ -21,6 +21,8 @@ class Viatura {
         this.#_foto = foto;
         this.#_ativa = ativa;
         this.#_odo = odometro;
+        this.#_manuts = new Manutencoes();
+        this.#_abasts = new Abastecimentos;
     }
 
     set id (idv) { this.#_id = idv;}
