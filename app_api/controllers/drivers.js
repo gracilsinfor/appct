@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const condut = mongoose.model('Condutor')
 
 const lista_condutores = (req, res) => { 
     res
@@ -8,33 +9,33 @@ const lista_condutores = (req, res) => {
 
 const novo_condutor = (req, res) => { 
     res
-    .status(200)
-    .json({"status" : "success"});
+        .status(200)
+        .json({"status" : "success"});
 };
 
-const ver_condutor=(req, res)=>{
+const condutor_por_id = (req, res) => { 
     res
         .status(200)
         .json({"status" : "success"});
 };
 
-const atualiza_condutor=(req, res)=>{ 
+const atualiza_condutor = (req, res) => { 
     res
-    .status(200)
-    .json({"status" : "success"});
+        .status(200)
+        .json({"status" : "success"});
 };
 
-const elimina_condutor=(req, res)=>{ 
+const elimina_condutor = (req, res) => { 
     res
-    .status(200)
-    .json({"status" : "success"});
+        .status(200)
+        .json({"status" : "success"});
 };
 
 
 module.exports = {
     lista_condutores,
     novo_condutor,
-    ver_condutor,
+    condutor_por_id,
     atualiza_condutor,
     elimina_condutor
-};
+}

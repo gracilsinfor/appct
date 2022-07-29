@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { boolean } = require('webidl-conversions');
 
 /** para documentos condutor */
 const condutor_schema = new mongoose.Schema({

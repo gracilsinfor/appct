@@ -5,13 +5,13 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 
-// require('./app_api/models/db');
-require('./app_server/models/db');
+require('./app_api/models/db');
+// require('./app_server/models/db');
 
 
 // para definir os routers da aplicação
 const indexRouter = require('./app_server/routes/index');
-// const apiRouter = require('./app_api/routes/index');
+const apiRouter = require('./app_api/routes/index');
 
 // para definir app express
 const app = express();
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // para outras ligações midleware da aplicação
 app.use('/', indexRouter);
-// app.use('/api', apiRouter);
+app.use('/api', apiRouter);
 
 // para encaminhar o erro 404 para o respetivo handler
 app.use(function(req, res, next) {

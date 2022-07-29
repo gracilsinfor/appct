@@ -6,76 +6,97 @@ const ctrl_drivers = require('../controllers/drivers');
 const ctrl_cars = require('../controllers/cars');
 const ctrl_shifts = require('../controllers/shifts');
 const ctrl_fills = require('../controllers/fillings');
+const ctrl_repairs = require('../controllers/repairs');
+
 const ctrl_home = require('../controllers/home');
 
-const ctrl_maintenances = require('../controllers/maintenances');
-const { route } = require('express/lib/application');
+// const { route } = require('express/lib/application');
 
 // para página inicial
 router.get('/api', ctrl_home.inicio);
-router.get('/Home', ctrl_home.inicio);
 
-// PARA TESTE
-// router.get('/theme-template', ctrl_shifts.teste);
-
-// PARA CARROS
+/* Routes crud viaturas */
 router
-    .route('/carros')                       // para o padrão route documentos carro
-    .get(ctrl_cars.lista_carros)            // para listar carros
-    .post(ctrl_cars.novo_carro);            // para novo carro
+    .route('/Viaturas')
+    .get(ctrl_cars.lista_viaturas)
+    .post(ctrl_cars.nova_viatura)
+    ;
 
 router
-    .route('/carros/:idcarro')              // para o padrão route documento carro
-    .get(ctrl_cars.ver_carro)               // para listar carro
-    .put(ctrl_cars.atualiza_carro)          // para atualizar carro
-    .delete(ctrl_cars.elimina_carro);       // para eliminar carro
+    .route('/Viaturas/:idviatura')
+    .get(ctrl_cars.viatura_por_id)
+    .put(ctrl_cars.atualiza_viatura)
+    .delete(ctrl_cars.elimina_viatura)
+    ;
 
-// PARA CONDUTORES
+/* Routes crud condutores */
 router
-    .route('/condutores')                   // para o padrão route documentos condutor
-    .get(ctrl_drivers.lista_condutores)     // para listar condutores
-    .post(ctrl_drivers.novo_condutor);      // para novo condutor
-
-router
-    .route('/condutores/:idcondutor')       // para o padrão route documento condutor
-    .get(ctrl_drivers.ver_condutor)         // para listar condutor
-    .put(ctrl_drivers.atualiza_condutor)    // para atualizar condutor
-    .delete(ctrl_drivers.elimina_condutor); // para eliminar condutor
-
-// PARA TURNOS
-router
-    .route('/turnos')                           // para o padrão route documentos turno
-    .get(ctrl_shifts.lista_turnos)              // para listar turnos
-    .post(ctrl_shifts.novo_turno);              // para novo turno
+    .route('/Condutores')
+    .get(ctrl_drivers.lista_condutores)
+    .post(ctrl_drivers.novo_condutor)
+    ;
 
 router
-    .route('/turnos/:idturno')                  // para o padrão route documento turno
-    .get(ctrl_shifts.ver_turno)                 // para listar turno
-    .put(ctrl_shifts.atualiza_turno)            // para atualizar turno
-    .delete(ctrl_shifts.elimina_turno);         // para eliminar turno
+    .route('/Condutores/:idcondutor')
+    .get(ctrl_drivers.condutor_por_id)
+    .put(ctrl_drivers.atualiza_condutor)
+    .delete(ctrl_drivers.elimina_condutor)
+    ;
 
-// PARA ABASTECIMENTOS
+/* Routes crud turnos */
 router
-    .route('/carros/:idcarro/abastecimentos')             // para o padrão route subdocumentos abastecimento de um documento carro
-    .post(ctrl_fills.novo_abastecimento)        // para novo abastecimento
-    .get(ctrl_fills.lista_abastecimentos);      // para listar abastecimentos
-
-router
-    .route('/carros/:idcarro/abastecimento/:idabastecimento')   // para o padrão route subdocumento abastecimento de um documento carro
-    .get(ctrl_fills.ver_abastecimento)                          // para listar abastecimento
-    .put(ctrl_fills.atualiza_abastecimento)                     // para atualizar abastecimento
-    .delete(ctrl_fills.elimina_abastecimento);                  // para eliminar abastecimento
-
-// PARA REVISOES
-router
-    .route('/carros/:idcarro/revisoes')         // para o padrão route dos subdocumentos revisão de um documento carro
-    .post(ctrl_maintenances.nova_revisao)       // para adicionar um novo subdocumento revisão a um documento carro
-    .get(ctrl_maintenances.lista_revisoes);     // para listar os subdocumentos revisão de um documento carro
+    .route('/Turnos')
+    .get(ctrl_shifts.lista_turnos)
+    .post(ctrl_shifts.novo_turno)
+    ;
 
 router
-    .route('/carros/:idcarro/revisao/:idrevisao')   // para o padrão route de um subdocumento revisão de um documento carro
-    .get(ctrl_maintenances.ver_revisao)             // para ver subdocumento revisão
-    .post(ctrl_maintenances.atualiza_revisao)       // para atualizar subdocumento revisão
-    .delete(ctrl_maintenances.elimina_revisao);     // para eliminar subdocumento revisão
+    .route('/Turnos/:idturno')
+    .get(ctrl_shifts.turno_por_id)
+    .put(ctrl_shifts.atualiza_turno)
+    .delete(ctrl_shifts.elimina_turno)
+    ;
+
+/* Routes crud abastecimentos */
+router
+    .route('/Abastecimentos')
+    .get(ctrl_fills.lista_abastecimentos)
+    ;
+router
+    .route('Abastecimentos/:idabastecimento')
+    .get(ctrl_fills.abastecimento_por_id)
+    ;
+router
+    .route('/Abstecimentos/:idviatura')
+    .post(ctrl_fills.novo_abastecimento)
+    .get(ctrl_fills.abastecimentos_por_viatura)
+    ;
+router
+    .route('/Abastecimentos/:idviatura/:idabastecimento')
+    .get(ctrl_fills.abastecimento_da_viatura)
+    .put(ctrl_fills.atualiza_abastecimento)
+    .delete(ctrl_fills.elimina_abastecimento)
+    ;
+
+/* Routes crud manutenções */
+router
+    .route('/Manutencoes')
+    .get(ctrl_repairs.lista_manutencoes)
+    ;
+router
+    .route('Manutencoes/:idmanutencao')
+    .get(ctrl_repairs.manutencao_por_id)
+    ;
+router
+    .route('/Manutencoes/:idviatura')
+    .post(ctrl_repairs.nova_manutencao)
+    .get(ctrl_repairs.manutencoes_por_viatura)
+    ;
+router
+    .route('/Manutencoes/:idviatura/:manutencao')
+    .get(ctrl_repairs.manutencao_da_viatura)
+    .post(ctrl_repairs.atualiza_manutencao)
+    .delete(ctrl_repairs.elimina_manutencao)
+    ;
 
 module.exports = router;

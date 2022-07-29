@@ -13,7 +13,6 @@ const req = require('express/lib/request');
 
 /* GET home page. */
 router.get('/', ctrl_home.inicio);
-// router.get('/Home', ctrl_home.inicio);
 
 /* Routes crud viaturas */
 router.get('/Viatura/C', ctrl_cars.car_c);

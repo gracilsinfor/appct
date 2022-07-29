@@ -1,31 +1,31 @@
 const mongoose = require('mongoose');
+// const turn = mongoose.model('Turnos');
 
-const lista_turnos=(req, res)=>{
+const lista_turnos = (req, res) => { 
     res
         .status(200)
         .json({"status" : "success"});
 };
 
-const novo_turno=(req, res)=>{ 
+const novo_turno = (req, res) => {
     res
         .status(200)
         .json({"status" : "success"});
 };
 
-const ver_turno=(req, res)=>{ 
+const turno_por_id = (req, res) => {
     res
         .status(200)
         .json({"status" : "success"});
 };
 
-const atualiza_turno=(req, res)=>{ 
+const atualiza_turno = (req, res) => {
     res
         .status(200)
         .json({"status" : "success"});
 };
 
-
-const elimina_turno=(req, res)=>{ 
+const elimina_turno = (req, res) => {
     res
         .status(200)
         .json({"status" : "success"});
@@ -34,7 +34,7 @@ const elimina_turno=(req, res)=>{
 module.exports = {
     lista_turnos,
     novo_turno,
-    ver_turno,
+    turno_por_id,
     atualiza_turno,
     elimina_turno
-};
+}
