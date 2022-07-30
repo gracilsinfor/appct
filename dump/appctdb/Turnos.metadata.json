@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"27b0e2212ea14d979a3bf8fde0c1b30e","collectionName":"Turnos","type":"collection"}

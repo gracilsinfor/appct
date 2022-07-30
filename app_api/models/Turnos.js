@@ -22,6 +22,5 @@ const turno_schema = new mongoose.Schema({
     fatur: [faturacao_schema],
 });
 
-
 /** para compilar o esquema */
 mongoose.model('Turno', turno_schema, 'Turnos');
