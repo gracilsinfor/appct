@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// const turn = mongoose.model('Turnos');
+const Shift = mongoose.model('Turno');
 
 const lista_turnos = (req, res) => { 
     res

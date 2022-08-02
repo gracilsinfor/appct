@@ -5,37 +5,37 @@ class Turno{
     #_id_condutor;
     #_id_viatura;
     #_d_ini;
-    #_odom_ini;
+    #_odo_i;
     #_d_fim;
-    #_odom_fim;
+    #_odo_f;
     #_fatur;
 
-    constructor(id, id_condutor, id_viatura, odom_ini, d_ini, odom_fim, d_fim=0){
+    constructor(id, id_condutor, id_viatura, odo_i, d_ini, odo_f, d_fim=0){
         this.#_id_turno = id;
         this.#_id_condutor = id_condutor;
         this.#_id_viatura = id_viatura;
         this.#_d_ini = d_ini;
-        this.#_odom_ini = odom_ini;
+        this.#_odo_i = odo_i;
         this.#_d_fim = d_fim,
-        this.#_odom_fim = odom_fim;
+        this.#_odo_f = odo_f;
     }
 
     set id_turno (idt) {this.#_id_turno = idt; }
     set id_condutor (idc) {this.#_id_condutor = idc; }
     set id_viatura (idv) { this.#_id_viatura = idv; }
     set d_ini (di) { this.#_d_ini = di; }
-    set odom_ini (kmi) { this.#_odom_ini = kmi; }
+    set odo_i (kmi) { this.#_odo_i = kmi; }
     set d_fim (df) { this.#_d_fim = df; }
-    set odom_fim (kmf) { this.#_odom_fim = kmf; }
+    set odo_f (kmf) { this.#_odo_f = kmf; }
     set fatur (arr) { this.#_fatur = new Faturacao(...arr) };
 
     get id_turno () {return this.#_id_turno; }
     get id_condutor () {return this.#_id_condutor; }
     get id_viatura () {return this.#_id_viatura; }
     get d_ini () {return this.#_d_ini; }
-    get odom_ini () {return this.#_odom_ini; }
+    get odo_i () {return this.#_odo_i; }
     get d_fim () {return this.#_d_fim; }
-    get odom_fim () {return this.#_odom_fim; }
+    get odo_f () {return this.#_odo_f; }
     get fatur () {return this.#_fatur; }
 
     get turno () { return this; }
@@ -46,9 +46,9 @@ class Turno{
             "id_condutor": this.id_condutor,
             "id_viatura": this.id_viatura,
             "d_ini": this.d_ini,
-            "odom_ini": this.odom_ini,
+            "odo_i": this.odo_i,
             "d_fim": this.d_fim,
-            "odom_fim": this.odom_fim,
+            "odo_f": this.odo_f,
         }
         return ret_obj; 
     }
@@ -59,9 +59,9 @@ class Turno{
             "id_condutor": this.id_condutor,
             "id_viatura": this.id_viatura,
             "d_ini": this.d_ini,
-            "odom_ini": this.odom_ini,
+            "odo_i": this.odo_i,
             "d_fim": this.d_fim,
-            "odom_fim": this.odom_fim,
+            "odo_f": this.odo_f,
             "kms_percorridos": this.kms_percorridos,
             "horas_conducao": this.horas_conducao,
         }
@@ -77,7 +77,7 @@ class Turno{
     }
 
     get kms_percorridos () {
-        const total = this.odom_fim - this.odom_ini;
+        const total = this.odo_f - this.odo_i;
         if(total > 0){
             return total;
         }else{

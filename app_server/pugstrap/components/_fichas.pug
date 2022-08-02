@@ -3,51 +3,51 @@ mixin par_turno(dados)
         .panel.panel-primary
             .panel-heading
                 .panel-title 
-                    a.fa.fa-people-arrows(href='/Turno/'+ dados.id_turno) &nbsp; #{dados.id_turno}
+                    a.fa.fa-people-arrows(href='/Turno/'+ dados.turno.id) &nbsp; #{dados.turno.id}
             .panel-body
                 .row
                     .col-xs-6.col-md-6.col-lg-6
                         .placeholder
                             .text-center
-                                a(href='/Condutor/'+ dados.id_condutor)
+                                a(href='/Condutor/'+ dados.condutor.id)
                                     h5.i.fa.fa-user 
-                                    | &nbsp; #{dados.nome_condutor}
-                                    img.img-responsive(src=dados.imagem_condutor, alt=dados.nome_condutor)
+                                    | &nbsp; #{dados.condutor.nome}
+                                    img.img-responsive(src=dados.condutor.foto, alt=dados.condutor.nome)
                     .col-xs-6.col-md-6.col-lg-6
                         .placeholder 
                             .text-center
-                                a(href='/Viatura/'+ dados.id_viatura)
+                                a(href='/Viatura/'+ dados.viatura.id)
                                     h5.i.fa.fa-car
-                                    | &nbsp; #{dados.matricula}
-                                    img.img-responsive(src=dados.imagem_viatura, alt=dados.matricula)
+                                    | &nbsp; #{dados.viatura.n_r}
+                                    img.img-responsive(src=dados.viatura.foto, alt=dados.viatura.n_r)
                 .row
                     .col-xs-6.col-md-6.col-lg-6
                         .text-left
                             h6 Início:
-                            span.text-muted.small #{dados.h_ini} : #{dados.d_ini}
+                            span.text-muted.small #{dados.turno.d_ini} : #{dados.turno.d_ini}
                     .col-xs-6.col-md-6.col-lg-6
                         .text-left
                             h6 Fim:
-                            span.text-muted.small #{dados.h_fim} : #{dados.d_fim} 
+                            span.text-muted.small #{dados.turno.d_fim} : #{dados.turno.d_fim} 
 
 mixin card_viatura(dados)
     .col-xs-12.col-sm-6.col-md-4.col-lg-3
         .panel.panel-primary
             .panel-heading
                 h4.panel-title 
-                    a.fa.fa-car(href='/Viatura/'+ dados.id_viatura) &nbsp; #{dados.id_viatura}
+                    a.fa.fa-car(href='/Viatura/'+ dados.viatura.id) &nbsp; #{dados.viatura.id}
             .panel-body
                 .row.placeholders
                     .col-xs-6.col-md6.col-lg-6
                         .placeholder
                             .text-center 
-                                a(href=`/Viatura/${dados.id_viatura}`)
-                                    h5 #{dados.matricula}
-                                    img.img-responsive(src=dados.imagem_viatura, alt=dados.matricula)
-                                    h5 #{dados.descricao_viatura}
+                                a(href=`/Viatura/${dados.viatura.id}`)
+                                    h5 #{dados.viatura.n_r}
+                                    img.img-responsive(src=dados.viatura.foto, alt=dados.viatura.n_r)
+                                    h5 #{dados.viatura.desc}
                     .col-xs-6.col-md-6.col-lg-6
                         .placeholder 
-                            h5 Kms: #{dados.odometro}
+                            h5 Kms: #{dados.viatura.odo}
                             h5 Manutenções: 
                             if dados.kms_ultima_manutencao != null
                                 h6 Última: #{dados.kms_ultima_manutencao} km

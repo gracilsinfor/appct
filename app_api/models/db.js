@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
-const readLine = require('readline');
 
-const bd_uri_local = 'mongodb://localhost/appctdb';
-const bd_uri_remote ='mongodb://yaappu:c1plerhKh2ADx8Q7@cluster0.vqhol.mongodb.net/?retryWrites=true&w=majority'
+const bd_uri = 'mongodb://localhost/appctdb';
 
-const local_host = mongoose.createConnection(bd_uri_local, {useNewUrlParser: true});
-const remote_host = mongoose.createConnection(bd_uri_remote, {useNewUrlParser: true}); 
+if(process.env.NODE_ENV==='production'){
+    bd_uri ='mongodb://yaappu:c1plerhKh2ADx8Q7@cluster0.vqhol.mongodb.net/?retryWrites=true&w=majority'
+}
 
+const host_connect = mongoose.createConnection(bd_uri, {useNewUrlParser: true});
 
-// mongoose.connect(bd_uri_local, {useNewUrlParser: true});    // para criar a conexão com a base de dados local
+/** event listners */
 
-/** para escutar SIGINT em ambientes windows, particularmente antigos */
+// /** para o SIGINT em ambientes windows, particularmente antigos */
 // if(process.platform==='win32'){
 //     const rl = readLine.createInterface({
 //         input: process.stdin,
@@ -21,57 +21,20 @@ const remote_host = mongoose.createConnection(bd_uri_remote, {useNewUrlParser: t
 //     });
 // }
 
-/** event listners */
-
-// para mongoose.connect(...) (moongoose nameless connection)
-// mongoose.connection.on('connected', () => {
-//     console.log(`Mongoose connected to ${bd_uri_local}`);
-// });
-// mongoose.connection.on('error', err => {
-//     console.log('Mongoose connection error: ', err);
-// })
-// mongoose.connection.on('disconnected', () => {
-//     console.log('Mongoose disconnected');
-// });
-// mongoose.connection.on('disconnected', () => {
-//     console.log('Mongoose disconnected');
-// });
-
-local_host.on('connected', () => {
-    console.log(`Mongoose connected to ${bd_uri_local}`);
+host_connect.on('connected', () => {
+    console.log(`Mongoose connected to ${bd_uri}`);
 });
 
-remote_host.on('connected', () => {
-    console.log(`Mongoose connected to ${bd_uri_remote}`);
-});
-
-local_host.on('error', err => {
+host_connect.on('error', err => {
         console.log('Mongoose connection error: ', err);
 });
 
-remote_host.on('error', err => {
-    console.log('Mongoose connection error: ', err);
-});
-
-local_host.on('disconnected', () => {
+host_connect.on('disconnected', () => {
     console.log('Mongoose disconnected');
 });
-
-remote_host.on('disconnected', () => {
-    console.log('Mongoose disconnected');
-});
-
 
 const gracefulShutdown = (msg, callback) => {
-    // mongoose.connection.close( () => {
-    //     console.log(`Mongoose disconnected through ${msg}`);
-    //     callback();
-    // });
-    local_host.close( () => {
-        console.log(`Mongoose disconnected through ${msg}`);
-        callback();
-    });
-    remote_host.close( () => {
+    host_connect.close( () => {
         console.log(`Mongoose disconnected through ${msg}`);
         callback();
     });
@@ -98,3 +61,11 @@ process.on('SIGTERM', () => {
     });
 });
 
+require('./AbastecimentoEV');
+require('./AbastecimentoMT');
+require('./Condutor');
+require('./Faturacao');
+// require('./Manutencao');
+require('./Turno');
+require('./Viatura_MT');
+require('./Viatura_EV');

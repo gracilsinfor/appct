@@ -82,12 +82,12 @@ class Viatura {
 
     get as_object_0(){
         const obj = {
-            "id_viatura": this.id,
+            "id": this.id,
             "ev": this.ev,
-            "descricao_viatura": this.desc,
+            "desc": this.desc,
             "n_r": this.#_n_r,
-            "odometro": this.odo,
-            "imagem_viatura": this.foto,
+            "odo": this.odo,
+            "foto": this.foto,
             "ativa": this.ativa,  
         }
         return obj;

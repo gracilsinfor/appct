@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-// const viat = mongoose.model('Viatura');
+const V_mt = mongoose.model('ViaturaMt');
+const V_ev = mongoose.model('ViaturaEv');
 
 const lista_viaturas = (req, res) => { 
     res
@@ -8,6 +9,14 @@ const lista_viaturas = (req, res) => {
 };
 
 const nova_viatura = (req, res) => { 
+    console.log("entered cars-api")
+    res
+        .status(200)
+        .json({"status" : "success da merda..."});
+    return;
+};
+
+const adiciona_nova_viatura = (req, res) => { 
     res
         .status(200)
         .json({"status" : "success"});
@@ -16,7 +25,8 @@ const nova_viatura = (req, res) => {
 const viatura_por_id = (req, res) => { 
     res
         .status(200)
-        .json({"status" : "success"});
+        .json({"status" : "success x"});
+    return
 };
 
 const atualiza_viatura = (req, res) => { 
@@ -34,6 +44,7 @@ const elimina_viatura = (req, res) => {
 module.exports = {
     lista_viaturas,
     nova_viatura,
+    adiciona_nova_viatura,
     viatura_por_id,
     atualiza_viatura,
     elimina_viatura

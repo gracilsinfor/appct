@@ -43,6 +43,12 @@ const elimina_abastecimento = (req, res) => {
         .json({"status" : "success"});
 }; 
 
+const abastecimentos_do_turno = (req, res) => {
+    res
+        .status(200)
+        .json({"status" : "success"});
+};
+
 module.exports = {
     lista_abastecimentos,
     abastecimento_por_id,
@@ -50,5 +56,6 @@ module.exports = {
     abastecimentos_por_viatura,
     abastecimento_da_viatura,
     atualiza_abastecimento,
-    elimina_abastecimento
+    elimina_abastecimento,
+    abastecimentos_do_turno
 }

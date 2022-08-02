@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 /** para documentos condutor */
 const condutor_schema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Types.ObjectId,
     nome: { type: String, required: true },
     nif: {type: Number, required: true },
     tel: String,
@@ -13,7 +13,6 @@ const condutor_schema = new mongoose.Schema({
     foto: String,
 });
 
-/** para compilar o esquema */
 mongoose.model('Condutor', condutor_schema, 'Condutores');
 
 

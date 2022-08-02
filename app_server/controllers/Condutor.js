@@ -47,10 +47,10 @@ class Condutor{
     
     get as_object_0(){
         const obj = {
-            "id_condutor": this.id,
-            "nome_condutor": this.nome,
+            "id": this.id,
+            "nome": this.nome,
             "kms": this.kms,
-            "foto_condutor": this.foto,
+            "foto": this.foto,
         }
         return obj;
     }

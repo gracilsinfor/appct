@@ -45,13 +45,13 @@ fs.readFile('./app_server/faturacoes.json', async function(err, data) {
 async function turnos_ativos () {
     const arr_obj_turno = [];
     for await(const t of turnos){
-        if(t.h_fim === ''){
+        if(t.d_ini === t.d_fim){
             const obj_condutor = await ctrl_condutor.condutor_por_id(t.id_condutor);
             const obj_viatura = await ctrl_viatura.viatura_por_id(t.id_viatura);
             const obj = {
-                ...t.as_object_0,
-                ...obj_condutor.as_object_0,
-                ...obj_viatura.as_object_0,
+                turno: t.as_object_0,
+                condutor: obj_condutor.as_object_0,
+                viatura: obj_viatura.as_object_0,
             }
             arr_obj_turno.push(obj);
         }
