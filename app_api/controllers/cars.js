@@ -12,7 +12,7 @@ const nova_viatura = (req, res) => {
     console.log("entered cars-api")
     res
         .status(200)
-        .json({"status" : "success da merda..."});
+        .json({"status" : "success"});
     return;
 };
 
