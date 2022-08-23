@@ -1,0 +1,90 @@
+.container-fluid
+    .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+" - "+sub_title
+                .pull-right
+                    +a-btn-back()
+            form(id="frm_viatura_r" name="frmViatura" role="form" action=`/viaturas/${viatura._id}/u` method="PUT" enctype="multipart/form-data" )
+                .row 
+                    .col-xs-12.col-sm-12.col-md-4.col-lg-4.placeholder
+                        .panel.panel-info 
+                            .panel-heading 
+                                h3.panel-title=viatura.n_r
+                            .panel-body 
+                                .text-center 
+                                    img.img-responsive(id="img_foto" name="imgFoto" src=`/fotos/viaturas/${viatura.foto}` title=viatura.n_r)
+                                    p &nbsp;
+                                .input-group 
+                                    .input-group-addon
+                                        .fa.fa-file.fa-sm &nbsp;&nbsp;
+                                    label.btn.btn-info.btn-block.btn-sm(id="lbl_file_name" name="lblFileName" for="inp_file_img") #{viatura.foto}
+                                +btn-block("submit", "Carregar foto", "save", "danger")
+
+                                input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value=viatura.foto )
+                                input.visuallyhidden(type="file" id="inp_file_img" name="inpFileImg" accept="image/*") 
+                    .col-xs-12.col-sm-12.col-md-8.col-lg-8
+                        .panel.panel-info 
+                            .panel-heading 
+                                h3.panel-title.text-xs Ficha da viatura
+                                    .pull-right=`id: ${viatura._id}` 
+                            .panel-body
+                                .row 
+                                    .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                                        label.container_chk(for="chk_ativa")
+                                            input(type="checkbox" id="chk_ativa" name="chkAtiva" checked=viatura.ativa )
+                                            .checkmark
+                                            | ativa
+                                .row 
+                                    .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                                        label.container_chk(for="chk_ev")
+                                            input(type="checkbox" id="chk_ev" name="chkEv" checked=viatura.ev )
+                                            .checkmark
+                                            | ev
+                                    .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                                        .form-group 
+                                            label(for="txt_qbateria") bateria (Kwh)
+                                            .input-group 
+                                                .input-group-addon 
+                                                    +awsme("battery")
+                                                input.form-control(type="text" id="txt_qbateria" name="qbateria" value=viatura.q_b )
+                                .row 
+                                    .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                                        .form-group
+                                            label(for="txt_matricula") matrícula
+                                            .input-group 
+                                                .input-group-addon 
+                                                    +awsme("car")
+                                                input.form-control(type="text" id="txt_matricula" name="matricula" value=viatura.n_r )
+                                    .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                                        .form-group 
+                                            label(for="txt_odometro") odómetro
+                                            .input-group
+                                                .input-group-addon 
+                                                    +awsme("tachometer")
+                                                input.form-control(type="text" id="txt_odometro" name="odometro" value=viatura.odo )
+                                .row 
+                                    .col-xs-12.col-sm-12.col-md-12.col-lg-12 
+                                        .form-group
+                                            label(for="txt_odometro") descrição
+                                            .input-group 
+                                                .input-group-addon 
+                                                    +awsme("clipboard")
+                                                input.form-control(type="text" id="txt_descricao" name="descricao" value= viatura.desc )
+                                .row 
+                                    .col-xs-6.col-sm-6.col-md-6.col-lg-6 
+                                        .form-group 
+                                            label(for="txt_ultima_manutencao") última manutenção
+                                            .input-group 
+                                                .input-group-addon 
+                                                    +awsme("tools")
+                                                input.form-control(type="text" id="txt_ultima_manutencao" placeholder="última manutenção" name="ultimaManutencao" value= "" disabled)
+                                    .col-xs-6.col-sm-6.col-md-6.col-lg-6 
+                                        .form-group
+                                            label(for="txt_proxima_manutencao") descrição
+                                            .input-group 
+                                                .input-group-addon 
+                                                    +awsme("tools")
+                                                input.form-control(type="text" id="txt_proxima_manutencao" name="proximaManutencao" placeholder="próxima manutenção" value= "" disabled)
+                                +btn-block("submit", "Atualizar registo da viatura", "save", "danger")
+
+                                +a-btn-block-back()

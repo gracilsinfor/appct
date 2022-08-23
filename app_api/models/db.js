@@ -1,40 +1,29 @@
 const mongoose = require('mongoose');
 
-const bd_uri = 'mongodb://localhost/appctdb';
+const bd_uri = 'mongodb://localhost:27017/appctdb';
 
 if(process.env.NODE_ENV==='production'){
     bd_uri ='mongodb://yaappu:c1plerhKh2ADx8Q7@cluster0.vqhol.mongodb.net/?retryWrites=true&w=majority'
 }
 
-const host_connect = mongoose.createConnection(bd_uri, {useNewUrlParser: true});
+mongoose.connect(bd_uri, {useNewUrlParser: true, useUnifiedTopology: true});
 
 /** event listners */
 
-// /** para o SIGINT em ambientes windows, particularmente antigos */
-// if(process.platform==='win32'){
-//     const rl = readLine.createInterface({
-//         input: process.stdin,
-//         output: process.stdout,
-//     });
-//     rl.on('SIGINT', () => {
-//         process.emit("SIGINT");
-//     });
-// }
-
-host_connect.on('connected', () => {
+mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${bd_uri}`);
 });
 
-host_connect.on('error', err => {
+mongoose.connection.on('error', err => {
         console.log('Mongoose connection error: ', err);
 });
 
-host_connect.on('disconnected', () => {
+mongoose.connection.on('disconnected', () => {
     console.log('Mongoose disconnected');
 });
 
 const gracefulShutdown = (msg, callback) => {
-    host_connect.close( () => {
+    mongoose.connection.close( () => {
         console.log(`Mongoose disconnected through ${msg}`);
         callback();
     });
@@ -61,11 +50,12 @@ process.on('SIGTERM', () => {
     });
 });
 
-require('./AbastecimentoEV');
-require('./AbastecimentoMT');
+// require('./AbastecimentoEV');
+// require('./AbastecimentoMT');
 require('./Condutor');
 require('./Faturacao');
 // require('./Manutencao');
 require('./Turno');
-require('./Viatura_MT');
-require('./Viatura_EV');
+require('./Viatura');
+// require('./Viatura_MT');
+// require('./Viatura_EV');

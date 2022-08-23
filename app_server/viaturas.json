@@ -1,0 +1,59 @@
+[
+    {
+        "_id": 1,
+        "_ev": true,
+        "_q_bateria": 50,
+        "_matricula": "EV01X1",
+        "_descricao": "Carro elétrico 1",
+        "_imagem": "/images/dashboard_green.jpg",
+        "_proxima_manutencao": {},
+        "_manutencoes": [{}],
+        "_abastecimentos": [{}],
+        "_ativa": true
+    },
+    {
+        "_id": 2,
+        "_ev": true,
+        "_q_bateria": 50,
+        "_matricula": "EV02X2",
+        "_descricao": "Carro elétrico 2",
+        "_imagem": "/images/dashboard_blue.jpg",
+        "_proxima_manutencao": {},
+        "_manutencoes": [{}],
+        "_abastecimentos": [{}],
+        "_ativa": true
+    },
+    {
+        "_id": 3,
+        "_ev": false,
+        "_matricula": "MT03X3",
+        "_descricao": "Carro térmico 3",
+        "_imagem": "/images/dashboard_green.jpg",
+        "_proxima_manutencao": {},
+        "_manutencoes": [{}],
+        "_abastecimentos": [{}],
+        "_ativa": true
+    },
+    {
+        "_id": 4,
+        "_ev": false,
+        "_matricula": "MT04X4",
+        "_descricao": "Carro térmico 4",
+        "_imagem": "/images/dashboard_blue.jpg",
+        "_proxima_manutencao": {},
+        "_manutencoes": [{}],
+        "_abastecimentos": [{}],
+        "_ativa": true
+    },
+    { 
+        "_id": 5,
+        "_ev": false,
+        "_matricula": "MT05X5",
+        "_descricao": "Carro térmico 5",
+        "_imagem": "/images/dashboard_green.jpg",
+        "_proxima_manutencao": {},
+        "_manutencoes": [{}],
+        "_abastecimentos": [{}],
+        "_ativa": false
+    }
+]

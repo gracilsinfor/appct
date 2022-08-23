@@ -10,10 +10,10 @@ const condutor_schema = new mongoose.Schema({
     entrada: Date,
     kms: Number,
     ativo: { type: Boolean, required: true },
-    foto: String,
+    foto: {type: String, required: true},
 });
 
 mongoose.model('Condutor', condutor_schema, 'Condutores');
 
 
-
+// nome nif tel email entrada kms ativo foto

@@ -1,133 +1,156 @@
 include icons
 //- Input control with form-group wrapper
+//- mixin error_label(id, nome, para)
+//- 	span.pf-5.text-warning.fas.fa-exclamation-circle
+//- 		label.error(id=id name=nome for=para)
 
-mixin input_file(rota, id, nome, label, titulo, estado)
-    +panel-danger(titulo)
-        .row
-            .col.placeholder
-                .text-center
-                    if rota == "/Viatura/C"
-                        img.img-responsive.fa.fa-8x.fa-solid.fa-car(id="img_viatura" src='' alt=f1b9 placeholder="&#xf1b9")
-                    if rota == "/Condutor/C"
-                        img.img-responsive.fa.fa-8x.fa-solid.fa-user(id="img_condutor" src='' alt=e1b8 placeholder="&#xe1b8")
-                    p 
-                    input.invisible(type="file" name=nome id=id)
-                    label.btn.btn-danger(for=id) #{label} 
-                .pull-right id: &nbsp;
+mixin input_file(label, titulo, estado)
+	+panel-danger(titulo)
+		.row
+			.col-12
+				.text-center
+					if rota == "/Viatura/C"
+						img.img-responsive.fa.fa-8x.fa-solid.fa-car(id="img_foto" name="imgFoto" src="" alt=f1b9 placeholder="&#xf1b9" )
+						input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value="" )
+					else if rota == "/Condutor/C"
+						img.img-responsive.fa.fa-8x.fa-solid.fa-user(id="img_foto" name="imgFoto" src="" alt=e1b8 placeholder="&#xe1b8" )
+					else if rota == "/Viatura/id/U"
+						img.img-responsive.fa.fa-8x.fa-solid.fa-user(id="img_foto" name="imgFoto" src=`/fotos/viaturas/${viatura.foto}` )
+						input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value=viatura.foto )
+					input.visuallyhidden(type="file" id="inp_file_img" name="inpFileImg" accept="image/*") 
+				p 
+				.text-center
+					.input-group
+						.input-group-addon
+							.fa.fa-file.fa-sm &nbsp;&nbsp;
+						if rota == "/Viatura/id/U"	
+							label.btn.btn-info.btn-block.btn-sm(id="lbl_file_name" name="lblFileName" for="inp_file_img") #{viatura.foto}
+						else
+							label.btn.btn-info.btn-block.btn-sm(id="lbl_file_name" name="lblFileName" for="inp_file_img") selecionar ficheiro
+					//- label.btn.btn-xs.btn-danger(for="inp_file_img") #{label} 
+			.pull-right id: &nbsp;
 
 mixin input_data(id, name, label, valor, estado )
-    label(for=id) #{label}
-    .input-group.mb-5
-        .input-group-addon
-            .fa.fa-solid.fa-calendar-check
-        input.form-control(type="date", id=id, name=name, value=valor, disabled=estado)
+	label(for=id) #{label}
+	.input-group.mb-5
+		.input-group-addon
+			.fa.fa-solid.fa-calendar-check
+		input.form-control(type="date", id=id, name=name, value=valor, disabled=estado)
 
 mixin input_hora(id, name, label, valor, estado )
-    label(for=id) #{label}
-    .input-group.mb-5
-        .input-group-addon
-            .fa.fa-solid.fa-hourglass-start
-        input.form-control(type="time", id=id, name=name, value=valor, disabled=estado)
+	label(for=id) #{label}
+	.input-group.mb-5
+		.input-group-addon
+			.fa.fa-solid.fa-hourglass-start
+		input.form-control(type="time", id=id, name=name, value=valor, disabled=estado)
 
 mixin input_datetime(id, label, valor, start_end, nome, estado)
-    label(for=id) #{label}
-    .input-group.mb-5
-        .input-group-addon
-            if start_end == "start"
-                .fa.fa-solid.fa-hourglass-start
-            else if start_end == "end"
-                .fa.fa-solid.fa-hourglass-end
-        input.form-control(type="datetime-local", id=id, value=valor, name=nome, disabled=estado)
+	label(for=id) #{label}
+	.input-group.mb-5
+		.input-group-addon
+			if start_end == "start"
+				.fa.fa-solid.fa-hourglass-start
+			else if start_end == "end"
+				.fa.fa-solid.fa-hourglass-end
+		input.form-control(type="datetime-local", id=id, value=valor, name=nome, disabled=estado)
 
 mixin awsme_input(tipo, id, nome, label, placeholder, valor, estado, awsme)
-    .form-group
-        label(for=id) #{label}
-        .input-group
-            .input-group-addon
-                +awsme(awsme)
-            if(estado)
-                input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor)
-            else
-                input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor, disabled)
+	.form-group
+		label(for=id) #{label}&nbsp; 
+		//- if estado
+		//- 	+error_label(`${nome}-error`, `${nome}Error`, id)
+		.input-group
+			.input-group-addon
+				+awsme(awsme)
+			if(estado)
+				input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor)
+			else
+				input.form-control(type=tipo, id=id, placeholder=placeholder, name=nome, value=valor, disabled)
 
 mixin awsme_textarea(id, nome, label, linhas, placeholder, valor, estado, awsme)
-    .form-group
-        label(for=id) #{label}
-        .input-group
-            .input-group-addon
-                +awsme(awsme)
-            if(estado)
-                textarea.form-control(id=id, placeholder=placeholder, name=nome, rows= linhas) #{valor}
-            else
-                textarea.form-control(type="textarea", id=id, placeholder=placeholder, name=nome, rows= linhas, disabled) #{valor}
+	.form-group
+		label(for=id) #{label}
+		.input-group
+			.input-group-addon
+				+awsme(awsme)
+			if(estado)
+				textarea.form-control(id=id, placeholder=placeholder, name=nome, rows= linhas) #{valor}
+			else
+				textarea.form-control(type="textarea", id=id, placeholder=placeholder, name=nome, rows= linhas, disabled) #{valor}
 
 
 mixin yainput(tipo, id, nome, label, placeholder, valor, estado)
-    .form-group
-        label(for=id) #{label}
-        if(estado==true)
-            input.form-control(type=tipo, id=id, name=nome, placeholder=placeholder, value=valor)
-        else
-            input.form-control(type=tipo, id=id, name=nome, placeholder=placeholder, value=valor, disabled)
+	.form-group
+		label(for=id) #{label}
+		if(estado==true)
+			input.form-control(type=tipo, id=id, name=nome, placeholder=placeholder, value=valor)
+		else
+			input.form-control(type=tipo, id=id, name=nome, placeholder=placeholder, value=valor, disabled)
 
 //- Simple form input control without a form-group
 mixin yainput-simple(type,id,placeholder,name)
-    input.form-control(type=type,id=id,placeholder=placeholder,name=name)
+	input.form-control(type=type,id=id,placeholder=placeholder,name=name)
 
 //- Checkbox - Block style
-mixin yacheckbox(id, label, name, valor, enabled)
-        label.container_chk
-            if (!enabled) 
-                input(type="checkbox", id=id, label=label, name=name, checked=valor, disabled)
-            else
-                input(type="checkbox", id=id, label=label, name=name, checked=valor)
-            span.checkmark
-            = label
+mixin yacheckbox(id, name, label, checked, enabled)
+	label.container_chk(for=id)
+		if (!enabled) 
+			if (checked)
+				input(type="checkbox" id=id label=label name=name checked disabled)
+			else 
+				input(type="checkbox" id=id label=label name=name disabled)
+		else
+			if (checked)
+				input(type="checkbox" id=id label name=name checked)
+			else 
+				input(type="checkbox" id=id label=label name=name)
+		.checkmark 
+		| #{label}
 
 //- Checkbox - Inline style
-mixin yacheckbox-inline(id, label, name, valor, enabled)
-    .checkbox-inline
-        if (!enabled) 
-            input(type="checkbox", id=id, label=label, name=name, checked=valor, disabled)
-        else
-            input(type="checkbox", id=id, label=label, name=name, checked=valor)
-        = label
+mixin yacheckbox-inline(label, id, name, valor, enabled)
+	.checkbox-inline
+		if (!enabled) 
+			input(type="checkbox" id=id label=label name=name valor disabled)
+		else
+			input(type="checkbox" id=id label=label name=name valor)
+		= label
 
 //- Radio box
 mixin yaradio(text,name,id)
-    .radio
-        label
-            input(type="radio",name=name,id=id)
-            = text
+	.radio
+		label
+			input(type="radio",name=name,id=id)
+			= text
 
 //- Radio box - Inline style
 mixin yaradio-inline(text,name,id)
-    .radio-inline
-        input(type="radio",name=name,id=id)
-        = text
+	.radio-inline
+		input(type="radio",name=name,id=id)
+		= text
 
 //- Submit button
 mixin yasubmit(text,name,id)
-    .form-group
-        button.btn.btn-default(type="submit",name=name,id=id)= text
+	.form-group
+		button.btn.btn-default(type="submit",name=name,id=id)= text
 
 //- Input group - both prepend and append options available, and block is passed
 mixin yainput-group(prepend,append)
-    .form-group
-        .input-group
-            unless !prepend
-                .input-group-addon
-                    = prepend
-                block
-                unless !append
-                    .input-group-addon
-                        = append
+	.form-group
+		.input-group
+			unless !prepend
+				.input-group-addon
+					= prepend
+				block
+				unless !append
+					.input-group-addon
+						= append
 
 //- Icon button
 mixin yaicon-btn(icon)
-    button.btn.btn-default(type="button",aria-label=icon)
-        +icon(icon)
+	button.btn.btn-default(type="button",aria-label=icon)
+		+icon(icon)
 
 //- Badges
 mixin yabadge(text)
-    span.badge= text
+	span.badge= text

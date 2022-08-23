@@ -4,14 +4,83 @@
             h2.page-header=title+" - "+sub_title
                 .pull-right
                     +a-btn-back()
-            .row
-                .col-xs-12.col-sm-12.col-md-4.col-lg-3
-                    +input_file(rota, "inputfilefoto", "inputfile_foto", "Procurar ficheiro", "Carregar foto do condutor", true)
-                .col-xs-12.col-sm-12.col-md-8.col-lg-9.placeholder
-                    .row 
-                        +ficha_condutor_c()
-                        .container-fluid
-                            .row 
-                                .col.placeholder-10
-                                    +a-btn-block("/Condutor/C", "Registar novo condutor", "save", "danger")
-                                    +a-btn-block-back()
+            div(id="div_alert")
+            .row 
+                .col-xs-12.col-sm-12.col-md-12.col-lg-12.placeholder
+                    .panel.panel-info 
+                        .panel-heading 
+                            h3.panel-title Dados do condutor
+                                .pull-right ID:
+                        .panel-body
+                            form(id="frm_condutor" name="frmCondutor" role="form" action="/condutores" method="post" enctype="multipart/form-data")
+                                .row 
+                                    .col-xs-12.col-sm-5.col-md-4.col-lg-4.placeholder
+                                        .text-center 
+                                            h3 Foto do condutor
+                                            img.img-responsive.fa.fa-8x.fa-solid.fa-user(id="img_foto" name="imgFoto" src="" alt=f1b9 placeholder="&#xf1b9" )
+                                            p &nbsp;
+                                        .input-group
+                                            .input-group-addon
+                                                .fa.fa-file.fa-sm &nbsp;&nbsp;
+                                            label.btn.btn-info.btn-block.btn-sm(id="lbl_file_name" name="lblFileName" for="inp_file_img") selecionar ficheiro
+
+                                        input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value="" )
+                                        input.visuallyhidden(type="file" id="inp_file_img" name="inpFileImg" accept="image/*") 
+                                    .col-xs-12.col-sm-7.col-md-8.col-lg-8
+                                        .row 
+                                            .col-xs-12.col-sm-5.col-md-4.col-lg-3
+                                                label.container_chk(for="chk_ativo")
+                                                    input(type="checkbox" id="chk_ativo" name="chkAtivo" checked disabled )
+                                                    .checkmark
+                                                    | ativo
+                                            .col-xs-12.col-sm-12.col-md-8.col-lg-9
+                                                .form-group 
+                                                    label(for="txt_nome") nome
+                                                    .input-group 
+                                                        .input-group-addon 
+                                                            +awsme("user")
+                                                        input.form-control(type="text" id="txt_nome" name="nome" value="" )
+                                        .row 
+                                            .col-xs-12.col-sm-6.col-md-4.col-lg-4 
+                                                .form-group
+                                                    label(for="txt_entrada") entrada
+                                                    .input-group 
+                                                        .input-group-addon 
+                                                            +awsme("calendar")
+                                                        input.form-control(type="date" id="txt_entrada" name="entrada" value="" )
+                                            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                                                .form-group
+                                                    label(for="txt_nif") nif
+                                                    .input-group 
+                                                        .input-group-addon 
+                                                            +awsme("hashtag")
+                                                        input.form-control(type="text" id="txt_nif" name="nif" value="" )
+                                            .col-xs-12.col-sm-6.col-md-4.col-lg-4 
+                                                .form-group
+                                                    label(for="txt_kms") kms
+                                                    .input-group 
+                                                        .input-group-addon 
+                                                            +awsme("road")
+                                                        input.form-control(type="text" id="txt_kms" name="kms" value= "" disabled)
+                                        .row 
+                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                                                .form-group 
+                                                    label(for="txt_tel") telefone
+                                                    .input-group
+                                                        .input-group-addon 
+                                                            +awsme("phone")
+                                                        input.form-control(type="text" id="txt_tel" name="tel" value="" )
+                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                                                .form-group 
+                                                    label(for="txt_email") email
+                                                    .input-group
+                                                        .input-group-addon 
+                                                            +awsme("at")
+                                                        input.form-control(type="text" id="txt_email" name="email" value="" )
+                                        .row
+                                            .col-xs-12.col-sm-12.col-md-12.col-lg-12
+                                                br
+                                                button.btn.btn-danger.btn-block(id="bt_submit" type="submit" title="guardar dados do condutor")
+                                                    +awsme("save")
+                                                    | &nbsp; registar novo condutor
+                

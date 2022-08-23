@@ -1,0 +1,41 @@
+.container-fluid
+    .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2.main
+            h2.page-header=title+" - "+sub_title
+                .pull-right 
+                    +a-btn-warning("/viaturas/c", "file-new", "Nova viatura")  
+            .row 
+                each viatura in viaturas
+                    .col-xs-12.col-sm-6.col-md-6.col-lg-4
+                        a(href=`/viaturas/${viatura._id}`)
+                            .panel.panel-info 
+                                .panel-heading=viatura.desc + '  '
+                                    +awsme("car")  
+                                    | &nbsp; #{viatura.n_r}
+                                    .pull-right
+                                        label.container_chk(for="chk_ev")
+                                            input(type="checkbox" id="chk_ev" name="chkEv" checked=viatura.ev disabled)
+                                            .checkmark
+                                            | ev
+                                .panel-body
+                                    .row
+                                        .col-xs-4.col-sm-4.col-md-4.col-lg-4
+                                            .text-center 
+                                                img.img-responsive(id="img_foto" name="imgFoto" src=`/fotos/viaturas/${viatura.foto}` title=viatura.n_r)
+                                                p &nbsp;
+                                        .col-xs-8.col-sm-8.col-md-8.col-lg-8
+                                            h5 
+                                                +awsme("tachometer")
+                                                | &nbsp; #{viatura.odo}
+                                            h5 
+                                                +awsme("tools")
+                                                | &nbsp; #{viatura.ultima_manutencao}
+                                            h5 
+                                                +awsme("tools")
+                                                | &nbsp; #{viatura.proxima_manutencao}
+                                .panel-footer=`id: ${viatura._id}` 
+                                    .pull-right 
+                                        label.container_chk(for="chk_ativa")
+                                            input(type="checkbox" id="chk_ativa" name="chkAtiva" checked=viatura.ativa disabled)
+                                            .checkmark
+                                            | ativa

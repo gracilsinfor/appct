@@ -1,0 +1,19 @@
+extends ../pugstrap/_bootstrap
+append styles
+	// Custom styles for this template
+	title=#{status}
+block body
+block topo
+	include ../views/includes/_navbar
+block lado
+	include ../views/includes/_sidebar
+block content
+.container-fluid
+    .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=`Página não encontrada! - ${status}
+                .pull-right
+                    +a-btn-back()
+            .row
+                .col-xs-12.col-sm-12.col-md-4.col-lg-3.placeholder
+	

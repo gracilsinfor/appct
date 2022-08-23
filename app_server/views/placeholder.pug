@@ -1,0 +1,18 @@
+extends ../pugstrap/_bootstrap
+append styles
+
+block body
+  title=title
+block topo
+  include ../views/includes/_navbar
+block lado
+  include ../views/includes/_sidebar
+block content
+  .container-fluid
+    .row
+      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2.main
+        h2.page-header.title=title+" - "+sub_title
+        .row
+          h3 #{mensagem}
+          hr
+          +a-btn-success("/registos/viatura", "file-new","Nova viatura")

@@ -1,104 +1,142 @@
-const ctrl_viaturas = require('./teste_viaturas');
+const request = require('request');
 
-const apiOptions = {
-    server: 'http://localhost:3000'
-};
-if(process.env.NODE_ENV === 'production'){
-    apiOptions.server = 'http://nameless-river-78172.herokuapp.com'
-}
+const api_opts = { server: 'http://localhost:3000' }
 
-// para criar novo documento carro
-const car_c = (req, res) =>{
-    res.render('carro', {
-        title: 'Viatura', 
-        sub_title: 'nova', 
-        rota: "/Viatura/C",
-    });
-}
+if (process.env.NODE_ENV === 'production') { api_opts.server = 'http://nameless-river-78172.herokuapp.com' }
 
-/** para ver um documento carro */
-const car_r = async (req, res) => {
-    const viatura = await ctrl_viaturas.viatura_por_id(req.params.id);
-    const manutencoes = await viatura.manutencoes_da_viatura();
-    const abastecimentos = await viatura.abastecimentos_da_viatura();
-    const arr_titulos_abastecimento = [];
-    if(viatura.ev){
-        arr_titulos_abastecimento.push("id", "turno", "inicio", "t Q", "Q total", "custo");
-    }else{
-        arr_titulos_abastecimento.push("id", "turno", "data", "quant (L)", "custo");
-    }
+// para apresentar o formulário criar carrro
+// const car_c = function (req, res) {
+//     res.render('carro', {
+//         title: 'Viatura',
+//         sub_title: 'nova',
+//         rota: "/Viatura/C",
+//     });
+//     res.end;
+// };
 
-    if (viatura){
-        res.render('carro', {
-            title: 'Viatura', 
-            sub_title: 'Ficha', 
-            viatura: await viatura.as_object,
-            manutencoes: await manutencoes,
-            titulos: arr_titulos_abastecimento,
-            abastecimentos: await abastecimentos,
-            rota: '/Viatura/id',
-        });
-    }else{
-        res
-            .status(404)
-            .json({"message": "documento não encontrado"});
-    }
+/** para apresentar um documento carro */
+const car_r = async (req, res, next) => {
+
+    const rota = `/api/viaturas/${req.params.idviatura}`;
+    const req_opts = {
+        url: `${api_opts.server}${rota}`,
+        method: 'GET',
+        json: {}
+    };
+    request(
+        req_opts,
+        (err, response, body) => {
+            let dados = body;
+            if (response.statusCode === 200) {
+                res.render('carro', {
+                    title: 'Viatura',
+                    sub_title: 'ficha',
+                    viatura: dados,
+                    rota: '/Viatura/id',
+                });
+                return res.end;
+            } else if (response.statusCode === 400) {
+                res.redirect(`/viaturas?err=val`);
+            } else {
+                next(err);
+            }
+        }
+    );
+
 }
 
 /** para ver lista de documentos carro */
-async function cars_r (req, res) {
-    const viaturas = await ctrl_viaturas.lista_viaturas();
-    res.render('carros', {
-        title:'Viaturas', 
-        sub_title:'lista', 
-        viaturas: viaturas, 
-        rota: req.path
-    });
-}
+// const cars_r = async function(req, res) {
+//     _cars_r(req, res, _cars_render);
+// }
+
+// const _cars_r = async function (req, res, next) {
+
+//     const path = '/api/Viaturas';
+//     const req_opts = {
+//         url: `${api_opts.server}${path}`,
+//         method: 'GET',
+//         json: {}
+//     };
+
+//     request(
+//         req_opts, 
+//         (err, response, body) => {
+//             if(response.statusCode === 200 && body.length){
+//                 next(req, res,  body);
+//             }else{
+//                 console.log(res.statusCode);
+//                 _showError(req, res, res.statusCode);
+//             }
+//         }
+//     );
+// }
+
+
 
 /** para ver um documento carro para atualização */
-const car_u = async (req, res)=>{
-    const viatura = await ctrl_viaturas.viatura_por_id(req.params.id);
-    const manutencoes = await viatura.manutencoes_da_viatura();
-    const abastecimentos = await viatura.abastecimentos_da_viatura();
-    const arr_titulos_abastecimento = [];
-    if(viatura.ev){
-        arr_titulos_abastecimento.push("id", "Turno", "Inicio", "t Q", "Q Total", "Custo");
-    }else{
-        arr_titulos_abastecimento.push("id", "Turno", "Data", "Quant (L)", "Custo");
-    }
-    if (viatura){
-        res.render('carro', {
-            title: 'Viatura', 
-            sub_title: 'atualização', 
-            viatura: viatura.as_object,
-            manutencoes: manutencoes,
-            titulos: arr_titulos_abastecimento,
-            abastecimentos: abastecimentos,
-            rota: '/Viatura/id/U'});
-    }else{
-        res
-            .status(404)
-            .json({"message": "documento não encontrado"});
-    }
+const car_u = async (req, res, next) => {
+
+    // if(viatura.ev){
+    //     arr_titulos_abastecimento.push("id", "Turno", "Inicio", "t Q", "Q Total", "Custo");
+    // }else{
+    //     arr_titulos_abastecimento.push("id", "Turno", "Data", "Quant (L)", "Custo");
+    // }
+    const rota = `/api/viaturas/${req.params.idviatura}`;
+    const req_opts = {
+        url: `${api_opts.server}${rota}`,
+        method: 'GET',
+        json: {}
+    };
+    request(
+        req_opts,
+        (err, response, body) => {
+            let dados = body;
+            if (response.statusCode === 200) {
+                res.render('carro', {
+                    title: 'Viatura',
+                    sub_title: 'atualizar',
+                    viatura: dados,
+                    rota: '/Viatura/id/U',
+                });
+                return res.end;
+            } else if (response.statusCode === 400) {
+                res.redirect(`/viaturas?err=val`);
+            } else {
+                next(err);
+            }
+        }
+    );
 }
 
 // para apagar carro
-const car_d =(req,res)=>{
-    res.render('carro', {title: 'Carro'});
+const car_d = (req, res) => {
+    res.render('carro', { title: 'Carro' });
 }
+
+const _showError = function (req, res, status, next) {
+    // let title = '';
+    // let content = '';
+    // if (status === 404) {
+    //     title = '404, page not found';
+    //     content = 'Apparently we can\'t find this page. Sorry.';
+    // } else {
+    //     title = `${status}, something's gone wrong`;
+    //     content = 'Something, somewhere, has gone just a little bit wrong.';
+    // }
+    // res.status(status);
+    // res.render('error', {
+    //     title: title,
+    //     content: content
+    // });
+    return next(status);
+};
 
 module.exports = {
     car_c,
+    // cars_c,
     car_r,
-    cars_r,
-    car_u,
-    car_d
-}
-
-module.exports = {
-    car_r,
-    cars_r,
+    // cars_r,
     car_u,
     car_d
 }

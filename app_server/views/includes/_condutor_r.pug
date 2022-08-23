@@ -4,22 +4,113 @@
             h2.page-header=title+" - "+sub_title
                 .pull-right
                     +a-btn-back()
-            .row
-                .col-xs-12.col-sm-12.col-md-4.col-lg-3.placeholder
-                    +snipet_condutor(condutor)
-                .col-xs-12.col-sm-12.col-md-8.col-lg-9
-                    .row
-                        +ficha_condutor(condutor)
-                        .row.placeholder
-                            .col.container-fluid
-                                +a-btn-block(`/Condutor/U/${condutor.id_condutor}`,"Atualizar ficha do condutor","edit","warning")
-                                +a-btn-block(`/Condutor/U/${condutor.id_condutor}`,"Atualizar credenciais do condutor","edit","warning")
-                        .row 
-                            +resumo_faturacao(condutor, faturacao_total)
-            .row
-                .col
-                    +turnos_condutor(condutor, turnos)
-            .row
-                .col
-                    .container-fluid
-                        +a-btn-block-back()
+            div(id="div_alert")
+            .row 
+                .col-xs-12.col-sm-12.col-md-12.col-lg-12.placeholder
+                    .panel.panel-info 
+                        .panel-heading 
+                            h3.panel-title Dados do condutor
+                                .pull-right id: #{condutor._id}
+                        .panel-body
+                            form(id="frm_condutor" name="frmCondutor" role="form" action=`/condutores/${condutor._id}` method="post" enctype="multipart/form-data")
+                                .row 
+                                    .col-xs-12.col-sm-12.col-md-4.col-lg-3
+                                        .row 
+                                            .col-xs-12.col-lg-12.placeholder
+                                                .text-center 
+                                                    img.img-responsive(id="img_foto" name="imgFoto" src=`/fotos/condutores/${condutor.foto}` title=condutor.nome )
+                                                    p &nbsp;
+                                                div(id="lbl_input_file_disabled" style="display:block")
+                                                    .input-group
+                                                        .input-group-addon
+                                                            .fa.fa-file.fa-sm &nbsp;&nbsp;
+                                                        label.btn.btn-info.btn-block(id="lbl_fn_disabled" name="lblFNDisabled" title="selecionar ficheiro com foto atualizada" disabled) #{condutor.foto}
+
+                                                div(id="lbl_input_file_enabled" style="display:none")
+                                                    .input-group
+                                                        .input-group-addon
+                                                            .fa.fa-file.fa-sm &nbsp;&nbsp;
+                                                        label.btn.btn-info.btn-block(id="lbl_file_name" name="lblFileName" for="inp_file_img" title="selecionar ficheiro com foto atualizada") #{condutor.foto}
+
+                                                input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value=condutor.foto )
+                                                input.visuallyhidden(type="file" id="inp_file_img" name="inpFileImg" accept="image/*") 
+                                        .row 
+                                            .col-xs-12.col-lg-12.placeholder
+                                                button.btn.btn-warning.btn-block(id="bt_atualizar_foto" type="button" title="selecionar e carregar ficheiro com foto atualizada")
+                                                    +awsme("edit")
+                                                    | &nbsp;atualizar foto do condutor
+
+
+                                    .col-xs-12.col-sm-12.col-md-8.col-lg-9
+                                        .row 
+                                            .col-xs-12.col-sm-4.col-md-2.col-lg-2
+                                                label.container_chk(for="chk_ativo")
+                                                    input(type="checkbox" id="chk_ativo" name="chkAtivo" checked=condutor.ativo disabled )
+                                                    .checkmark
+                                                    | ativo
+                                            .col-xs-12.col-sm-12.col-md-10.col-lg-10
+                                                .form-group 
+                                                    label(for="txt_nome") nome
+                                                    .input-group 
+                                                        .input-group-addon 
+                                                            +awsme("user")
+                                                        input.form-control(type="text" id="txt_nome" name="nome" value=condutor.nome disabled)
+                                        .row 
+                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                                                .form-group 
+                                                    label(for="txt_tel") telefone
+                                                    .input-group
+                                                        .input-group-addon 
+                                                            +awsme("phone")
+                                                        input.form-control(type="text" id="txt_tel" name="tel" value=condutor.tel disabled)
+                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                                                .form-group 
+                                                    label(for="txt_email") email
+                                                    .input-group
+                                                        .input-group-addon 
+                                                            +awsme("at")
+                                                        input.form-control(type="text" id="txt_email" name="email" value=condutor.email disabled)
+                                        .row 
+                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6 
+                                                .form-group
+                                                    label(for="date_entrada") entrada
+                                                    .input-group 
+                                                        .input-group-addon 
+                                                            +awsme("calendar")
+                                                        input.form-control(type="date" id="date_entrada" name="entrada" value=condutor.entrada.substring(0,10) disabled )
+                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6
+                                                .form-group
+                                                    label(for="txt_nif") nif
+                                                    .input-group 
+                                                        .input-group-addon 
+                                                            +awsme("hashtag")
+                                                        input.form-control(type="text" id="txt_nif" name="nif" value=condutor.nif disabled)
+                                        .row
+                                            .col-xs-12.col-sm-6.col-md-4.col-lg-4 
+                                                .form-group
+                                                    label(for="txt_kms") kms
+                                                    .input-group 
+                                                        .input-group-addon 
+                                                            +awsme("road")
+                                                        input.form-control(type="text" id="txt_kms" name="kms" value=condutor.kms disabled)
+
+                                        .row
+                                            .col-xs-12.col-lg-12
+                                                button.btn.btn-block.btn-warning(id="bt_atualizar_dados" name="btAtualizarDados" type="button")
+                                                    +awsme("edit")
+                                                    | &nbsp;&nbsp; atualizar dados do condutor
+                                                div(id="foto_updt_button_set" style="display:none")
+                                                    br
+                                                    button.btn.btn-danger.btn-block(id="bt_submit_foto" type="button" title="carregar o ficheiro para atualização da foto")
+                                                        +awsme("file-up")
+                                                        | &nbsp;upload foto do condutor
+                                                    a.btn.btn-success.btn-block(id="bt_back_foto" type="button" href=`/condutores/${condutor._id}` title="cancelar")
+                                                        +awsme("back")
+                                                        | &nbsp; cancelar
+                                                div(id="dados_updt_button_set" style="display:none")
+                                                    button.btn.btn-danger.btn-block(id="bt_submit_dados" type="button" title="atualizar dados")
+                                                        +awsme("save")
+                                                        | &nbsp; atualizar dados do condutor
+                                                    a.btn.btn-success.btn-block(id="bt_back_dados" type="button" href=`/condutores/${condutor._id}` title="sair do modo atualização de dados")
+                                                        +awsme("back")
+                                                        | &nbsp; cancelar       

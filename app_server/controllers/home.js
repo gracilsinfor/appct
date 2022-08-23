@@ -25,8 +25,6 @@ const inicio = async (req, res)=>{
             _render_home(req, res, body);
         }
     );
-   
-
 };
 
 const _render_home = function(req, res, response_body){
@@ -49,7 +47,6 @@ const _render_home = function(req, res, response_body){
         mensagem: mensagem
     });
 }
-
 
 module.exports = {
     inicio

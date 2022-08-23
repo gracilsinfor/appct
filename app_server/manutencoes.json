@@ -1,0 +1,57 @@
+[
+    {
+        "_id": 1,
+        "_id_viatura": 1,
+        "_data": "27-02-2021",
+        "_kms": 100100,
+        "_oficina": "Oficina xpto",
+        "_descricao": "Manutenção preventiva",
+        "_euros": 90.20
+    },
+     {
+        "_id": 2,
+        "_id_viatura": 2,
+        "_data": "28-02-2021",
+        "_kms": 100200,
+        "_oficina": "Oficina xpto",
+        "_descricao": "Manutenção preventiva",
+        "_euros": 110.23
+    },
+    
+    {
+        "_id": 3,
+        "_id_viatura": 3,
+        "_data": "01-03-2021",
+        "_kms": 100300,
+        "_oficina": "Oficina xpto",
+        "_descricao": "Manutenção preventiva",
+        "_euros": 183.32
+    },
+        {
+        "_id": 4,
+        "_id_viatura": 4,
+        "_data": "02-03-2021",
+        "_kms": 100400,
+        "_oficina": "Oficina xpto",
+        "_descricao": "Manutenção preventiva",
+        "_euros": 127.12
+    },
+        {
+        "_id": 5,
+        "_id_viatura": 1,
+        "_data": "03-03-2021",
+        "_kms": 101100,
+        "_oficina": "Oficina xpto",
+        "_descricao": "Manutenção preventiva",
+        "_euros": 110.55
+    },
+        {
+        "_id": 6,
+        "_id_viatura": 2,
+        "_data": "04-03-2021",
+        "_kms": 102200,
+        "_oficina": "Oficina xpto",
+        "_descricao": "Manutenção reativa",
+        "_euros": 245.55
+    }
+]

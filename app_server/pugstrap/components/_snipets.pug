@@ -19,8 +19,9 @@ mixin snipet_condutor(condutor)
             .pull-right id: #{condutor.id_condutor} &nbsp;
 
 mixin snipet_viatura(viatura)
-    a(href="/Viatura/"+ viatura.id_viatura)
-        +panel-info(viatura.matricula)
-            .text-center 
-                img.img-responsive(src=viatura.imagem_viatura, alt=viatura.matricula)
-            .pull-right id: #{viatura.id_viatura} &nbsp;
+    .row 
+        .col-12.text-center
+            a(href=`/Viaturas/${viatura._id}`)
+                +panel-info(viatura.n_r)
+                    img.img-responsive(src=`/fotos/viaturas/${viatura.foto}`, alt=viatura.n_r)
+                    p.pull-right id: #{viatura._id} &nbsp;

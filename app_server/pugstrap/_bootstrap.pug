@@ -45,18 +45,19 @@ include components/images
 //- Including Bootswatch theme mixins
 include components/bootswatch
 
-include components/_buttons
-include components/_forms
-include components/_panels
-include components/_dropdowns
-include components/_tables
 include components/_abastecimentos
-include components/_fichas
-include components/_snipets
-include components/_faturacao
-include components/_turnos
-include components/_manutencoes
 include components/_awsme
+include components/_buttons
+include components/_dropdowns
+include components/_faturacao
+include components/_fichas
+include components/_forms
+include components/_labels
+include components/_manutencoes
+include components/_panels
+include components/_snipets
+include components/_tables
+include components/_turnos
 
 doctype html
 html(lang="en")
@@ -85,6 +86,15 @@ block content
       .container-fluid
 
 block scripts
-      script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+      script(src="/javascripts/jquery-3.6.0.slim.min.js")
+      script(src="/javascripts/jquery.validate.min.js")
+      //- script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+      //- script(src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js")
       script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
-      script(src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous")
+
+      //- script(src="/javascripts/messages_pt_PT.js")
+
+block custom_scripts
+
+block baixo
+      h5.text-center.strong GRACILSINFOR &copy;

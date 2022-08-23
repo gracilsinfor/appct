@@ -9,8 +9,15 @@ block lado
     include ../views/includes/_sidebar
 block content
     if rota==="/Viatura/id"
-        include ../views/includes/_carro_r
+        include ../views/includes/_viatura_r
     else if rota==="/Viatura/C"
-        include ../views/includes/_carro_c
-    else if rota==="/Viatura/id/U"
-        include ../views/includes/_carro_u
+        include ../views/includes/_viatura_c
+
+block custom_scripts
+    if rota == "/Viatura/C"
+        script(src="/javascripts/scripts_vc.js" type="text/javascript").
+            $("#frm_viatura").validate();
+    else if rota == "/Viatura/id"
+        script(src="/javascripts/scripts_v.js" type="text/javascript").
+            $("#frm_viatura").validate();
+

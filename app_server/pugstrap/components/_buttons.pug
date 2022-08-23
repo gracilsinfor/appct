@@ -1,23 +1,28 @@
 //- button mixins
 //- anchor buttons
-mixin a-btn-block(url,texto,awsme, estilo, size)
+mixin a-btn-block(texto, awsme, estilo, size)
 	- const tamanho = (typeof size === 'undefined') ? "" : size
 	unless size
-		a.btn(class=`btn-${estilo} btn-block`, href=url, role='button')
+		a.btn(class=`btn-${estilo} btn-block`, role='button')
 			+awsme(awsme)
 			| &nbsp; #{texto}
 	else 
-		a.btn(class=`btn-${estilo} btn-${size} btn-block`, href=url, role='button')
+		a.btn(class=`btn-${estilo} btn-${size} btn-block`, role='button')
 			+awsme(awsme)
 			| &nbsp; #{texto}
 
-mixin a-btn-block-back()
-	a.btn.btn-block.btn-success(onclick = "history.back()", role='button') 
-		+awsme("back")
-		| &nbsp; retroceder
+mixin a-btn-block-back(id)
+	unless id 
+		a.btn.btn-block.btn-success(onclick = "history.back()" role='button') 
+			+awsme("back")
+			| &nbsp; retroceder
+	else 
+		a.btn.btn-block.btn-success(id= id onclick = "history.back()" role='button') 
+			+awsme("back")
+			| &nbsp; retroceder
 
 mixin a-btn-back()
-	a.btn.btn-success(onclick = "history.back()", role='button') 
+	a.btn.btn-success(onclick = "history.back()" role='button') 
 		+awsme("back")
 		| &nbsp; retroceder
 
@@ -26,6 +31,17 @@ mixin a-btn(url,awsme,texto,style)
 	a.btn(class=`btn-${type}`,href=url,role="button")
 		+awsme(awsme)
 		| &nbsp; #{texto}
+		block
+
+mixin a-btn-block(url,awsme,texto,style)
+	- var type = (typeof style === 'undefined') ? "default" : style
+	a.btn.btn-block(class=`btn-${type}`,href=url,role="button")
+		+awsme(awsme)
+		| &nbsp; #{texto}
+		block
+
+mixin a-btn-warning-block(url,awsme,texto)
+	+a-btn-block(url,awsme,texto,"warning")
 		block
 
 mixin a-btn-primary(url,awsme,texto)
@@ -49,6 +65,17 @@ mixin a-btn-success(url,awsme,texto)
 		block
 
 //- buttons
+mixin btn-block(tipo, caption, awsme, style, size)
+	- var estilo = (typeof style === 'undefined') ? "default" : style
+	unless size
+		button.btn.btn-block(class=`btn-${estilo}` type=tipo)
+			+awsme(awsme)
+			| &nbsp;#{caption}
+	else
+		button.btn.btn-block(class=`btn-${type} btn-${size}` type="button")
+			+awsme(awsme)
+			| &nbsp;#{caption}
+
 mixin btn(caption,awsme,style,size)
 	- var type = (typeof style === 'undefined') ? "default" : style
 	unless size
@@ -61,7 +88,6 @@ mixin btn(caption,awsme,style,size)
 			i
 				+awsme(awsme)
 					#{caption}
-
 
 mixin btn-primary(caption,awsme)
 	+btn(caption,"primary",awsme)

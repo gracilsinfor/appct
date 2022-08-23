@@ -1,0 +1,30 @@
+//- Generic label
+mixin label(id, name, text, awsme, type)
+	span.label(class=`label-${type}` id=id name=name)=text
+
+//- Info label
+mixin label-default(text)
+	+label("default",text)
+	
+//- Info label
+mixin label-info(id, name, text, awsme )
+	+label(id, name, text, awsme, "info")
+
+//- Primary label
+mixin label-primary(text)
+	+label("primary",text)
+	
+//- Success label
+mixin label-success(text)
+	+label("success",text)
+	
+//- Warning label
+mixin label-warning(text)
+	+label("warning",text)
+	
+//- Danger label
+mixin label-danger(text)
+	+label("danger",text)
+
+mixin awsme-label(id, name, text, awsme, type) 
+	label.block.fa.fa-solid.fa-file(class=`label-${type}` id=id name=name)=text

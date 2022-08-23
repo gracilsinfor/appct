@@ -3,8 +3,30 @@
     .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2.main
       h2.page-header=title+" - "+sub_title
         .pull-right 
-          +a-btn-warning("/Condutor/C", "file-new", "Novo condutor")
-      .row
-        each condutor in dados
-          +card_condutor(condutor)
+          +a-btn-warning("/condutores/c", "file-new", "Novo condutor")  
+      each condutor in condutores
+        .row 
+          .col-xs-12.col-sm-6.col-md-6.col-lg-4
+            a(href=`/condutores/${condutor._id}`)
+              .panel.panel-info 
+                .panel-heading=condutor.nome
+                .panel-body
+                  .row
+                    .col-xs-4.col-sm-4.col-md-4.col-lg-4
+                      .text-center 
+                        img.img-responsive(id="img_foto" name="imgFoto" src=`/fotos/condutores/${condutor.foto}` title=condutor.n_r)
+                        p &nbsp;
+                    .col-xs-8.col-sm-8.col-md-8.col-lg-8
+                          h5
+                            +awsme("phone")
+                            |&nbsp; #{condutor.tel}
+                          h5
+                            +awsme("at")
+                            | &nbsp; #{condutor.email}
 
+                .panel-footer=`id: ${condutor._id}` 
+                  .pull-right
+                    label.container_chk(for="chk_ativo")
+                      input(type="checkbox" id="chk_ativo" name="chkAtivo" checked=condutor.ativo disabled)
+                      .checkmark
+                      | ativo
