@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Condutor = mongoose.model('Condutor')
+const assert = require('assert');
 
 const novo_condutor = async (req, res, next) => {
     const { nome, nif, tel, email, entrada, kms, ativo, foto } = req.body;
@@ -62,7 +63,7 @@ const lista_condutores = async (req, res, next) => {
 
     if (!condutores || !condutores.length) {
         res
-            .status(404)
+            .status(204)
             .json({ "message": "Não foram encontrados condutores na base de dados" });
         res.send;
     } else {

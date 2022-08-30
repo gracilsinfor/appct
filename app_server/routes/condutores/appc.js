@@ -36,15 +36,24 @@ appc.get('/', (req, res, next) => {
     request(
         req_opts,
         (err, response, body) => {
-            let dados = body;
+            const dados = body;
             if (response.statusCode === 200) {
                 res.render('condutores', {
                     title: 'Condutores',
                     sub_title: 'lista',
                     condutores: dados,
                 });
-                res.send;
-            } else if (response.statusCode === 400) {
+                res.end;
+            }else if(response.statusCode === 204){
+                res.render('condutores', {
+                    title: 'Condutores',
+                    sub_title: 'lista',
+                    condutores: {},
+                    mensagem: "204 - Não foram encontrados condutores na base de dados",
+                });
+                res.end;
+
+            }else if (response.statusCode === 400) {
                 res.redirect(`/viaturas?err=val`);
             } else {
                 next(err);

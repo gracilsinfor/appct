@@ -1,0 +1,73 @@
+nav.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse(id="sidebarMenu" )
+	.position-sticky.pt-3
+		ul.nav.flex-column
+			li.nav-item
+				a.nav-link.active(href='/') 
+					span.fa.fa-home.fa-fw &nbsp;Dashboard
+			li.nav-item
+				a.nav-link(href='/condutores')
+					.fa.fa-id-card.fa-fw 
+					|&nbsp;Condutores
+			li.nav-item
+				a.nav-link(href='/viaturas') 
+					.fa.fa-car.fa-fw 
+					|&nbsp;Viaturas
+			li.nav-item
+				a.nav-link(href='/turnos') 
+					.fa.fa-people-arrows.fa-fw 
+					|&nbsp;Turnos 
+			li.nav-item
+				a.nav-link(href='/abastecimentos') 
+					.fa.fa-gas-pump.fa-fw 
+					|&nbsp; Abastecimentos
+			li.nav-item
+				a.nav-link(href='/manutencoes') 
+					.fa.fa-tools.fa-fw 
+					|&nbsp; Manutenções						
+			li.nav-item
+				a.nav-link(href='#') 
+					.fa.fa-chart-pie.fa-fw 
+					|&nbsp;Relatórios
+			li.nav-item
+				a.nav-link(href='#') 
+					.fa.fa-chart-bar.fa-fw 
+					|&nbsp;Análise
+			li.nav-item
+				a.nav-link(href='#') 
+					.fa.fa-file-export.fa-fw 
+					|&nbsp;Exportar
+			li.nav-item
+				a.nav-link(href='#') 
+					.fa.fa-file-import.fa-fw 
+					|&nbsp;Importar
+			li.nav-item.divider 
+			li.nav-item
+				a.nav-link(href='#') 
+					.fa.fa-cogs.fa-fw 
+					|&nbsp; Configurações
+			li.nav-item
+				a.nav-link(href='#') 
+					.fa.fa-question.fa-fw 
+					|&nbsp; Ajuda
+
+		h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
+			span Relatórios
+			a.link-secondary(href="#" aria-label="Add a new report")
+				.fa.fa-plus-circle
+		ul.nav.flex-column.mb-2
+			li.nav-item
+				a.nav-link(href="#")
+					.fa.fa-file-alt.fa-fw
+					| Mensal
+			li.nav-item
+				a.nav-link(href="#")
+					.fa.fa-file-alt.fa-fw
+					| Trimestral
+			li.nav-item
+				a.nav-link(href="#")
+					.fa.fa-file-alt.fa-fw
+					| Semestral
+			li.nav-item
+				a.nav-link(href="#")
+					.fa.fa-file-alt.fa-fw
+					| Anual

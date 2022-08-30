@@ -14,7 +14,7 @@ const appc = require('./app_server/routes/condutores/appc');
 const apiv = require('./app_api/routes/apiv');
 const apic = require('./app_api/routes/apic');
 
-// const routeIndex = require('./app_server/routes/index');
+const routeIndex = require('./app_server/routes/index');
 
 // const appViaturas   = require('./app_server/routes/app_viaturas');
 // const apiRegistos   = require('./app_api/routes/registos');
@@ -44,7 +44,7 @@ app.use('/fotos', express.static(path.join(__dirname, '/app_server/upload/fotos'
 
 
 
-// app.use('/', routeIndex);
+app.use('/', routeIndex);
 
 
 app.use('/viaturas', appv);

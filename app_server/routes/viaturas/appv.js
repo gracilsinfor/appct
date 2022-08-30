@@ -36,15 +36,23 @@ appv.get('/', (req, res, next) => {
     request(
         req_opts,
         (err, response, body) => {
-            let dados = body;
+            const dados = body;
             if (response.statusCode === 200) {
                 res.render('carros', {
                     title: 'Viaturas',
                     sub_title: 'lista',
                     viaturas: dados,
                 });
-                return res.end;
-            } else if (response.statusCode === 400) {
+                res.end;
+            }else if(response.statusCode === 204){
+                res.render('carros', {
+                    title: 'Viaturas',
+                    sub_title: 'lista',
+                    viaturas: {},
+                    mensagem: "204 - Não foram encontradas viaturas na base de dados",
+                });
+                res.end;
+            }else if (response.statusCode === 400) {
                 res.redirect(`/viaturas?err=val`);
             } else {
                 next(err);
@@ -95,16 +103,17 @@ appv.post('/', upload.single('inpFileImg'), async (req, res, next) => {
     fs.unlinkSync(req.file.path)
 
     const post_data = {
-        n_r: String(req.body.matricula).toUpperCase(),
-        desc: req.body.descricao,
-        foto: String(nome_bd).toUpperCase(),
-        ativa: true,                              // uma viatura nova fica sempre ativa
+        nr: String(req.body.matricula).toUpperCase(),
+        dsc: req.body.descricao,
+        fto: String(nome_bd).toUpperCase(),
+        est: true,                              // uma viatura nova fica sempre ativa
         odo: parseInt(req.body.odometro)
     };
-    console.log("chkev:", req.body.chkEv, "qb:", req.body.qbateria, "desc:", req.body.descricao);
+    console.log("chkev:", req.body.chkEv, "qb:", req.body.qbateria, "dsc:", req.body.descricao);
+    
     if (req.body.chkEv) {
         post_data.ev = true;
-        post_data.q_b = req.body.qbateria;
+        post_data.qb = req.body.qbateria;
     } else {
         post_data.ev = false;
     }
@@ -116,7 +125,7 @@ appv.post('/', upload.single('inpFileImg'), async (req, res, next) => {
         json: post_data
     };
 
-    if (!post_data.n_r || !post_data.desc || !post_data.foto || !post_data.odo) {
+    if (!post_data.nr || !post_data.dsc || !post_data.fto || !post_data.odo) {
         res.redirect(`/viaturas?err=val`)
     } else {
         request(
@@ -171,9 +180,8 @@ appv.post('/:idv', upload.single('inpFileImg'), async (req, res, next) => {
     const nome_bd = req.file ? `${prefixo_unico}_${nome_original}` : '';
     const post_data = {};
 
-    if (req.file) {
-        // para redimensionar e guardar a foto carregada
-        await sharp(req.file.path)
+    if (req.file) {                     // para atualizar apenas a foto
+        await sharp(req.file.path)      // para redimensionar e guardar a foto carregada
             .resize(FOTO_W, FOTO_H, 'inside')
             .jpeg({ quality: 90 })
             .toFile(
@@ -181,18 +189,18 @@ appv.post('/:idv', upload.single('inpFileImg'), async (req, res, next) => {
             )
         fs.unlinkSync(req.file.path);
 
-        post_data.foto = nome_bd;
+        post_data.fto = nome_bd;
 
-    } else {
-        post_data.ativa = req.body.chkAtiva === 'on' ? true : false;
-        post_data.n_r = String(req.body.matricula).toUpperCase();
-        post_data.desc = req.body.descricao;
+    } else {                            // para atualizar outros dados da viatura
+        post_data.est = req.body.chkAtiva === 'on' ? true : false;
+        post_data.nr = String(req.body.matricula).toUpperCase();
+        post_data.dsc = req.body.descricao;
         post_data.odo = req.body.odometro
     }
 
     if (req.body.chkEv === 'on') {
         post_data.ev = true;
-        post_data.q_b = req.body.qbateria;
+        post_data.qb = req.body.qbateria;
     } else {
         post_data.ev = false;
     }
@@ -204,7 +212,7 @@ appv.post('/:idv', upload.single('inpFileImg'), async (req, res, next) => {
         json: post_data
     };
 
-    if (!post_data.foto && !post_data.n_r) {
+    if (!post_data.foto && !post_data.nr) {
         res.redirect(`/viaturas?err=val`)
     } else {
         request(
@@ -245,3 +253,33 @@ const _showError = function (req, res, status, next) {
 
 
 module.exports = appv;
+
+const ids = [
+    "frm_viatura", 
+    "img_foto", 
+    "lbl_file_name", 
+    "txt_file_name_H", 
+    "inp_file_img", 
+    "chk_ativa", 
+    "chk_ev", 
+    "txt_qbateria", 
+    "txt_matricula", 
+    "txt_odometro", 
+    "txt_descricao", 
+    "txt_ultima_manutencao", 
+    "txt_proxima_manutencao"]
+
+const names = [
+    "frmViatura",
+    "imgFoto",
+    "lblFileName", 
+    "fileNameH", 
+    "inpFileImg", 
+    "chkAtiva", 
+    "chkEv", 
+    "qbateria", 
+    "matricula", 
+    "odometro", 
+    "descricao", 
+    "ultimaManutencao", 
+    "proximaManutencao"]

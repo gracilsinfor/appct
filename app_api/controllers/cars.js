@@ -4,24 +4,24 @@ const Viatura = mongoose.model('Viatura');
 const nova_viatura = async (req, res, next) => {
     let dados = {};
     if (req.body.ev) {
-        const { ev, q_b, n_r, desc, foto, ativa, odo } = req.body;
+        const { ev, qb, nr, dsc, fto, est, odo } = req.body;
         dados = {
-            ev: ev,
-            q_b: q_b,
-            n_r: n_r,
-            desc: desc,
-            foto: foto,
-            ativa: ativa,
+            ev : ev,
+            qb : qb,
+            nr : nr,
+            dsc: dsc,
+            fto: fto,
+            est: est,
             odo: odo
         };
     } else {
-        const { ev, n_r, desc, foto, ativa, odo } = req.body;
+        const { ev, nr, dsc, fto, est, odo } = req.body;
         dados = {
-            ev: ev,
-            n_r: n_r,
-            desc: desc,
-            foto: foto,
-            ativa: ativa,
+            ev : ev,
+            nr : nr,
+            dsc: dsc,
+            fto: fto,
+            est: est,
             odo: odo
         };
     }
@@ -75,10 +75,9 @@ const lista_viaturas = async function (err, res, next) {
 
     if (!viaturas || !viaturas.length) {
         res
-            .status(404)
+            .status(204)
             .json({ "message": "Não foram encontradas viaturas na base de dados" });
         res.send;
-
     } else {
         res
             .status(200)
@@ -94,28 +93,26 @@ const atualiza_viatura = async (req, res, next) => {
     if (req.params.idv) {
         const viatura = await Viatura.findById(req.params.idv).exec();
         if (viatura) {
-            if (req.body.n_r) {
+            if (req.body.nr) {
                 if (req.body.ev) {
-                    const { ev, q_b, n_r, desc, foto, ativa, odo } = req.body;
+                    const { ev, qb, nr, dsc, fto, est, odo } = req.body;
                     viatura.ev = ev;
-                    viatura.q_b = q_b;
-                    viatura.n_r = n_r;
-                    viatura.desc = desc;
-                    // viatura.foto = foto;
-                    viatura.ativa = ativa;
+                    viatura.qb = qb;
+                    viatura.nr = nr;
+                    viatura.dsc = dsc;
+                    viatura.est = est;
                     viatura.odo = odo
                 } else {
-                    const { ev, n_r, desc, foto, ativa, odo } = req.body;
+                    const { ev, nr, dsc, fto, est, odo } = req.body;
                     viatura.ev = ev;
-                    viatura.n_r = n_r;
-                    viatura.desc = desc;
-                    // viatura.foto = foto;
-                    viatura.ativa = ativa;
-                    viatura.q_b = null;
+                    viatura.nr = nr;
+                    viatura.dsc = dsc;
+                    viatura.est = est;
+                    viatura.qb = null;
                     viatura.odo = odo
                 }
             }else{
-                viatura.foto = req.body.foto;
+                viatura.fto = req.body.foto;
             }
             await viatura.save();
             res
@@ -164,7 +161,7 @@ const manutencao_por_id = (req, res) => {
     if (req.params && req.params.idviatura && req.params.idmanutencao) {
         Viatura
             .findById(req.params.idviatura)
-            .select('n_r desc manuts')
+            .select('nr desc manuts')
             .exec((err, viatura) => {
                 if (!viatura) {
                     res
@@ -191,7 +188,7 @@ const manutencao_por_id = (req, res) => {
                         response = {
                             viatura: {
                                 id_viatura: req.params.idviatura,
-                                matricula: viatura.n_r,
+                                matricula: viatura.nr,
                                 viatura: viatura.desc
                             },
                             manutencao: manut
@@ -231,7 +228,7 @@ const elimina_manutencao = (req, res) => {
         .status(200)
         .json({ "status": "success" });
     res.send;
-};
+}; 
 
 module.exports = {
     nova_viatura,
@@ -244,3 +241,4 @@ module.exports = {
     atualiza_manutencao,
     elimina_manutencao,
 }
+

@@ -1,0 +1,186 @@
+//- bootstrap.jade
+//- bootstrap mixins
+
+
+//- Including Icon mixins
+include ../pugstrap/components/icons
+//- Including Alert mixins
+include ../pugstrap/components/alerts
+//- Including Tooltip mixins
+include ../pugstrap/components/tooltips
+//- Including Accordion mixins
+include ../pugstrap/components/accordion
+//- Including Carousel mixins
+include ../pugstrap/components/carousel
+//- Including Table mixins
+include ../pugstrap/components/tables
+include ../pugstrap/components/tables_2
+//- Including Navbar mixins
+include ../pugstrap/components/navbar
+//- Including Toggle Button mixins
+include ../pugstrap/components/toggle
+include ../pugstrap/components/toggle_2
+//- Including Nav mixins
+include ../pugstrap/components/navs
+//- Including Label mixins
+include ../pugstrap/components/labels
+//- Including Panel mixins
+include ../pugstrap/components/panels
+//- Including Tab mixins
+include ../pugstrap/components/tabs
+//- Including Dropdown mixins
+include ../pugstrap/components/dropdowns
+//- Including Form control mixins
+include ../pugstrap/components/forms
+//- Including Modal dialog mixins
+include ../pugstrap/components/modal
+//- Including List group mixins
+include ../pugstrap/components/list-groups
+//- Including Progress bar mixins
+include ../pugstrap/components/progress-bars
+//- Including Button mixins
+//- include ../pugstrap/components/buttons
+//- Including Image mixins
+include ../pugstrap/components/images
+//- Including Bootswatch theme mixins
+include ../pugstrap/components/bootswatch
+
+include ../pugstrap/components/_abastecimentos
+include ../pugstrap/components/_awsme
+include ../pugstrap/components/_buttons
+include ../pugstrap/components/_dropdowns
+include ../pugstrap/components/_faturacao
+include ../pugstrap/components/_fichas
+include ../pugstrap/components/_forms
+include ../pugstrap/components/_labels
+include ../pugstrap/components/_manutencoes
+include ../pugstrap/components/_panels
+include ../pugstrap/components/_snipets
+include ../pugstrap/components/_tables
+include ../pugstrap/components/_turnos
+
+doctype html
+html(lang="pt")
+	head
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+		meta(name="description" content="")
+		meta(name="author" content="")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+
+		link(rel="icon" href="../../favicon.ico")
+
+block styles
+	link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css")
+	//- link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous")      
+	link(rel='stylesheet' href='/stylesheets/custom.min.css')
+	link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css")
+	link(rel='stylesheet' href='/stylesheets/dashboard.css')
+
+	body(data-spy="scroll" data-target=".scrollspy")
+
+		header.navbar.navbar-dark.sticky-top.bg-dark.flex-md-nowrap.p-0.shadow(id="navBar")
+			a.navbar-brand.col-md-3.col-lg-2.me-0.px-3(href="#") APPCT
+			button.navbar-toggler.position-absolute.d-md-none.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu")
+				span.navbar-toggler-icon
+			input.form-control.form-control-dark.w-100(type="text" placeholder="Procurar")
+			.navbar-nav
+				.nav-item.text-nowrap
+					a.nav-link.px-3(href="#") Sair
+
+		.container-fluid
+			.row
+				nav.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse(id="sidebarMenu")
+					.position-sticky.pt-3
+						ul.nav.flex-column
+							li.nav-item
+								a.nav-link(href='/') 
+									span.fa.fa-home.fa-fw 
+									|&nbsp;Dashboard
+							li.nav-item
+								a.nav-link(href='/condutores')
+									.fa.fa-id-card.fa-fw 
+									|&nbsp;Condutores
+							li.nav-item
+								a.nav-link(href='/viaturas') 
+									.fa.fa-car.fa-fw 
+									|&nbsp;Viaturas
+							li.nav-item
+								a.nav-link(href='/turnos') 
+									.fa.fa-people-arrows.fa-fw 
+									|&nbsp;Turnos 
+							li.nav-item
+								a.nav-link(href='/abastecimentos') 
+									.fa.fa-gas-pump.fa-fw 
+									|&nbsp; Abastecimentos
+							li.nav-item
+								a.nav-link(href='/manutencoes') 
+									.fa.fa-tools.fa-fw 
+									|&nbsp; Manutenções
+
+							li.nav-item.dropdown
+								a.nav-link.dropdown-toggle(href='#' id="dd_sb_relatorios" role="button" data-bs-toggle="dropdown") 
+									.fa.fa-chart-pie.fa-fw 
+									|&nbsp;Relatórios
+								ul.dropdown-menu
+									li
+										a.dropdown-item(href='#') 
+											.fa.fa-chart-bar.fa-fw 
+											|&nbsp;Análise
+									li
+										a.dropdown-item(href='#') 
+											.fa.fa-file-export.fa-fw 
+											|&nbsp;Exportar
+									li
+										a.dropdown-item(href='#') 
+											.fa.fa-file-import.fa-fw 
+											|&nbsp;Importar
+									li
+										a.dropdown-item(href="#")
+											.fa.fa-file-alt.fa-fw
+											| Mensal
+									li
+										a.dropdown-item(href="#")
+											.fa.fa-file-alt.fa-fw
+											| Trimestral
+									li
+										a.dropdown-item(href="#")
+											.fa.fa-file-alt.fa-fw
+											| Semestral
+									li
+										a.dropdown-item(href="#")
+											.fa.fa-file-alt.fa-fw
+											| Anual
+							li.nav-item
+								a.nav-link(href='#') 
+									.fa.fa-cogs.fa-fw 
+									|&nbsp; Configurações
+							li.nav-item
+								a.nav-link(href='#') 
+									.fa.fa-question.fa-fw 
+									|&nbsp; Ajuda
+
+			.row 
+				.col-md-9.offset-md-3.col-lg-10.offset-lg-2
+					header.bg-primary.d-flex.flex-wrap.justify-content-start.rounded.my-2.pt-2
+						.h5.text-white.px-2=title+" - "+sub_title
+							.float-end
+				
+					block content
+
+block footer
+-const ano = new Date().getFullYear() 
+		.container-fluid
+			.row
+				.col-md-9.offset-md-3.col-lg-10.offset-lg-2.footer.footer.mt-auto.py-3.bg-dark
+					.container
+						.float-center.fs-6.text-muted
+							h6.text-center.strong &copy;#{ano} &reg;GRACILSINFOR 
+
+block scripts
+	script(src="/javascripts/jquery-3.6.0.slim.min.js")
+	script(src="/javascripts/jquery.validate.min.js")
+	script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous")
+
+block custom_scripts

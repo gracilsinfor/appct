@@ -1,25 +1,105 @@
 $(function () {
 
   const frmElements = ['chk_ativa', 'chk_ev', 'txt_matricula', 'txt_odometro', 'txt_descricao'];
+  let cachedVals = [];
 
   document.getElementById('bt_atualizar_foto').addEventListener('click', (event) => {
-    document.getElementById('bt_atualizar_foto').style.display='none';
-    document.getElementById('lbl_input_file_disabled').style.display='none';
-    document.getElementById('lbl_input_file_enabled').style.display='block';
-    document.getElementById('foto_updt_button_set').style.display='block';
-    document.getElementById('bt_atualizar_dados').disabled = true;
+    cacheVals();
+
+    document.getElementById('bt_atualizar_foto').style.display = 'none';
+    document.getElementById('bt_back_foto').style.display = 'block';
+
+    document.getElementById('lbl_input_file_disabled').style.display = 'none';
+    document.getElementById('lbl_input_file_enabled').style.display = 'block';
+
+    document.getElementById('bt_atualizar_dados').style.display = 'none';
+    document.getElementById('bt_submit_foto').style.display = 'block';
   });
 
+
+  document.getElementById('bt_back_foto').addEventListener('click', (event) => {
+    rstrCached();
+    const imgFoto = document.getElementById('img_foto');
+    const imgFotoHidden = document.getElementById('img_foto_H');
+    const imgFotoVisible = document.getElementById('img_foto_visible');
+    const imgFotoInvisible = document.getElementById('img_foto_invisible');
+
+    if(imgFoto.src !== imgFotoHidden.src){
+      imgFotoVisible.style.display = 'none';
+      imgFotoInvisible.style.display = 'block';
+    }
+
+    document.getElementById('bt_atualizar_foto').style.display = 'block';
+    document.getElementById('bt_back_foto').style.display = 'none';
+
+    document.getElementById('lbl_input_file_disabled').style.display = 'block';
+    document.getElementById('lbl_input_file_enabled').style.display = 'none';
+    document.getElementById('bt_atualizar_dados').style.display = 'block';
+    document.getElementById('bt_submit_foto').style.display = 'none';
+  });
+
+  function cacheVals() {
+    const inputs = document.querySelectorAll('input');
+    for (const i of inputs) {
+      let val = {};
+      if (i.id) {
+        val = {
+          "id": [i.id],
+          "value": i.value
+        }
+        cachedVals.push(val);
+      }
+    }
+  };
+
   document.getElementById('bt_atualizar_dados').addEventListener('click', (event) => {
-    document.getElementById('bt_atualizar_dados').style.display='none';
-    for(const e of frmElements){
-      document.getElementById(e).disabled=false;
+    cacheVals();
+    document.getElementById('bt_atualizar_dados').style.display = 'none';
+
+    for (const e of frmElements) {
+      document.getElementById(e).disabled = false;
     }
-    if(document.getElementById('chk_ev').checked){
-      document.getElementById('txt_qbateria').disabled=false;
+    if (document.getElementById('chk_ev').checked) {
+      document.getElementById('txt_qbateria').disabled = false;
     }
-    document.getElementById('dados_updt_button_set').style.display='block';
-    document.getElementById('bt_atualizar_foto').disabled = true;
+
+    document.getElementById('bt_submit_dados').style.display = 'block';
+    document.getElementById('bt_atualizar_foto').style.display = 'none';
+
+    document.getElementById('bt_back_dados').style.display = 'block';
+  });
+
+  function rstValMsgs() {
+    var elems = document.querySelectorAll('.error');
+    elems.forEach(itm => {
+      document.getElementById(itm.id).innerHTML = ''
+    })
+  };
+
+  function rstrCached() {
+    let msg = '';
+    for (const e of cachedVals) {
+      msg += e.id + ': ' + e.value + '\r\n';
+    }
+    for (const k of cachedVals) {
+      let e = document.getElementById(k.id);
+      e.value = k.value;
+    }
+  };
+
+  document.getElementById('bt_back_dados').addEventListener('click', (event) => {
+    rstValMsgs();
+    rstrCached();
+    document.getElementById('bt_back_dados').style.display = 'none';
+    if (document.getElementById('chk_ev').checked) {
+      document.getElementById('txt_qbateria').disabled = false;
+    }
+    for (const e of frmElements) {
+      document.getElementById(e).disabled = true;
+    }
+    document.getElementById('bt_atualizar_foto').style.display = 'block';
+    document.getElementById('bt_atualizar_dados').style.display = 'block';
+    document.getElementById('bt_submit_dados').style.display = 'none';
   });
 
   document.getElementById('bt_submit_foto').addEventListener('click', (event) => {
@@ -29,6 +109,7 @@ $(function () {
   document.getElementById('bt_submit_dados').addEventListener('click', (event) => {
     document.forms[0].submit();
   });
+
 
   document.getElementById('chk_ev').addEventListener('change', (event) => {
     const qBat = document.getElementById('txt_qbateria');
@@ -49,6 +130,7 @@ $(function () {
       hiddTxt.value = document.getElementById('txt_matricula').value;
       const photoImg = document.getElementById('img_foto');
       photoImg.src = URL.createObjectURL(file);
+      URL.revokeObjectURL(file);
     } else {
       lbl.innerHTML = "selecionar ficheiro"
       hiddTxt.value = "";

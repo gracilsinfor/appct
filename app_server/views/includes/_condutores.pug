@@ -3,7 +3,8 @@
     .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2.main
       h2.page-header=title+" - "+sub_title
         .pull-right 
-          +a-btn-warning("/condutores/c", "file-new", "Novo condutor")  
+          +a-btn-warning("/condutores/c", "file-new", "Novo condutor")
+      h3=mensagem 
       each condutor in condutores
         .row 
           .col-xs-12.col-sm-6.col-md-6.col-lg-4
@@ -17,12 +18,12 @@
                         img.img-responsive(id="img_foto" name="imgFoto" src=`/fotos/condutores/${condutor.foto}` title=condutor.n_r)
                         p &nbsp;
                     .col-xs-8.col-sm-8.col-md-8.col-lg-8
-                          h5
-                            +awsme("phone")
-                            |&nbsp; #{condutor.tel}
-                          h5
-                            +awsme("at")
-                            | &nbsp; #{condutor.email}
+                      h5
+                        +awsme("phone")
+                        |&nbsp; #{condutor.tel}
+                      h5
+                        +awsme("at")
+                        | &nbsp; #{condutor.email}
 
                 .panel-footer=`id: ${condutor._id}` 
                   .pull-right

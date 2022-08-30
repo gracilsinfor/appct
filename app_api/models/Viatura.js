@@ -1,26 +1,27 @@
 const mongoose = require('mongoose');
 
 const manutencao_schema = new mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
-    estado: {type: String, enum: ['Agendada', 'Em curso', 'Realizada'], required: true},
-    d: {type: Date, required: true},
+    est: {type: String, enum: ['Agendada', 'Em curso', 'Realizada'], required: true},
+    di : {type: Date, required: true},
     odo: {type: Number, required: true},
-    ofic: {type: String },
-    desc: {type: String },
-    d_f: {type: Date },
-    custo: Number,
+    ofc: {type: String },
+    dsc: {type: String },
+    df : {type: Date },
+    cst: {type: Number},
 });
 
 const viatura_schema = new mongoose.Schema({
-    ev: {type: Boolean, default: false },
-    q_b: {type: Number},
-    n_r: { type: String, required: true, unique: true },
-    desc: {type: String, required: true },
-    foto: {type: String, required: true, },
-    ativa: {type: Boolean, default: true},
-    odo: {type: Number, required: true },
-    manut: {type: manutencao_schema },
-    manuts: {type: [manutencao_schema], default: () => ({}) },
+    ev  : {type: Boolean, default: false },
+    qb  : {type: Number},
+    nr  : { type: String, required: true, unique: true },
+    dsc : {type: String, required: true },
+    fto : {type: String, required: true, },
+    est : {type: Boolean, default: true},
+    odo : {type: Number, required: true },
+    abst: {type: [mongoose.Types.ObjectId] },
+    ftr : {type: [mongoose.Types.ObjectId] },
+    mnt : {type: manutencao_schema},
+    mnts: {type: [manutencao_schema] },
     
 });
 

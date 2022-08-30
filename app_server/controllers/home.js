@@ -11,21 +11,30 @@ if(process.env.NODE_ENV === 'production'){
 /* GET Home page */
 
 const inicio = async (req, res)=>{
-    const path = '/api/Dashboard';
-    const request_opts = {
-        url: `${api_options.server}${path}`,
-        method: 'GET',
-        json: {},
-        qs: {}
-    };
-    request(
-        request_opts,
-        (err, response, body) => {
-            const dados = body;
-            _render_home(req, res, body);
-        }
-    );
+    res.render('test_sass_bs', {
+        title: 'Turnos ativos', 
+        pge_header: {
+            title:'APPCT-Dashboard'
+        },
+    });
 };
+
+// const inicio = async (req, res)=>{
+//     const path = '/api/Dashboard';
+//     const request_opts = {
+//         url: `${api_options.server}${path}`,
+//         method: 'GET',
+//         json: {},
+//         qs: {}
+//     };
+//     request(
+//         request_opts,
+//         (err, response, body) => {
+//             const dados = body;
+//             _render_home(req, res, body);
+//         }
+//     );
+// };
 
 const _render_home = function(req, res, response_body){
     let mensagem = null;
