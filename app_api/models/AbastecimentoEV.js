@@ -1,16 +1,14 @@
 const mongoose = require('mongoose');
+const Abastecimento = require('./Abastecimento');
 
-/** para documentos abastecimento ev */
-const abastecimentoEV_schema = new mongoose.Schema({
-    // _id: mongoose.Types.ObjectId, 
-    id_c: {type: mongoose.Types.ObjectId, required: true },
-    id_t: {type: mongoose.Types.ObjectId, required: true },
-    id_v: {type: mongoose.Types.ObjectId, required: true },
-    d_i: {type: Date, default: Date.now(), required: true, },
-    odo: {type: Number, required: true, },
-    q_i: {type: Number, required: true, },
-    d_f: {type: Date,  default: Date.now(), required: true, },
-    q_f: {type: Number, required: true, },
-    custo: {type: Number, 'default': 0 }
-});
-mongoose.model('AbastEV', abastecimentoEV_schema, 'abastecimentos');
+const AbastecimentoEV = Abastecimento.discriminator('AbastecimentoEV',
+    new mongoose.Schema(
+        {
+            qi: { type: Number, required: true },
+            df: { type: Date, default: Date.now(), required: true },
+            qf: { type: Number, required: true }
+        }, options
+    )
+);
+
+module.exports = mongoose.model('AbastecimentoEV');

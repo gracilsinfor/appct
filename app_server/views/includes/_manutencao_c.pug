@@ -1,26 +1,89 @@
-.container-fluid
-    .row
-        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-            h2.page-header=title+" - "+sub_title
-                .pull-right
-                    +a-btn-back()
-            .row
-                .col-xs-12.col-sm-4.col-md-3.col-lg-3.placeholder
-                    +snipet_viatura(viatura)
-                .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
-                    +ficha_manutencao_c()
-                    .container-fluid
-                        .row
-                            .col.placeholder-10
-                                +a-btn-block(`/Manutencao/C/${viatura.id_viatura}`, "Registar nova manutenção", "save", "danger")
-                        .row
-                            .col
-                                +a-btn-block-back()
-            .row        
-                .col-xs-d-none.col-sm-4.col-md-3.col-lg-3.placeholder
-                .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
-                    +ficha_viatura(viatura)
-            .row 
-                .col-xs-d-none.col-sm-4.col-md-3.col-lg-3.placeholder
-                .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
-                    +lista_de_manutencoes_viatura(viatura,manutencoes)
+nav.navbar.navbar-dark.bg-secondary.navbar-expand-md.rounded.mb-2.py-0(id="frmNavbar")
+	.container-fluid
+		navbar-brand.text-success
+			a.nav-link(href="/manutencoes" title="listagem de manutencoes ativas")
+				.fa.fa-id-card.fa-fw
+				| &nbsp; manutenções
+		button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse")
+			span.navbar-toggler-icon
+		.collapse.navbar-collapse.justify-content-end(id="navbarCollapse")
+			ul.navbar-nav(id="frmMenu")
+				li.nav-item.fs-6.text-danger
+					a.nav-link(id="bt_submit_dados" style="display:block" type="button" title="registar na base de dados")
+						.fa.fa-save.fa-fw
+						| &nbsp; guardar
+
+div.alert.alert-info(id="div_alert" style="display: none")
+
+form(id="frm_manutencao" name="frmManutencao" action="/viaturas/manutencoes/idv" method="post" enctype="text/plain")
+	.card.mb-3
+		.card-header.bg-danger 
+			.float-end
+				.input-group.input-group-sm.mb-0
+					span.input-group-text
+						.fa.fa-sign-hanging.fa-fw
+						| Estado
+					input.form-control(type="text" id="txt_estado" name="txtEstado" disabled value="agendada")
+			.h5 Ficha de agendamento de manutenção da viatura:   
+			
+		.card-body
+			.row.d-flex.flex-row
+				.col-xs-4.col-sm-5.col-md-5.col-lg-3
+					.row
+						.col-12.text-center
+							div(id="img_foto_visible")
+								img.img-fluid.rounded.mx-auto.d-block.mb-4.fa.fa-8x.fa-user(id="img_foto" name="imgFoto" src="" alt=f1b9 placeholder="&#xf1b9" )
+
+				.col-xs-6.col-sm-7.col-md-7.col-lg-9
+					.row.d-flex
+						.col-6
+							.form-group
+								label.form-label.mt-2(for="txt_odometro") 
+								.input-group
+									.input-group-text
+										.fa.fa-tachometer.fa-fw
+									input.form-control(type="text" id="txt_odometro" name="odometro" placeholder="kms marcados no odómetro" value="" )
+
+						.col-6
+							.form-group
+								label.form-label.my-2(for="date_entrada") 
+								.input-group 
+									.input-group-text 
+										.fa.fa-calendar-check.fa-fw
+									input.form-control(type="date" id="date_entrada" name="entrada" placeholder="entrada na oficina" value="" )
+
+						.col-6
+							.form-group
+								label.form-label.mt-2(for="txt_oficina") 
+								.input-group
+									.input-group-text
+										.fa.fa-warehouse.fa-fw
+									input.form-control(type="text" id="txt_oficina" name="oficina" placeholder="oficina/reparador" value="" )
+
+						.col-6
+							.form-group
+								label.form-label.mt-2(for="txt_descricao")
+								.input-group
+									.input-group-text
+										.fa.fa-text.fa-fw
+									input.form-control(type="textarea" id="textarea_descricao" name="descricao" placeholder="descrição dos principais trabalhos realizados/a realizar" rows=8)
+
+						.col-6
+							.form-group
+								label.form-label.my-2(for="date_saida") 
+								.input-group 
+									.input-group-text 
+										.fa.fa-calendar-check.fa-fw
+									input.form-control(type="date" id="date_saida" name="saida" placeholder="saída da oficina" value="" )
+
+						.col-6
+							.form-group
+								label.form-label.mt-2(for="txt_custo") 
+								.input-group
+									.input-group-text
+										.fa.fa-euro-sign.fa-fw
+									input.form-control(type="text" id="txt_custo" name="custo" value="" placeholder="custo das intervenções")
+
+		.card-footer
+			.float-end="id: "
+

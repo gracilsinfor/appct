@@ -1,0 +1,26 @@
+.container-fluid
+    .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h2.page-header=title+" - "+sub_title
+                .pull-right
+                    +a-btn-back()
+            .row
+                .col-xs-12.col-sm-4.col-md-3.col-lg-3.placeholder
+                    +snipet_viatura(viatura)
+                .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
+                    +ficha_manutencao_c()
+                    .container-fluid
+                        .row
+                            .col.placeholder-10
+                                +a-btn-block(`/Manutencao/C/${viatura.id_viatura}`, "Registar nova manutenção", "save", "danger")
+                        .row
+                            .col
+                                +a-btn-block-back()
+            .row        
+                .col-xs-d-none.col-sm-4.col-md-3.col-lg-3.placeholder
+                .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
+                    +ficha_viatura(viatura)
+            .row 
+                .col-xs-d-none.col-sm-4.col-md-3.col-lg-3.placeholder
+                .col-xs-12.col-sm-8.col-md-9.col-lg-9.placeholder
+                    +lista_de_manutencoes_viatura(viatura,manutencoes)

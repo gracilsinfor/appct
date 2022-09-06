@@ -1,123 +1,124 @@
-nav.navbar.navbar-light.bg-secondary.navbar-expand-md.rounded.mb-2(id="frmNavbar")
+nav.navbar.navbar-light.bg-secondary.navbar-expand-md.rounded.mb-2.py-0.shadow(id="frmNavbar")
 	.container-fluid
+		navbar-brand.text-success
+			a.nav-link(href="/viaturas" title="listagem de viaturas")
+				.fa.fa-car.fa-fw
+				.fa.fa-car.fa-fw
+				| &nbsp; viaturas
 		button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse")
 			span.navbar-toggler-icon
-		.collapse.navbar-collapse(id="navbarCollapse")
+		.collapse.navbar-collapse.justify-content-end(id="navbarCollapse")
 			ul.navbar-nav(id="frmMenu")
 				li.nav-item.fs-6
 					a.nav-link(id="bt_atualizar_foto" name="btAtualizarFoto" type="button" title="mudar a foto da viatura")
 						.fa.fa-car.fa-fw
-						| &nbsp; atualizar foto
+						| atualizar foto
 				li.nav-item.fs-6.text-success
 					a.nav-link(id="bt_back_foto" style="display:none" type="button" title="sair do modo atualização de dados")
 						.fa.fa-xmark.fa-fw
 						| &nbsp; cancelar
 				li.nav-item.fs-6
-					a.nav-link(id="bt_atualizar_dados" name="btAtualizarDados" type="button" title="editar os dados da viatura")
+					a.nav-link.border-start.border-dark.border-3(id="bt_atualizar_dados" name="btAtualizarDados" type="button" title="editar os dados da viatura")
 						.fa.fa-edit.fa-fw
-						| &nbsp; atualizar dados
+						| atualizar dados
 				li.nav-item.fs-6.text-danger
-					a.nav-link(id="bt_submit_foto" style="display:none" type="button" title="atualizar foto na base de dados")
+					a.nav-link.border-start.border-dark.border-3(id="bt_submit_foto" style="display:none" type="button" title="atualizar foto na base de dados")
 						.fa.fa-file-upload.fa-fw
-						| &nbsp;atualizar foto
-
+						| &nbsp;atualizar
 				li.nav-item.fs-6.text-success
 					a.nav-link(id="bt_back_dados" style="display:none" type="button" title="sair do modo atualização de dados")
 						.fa.fa-xmark.fa-fw
 						| &nbsp; cancelar
 				li.nav-item.fs-6.text-danger
-					a.nav-link(id="bt_submit_dados" style="display:none" type="button" title="atualizar a base de dados")
+					a.nav-link.border-start.border-dark.border-3(id="bt_submit_dados" style="display:none" type="submit" title="atualizar a base de dados")
 						.fa.fa-save.fa-fw
-						| &nbsp; atualizar dados
-				li.nav-item.fs-6.text-success
-					a.nav-link(href="/viaturas" role='button' title="ir para listagem de viaturas") 
-						.fa.fa-car.fa-fw
-						.fa.fa-car.fa-fw
-						| &nbsp; viaturas
+						| &nbsp; atualizar
+				li.nav-item.fs-6.text-warning
+					a.nav-link.border-start.border-dark.border-3(id="bt_nova_viatura" href="/viaturas/viatura" style="display:block" type="button" title="registar nova viatura")
+						.fa.fa-file-circle-plus.fa-fw
+						| nova viatura
+
 div.alert.alert-warning(id="div_alert" style="display: none")
-form(id="frm_viatura_r" name="frmViatura" action=`/viaturas/${viatura._id}` method="POST" enctype="multipart/form-data" disabled)
-	.card
+
+form(id="frm_viatura" name="frmViatura" action=`/viaturas/${viatura._id}` method="POST" enctype="multipart/form-data" disabled)
+	.card.mb-3
 		.card-header.bg-info
+			.float-end 
+				label.container_chk.mb-0(for="chk_ativa")
+					input(type="checkbox" id="chk_ativa" name="chkAtiva" checked=viatura.estd disabled)
+					.checkmark
+					| ativa
 			h6.mb-0=viatura.nr
+
 		.card-body
-			.row 
-				.col-xs-4.col-sm-4.col-md-4.col-lg-3
+			.row.d-flex.flex-row
+				.col-xs-4.col-sm-5.col-md-5.col-lg-3
 					.row
-						.col
+						.col-12.text-center
 							div(id="img_foto_visible")
 								img.img-fluid.rounded.mx-auto.d-block(id="img_foto" name="imgFoto" src=`/fotos/viaturas/${viatura.fto}` title=viatura.nr)
 							div(id="img_foto_invisible" style="display:none")
-								img.img-fluid.rounded.mx-auto.d-block(id="img_foto_H" name="imgFotoH" src=`/fotos/viaturas/${viatura.fto}` title=viatura.nr)
-							p &nbsp;
+								img.img-fluid.rounded.mx-auto.d-block.mb-4(id="img_foto_H" name="imgFotoH" src=`/fotos/viaturas/${viatura.fto}` title=viatura.nr)
 					.row
-						.col
+						.col-12.text-center
 							div(id="lbl_input_file_disabled" style="display:block")
-								.input-group.input-group-sm
-									span.input-group-text
-										.col-1.fa.fa-solid.fa-file-upload
-									label.col-10.btn.btn-info.btn-sm.me-auto.d-block(id="lbl_fn_disabled" name="lblFNDisabled" title="selecionar ficheiro com foto atualizada" disabled) #{viatura.fto}
+								label.col-10.btn.btn-info.btn-sm.me-auto.d-block(id="lbl_fn_disabled" name="lblFNDisabled" title="selecionar ficheiro com foto atualizada" disabled) #{viatura.fto}
 
 							div(id="lbl_input_file_enabled" style="display:none")
-								.input-group.input-group-sm.no-wrap
-									span.input-group-text
-										.fa.fa-solid.fa-file-upload
-									//- input.form-control.btn.btn-info.btn-sm.me-auto.d-block(type="text" id="lbl_file_name" name="lblFileName" for="inp_file_img" title="selecionar ficheiro com foto atualizada" value=viatura.fto)
-									label.col-10.btn.btn-warning.btn-sm.me-auto.btn-block(id="lbl_file_name" name="lblFileName" for="inp_file_img" title="selecionar ficheiro com foto atualizada") #{viatura.fto}
+								label.col-10.btn.btn-warning.btn-sm.me-auto.btn-block(id="lbl_file_name" name="lblFileName" for="inp_file_img" title="selecionar ficheiro com foto atualizada") #{viatura.fto}
 
-					input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value=viatura.fto )
-					input.visuallyhidden(type="file" id="inp_file_img" name="inpFileImg" accept="image/*") 
+							input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value=viatura.fto )
+							input.visuallyhidden(type="file" id="inp_file_img" name="inpFileImg" accept="image/*") 
 
-				.col-xs-12.col-sm-6.col-md-8.col-lg-9
-					.row 
-						.col-xs-12.col-sm-6.col-md-6.col-lg-6
-							label.container_chk.mt-4(for="chk_ativa")
-								input(type="checkbox" id="chk_ativa" name="chkAtiva" checked=viatura.est disabled)
-								.checkmark
-								| ativa
-					.row 
-						.col-xs-12.col-sm-6.col-md-6.col-lg-6
-							label.container_chk(for="chk_ev")
-								input(type="checkbox" id="chk_ev" name="chkEv" checked=viatura.ev disabled)
-								.checkmark
-								| ev
-						.col-xs-12.col-sm-6.col-md-6.col-lg-6
-							label.form-label(for="txt_qbateria") bateria (Kwh)
-							.input-group 
-								.input-group-text 
-									.fa.fa-battery-car.fa-fw
-								input.form-control(type="text" id="txt_qbateria" name="qbateria" value=viatura.qb disabled)
-					.row 
-						.col-xs-12.col-sm-6.col-md-6.col-lg-6
+				.col-xs-6.col-sm-7.col-md-7.col-lg-9
+					.row.d-flex
+						.col-6
 							.form-group
 								label.form-label.mt-2(for="txt_matricula") matrícula
 								.input-group 
 									.input-group-text 
-										+awsme("car")
+										.fa.fa-car.fa-fw
 									input.form-control(type="text" id="txt_matricula" name="matricula" value=viatura.nr disabled)
-						.col-xs-12.col-sm-6.col-md-6.col-lg-6
+
+						.col-4
+							label.container_chk.mt-5(for="chk_ev")
+								input(type="checkbox" id="chk_ev" name="chkEv" checked=viatura.qb tutle="viatura elétrica" disabled)
+								.checkmark
+								| ev
+
+						.col-6
+							.form-group
+								label.form-label.mt-2(for="txt_qbateria") bateria (Kwh)
+								.input-group 
+									.input-group-text 
+										.fa.fa-battery-car.fa-fw
+									input.form-control(type="text" id="txt_qbateria" name="qbateria" value=viatura.qb disabled)
+
+						.col-6
 							.form-group 
 								label.form-label.mt-2(for="txt_odometro") odómetro
 								.input-group
 									.input-group-text 
-										+awsme("tachometer")
+										.fa.fa-tachometer.fa-fw
 									input.form-control(type="text" id="txt_odometro" name="odometro" value=viatura.odo disabled)
-					.row 
-						.col-xs-12.col-sm-12.col-md-12.col-lg-12 
+
+						.col-12 
 							.form-group
 								label.form-label.mt-2(for="txt_descricao") descrição
 								.input-group 
 									.input-group-text 
-										+awsme("clipboard")
+										.fa.fa-clipboard.fa-fw
 									input.form-control(type="text" id="txt_descricao" name="descricao" value= viatura.dsc disabled)
-					.row 
-						.col-xs-6.col-sm-6.col-md-6.col-lg-6 
+
+						.col-6 
 							.form-group 
 								label.form-label.mt-2(for="txt_ultima_manutencao") última manutenção
 								.input-group 
 									.input-group-text 
 										.fa.fa-tools.fa-fw
 									input.form-control(type="text" id="txt_ultima_manutencao" placeholder="última manutenção" name="ultimaManutencao" value= viatura.mnt disabled)
-						.col-xs-6.col-sm-6.col-md-6.col-lg-6 
+
+						.col-6 
 							.form-group
 								label.form-label.mt-2(for="txt_proxima_manutencao") próxima manutenção
 								.input-group 
@@ -128,8 +129,4 @@ form(id="frm_viatura_r" name="frmViatura" action=`/viaturas/${viatura._id}` meth
 		.card-footer
 			.float-end=`id: ${viatura._id}` 
 
-
-							//- <li class="nav-item">
-							//- 	<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-							//- </li>
 

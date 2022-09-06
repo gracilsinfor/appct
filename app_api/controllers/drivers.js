@@ -3,29 +3,31 @@ const Condutor = mongoose.model('Condutor')
 const assert = require('assert');
 
 const novo_condutor = async (req, res, next) => {
-    const { nome, nif, tel, email, entrada, kms, ativo, foto } = req.body;
+    const { nome, nif, tel, email, entrada, kms, estado, foto } = req.body;
     const dados = {
         nome: nome,
         nif: nif,
         tel: tel,
         email: email,
-        entrada: entrada,
+        entrd: entrada,
         kms: kms,
-        ativo: ativo,
-        foto: foto
+        estd: estado,
+        fto: foto
     };
+
+    // console.log('api dados',dados);
 
     const condutor = new Condutor(dados);
 
     try {
         const doc = await condutor.save();
-        console.log(doc)
         res
             .status(201)
             .json(doc)
         res.send;
     }
     catch (error) {
+        console.log('api', error);
         next(error);
     }
 };
@@ -36,7 +38,7 @@ const condutor_por_id = async (req, res, next) => {
         Condutor
             .findById(req.params.idc)
             .exec((err, condutor) => {
-                console.log(condutor)
+                // console.log(condutor)
                 if (!condutor) {
                     res
                         .status(404)
@@ -85,11 +87,11 @@ const atualiza_condutor = async (req, res, next) => {
                 condutor.nif = nif;
                 condutor.tel = tel;
                 condutor.email = email;
-                condutor.entrada = entrada;
-                condutor.ativo = ativo;
+                condutor.entrd = entrada;
+                condutor.est = ativo;
                 condutor.kms = condutor.kms;
             } else {
-                condutor.foto = req.body.foto;
+                condutor.fto = req.body.foto;
             }
             await condutor.save();
             res

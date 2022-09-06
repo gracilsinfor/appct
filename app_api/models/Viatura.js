@@ -1,36 +1,44 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const manutencao_schema = new mongoose.Schema({
-    est: {type: String, enum: ['Agendada', 'Em curso', 'Realizada'], required: true},
-    di : {type: Date, required: true},
-    odo: {type: Number, required: true},
-    ofc: {type: String },
-    dsc: {type: String },
-    df : {type: Date },
-    cst: {type: Number},
-});
+const Abastecimento = require('./Abastecimento');
+const Faturacao = require('./Faturacao');
+const Mautencao = require('./Manutencao');
 
-const viatura_schema = new mongoose.Schema({
-    ev  : {type: Boolean, default: false },
-    qb  : {type: Number},
-    nr  : { type: String, required: true, unique: true },
-    dsc : {type: String, required: true },
-    fto : {type: String, required: true, },
-    est : {type: Boolean, default: true},
-    odo : {type: Number, required: true },
-    abst: {type: [mongoose.Types.ObjectId] },
-    ftr : {type: [mongoose.Types.ObjectId] },
-    mnt : {type: manutencao_schema},
-    mnts: {type: [manutencao_schema] },
-    
-});
+const options = { discriminatorKey: 'tipo', collection: 'Viaturas' };
 
-mongoose.model('Viatura', viatura_schema, 'Viaturas');
+const Viatura = mongoose.model('Viatura', 
+    new mongoose.Schema(
+        {
+            nr: { type: String, required: true, unique: true },
+            dsc: { type: String, required: true },
+            fto: { type: String, required: true, },
+            estd: { type: Boolean, default: true },
+            odo: { type: Number, required: true },
+            abst: [{ type: Schema.Types.ObjectId, ref: 'Abastecimento' }],
+            ftr: [{ type: Schema.Types.ObjectId, ref: 'Faturacao' }],
+            mnt: { type: Schema.Types.ObjectId, ref: 'Manutencao' },
+            mnts: [{ type: Schema.Types.ObjectId, ref: 'Manutencao' }]
+        }, options
+    )
+);
 
-/** campos manutenção
-    _id estado d odo ofic desc d_f custo
-*/
+module.exports = mongoose.model('Viatura');
 
-/** campos viatura
-    _id ev q_b n_r desc foto ativa odo manut manuts 
-*/
+
+
+
+// const viatura_schema = new mongoose.Schema({
+//     nr:   {  type: String, required: true, unique: true },
+//     dsc:  {  type: String, required: true },
+//     fto:  {  type: String, required: true, },
+//     est:  {  type: Boolean, default: true },
+//     odo:  {  type: Number, required: true },
+//     abst: [{ type: mongoose.Types.ObjectId, ref: Abastecimento }],
+//     ftr:  [{ type: mongoose.Types.ObjectId, ref: Faturacao }],
+//     mnt:  {  type: mongoose.Types.ObjectId, ref: Manutencao },
+//     mnts: [{ type: mongoose.Types.ObjectId, ref: Manutencao }],
+//     options
+// });
+
+// mongoose.model('Viatura', viatura_schema, 'Viaturas');

@@ -1,20 +1,30 @@
 $(function () {
 
   document.getElementById('inp_file_img').addEventListener('change', (event) => {
+    const imgPlaceHolder = document.getElementById('img_foto_visible');
+    const imgHolder = document.getElementById('img_foto_invisible');    
     const fileInput = document.getElementById('inp_file_img');
     const [file] = fileInput.files;
+    const lbl = document.getElementById("lbl_file_name");
+    const hiddTxt = document.getElementById('txt_file_name_H');    
     if (file) {
-      const lbl = document.getElementById("lbl_file_name");
-      const hiddTxt = document.getElementById('txt_file_name_H');
+      imgPlaceHolder.style.display='none';
+      imgHolder.style.display='block';
       const fName = file.name;
       lbl.innerText = fName;
       hiddTxt.value = fName;
       const photoImg = document.getElementById('img_foto');
       photoImg.src = URL.createObjectURL(file);
     } else {
+      imgPlaceHolder.style.display='block';
+      imgHolder.style.display='none';
       lbl.innerHTML = "selecionar ficheiro"
       hiddTxt.value = "";
     }
+  });
+
+  document.getElementById('bt_submit_dados').addEventListener('click', (event) => {
+    $("#frm_condutor").submit();
   });
 
   $.validator.addMethod('filesize', function (value, element, param) {

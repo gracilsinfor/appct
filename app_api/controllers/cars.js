@@ -1,33 +1,21 @@
 const mongoose = require('mongoose');
-const Viatura = mongoose.model('Viatura');
+const Viatura = require('../models/Viatura');
+const ViaturaEV = require('../models/Viatura_EV');
+// const Viatura = mongoose.model('Viatura');
 
 const nova_viatura = async (req, res, next) => {
-    let dados = {};
-    if (req.body.ev) {
-        const { ev, qb, nr, dsc, fto, est, odo } = req.body;
-        dados = {
-            ev : ev,
-            qb : qb,
-            nr : nr,
-            dsc: dsc,
-            fto: fto,
-            est: est,
-            odo: odo
-        };
-    } else {
-        const { ev, nr, dsc, fto, est, odo } = req.body;
-        dados = {
-            ev : ev,
-            nr : nr,
-            dsc: dsc,
-            fto: fto,
-            est: est,
-            odo: odo
-        };
-    }
+    const dados = {
+        nr: req.body.nr,
+        dsc: req.body.dsc,
+        fto: req.body.fto,
+        estd: req.body.estd,
+        odo: req.body.odo,
+        qb: req.body.qb
+    };
 
     console.log(dados);
-    const viatura = new Viatura(dados);
+    const viatura = dados.qb ? new ViaturaEV(dados) : new Viatura(dados);
+    // const viatura = new Viatura(dados);
 
     try {
         const doc = await viatura.save();
@@ -38,6 +26,7 @@ const nova_viatura = async (req, res, next) => {
         res.send;
     }
     catch (error) {
+        console.log(error);
         next(error);
     }
 };
@@ -92,26 +81,25 @@ const atualiza_viatura = async (req, res, next) => {
 
     if (req.params.idv) {
         const viatura = await Viatura.findById(req.params.idv).exec();
+
         if (viatura) {
             if (req.body.nr) {
-                if (req.body.ev) {
-                    const { ev, qb, nr, dsc, fto, est, odo } = req.body;
-                    viatura.ev = ev;
-                    viatura.qb = qb;
-                    viatura.nr = nr;
-                    viatura.dsc = dsc;
-                    viatura.est = est;
-                    viatura.odo = odo
-                } else {
-                    const { ev, nr, dsc, fto, est, odo } = req.body;
-                    viatura.ev = ev;
-                    viatura.nr = nr;
-                    viatura.dsc = dsc;
-                    viatura.est = est;
-                    viatura.qb = null;
-                    viatura.odo = odo
+                if(viatura.qb && !req.body.qb){
+                    viatura.set('qb', undefined, {strict: false});
+                    console.log('qb bd', viatura.qb, 'qb body ', req.body.qb)
+                     
+                }else if(!viatura.qb && req.body.qb){
+                    viatura.set('qb', req.body.qb, Number, {strict: false});
+                }else{
+                    viatura.qb = req.body.qb
                 }
-            }else{
+                viatura.nr = req.body.nr;
+                viatura.dsc = req.body.dsc;
+                viatura.estd = req.body.estd;
+                viatura.odo = req.body.odo;
+        
+            } else {
+
                 viatura.fto = req.body.foto;
             }
             await viatura.save();
@@ -228,7 +216,7 @@ const elimina_manutencao = (req, res) => {
         .status(200)
         .json({ "status": "success" });
     res.send;
-}; 
+};
 
 module.exports = {
     nova_viatura,

@@ -1,22 +1,16 @@
-extends ../pugstrap/_bootstrap
+extends ./app_template
 append styles
-    //-Custom styles for this template
-    title=title 
-block body
-block topo
-    include ../views/includes/_navbar
-block lado
-    include ../views/includes/_sidebar
+
 block content
-    if rota==="/Condutor/id"
-        include ../views/includes/_condutor_r
-    else if rota==="/Condutor/C"
-        include ../views/includes/_condutor_c
+	if rota==="/Condutor/id"
+		include ../views/includes/_condutor_r
+	else if rota==="/Condutor/C"
+		include ../views/includes/_condutor_c
 
 block custom_scripts
-    if rota == "/Condutor/C"
-        script(src="/javascripts/scripts_cc.js" type="text/javascript").
-            $("#frm_condutor").validate();
-    else if rota == "/Condutor/id"
-        script(src="/javascripts/scripts_c.js" type="text/javascript").
-            $("#frm_condutor").validate();
+	if rota == "/Condutor/C"
+		script(src="/javascripts/scripts_cc.js" type="text/javascript").
+			$("#frm_condutor").validate();
+	else if rota == "/Condutor/id"
+		script(src="/javascripts/scripts_c.js" type="text/javascript").
+			$("#frm_condutor").validate();

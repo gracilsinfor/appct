@@ -1,16 +1,21 @@
 const mongoose = require('mongoose');
+const {Schema} = mongoose;
+
+const Turno = require('./Turno');
+const Faturacao = require('./Faturacao');
 
 /** para documentos condutor */
 const condutor_schema = new mongoose.Schema({
-    // _id: mongoose.Types.ObjectId,
     nome: { type: String, required: true },
-    nif: {type: Number, required: true },
+    nif: { type: Number, required: true },
     tel: String,
     email: String,
-    entrada: Date,
+    entrd: Date,
     kms: Number,
-    ativo: { type: Boolean, required: true },
-    foto: {type: String, required: true},
+    estd: { type: Boolean, required: true },
+    fto: { type: String, required: true},
+    trns: [{ type: Schema.Types.ObjectId, ref: 'Turno'}],
+    ftrs: [{ type: Schema.Types.ObjectId, ref: 'Faturacao' }]
 });
 
 mongoose.model('Condutor', condutor_schema, 'Condutores');

@@ -1,33 +1,52 @@
-.container-fluid
-  .row
-    .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2.main
-      h2.page-header=title+" - "+sub_title
-        .pull-right 
-          +a-btn-warning("/condutores/c", "file-new", "Novo condutor")
-      h3=mensagem 
-      each condutor in condutores
-        .row 
-          .col-xs-12.col-sm-6.col-md-6.col-lg-4
-            a(href=`/condutores/${condutor._id}`)
-              .panel.panel-info 
-                .panel-heading=condutor.nome
-                .panel-body
-                  .row
-                    .col-xs-4.col-sm-4.col-md-4.col-lg-4
-                      .text-center 
-                        img.img-responsive(id="img_foto" name="imgFoto" src=`/fotos/condutores/${condutor.foto}` title=condutor.n_r)
-                        p &nbsp;
-                    .col-xs-8.col-sm-8.col-md-8.col-lg-8
-                      h5
-                        +awsme("phone")
-                        |&nbsp; #{condutor.tel}
-                      h5
-                        +awsme("at")
-                        | &nbsp; #{condutor.email}
+nav.navbar.navbar-light.bg-secondary.navbar-expand-md.rounded.mb-3.py-0.shadow(id="frmNavbar")
+  .container-fluid
+    navbar-brand.text-success
+      a.nav-link(href="/" title="dashboard")
+        .fa.fa-id-card.fa-fw
+        | &nbsp; dashboard
+    button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse")
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse.justify-content-end(id="navbarCollapse")
+      ul.navbar-nav(id="frmMenu")
+        li.nav-item.fs-6.text-warning
+          a.nav-link(id="bt_novo_condutor" href="/condutores/condutor" style="display:block" type="button" title="registar novo condutor")
+            .fa.fa-file-circle-plus.fa-fw
+            | &nbsp; novo condutor
 
-                .panel-footer=`id: ${condutor._id}` 
-                  .pull-right
-                    label.container_chk(for="chk_ativo")
-                      input(type="checkbox" id="chk_ativo" name="chkAtivo" checked=condutor.ativo disabled)
-                      .checkmark
-                      | ativo
+if mensagem
+  div.alert.alert-info.mt-2(id="div_alert" style="display: block")
+    h3=mensagem
+else 
+  div.alert.alert-info.mt-2(id="div_alert" style="display: none")
+
+.row 
+  each condutor in condutores
+    .col-xs-12.col-sm-6.col-md-6.col-lg-4
+      .card.mb-2
+        .card-header.bg-info 
+          .float-end
+            label.container_chk.mb-0(for="chk_ativo")
+              input(type="checkbox" id="chk_ativo" name="chk_ativo" checked=condutor.estd disabled)
+              .checkmark
+              | ativo
+          a.nav-link(href=`/condutores/${condutor._id}`)
+            .fa.fa-user.fa-fw 
+            |&nbsp; #{condutor.nome}
+        .card-body
+          .row
+            .col-xs-5.col-sm-5.col-md-5.col-lg-5
+              .flow-center 
+                a(href=`/condutores/${condutor._id}`)
+                  img.img-fluid(id="img_foto" name="imgFoto" src=`/fotos/condutores/${condutor.fto}` title=condutor.nome)
+            .col-xs-7.col-sm-7.col-md-7.col-lg-7.ps-2
+              .fs-6.mb-1
+                .fa.fa-phone.fa-fw
+                | &nbsp; #{condutor.tel}
+              .fs-6.mb-1
+                .fa.fa-at.fa-fw
+                | &nbsp; #{condutor.email}
+              .fs-6.mb-1
+                .fa.fa-id-card.fa-fw
+                | &nbsp; #{condutor.nif}
+        .card-footer=`id: ${condutor._id}` 
+          .float-end 

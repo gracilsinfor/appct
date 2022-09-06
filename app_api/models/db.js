@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const bd_uri = 'mongodb://localhost:27017/appctdb';
+const bd_uri = 'mongodb://127.0.0.1:27017/appctdb';
 
 if(process.env.NODE_ENV==='production'){
     bd_uri ='mongodb://yaappu:c1plerhKh2ADx8Q7@cluster0.vqhol.mongodb.net/?retryWrites=true&w=majority'
@@ -54,7 +54,7 @@ process.on('SIGTERM', () => {
 // require('./AbastecimentoMT');
 require('./Condutor');
 require('./Faturacao');
-// require('./Manutencao');
+require('./Manutencao');
 require('./Turno');
 require('./Viatura');
 // require('./Viatura_MT');

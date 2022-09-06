@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon --exec app.js",
+    "original": "node ./bin/www"
+
   },
   "engines": {
     "node": ">=16.0.0",

@@ -1,12 +1,10 @@
 extends ./app_template
 append styles
-	//-Custom styles for this template
-	title=title 
 
 block content
 	if rota==="/Viatura/id"
 		include ../views/includes/_viatura_r
-	else if rota==="/Viatura/C"
+	if rota==="/Viatura/C"
 		include ../views/includes/_viatura_c
 
 block custom_scripts

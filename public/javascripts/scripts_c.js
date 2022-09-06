@@ -1,32 +1,122 @@
 $(function () {
 
-  const dataElements = ['chk_ativo', 'txt_nome', 'txt_tel', 'txt_email', 'date_entrada', 'txt_nif'];
+  const frmElements = ['chk_ativo', 'txt_nome', 'date_entrada', 'txt_nif', 'txt_tel', 'txt_email'];
+  const cachedVals = [];
 
+  function cacheVals() {
+    const inputs = document.querySelectorAll('input');
+    for (const i of inputs) {
+      let val = {};
+      if (i.id) {
+        val = {
+          "id": [i.id],
+          "value": i.value
+        }
+        cachedVals.push(val);
+      }
+    }
+  };
+
+  function rstValMsgs() {
+    var elems = document.querySelectorAll('.error');
+    elems.forEach(itm => {
+      document.getElementById(itm.id).innerHTML = ''
+    })
+  };
+
+  function rstrCached() {
+    let msg = '';
+    for (const e of cachedVals) {
+      msg += e.id + ': ' + e.value + '\r\n';
+    }
+    // alert(msg);
+    for (const k of cachedVals) {
+      let e = document.getElementById(k.id);
+      if (e.type === 'checkbox') {
+        e.checked = k.value;
+      } else {
+        e.value = k.value;
+      }
+    }
+  };
+  
   document.getElementById('bt_atualizar_foto').addEventListener('click', (event) => {
-    document.getElementById('bt_atualizar_foto').style.display='none';
-    document.getElementById('lbl_input_file_disabled').style.display='none';
-    document.getElementById('lbl_input_file_enabled').style.display='block';
-    document.getElementById('foto_updt_button_set').style.display='block';
-    document.getElementById('bt_atualizar_dados').disabled = true;
+    cacheVals();
+
+    document.getElementById('bt_atualizar_foto').style.display = 'none';
+    document.getElementById('bt_back_foto').style.display = 'block';
+
+    document.getElementById('lbl_input_file_disabled').style.display = 'none';
+    document.getElementById('lbl_input_file_enabled').style.display = 'block';
+
+    document.getElementById('bt_atualizar_dados').style.display = 'none';
+    document.getElementById('bt_submit_foto').style.display = 'block';
   });
 
+  document.getElementById('bt_back_foto').addEventListener('click', (event) => {
+    rstrCached();
+    const imgFoto = document.getElementById('img_foto');
+    const imgFotoHidden = document.getElementById('img_foto_H');
+    const imgFotoVisible = document.getElementById('img_foto_visible');
+    const imgFotoInvisible = document.getElementById('img_foto_invisible');
+
+    if (imgFoto.src !== imgFotoHidden.src) {
+      imgFotoVisible.style.display = 'none';
+      imgFotoInvisible.style.display = 'block';
+    }
+
+    document.getElementById('bt_atualizar_foto').style.display = 'block';
+    document.getElementById('bt_back_foto').style.display = 'none';
+
+    document.getElementById('lbl_input_file_disabled').style.display = 'block';
+    document.getElementById('lbl_input_file_enabled').style.display = 'none';
+    document.getElementById('bt_atualizar_dados').style.display = 'block';
+    document.getElementById('bt_submit_foto').style.display = 'none';
+  });
 
   document.getElementById('bt_atualizar_dados').addEventListener('click', (event) => {
-    document.getElementById('bt_atualizar_dados').style.display='none';
-    for(const e of dataElements){
-      document.getElementById(e).disabled=false;
+
+    // if(!(window.confirm('Atenção vai entrar no modo de edição da base de dados!'))){
+    //   event.stopPropagation();
+    //   return;
+    // }
+    cacheVals();
+    document.getElementById('bt_atualizar_dados').style.display = 'none';
+    document.getElementById('bt_atualizar_foto').style.display = 'none';
+
+    for (const e of frmElements) {
+      document.getElementById(e).disabled = false;
     }
-    document.getElementById('dados_updt_button_set').style.display='block';
-    document.getElementById('bt_atualizar_foto').disabled = true;
+
+    document.getElementById('bt_submit_dados').style.display = 'block';
+
+    document.getElementById('bt_back_dados').style.display = 'block';
+
   });
 
+  document.getElementById('bt_back_dados').addEventListener('click', (event) => {
+    rstValMsgs();
+    rstrCached();
+    document.getElementById('bt_back_dados').style.display = 'none';
+
+    for (const e of frmElements) {
+      document.getElementById(e).disabled = true;
+    }
+    document.getElementById('bt_atualizar_foto').style.display = 'block';
+    document.getElementById('bt_atualizar_dados').style.display = 'block';
+    document.getElementById('bt_submit_dados').style.display = 'none';
+  });
+
+
   document.getElementById('bt_submit_foto').addEventListener('click', (event) => {
-    document.forms[0].submit();
+    $("#frm_condutor").submit();
   });
 
   document.getElementById('bt_submit_dados').addEventListener('click', (event) => {
-    document.forms[0].submit();
+    $("#frm_condutor").submit();
   });
+
+
 
   document.getElementById('inp_file_img').addEventListener('change', (event) => {
     const fileInput = document.getElementById('inp_file_img');
@@ -100,7 +190,7 @@ $(function () {
         required: '<span class="ml-5 small text-danger">&nbsp; <i class="fas fa-exclamation-circle"></i> &nbsp; indique o endereço de email do condutor!</span>',
         isemail: '<span class="ml-5 small text-danger">&nbsp; <i class="fas fa-exclamation-circle"></i> &nbsp; insira um endereço de email válido / bem formado!</span>'
       },
-      entrada: { 
+      entrada: {
         required: '<span class="ml-5 small text-danger">&nbsp; <i class="fas fa-exclamation-circle"></i> &nbsp; indique a data de entrada em serviço!</span>',
         isdate: '<span class="ml-5 small text-danger">&nbsp; <i class="fas fa-exclamation-circle"></i> &nbsp; a data de entrada em serviço não pode ser posterior à data atual!</span>',
       },

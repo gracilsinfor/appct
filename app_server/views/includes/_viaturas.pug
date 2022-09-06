@@ -1,42 +1,56 @@
-.container-fluid
-	.row
-		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2.main
-			h2.page-header=title+" - "+sub_title
-				.pull-right 
-					+a-btn-warning("/viaturas/c", "file-new", "Nova viatura")  
-			h3=mensagem
-			each viatura in viaturas
-				.row 
-					.col-xs-12.col-sm-6.col-md-6.col-lg-4
-						a(href=`/viaturas/${viatura._id}`)
-							.panel.panel-info 
-								.panel-heading=viatura.dsc + '  '
-									+awsme("car")  
-									| &nbsp; #{viatura.nr}
-									.pull-right
-										label.container_chk(for="chk_ev")
-											input(type="checkbox" id="chk_ev" name="chkEv" checked=viatura.ev disabled)
-											.checkmark
-											| ev
-								.panel-body
-									.row
-										.col-xs-4.col-sm-4.col-md-4.col-lg-4
-											.text-center 
-												img.img-responsive(id="img_foto" name="imgFoto" src=`/fotos/viaturas/${viatura.fto}` title=viatura.nr)
-												p &nbsp;
-										.col-xs-8.col-sm-8.col-md-8.col-lg-8
-											h5 
-												+awsme("tachometer")
-												| &nbsp; #{viatura.odo}
-											h5 
-												+awsme("tools")
-												| &nbsp; #{viatura.ultima_manutencao}
-											h5 
-												+awsme("tools")
-												| &nbsp; #{viatura.proxima_manutencao}
-								.panel-footer=`id: ${viatura._id}` 
-									.pull-right 
-										label.container_chk(for="chk_ativa")
-											input(type="checkbox" id="chk_ativa" name="chkAtiva" checked=viatura.est disabled)
-											.checkmark
-											| ativa
+nav.navbar.navbar-light.bg-secondary.navbar-expand-md.rounded.mb-2.py-0.shadow(id="frmNavbar")
+	.container-fluid
+		navbar-brand.text-success
+			a.nav-link(href="/" title="dashboard")
+				.fa.fa-id-card.fa-fw
+				| &nbsp; dashboard
+		button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse")
+			span.navbar-toggler-icon
+		.collapse.navbar-collapse.justify-content-end(id="navbarCollapse")
+			ul.navbar-nav(id="frmMenu")
+				li.nav-item.fs-6.text-warning
+					a.nav-link(id="bt_nova_viatura" href="/viaturas/viatura" style="display:block" type="button" title="registar nova viatura")
+						.fa.fa-file-circle-plus.fa-fw
+						| &nbsp; nova viatura
+
+if !mensagem
+	div.alert.alert-info.mt-2(id="div_alert" style="display: none")
+else 
+	div.alert.alert-info.mt-2(id="div_alert" style="display: block")
+		h3=mensagem
+
+.row 
+	each viatura in viaturas
+		.col-xs-12.col-sm-6.col-md-6.col-lg-4
+			.card.mb-2
+				.card-header.bg-info 
+					.float-end
+						label.container_chk(for="chk_ev")
+							input(type="checkbox" id="chk_ev" name="chkEv" checked=viatura.ev disabled)
+							.checkmark
+							| ev
+					a.nav-link(href=`/viaturas/${viatura._id}`) #{viatura.dsc}&nbsp;&nbsp;
+						.fa.fa-car.fa-fw 
+						|&nbsp; #{viatura.nr}
+				.card-body
+					.row
+						.col-xs-6.col-sm-6.col-md-6.col-lg-6
+							.flow-center 
+								a(href=`/viaturas/${viatura._id}`)
+									img.img-fluid(id="img_foto" name="imgFoto" src=`/fotos/viaturas/${viatura.fto}` title=viatura.nr)
+						.col-xs-6.col-sm-6.col-md-6.col-lg-6.d-flex-column.ps-5
+							h6
+								.fa.fa-tachometer.fa-fw
+								| &nbsp; #{viatura.odo}
+							h6 
+								.fa.fa-tools.fa-fw
+								| &nbsp; #{viatura.ultima_manutencao}
+							h6 
+								.fa.fa-tools.fa-fw
+								| &nbsp; #{viatura.proxima_manutencao}
+				.card-footer=`id: ${viatura._id}` 
+					.float-end 
+						label.container_chk(for="chk_ativa")
+							input(type="checkbox" id="chk_ativa" name="chkAtiva" checked=viatura.est disabled)
+							.checkmark
+							| ativa

@@ -1,42 +1,7 @@
 $(function () {
 
   const frmElements = ['chk_ativa', 'chk_ev', 'txt_matricula', 'txt_odometro', 'txt_descricao'];
-  let cachedVals = [];
-
-  document.getElementById('bt_atualizar_foto').addEventListener('click', (event) => {
-    cacheVals();
-
-    document.getElementById('bt_atualizar_foto').style.display = 'none';
-    document.getElementById('bt_back_foto').style.display = 'block';
-
-    document.getElementById('lbl_input_file_disabled').style.display = 'none';
-    document.getElementById('lbl_input_file_enabled').style.display = 'block';
-
-    document.getElementById('bt_atualizar_dados').style.display = 'none';
-    document.getElementById('bt_submit_foto').style.display = 'block';
-  });
-
-
-  document.getElementById('bt_back_foto').addEventListener('click', (event) => {
-    rstrCached();
-    const imgFoto = document.getElementById('img_foto');
-    const imgFotoHidden = document.getElementById('img_foto_H');
-    const imgFotoVisible = document.getElementById('img_foto_visible');
-    const imgFotoInvisible = document.getElementById('img_foto_invisible');
-
-    if(imgFoto.src !== imgFotoHidden.src){
-      imgFotoVisible.style.display = 'none';
-      imgFotoInvisible.style.display = 'block';
-    }
-
-    document.getElementById('bt_atualizar_foto').style.display = 'block';
-    document.getElementById('bt_back_foto').style.display = 'none';
-
-    document.getElementById('lbl_input_file_disabled').style.display = 'block';
-    document.getElementById('lbl_input_file_enabled').style.display = 'none';
-    document.getElementById('bt_atualizar_dados').style.display = 'block';
-    document.getElementById('bt_submit_foto').style.display = 'none';
-  });
+  const cachedVals = [];
 
   function cacheVals() {
     const inputs = document.querySelectorAll('input');
@@ -51,8 +16,69 @@ $(function () {
       }
     }
   };
+  
+  function rstValMsgs() {
+    var elems = document.querySelectorAll('.error');
+    elems.forEach(itm => {
+      document.getElementById(itm.id).innerHTML = ''
+    })
+  };
+
+  function rstrCached() {
+    let msg = '';
+    for (const e of cachedVals) {
+      msg += e.id + ': ' + e.value + '\r\n';
+    }
+    // alert(msg);
+    for (const k of cachedVals) {
+      let e = document.getElementById(k.id);
+      if (e.type === 'checkbox') {
+        e.checked = k.value;
+      } else {
+        e.value = k.value;
+      }
+    }
+  };
+
+  document.getElementById('bt_atualizar_foto').addEventListener('click', (event) => {
+    cacheVals();
+
+    document.getElementById('bt_atualizar_foto').style.display = 'none';
+    document.getElementById('bt_back_foto').style.display = 'block';
+
+    document.getElementById('lbl_input_file_disabled').style.display = 'none';
+    document.getElementById('lbl_input_file_enabled').style.display = 'block';
+
+    document.getElementById('bt_atualizar_dados').style.display = 'none';
+    document.getElementById('bt_submit_foto').style.display = 'block';
+  });
+
+  document.getElementById('bt_back_foto').addEventListener('click', (event) => {
+    rstrCached();
+    const imgFoto = document.getElementById('img_foto');
+    const imgFotoHidden = document.getElementById('img_foto_H');
+    const imgFotoVisible = document.getElementById('img_foto_visible');
+    const imgFotoInvisible = document.getElementById('img_foto_invisible');
+
+    if (imgFoto.src !== imgFotoHidden.src) {
+      imgFotoVisible.style.display = 'none';
+      imgFotoInvisible.style.display = 'block';
+    }
+
+    document.getElementById('bt_atualizar_foto').style.display = 'block';
+    document.getElementById('bt_back_foto').style.display = 'none';
+
+    document.getElementById('lbl_input_file_disabled').style.display = 'block';
+    document.getElementById('lbl_input_file_enabled').style.display = 'none';
+    document.getElementById('bt_atualizar_dados').style.display = 'block';
+    document.getElementById('bt_submit_foto').style.display = 'none';
+  });
 
   document.getElementById('bt_atualizar_dados').addEventListener('click', (event) => {
+    // if(!(window.confirm('Atenção vai entrar no modo de edição da base de dados!'))){
+    //   event.stopPropagation();
+    //   return;
+    // }
     cacheVals();
     document.getElementById('bt_atualizar_dados').style.display = 'none';
 
@@ -67,32 +93,15 @@ $(function () {
     document.getElementById('bt_atualizar_foto').style.display = 'none';
 
     document.getElementById('bt_back_dados').style.display = 'block';
+
   });
-
-  function rstValMsgs() {
-    var elems = document.querySelectorAll('.error');
-    elems.forEach(itm => {
-      document.getElementById(itm.id).innerHTML = ''
-    })
-  };
-
-  function rstrCached() {
-    let msg = '';
-    for (const e of cachedVals) {
-      msg += e.id + ': ' + e.value + '\r\n';
-    }
-    for (const k of cachedVals) {
-      let e = document.getElementById(k.id);
-      e.value = k.value;
-    }
-  };
 
   document.getElementById('bt_back_dados').addEventListener('click', (event) => {
     rstValMsgs();
     rstrCached();
     document.getElementById('bt_back_dados').style.display = 'none';
     if (document.getElementById('chk_ev').checked) {
-      document.getElementById('txt_qbateria').disabled = false;
+      document.getElementById('txt_qbateria').disabled = true;
     }
     for (const e of frmElements) {
       document.getElementById(e).disabled = true;
@@ -103,11 +112,11 @@ $(function () {
   });
 
   document.getElementById('bt_submit_foto').addEventListener('click', (event) => {
-    document.forms[0].submit();
+    $("#frm_viatura").submit();
   });
 
   document.getElementById('bt_submit_dados').addEventListener('click', (event) => {
-    document.forms[0].submit();
+    $("#frm_viatura").submit();
   });
 
 
@@ -116,7 +125,7 @@ $(function () {
     const chkEv = document.getElementById('chk_ev');
     qBat.disabled = !chkEv.checked;
     !chkEv.checked ? qBat.value = '' : '';
-    $('#frm_viatura_r').valid();
+    // $('#frm_viatura').valid();
   });
 
   document.getElementById('inp_file_img').addEventListener('change', (event) => {
@@ -146,7 +155,7 @@ $(function () {
   //   return this.files != null || nameHidden.value != null;
   // });
   $.validator.addMethod('isplate', function (value, element, param) {
-    const regex = new RegExp(/(^([a-zA-Z]{2}-\d{2}-\d{2}))$|(^(\d{2}-[a-zA-Z]{2}-\d{2}))$|(^(\d{2}-\d{2}-[a-zA-Z]{2}))$/);
+    const regex = new RegExp(/(^([a-zA-Z]{2}-\d{2}-\d{2}))$|(^(\d{2}-[a-zA-Z]{2}-\d{2}))$|(^(\d{2}-\d{2}-[a-zA-Z]{2}))$|(^([a-zA-Z]{2}-\d{2}-[a-zA-Z]{2}))$/);
     return regex.test(value);
   });
 

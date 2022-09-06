@@ -1,27 +1,37 @@
 $(function () {
 
-  document.getElementById('chk_ev').addEventListener('input', (event) => {
+  document.getElementById('chk_ev').addEventListener('change', (event) => {
     const qBat = document.getElementById('txt_qbateria');
     const chkEv = document.getElementById('chk_ev');
     qBat.disabled = !chkEv.checked;
-
+    !chkEv.checked ? qBat.value = '' : '';
   });
 
   document.getElementById('inp_file_img').addEventListener('change', (event) => {
+    const imgPlaceHolder = document.getElementById('img_foto_visible');
+    const imgHolder = document.getElementById('img_foto_invisible');
     const fileInput = document.getElementById('inp_file_img');
     const [file] = fileInput.files;
+    const lbl = document.getElementById("lbl_file_name");
+    const hiddTxt = document.getElementById('txt_file_name_H');
     if (file) {
-      const lbl = document.getElementById("lbl_file_name");
-      const hiddTxt = document.getElementById('txt_file_name_H');
+      imgPlaceHolder.style.display='none';
+      imgHolder.style.display='block';
       const fName = file.name;
       lbl.innerText = fName;
       hiddTxt.value = fName;
       const photoImg = document.getElementById('img_foto');
       photoImg.src = URL.createObjectURL(file);
     } else {
+      imgPlaceHolder.style.display='block';
+      imgHolder.style.display='none';
       lbl.innerHTML = "selecionar ficheiro"
       hiddTxt.value = "";
     }
+  });
+
+  document.getElementById('bt_submit_dados').addEventListener('click', (event) => {
+    $("#frm_viatura").submit();
   });
 
   $.validator.addMethod('filesize', function (value, element, param) {
@@ -35,7 +45,7 @@ $(function () {
   // });
 
   $.validator.addMethod('isplate', function (value, element, param) {
-    const regex = new RegExp(/(^([a-zA-Z]{2}-\d{2}-\d{2}))$|(^(\d{2}-[a-zA-Z]{2}-\d{2}))$|(^(\d{2}-\d{2}-[a-zA-Z]{2}))$/);
+    const regex = new RegExp(/(^([a-zA-Z]{2}-\d{2}-\d{2}))$|(^(\d{2}-[a-zA-Z]{2}-\d{2}))$|(^(\d{2}-\d{2}-[a-zA-Z]{2}))$|(^([a-zA-Z]{2}-\d{2}-[a-zA-Z]{2}))$/);
     return regex.test(value);
   });
 

@@ -1,23 +1,65 @@
-.container-fluid
-	.row
-		.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-			.row 
-				.col-xs-12.col-md-6
-					h2.page-header=title+" - "+sub_title
-				.col-xs-12.col-md-6
-					.pull-right
-						- const id = Math.floor(Math.random()*5) 
-						+a-btn("/Manutencao/C/"+id, "file-new", "Nova manutencao", "warning")  
-			.row
-				.col-xs-12.col-sm-6.col-md-3.col-lg-3
-					+awsme_dropdown("ddmatriculas","dd_matriculas","filtro por viatura", matriculas, true, "car")
-				.col-xs-12.col-sm-6.col-md-3.col-lg-3
-					+awsme_dropdown("ddtipos","dd_tipos","filtro por tipo", tipos, true, "type")
-				.col-xs-12.col-sm-6.col-md-3.col-lg-3
-					+input_datetime("data_inicio", "início ", Date.now(), "start")
-				.col-xs-12.col-sm-6.col-md-3.col-lg-3
-					+input_datetime("data_fim", "fim ", Date.now(), "end")
-			.row
-				.col-xs-12.col-sm-12.col-md-12.col-lg-12
-					+lista_de_manutencoes(viaturas)
+nav.navbar.navbar-light.bg-secondary.navbar-expand-md.rounded.mb-3.py-0.shadow(id="frmNavbar")
+	.container-fluid
+		navbar-brand.text-success
+			a.nav-link(href="/" title="dashboard")
+				.fa.fa-id-card.fa-fw
+				| &nbsp; dashboard
+		button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse")
+			span.navbar-toggler-icon
+		.collapse.navbar-collapse.justify-content-end(id="navbarCollapse")
+			ul.navbar-nav(id="frmMenu")
+				li.nav-item.fs-6.text-warning
+					a.nav-link(id="bt_nova_manutencao" href="/viaturas/manutencao" style="display:block" type="button" title="registar nova manutencao")
+						.fa.fa-file-circle-plus.fa-fw
+						| &nbsp; agendar manutenção
+
+if message
+	div.alert.alert-info.mt-2(id="div_alert" style="display: block")
+		h3 #{message}
+//- else
+//-   div.alert.alert-info.mt-2(id="div_alert" style="display: none")
+
+.row.d-flex.flex-row
+	.col-sm-6.col-md-3
+		.form-group
+			label.form-label.mt-2(for="dd_matriculas") 
+			.input-group
+				.input-group-text 
+					.fa.fa-car.fa-fw
+				select.form-select(id="dd_matriculas" name="ddMatriculas" title="filtrar por viatura")
+					//- each item in matriculas 
+					//- 	option(value=Object.values(item)[0]) #{Object.values(item)[1]}
+
+	.col-sm-6.col-md-3
+		.form-group
+			label.form-label.mt-2(for="dd_tipo") 
+			.input-group
+				.input-group-text 
+					.fa.fa-font.fa-fw
+				select.form-select(id="dd_tipo" name="ddTipo" title="filtrar por tipo de motor")
+					option(value="ev" title="elétrico") elétrico
+					option(value="mt" title="térmico") térmico
+
+	.col
+		.form-group
+			label.form-label.my-2(for="date_inicio") 
+			.input-group 
+				.input-group-text 
+					.fa.fa-hourglass-start.fa-fw
+				input.form-control(type="date" id="date_inicio" name="dateInicio" title="filtrar desde o dia" value="" )
+
+	.col
+		.form-group
+			label.form-label.my-2(for="date_final") 
+			.input-group 
+				.input-group-text 
+					.fa.fa-hourglass-end.fa-fw
+				input.form-control(type="date" id="date_final" name="dateFinal" title="filtrar até o dia" value="" )
+
+.row.d-flex
+	.col-12.me-auto 
+		h4.my-3.text-center 
+			.fa.fa-tools.fa-fw
+			| Manutenções
+
 

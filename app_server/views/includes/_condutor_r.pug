@@ -1,116 +1,126 @@
-.container-fluid
-    .row
-        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-            h2.page-header=title+" - "+sub_title
-                .pull-right
-                    +a-btn-back()
-            div(id="div_alert")
-            .row 
-                .col-xs-12.col-sm-12.col-md-12.col-lg-12.placeholder
-                    .panel.panel-info 
-                        .panel-heading 
-                            h3.panel-title Dados do condutor
-                                .pull-right id: #{condutor._id}
-                        .panel-body
-                            form(id="frm_condutor" name="frmCondutor" role="form" action=`/condutores/${condutor._id}` method="post" enctype="multipart/form-data")
-                                .row 
-                                    .col-xs-12.col-sm-12.col-md-4.col-lg-3
-                                        .row 
-                                            .col-xs-12.col-lg-12.placeholder
-                                                .text-center 
-                                                    img.img-responsive(id="img_foto" name="imgFoto" src=`/fotos/condutores/${condutor.foto}` title=condutor.nome )
-                                                    p &nbsp;
-                                                div(id="lbl_input_file_disabled" style="display:block")
-                                                    .input-group
-                                                        .input-group-addon
-                                                            .fa.fa-file.fa-sm &nbsp;&nbsp;
-                                                        label.btn.btn-info.btn-block(id="lbl_fn_disabled" name="lblFNDisabled" title="selecionar ficheiro com foto atualizada" disabled) #{condutor.foto}
+nav.navbar.navbar-light.bg-secondary.navbar-expand-md.rounded.mb-2.py-0.shadow(id="frmNavbar")
+	.container-fluid
+		navbar-brand.text-success
+			a.nav-link(href="/condutores" title="listagem de condutores")
+				.fa.fa-id-card.fa-fw
+				.fa.fa-id-card.fa-fw
+				| &nbsp; condutores
+		button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse")
+			span.navbar-toggler-icon
+		.collapse.navbar-collapse.justify-content-end(id="navbarCollapse")
+			ul.navbar-nav(id="frmMenu")
+				li.nav-item.fs-6
+					a.nav-link(id="bt_atualizar_foto" name="btAtualizarFoto" type="button" title="mudar a foto do condutor")
+						.fa.fa-user.fa-fw
+						| atualizar foto
+				li.nav-item.fs-6.text-success
+					a.nav-link(id="bt_back_foto" style="display:none" type="button" title="sair do modo atualização de dados")
+						.fa.fa-xmark.fa-fw
+						| cancelar
+				li.nav-item.fs-6
+					a.nav-link.border-start.border-dark.border-3(id="bt_atualizar_dados" name="btAtualizarDados" type="button" title="editar os dados do condutor")
+						.fa.fa-edit.fa-fw
+						| atualizar dados
+				li.nav-item.fs-6.text-danger
+					a.nav-link.border-start.border-dark.border-3(id="bt_submit_foto" style="display:none" type="submit" title="atualizar foto na base de dados")
+						.fa.fa-file-upload.fa-fw
+						| &nbsp;atualizar
+				li.nav-item.fs-6.text-success
+					a.nav-link(id="bt_back_dados" style="display:none" type="button" title="sair do modo atualização de dados")
+						.fa.fa-xmark.fa-fw
+						| &nbsp; cancelar
+				li.nav-item.fs-6.text-danger
+					a.nav-link.border-start.border-dark.border-3(id="bt_submit_dados" style="display:none" type="submit" title="atualizar a base de dados")
+						.fa.fa-save.fa-fw
+						| &nbsp; atualizar &nbsp; 
+				li.nav-item.fs-6.text-warning
+					a.nav-link.border-start.border-dark.border-3(id="bt_novo" href="/condutores/condutor" style="display:block" title="registar novo condutor na base de dados")
+						.fa.fa-file-circle-plus.fa-fw
+						| novo condutor
 
-                                                div(id="lbl_input_file_enabled" style="display:none")
-                                                    .input-group
-                                                        .input-group-addon
-                                                            .fa.fa-file.fa-sm &nbsp;&nbsp;
-                                                        label.btn.btn-info.btn-block(id="lbl_file_name" name="lblFileName" for="inp_file_img" title="selecionar ficheiro com foto atualizada") #{condutor.foto}
+div.alert.alert-info(id="div_alert" style="display: none")
 
-                                                input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value=condutor.foto )
-                                                input.visuallyhidden(type="file" id="inp_file_img" name="inpFileImg" accept="image/*") 
-                                        .row 
-                                            .col-xs-12.col-lg-12.placeholder
-                                                button.btn.btn-warning.btn-block(id="bt_atualizar_foto" type="button" title="selecionar e carregar ficheiro com foto atualizada")
-                                                    +awsme("edit")
-                                                    | &nbsp;atualizar foto do condutor
+form(id="frm_condutor" name="frmCondutor" action=`/condutores/${condutor._id}` method="POST" enctype="multipart/form-data" disabled)
+	.card.mb-3
+		.card-header.bg-info
+			.float-end 
+					label.form-label.container_chk.mb-0(for="chk_ativo")
+						input(type="checkbox" id="chk_ativo" name="chkAtivo" checked=condutor.estd disabled )
+						.checkmark
+						| ativo
+			h6.mb-0=condutor.nome
 
+		.card-body
+			.row.d-flex.flex-row
+				.col-xs-4.col-sm-5.col-md-5.col-lg-3
+					.row
+						.col-12.text-center
+							div(id="img_foto_visible")
+								img.img-fluid.rounded.mx-auto.d-block(id="img_foto" name="imgFoto" src=`/fotos/condutores/${condutor.fto}` title=condutor.nome)
+							div(id="img_foto_invisible" style="display:none")
+								img.img-fluid.rounded.mx-auto.d-block.mb-4(id="img_foto_H" name="imgFotoH" src=`/fotos/condutores/${condutor.fto}` title=condutor.nome)
+					.row
+						.col-12.text-center
+							div(id="lbl_input_file_disabled"  style="display:block")
+								label.col-10.btn.btn-info.btn-sm.me-auto.d-block(id="lbl_fn_disabled" name="lblFNDisabled" title="selecionar ficheiro com foto atualizada" disabled) #{condutor.fto}
 
-                                    .col-xs-12.col-sm-12.col-md-8.col-lg-9
-                                        .row 
-                                            .col-xs-12.col-sm-4.col-md-2.col-lg-2
-                                                label.container_chk(for="chk_ativo")
-                                                    input(type="checkbox" id="chk_ativo" name="chkAtivo" checked=condutor.ativo disabled )
-                                                    .checkmark
-                                                    | ativo
-                                            .col-xs-12.col-sm-12.col-md-10.col-lg-10
-                                                .form-group 
-                                                    label(for="txt_nome") nome
-                                                    .input-group 
-                                                        .input-group-addon 
-                                                            +awsme("user")
-                                                        input.form-control(type="text" id="txt_nome" name="nome" value=condutor.nome disabled)
-                                        .row 
-                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6
-                                                .form-group 
-                                                    label(for="txt_tel") telefone
-                                                    .input-group
-                                                        .input-group-addon 
-                                                            +awsme("phone")
-                                                        input.form-control(type="text" id="txt_tel" name="tel" value=condutor.tel disabled)
-                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6
-                                                .form-group 
-                                                    label(for="txt_email") email
-                                                    .input-group
-                                                        .input-group-addon 
-                                                            +awsme("at")
-                                                        input.form-control(type="text" id="txt_email" name="email" value=condutor.email disabled)
-                                        .row 
-                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6 
-                                                .form-group
-                                                    label(for="date_entrada") entrada
-                                                    .input-group 
-                                                        .input-group-addon 
-                                                            +awsme("calendar")
-                                                        input.form-control(type="date" id="date_entrada" name="entrada" value=condutor.entrada.substring(0,10) disabled )
-                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6
-                                                .form-group
-                                                    label(for="txt_nif") nif
-                                                    .input-group 
-                                                        .input-group-addon 
-                                                            +awsme("hashtag")
-                                                        input.form-control(type="text" id="txt_nif" name="nif" value=condutor.nif disabled)
-                                        .row
-                                            .col-xs-12.col-sm-6.col-md-4.col-lg-4 
-                                                .form-group
-                                                    label(for="txt_kms") kms
-                                                    .input-group 
-                                                        .input-group-addon 
-                                                            +awsme("road")
-                                                        input.form-control(type="text" id="txt_kms" name="kms" value=condutor.kms disabled)
+							div(id="lbl_input_file_enabled" style="display:none")
+								label.btn.btn-warning.rounded(id="lbl_file_name" name="lblFileName" for="inp_file_img" title="selecionar ficheiro com foto atualizada") #{condutor.fto}
 
-                                        .row
-                                            .col-xs-12.col-lg-12
-                                                button.btn.btn-block.btn-warning(id="bt_atualizar_dados" name="btAtualizarDados" type="button")
-                                                    +awsme("edit")
-                                                    | &nbsp;&nbsp; atualizar dados do condutor
-                                                div(id="foto_updt_button_set" style="display:none")
-                                                    br
-                                                    button.btn.btn-danger.btn-block(id="bt_submit_foto" type="button" title="carregar o ficheiro para atualização da foto")
-                                                        +awsme("file-up")
-                                                        | &nbsp;upload foto do condutor
-                                                    a.btn.btn-success.btn-block(id="bt_back_foto" type="button" href=`/condutores/${condutor._id}` title="cancelar")
-                                                        +awsme("back")
-                                                        | &nbsp; cancelar
-                                                div(id="dados_updt_button_set" style="display:none")
-                                                    button.btn.btn-danger.btn-block(id="bt_submit_dados" type="button" title="atualizar dados")
-                                                        +awsme("save")
-                                                        | &nbsp; atualizar dados do condutor
-                                                    a.btn.btn-success.btn-block(id="bt_back_dados" type="button" href=`/condutores/${condutor._id}` title="sair do modo atualização de dados")
-                                                        +awsme("back")
-                                                        | &nbsp; cancelar       
+							input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value=condutor.fto )
+							input.visuallyhidden(type="file" id="inp_file_img" name="inpFileImg" accept="image/*") 
+
+				.col-xs-6.col-sm-7.col-md-7.col-lg-9
+					.row.d-flex
+						.col-xs-12.col-sm-12.col-md-12.col-lg-8
+							.form-group 
+								label.form-label.mt-2(for="txt_nome") nome
+								.input-group 
+									.input-group-text 
+										.fa.fa-user.fa-fw
+									input.form-control(type="text" id="txt_nome" name="nome" value=condutor.nome disabled)
+
+						.col-xs-12.col-sm-12.col-md-12.col-lg-4
+							.form-group
+								label.form-label.mt-2(for="date_entrada") entrada
+								.input-group 
+									.input-group-text 
+										.fa.fa-calendar-check.fa-fw
+									input.form-control(type="date" id="date_entrada" name="entrada" value=condutor.entrd.substring(0,10) disabled )
+
+					.row.d-flex
+						.col-xs-12.col-sm-12.col-md-12.col-lg-6 
+							.form-group
+								label.form-label.mt-2(for="txt_nif") nif
+								.input-group 
+									.input-group-text 
+										.fa.fa-id-card.fa-fw
+									input.form-control(type="text" id="txt_nif" name="nif" value=condutor.nif disabled)
+
+						.col-xs-12.col-sm-12.col-md-12.col-lg-6 
+							.form-group
+								label.form-label.mt-2(for="txt_kms") kms
+								.input-group 
+									.input-group-text 
+										.fa.fa-road.fa-fw
+									input.form-control(type="text" id="txt_kms" name="kms" value=condutor.kms disabled)
+
+						.col-xs-12.col-sm-12.col-md-12.col-lg-6 
+							.form-group 
+								label.form-label.mt-2(for="txt_tel") telefone
+								.input-group
+									.input-group-text 
+										.fa.fa-phone.fa-fw
+									input.form-control(type="text" id="txt_tel" name="tel" value=condutor.tel disabled)
+
+						.col-xs-12.col-sm-12.col-md-12.col-lg-6
+							.form-group 
+								label.form-label.mt-2(for="txt_email") email
+								.input-group
+									.input-group-text 
+										.da.da-at.fa-fw
+									input.form-control(type="text" id="txt_email" name="email" value=condutor.email disabled)
+
+		.card-footer
+			.float-end=`id: ${condutor._id}` 
+

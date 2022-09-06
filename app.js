@@ -10,9 +10,12 @@ require('./app_api/models/db');
 // para routers da aplicação
 const appv = require('./app_server/routes/viaturas/appv');
 const appc = require('./app_server/routes/condutores/appc');
+const appm = require('./app_server/routes/viaturas/appm');
+
 
 const apiv = require('./app_api/routes/apiv');
 const apic = require('./app_api/routes/apic');
+const apim = require('./app_api/routes/apim');
 
 const routeIndex = require('./app_server/routes/index');
 
@@ -48,12 +51,13 @@ app.use('/', routeIndex);
 
 
 app.use('/viaturas', appv);
-
 app.use('/condutores', appc);
+app.use('/manutencoes', appm);
 
 
 app.use('/api/viaturas', apiv);
 app.use('/api/condutores', apic);
+app.use('/api/manutencoes', apim);
 
 
 

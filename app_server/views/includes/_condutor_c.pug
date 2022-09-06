@@ -1,86 +1,96 @@
-.container-fluid
-    .row
-        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-            h2.page-header=title+" - "+sub_title
-                .pull-right
-                    +a-btn-back()
-            div(id="div_alert")
-            .row 
-                .col-xs-12.col-sm-12.col-md-12.col-lg-12.placeholder
-                    .panel.panel-info 
-                        .panel-heading 
-                            h3.panel-title Dados do condutor
-                                .pull-right ID:
-                        .panel-body
-                            form(id="frm_condutor" name="frmCondutor" role="form" action="/condutores" method="post" enctype="multipart/form-data")
-                                .row 
-                                    .col-xs-12.col-sm-5.col-md-4.col-lg-4.placeholder
-                                        .text-center 
-                                            h3 Foto do condutor
-                                            img.img-responsive.fa.fa-8x.fa-solid.fa-user(id="img_foto" name="imgFoto" src="" alt=f1b9 placeholder="&#xf1b9" )
-                                            p &nbsp;
-                                        .input-group
-                                            .input-group-addon
-                                                .fa.fa-file.fa-sm &nbsp;&nbsp;
-                                            label.btn.btn-info.btn-block.btn-sm(id="lbl_file_name" name="lblFileName" for="inp_file_img") selecionar ficheiro
+nav.navbar.navbar-dark.bg-secondary.navbar-expand-md.rounded.mb-2.py-0(id="frmNavbar")
+	.container-fluid
+		navbar-brand.text-success
+			a.nav-link(href="/condutores" title="listagem de condutores")
+				.fa.fa-id-card.fa-fw
+				| &nbsp; condutores
+		button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse")
+			span.navbar-toggler-icon
+		.collapse.navbar-collapse.justify-content-end(id="navbarCollapse")
+			ul.navbar-nav(id="frmMenu")
+				li.nav-item.fs-6.text-danger
+					a.nav-link(id="bt_submit_dados" style="display:block" type="button" title="registar na base de dados")
+						.fa.fa-save.fa-fw
+						| &nbsp; guardar
 
-                                        input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value="" )
-                                        input.visuallyhidden(type="file" id="inp_file_img" name="inpFileImg" accept="image/*") 
-                                    .col-xs-12.col-sm-7.col-md-8.col-lg-8
-                                        .row 
-                                            .col-xs-12.col-sm-5.col-md-4.col-lg-3
-                                                label.container_chk(for="chk_ativo")
-                                                    input(type="checkbox" id="chk_ativo" name="chkAtivo" checked disabled )
-                                                    .checkmark
-                                                    | ativo
-                                            .col-xs-12.col-sm-12.col-md-8.col-lg-9
-                                                .form-group 
-                                                    label(for="txt_nome") nome
-                                                    .input-group 
-                                                        .input-group-addon 
-                                                            +awsme("user")
-                                                        input.form-control(type="text" id="txt_nome" name="nome" value="" )
-                                        .row 
-                                            .col-xs-12.col-sm-6.col-md-4.col-lg-4 
-                                                .form-group
-                                                    label(for="txt_entrada") entrada
-                                                    .input-group 
-                                                        .input-group-addon 
-                                                            +awsme("calendar")
-                                                        input.form-control(type="date" id="txt_entrada" name="entrada" value="" )
-                                            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-                                                .form-group
-                                                    label(for="txt_nif") nif
-                                                    .input-group 
-                                                        .input-group-addon 
-                                                            +awsme("hashtag")
-                                                        input.form-control(type="text" id="txt_nif" name="nif" value="" )
-                                            .col-xs-12.col-sm-6.col-md-4.col-lg-4 
-                                                .form-group
-                                                    label(for="txt_kms") kms
-                                                    .input-group 
-                                                        .input-group-addon 
-                                                            +awsme("road")
-                                                        input.form-control(type="text" id="txt_kms" name="kms" value= "" disabled)
-                                        .row 
-                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6
-                                                .form-group 
-                                                    label(for="txt_tel") telefone
-                                                    .input-group
-                                                        .input-group-addon 
-                                                            +awsme("phone")
-                                                        input.form-control(type="text" id="txt_tel" name="tel" value="" )
-                                            .col-xs-12.col-sm-12.col-md-6.col-lg-6
-                                                .form-group 
-                                                    label(for="txt_email") email
-                                                    .input-group
-                                                        .input-group-addon 
-                                                            +awsme("at")
-                                                        input.form-control(type="text" id="txt_email" name="email" value="" )
-                                        .row
-                                            .col-xs-12.col-sm-12.col-md-12.col-lg-12
-                                                br
-                                                button.btn.btn-danger.btn-block(id="bt_submit" type="submit" title="guardar dados do condutor")
-                                                    +awsme("save")
-                                                    | &nbsp; registar novo condutor
-                
+div.alert.alert-info(id="div_alert" style="display: none")
+
+form(id="frm_condutor" name="frmCondutor" action="/condutores" method="post" enctype="multipart/form-data")
+	.card.mb-3
+		.card-header.bg-warning 
+			.float-end
+				label.container_chk.mb-0(for="chk_ativo")
+					input(type="checkbox" id="chk_ativo" name="chkAtivo" checked disabled )
+					.checkmark
+					| ativo			
+			h6.mb-0="Dados do condutor"
+
+		.card-body
+			.row.d-flex.flex-row
+				.col-xs-4.col-sm-5.col-md-5.col-lg-3
+					.row
+						.col-12.text-center
+							div(id="img_foto_visible")
+								img.img-fluid.rounded.mx-auto.d-block.mb-4.fa.fa-8x.fa-user(id="img_foto_ph" name="imgFoto_ph" src="" alt=f1b9 placeholder="&#xf1b9" )
+							div(id="img_foto_invisible" style="display:none")
+								img.img-fluid.rounded.mx-auto.d-block(id="img_foto" name="imgFoto" src="" title="foto do condutor")
+
+					.row
+						.col-12.text-center
+							label.btn.btn-warning.rounded(id="lbl_file_name" name="lblFileName" for="inp_file_img" title="selecionar ficheiro com foto atualizada")="selecionar ficheiro" 
+							input.visuallyhidden(type="file" id="inp_file_img" name="inpFileImg" accept="image/*") 
+							input.visuallyhidden(type="text" id= "txt_file_name_H" name="fileNameH" value="" )
+
+				.col-xs-6.col-sm-7.col-md-7.col-lg-9
+					.row.d-flex
+						.col-xs-12.col-sm-12.col-md-12.col-lg-8
+							.form-group 
+								label.form-label.my-2(for="txt_nome") nome
+								.input-group 
+									.input-group-text 
+										.fa.fa-id-card.fa-fw
+									input.form-control(type="text" id="txt_nome" name="nome" value="" )
+
+						.col-xs-12.col-sm-12.col-md-12.col-lg-4
+								.form-group
+									label.form-label.my-2(for="txt_entrada") entrada
+									.input-group 
+										.input-group-text 
+											.fa.fa-calendar-check.fa-fw
+										input.form-control(type="date" id="txt_entrada" name="entrada" value="" )
+
+					.row.d-flex
+						.col-xs-12.col-sm-12.col-md-12.col-lg-6 
+							.form-group
+								label.form-label.mt-2.my-1(for="txt_nif") nif
+								.input-group 
+									.input-group-text 
+										.fa.fa-id-card.fa-fw
+									input.form-control(type="text" id="txt_nif" name="nif" value="" )
+
+						.col-xs-12.col-sm-12.col-md-12.col-lg-6 
+							.form-group
+								label.form-label.mt-2.my-1(for="txt_kms") kms
+								.input-group 
+									.input-group-text 
+										.fa.fa-road.fa-fw
+									input.form-control(type="text" id="txt_kms" name="kms" value= "" disabled)
+
+						.col-xs-12.col-sm-12.col-md-12.col-lg-6 
+							.form-group 
+								label.form-label.mt-2.my-1(for="txt_tel") telefone
+								.input-group
+									.input-group-text 
+										.fa.fa-phone.fa-fw
+									input.form-control(type="text" id="txt_tel" name="tel" value="" )
+
+						.col-xs-12.col-sm-12.col-md-12.col-lg-6
+							.form-group 
+								label.form-label.mt-2.my-1(for="txt_email") email
+								.input-group
+									.input-group-text 
+										.fa.fa-at.fa-fw
+									input.form-control(type="text" id="txt_email" name="email" value="" )
+
+		.card-footer
+			.float-end="id: "
